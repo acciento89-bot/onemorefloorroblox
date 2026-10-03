@@ -1,7 +1,7 @@
 --!strict
 
 return table.freeze({
-	UniverseId = 0,
-	DevelopmentPlaceId = 0,
-	ProductionPlaceId = 0,
+	UniverseId = 10769163551,
+	DevelopmentPlaceId = 91755924353943,
+	ProductionPlaceId = 91755924353943,
 })
