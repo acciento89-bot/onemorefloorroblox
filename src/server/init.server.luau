@@ -23,9 +23,11 @@ end
 local WorldService = require(script.services.WorldService)
 local ProfileService = require(script.services.ProfileService)
 local FloorService = require(script.services.FloorService)
+local CosmeticService = require(script.services.CosmeticService)
 
 ProfileService.start()
 WorldService.start()
 FloorService.start()
+CosmeticService.start()
 
 print("[One More Floor] Server initialized")

@@ -8,6 +8,7 @@ local Workspace = game:GetService("Workspace")
 
 local shared = ReplicatedStorage:WaitForChild("OneMoreFloor"):WaitForChild("Shared")
 local ChallengeConfig = require(shared.config.ChallengeConfig)
+local CosmeticConfig = require(shared.config.CosmeticConfig)
 local GameConfig = require(shared.config.GameConfig)
 local ChallengeRules = require(shared.game.ChallengeRules)
 local FloorStateRules = require(shared.game.FloorStateRules)
@@ -72,6 +73,44 @@ local function disconnectAll(connections: { RBXScriptConnection })
 		connection:Disconnect()
 	end
 	table.clear(connections)
+end
+
+local function playWinEffect(course: Course)
+	local profile = ProfileService.get(course.Player)
+	local root = rootPart(course.Player)
+	if not profile or not root or profile.Settings.ReducedMotion then
+		return
+	end
+	local item = CosmeticConfig.Items[profile.Equipped.WinEffect]
+	if not item or item.Id == "win_none" then
+		return
+	end
+
+	local effect = Instance.new("Part")
+	effect.Name = "OMFWinEffect"
+	effect.Shape = Enum.PartType.Cylinder
+	effect.Size = Vector3.new(0.16, 3.2, 3.2)
+	effect.CFrame = CFrame.new(root.Position - Vector3.new(0, 2.1, 0)) * CFrame.Angles(0, 0, math.rad(90))
+	effect.Anchored = true
+	effect.CanCollide = false
+	effect.CanTouch = false
+	effect.CanQuery = false
+	effect.CastShadow = false
+	effect.Material = Enum.Material.Neon
+	effect.Color = Color3.fromRGB(item.ColorRGB[1], item.ColorRGB[2], item.ColorRGB[3])
+	effect.Transparency = 0.18
+	effect.Parent = Workspace
+
+	local targetSize = if item.Id == "win_ring" then Vector3.new(0.12, 13, 13) else Vector3.new(0.12, 9, 9)
+	TweenService:Create(effect, TweenInfo.new(0.45, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+		Size = targetSize,
+		Transparency = 1,
+	}):Play()
+	task.delay(0.55, function()
+		if effect.Parent then
+			effect:Destroy()
+		end
+	end)
 end
 
 local function challengeDefinition(course: Course)
@@ -186,6 +225,7 @@ local function bindRuntime(course: Course)
 				course.BestFloor = math.max(course.BestFloor, course.Floor)
 			end
 			syncProfile(course)
+			playWinEffect(course)
 			setMovement(course.Player, false)
 			emit(course, { Event = "FloorComplete" })
 			if not transition(course, FloorStateRules.State.Transition) then
@@ -337,7 +377,9 @@ prepareFloor = function(course: Course, reuseSelection: boolean)
 	end
 
 	local origin = WorldService.floorOrigin(course.Lane, course.Floor)
-	course.Runtime = ChallengeFactory.build(course.Lane.Model, course.Selection, course.Params, origin)
+	local profile = ProfileService.get(course.Player)
+	local themeId = if profile then profile.Equipped.Theme else "theme_foundry"
+	course.Runtime = ChallengeFactory.build(course.Lane.Model, course.Selection, course.Params, origin, themeId)
 	course.DeadlineClock = os.clock() + course.Selection.TimeLimitSeconds
 	course.DeadlineServer = Workspace:GetServerTimeNow() + course.Selection.TimeLimitSeconds
 	bindRuntime(course)
@@ -434,6 +476,17 @@ local function removePlayer(player: Player)
 	WorldService.destroyLane(course.Lane)
 	courses[player] = nil
 	ProfileService.release(player)
+end
+
+function FloorService.refreshProfile(player: Player)
+	local course = courses[player]
+	local profile = ProfileService.get(player)
+	if not course or not profile then
+		return
+	end
+	course.BestFloor = profile.BestFloor
+	course.Coins = profile.Coins
+	emit(course, { Event = "ProfileUpdated" })
 end
 
 local function heartbeat()

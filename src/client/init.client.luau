@@ -6,9 +6,11 @@ ReplicatedStorage:WaitForChild("OneMoreFloorRemotes")
 
 local controllers = script:WaitForChild("controllers")
 local CameraController = require(controllers.CameraController)
+local CosmeticController = require(controllers.CosmeticController)
 local HudController = require(controllers.HudController)
 
 CameraController.start()
 HudController.start()
+CosmeticController.start()
 
 print("[One More Floor] Client initialized")

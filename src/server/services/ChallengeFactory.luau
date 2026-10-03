@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local shared = ReplicatedStorage:WaitForChild("OneMoreFloor"):WaitForChild("Shared")
 local ChallengeConfig = require(shared.config.ChallengeConfig)
+local CosmeticConfig = require(shared.config.CosmeticConfig)
 local GameConfig = require(shared.config.GameConfig)
 
 local ChallengeFactory = {}
@@ -92,7 +93,14 @@ local function floorPart(parent: Instance, name: string, size: Vector3, position
 	return makePart(parent, name, size, CFrame.new(position), Enum.Material.DiamondPlate, SAFE, true)
 end
 
-local function addShell(model: Model, origin: Vector3, accent: Color3, title: string, floorNumber: number)
+local function addShell(
+	model: Model,
+	origin: Vector3,
+	accent: Color3,
+	themeAccent: Color3,
+	title: string,
+	floorNumber: number
+)
 	local width = GameConfig.Floor.RoomWidth
 	local depth = GameConfig.Floor.RoomDepth
 	local height = GameConfig.Floor.RoomHeight
@@ -107,6 +115,21 @@ local function addShell(model: Model, origin: Vector3, accent: Color3, title: st
 		false
 	)
 	decorative(under)
+
+	for _, zSign in { -1, 1 } do
+		local rail = makePart(
+			model,
+			"ThemeRail",
+			Vector3.new(width - 2.2, 0.14, 0.18),
+			CFrame.new(origin + Vector3.new(0, 0.59, zSign * (depth / 2 - 0.9))),
+			Enum.Material.Neon,
+			themeAccent,
+			false
+		)
+		rail.Transparency = 0.12
+		rail.CastShadow = false
+		decorative(rail)
+	end
 
 	for _, side in { -1, 1 } do
 		local wall = makePart(
@@ -126,7 +149,7 @@ local function addShell(model: Model, origin: Vector3, accent: Color3, title: st
 				Vector3.new(0.2, 0.35, 2.8),
 				CFrame.new(origin + Vector3.new(side * (width / 2 + 0.92), 3.1, z)),
 				Enum.Material.Neon,
-				accent,
+				themeAccent,
 				false
 			)
 			light.Transparency = 0.18
@@ -156,7 +179,7 @@ local function addShell(model: Model, origin: Vector3, accent: Color3, title: st
 		decorative(practical)
 
 		local point = Instance.new("PointLight")
-		point.Color = if lightOffset.Z < 0 then Color3.fromRGB(255, 221, 185) else accent
+		point.Color = if lightOffset.Z < 0 then Color3.fromRGB(255, 221, 185) else themeAccent
 		point.Brightness = 1.0
 		point.Range = 18
 		point.Shadows = false
@@ -424,7 +447,13 @@ local function buildMovingWall(runtime: Runtime, origin: Vector3, params: any)
 	end
 end
 
-function ChallengeFactory.build(parent: Instance, selection: any, params: any, origin: Vector3): Runtime
+function ChallengeFactory.build(
+	parent: Instance,
+	selection: any,
+	params: any,
+	origin: Vector3,
+	themeId: string?
+): Runtime
 	local model = Instance.new("Model")
 	model.Name = ("Floor_%03d_%s"):format(selection.Floor, selection.FamilyId)
 	model:SetAttribute("FloorNumber", selection.Floor)
@@ -434,6 +463,9 @@ function ChallengeFactory.build(parent: Instance, selection: any, params: any, o
 
 	local definition = assert(ChallengeConfig.Families[selection.FamilyId], "unknown family")
 	local accent = rgb(definition.AccentRGB)
+	local themeItem = CosmeticConfig.Items[themeId or "theme_foundry"]
+	local themeAccent = if themeItem and themeItem.Category == "Theme" then rgb(themeItem.ColorRGB) else WARM
+	model:SetAttribute("ThemeId", if themeItem then themeItem.Id else "theme_foundry")
 	local runtime: Runtime = {
 		Model = model,
 		StartCFrame = CFrame.lookAt(origin + Vector3.new(0, 3.2, -13), origin + Vector3.new(0, 3.2, 10)),
@@ -446,7 +478,7 @@ function ChallengeFactory.build(parent: Instance, selection: any, params: any, o
 		Accent = accent,
 	}
 
-	addShell(model, origin, accent, definition.DisplayName, selection.Floor)
+	addShell(model, origin, accent, themeAccent, definition.DisplayName, selection.Floor)
 
 	if selection.FamilyId == "precision_jump" then
 		buildPrecision(runtime, origin, params)

@@ -88,13 +88,13 @@ Mandatory V1 rules:
 
 ## P07 Progression and persistence
 - [x] P07-T01 Currency model
-- [ ] P07-T02 Trails, win effects, tower/floor themes and avatar-adjacent cosmetics
-- [ ] P07-T03 Server purchase/equip
+- [~] P07-T02 Trails, win effects, tower/floor themes and avatar-adjacent cosmetics
+- [~] P07-T03 Server purchase/equip
 - [x] P07-T04 Versioned profile/migration
 - [~] P07-T05 Save/lock/recovery
 - [~] P07-T06 New-session rejoin retains best floor, currency, cosmetics and settings
 
-Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/migration and starter entitlements; `ProfileService` adds DataStore `UpdateAsync` session locking, autosave, leave/shutdown release and an explicit non-persistent Studio fallback. Best Floor and Coins are loaded into the authoritative course and written back on progression. Pure-Luau profile tests pass. P07-T05/T06 remain runtime-gated until an API-enabled published/private rejoin proves lock release and persistence.
+Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/migration and starter entitlements; `ProfileService` adds DataStore `UpdateAsync` session locking, autosave, leave/shutdown release and an explicit non-persistent Studio fallback. Best Floor and Coins are loaded into the authoritative course and written back on progression. `CosmeticService` now owns a server-allowlisted coin purchase/equip path for three trail, three win-effect and three room-theme choices; the client Style Garage only sends intent. Equipped trails apply to the avatar, win effects respect Reduced Motion, and room theme rails apply on the next floor. Pure-Luau profile/catalog tests pass. P07-T02/T03/T05/T06 remain runtime-gated until an API-enabled published/private run proves buy/equip/rejoin and lock release.
 
 ## P08 Tutorial and retention
 - [~] P08-T01 First three floors form a natural tutorial without long text
@@ -119,7 +119,7 @@ Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/m
 - [~] P10-T02 New-floor intro is fast and non-blocking
 - [ ] P10-T03 Failure/revive/retry flow
 - [ ] P10-T04 Challenge-specific hints disappear once learned
-- [ ] P10-T05 Shop/cosmetic preview
+- [~] P10-T05 Shop/cosmetic preview
 - [~] P10-T06 Compact phone/tablet/desktop
 - [ ] P10-T07 Controller focus/accessibility/reduced motion
 
@@ -135,7 +135,7 @@ Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/m
 - [ ] P12-T01 Floor start/success transition cues
 - [ ] P12-T02 Family-specific action/hazard cues where useful
 - [ ] P12-T03 Failure/revive/retry feedback
-- [ ] P12-T04 PB/milestone/reward feedback
+- [~] P12-T04 PB/milestone/reward feedback
 - [ ] P12-T05 VFX do not obscure short reaction challenges
 - [ ] P12-T06 Owned/Roblox-safe assets and reduced-motion/audio QA
 
