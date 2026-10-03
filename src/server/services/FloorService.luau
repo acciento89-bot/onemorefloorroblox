@@ -14,6 +14,7 @@ local FloorStateRules = require(shared.game.FloorStateRules)
 local SelectorRules = require(shared.game.SelectorRules)
 
 local ChallengeFactory = require(script.Parent.ChallengeFactory)
+local ProfileService = require(script.Parent.ProfileService)
 local WorldService = require(script.Parent.WorldService)
 
 local FloorService = {}
@@ -78,6 +79,19 @@ local function challengeDefinition(course: Course)
 		return nil
 	end
 	return ChallengeConfig.Families[course.Selection.FamilyId]
+end
+
+local function syncProfile(course: Course)
+	local profile = ProfileService.get(course.Player)
+	if not profile then
+		return
+	end
+	local changed = profile.BestFloor ~= course.BestFloor or profile.Coins ~= course.Coins
+	profile.BestFloor = course.BestFloor
+	profile.Coins = course.Coins
+	if changed then
+		ProfileService.markDirty(course.Player)
+	end
 end
 
 local function syncAttributes(course: Course)
@@ -171,6 +185,7 @@ local function bindRuntime(course: Course)
 			if not course.Assisted then
 				course.BestFloor = math.max(course.BestFloor, course.Floor)
 			end
+			syncProfile(course)
 			setMovement(course.Player, false)
 			emit(course, { Event = "FloorComplete" })
 			if not transition(course, FloorStateRules.State.Transition) then
@@ -361,15 +376,21 @@ local function onAction(player: Player, action: any)
 end
 
 local function addPlayer(player: Player)
+	local profile = ProfileService.load(player)
+	if player.Parent ~= Players then
+		ProfileService.release(player)
+		return
+	end
+
 	nextLaneIndex += 1
 	local lane = WorldService.createLane(player, nextLaneIndex)
 	local course: Course = {
 		Player = player,
 		Lane = lane,
 		Floor = 1,
-		BestFloor = 0,
+		BestFloor = profile.BestFloor,
 		Streak = 0,
-		Coins = 0,
+		Coins = profile.Coins,
 		Assisted = false,
 		Phase = FloorStateRules.State.Preparing,
 		Seed = math.max(1, player.UserId * 131 + 17),
@@ -407,10 +428,12 @@ local function removePlayer(player: Player)
 	if not course then
 		return
 	end
+	syncProfile(course)
 	clearRuntime(course)
 	disconnectAll(course.CharacterConnections)
 	WorldService.destroyLane(course.Lane)
 	courses[player] = nil
+	ProfileService.release(player)
 end
 
 local function heartbeat()

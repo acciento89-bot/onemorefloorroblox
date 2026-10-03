@@ -87,12 +87,14 @@ Mandatory V1 rules:
 - [~] P06-T06 Anti-skip/replay/fake-completion guards
 
 ## P07 Progression and persistence
-- [ ] P07-T01 Currency model
+- [x] P07-T01 Currency model
 - [ ] P07-T02 Trails, win effects, tower/floor themes and avatar-adjacent cosmetics
 - [ ] P07-T03 Server purchase/equip
-- [ ] P07-T04 Versioned profile/migration
-- [ ] P07-T05 Save/lock/recovery
-- [ ] P07-T06 New-session rejoin retains best floor, currency, cosmetics and settings
+- [x] P07-T04 Versioned profile/migration
+- [~] P07-T05 Save/lock/recovery
+- [~] P07-T06 New-session rejoin retains best floor, currency, cosmetics and settings
+
+Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/migration and starter entitlements; `ProfileService` adds DataStore `UpdateAsync` session locking, autosave, leave/shutdown release and an explicit non-persistent Studio fallback. Best Floor and Coins are loaded into the authoritative course and written back on progression. Pure-Luau profile tests pass. P07-T05/T06 remain runtime-gated until an API-enabled published/private rejoin proves lock release and persistence.
 
 ## P08 Tutorial and retention
 - [~] P08-T01 First three floors form a natural tutorial without long text

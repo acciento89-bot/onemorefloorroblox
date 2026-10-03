@@ -21,8 +21,10 @@ for _, definition in RemoteDefinitions do
 end
 
 local WorldService = require(script.services.WorldService)
+local ProfileService = require(script.services.ProfileService)
 local FloorService = require(script.services.FloorService)
 
+ProfileService.start()
 WorldService.start()
 FloorService.start()
 
