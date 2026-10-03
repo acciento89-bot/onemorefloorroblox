@@ -26,7 +26,18 @@ return table.freeze({
 		Distance = 18,
 		Height = 10,
 		FocusLead = 4,
+		FocusHeight = 2.4,
 		Smoothness = 9,
+		ProfileBlendSpeed = 6,
+		Profiles = table.freeze({
+			precision_jump = table.freeze({ Distance = 19.5, Height = 10.5, FocusLead = 5.0, FieldOfView = 70 }),
+			moving_platform = table.freeze({ Distance = 20.0, Height = 11.0, FocusLead = 4.5, FieldOfView = 72 }),
+			dodge_gates = table.freeze({ Distance = 19.0, Height = 11.5, FocusLead = 5.5, FieldOfView = 72 }),
+			narrow_path = table.freeze({ Distance = 20.5, Height = 12.0, FocusLead = 6.0, FieldOfView = 69 }),
+			switch_dash = table.freeze({ Distance = 19.5, Height = 11.0, FocusLead = 5.0, FieldOfView = 70 }),
+			disappearing_tiles = table.freeze({ Distance = 20.5, Height = 12.0, FocusLead = 6.0, FieldOfView = 70 }),
+			moving_wall = table.freeze({ Distance = 21.0, Height = 11.5, FocusLead = 5.5, FieldOfView = 72 }),
+		}),
 	}),
 	Economy = table.freeze({
 		FloorCoins = 3,

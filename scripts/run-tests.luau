@@ -1,4 +1,5 @@
 local tests = {
+	require("../tests/camera-config.spec"),
 	require("../tests/challenge-rules.spec"),
 	require("../tests/floor-state-rules.spec"),
 	require("../tests/selector-rules.spec"),
