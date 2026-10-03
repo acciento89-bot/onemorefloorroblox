@@ -36,11 +36,11 @@ Mandatory V1 rules:
 - [x] P01-T02 Challenge registry/schema/config system
 - [x] P01-T03 Round/floor state and remote definitions
 - [x] P01-T04 Lint/format/tests/build toolchain
-- [~] P01-T05 CI + release readiness
+- [x] P01-T05 CI + release readiness
 - [~] P01-T06 Dev/prod place and canonical build policy
 
 ## P02 Character, camera and control continuity
-- [~] P02-T01 Safe spawn/lobby/start floor
+- [x] P02-T01 Safe spawn/lobby/start floor
 - [~] P02-T02 Unified movement/jump/interact controls
 - [ ] P02-T03 Camera profile system supports different floor layouts without abrupt disorientation
 - [~] P02-T04 Camera returns cleanly after death/revive/transition

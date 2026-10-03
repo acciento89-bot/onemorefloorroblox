@@ -52,13 +52,13 @@ local function configureLighting()
 	end
 	lightingConfigured = true
 
-	Lighting.ClockTime = 18.1
-	Lighting.Brightness = 2.0
-	Lighting.ExposureCompensation = 0.02
+	Lighting.ClockTime = 17.35
+	Lighting.Brightness = 2.35
+	Lighting.ExposureCompensation = 0.16
 	Lighting.GlobalShadows = true
 	Lighting.ShadowSoftness = 0.28
-	Lighting.Ambient = Color3.fromRGB(66, 76, 91)
-	Lighting.OutdoorAmbient = Color3.fromRGB(112, 121, 136)
+	Lighting.Ambient = Color3.fromRGB(84, 96, 112)
+	Lighting.OutdoorAmbient = Color3.fromRGB(132, 140, 154)
 
 	local atmosphere = Lighting:FindFirstChildOfClass("Atmosphere") or Instance.new("Atmosphere")
 	atmosphere.Density = 0.24
@@ -75,8 +75,8 @@ local function configureLighting()
 	bloom.Parent = Lighting
 
 	local color = Lighting:FindFirstChildOfClass("ColorCorrectionEffect") or Instance.new("ColorCorrectionEffect")
-	color.Brightness = 0.01
-	color.Contrast = 0.08
+	color.Brightness = 0.025
+	color.Contrast = 0.05
 	color.Saturation = -0.03
 	color.TintColor = Color3.fromRGB(244, 248, 255)
 	color.Parent = Lighting

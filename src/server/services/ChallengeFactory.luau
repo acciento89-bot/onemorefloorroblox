@@ -29,9 +29,9 @@ export type Runtime = {
 	Accent: Color3,
 }
 
-local FOUNDATION = Color3.fromRGB(20, 27, 37)
-local STEEL = Color3.fromRGB(43, 56, 70)
-local SAFE = Color3.fromRGB(89, 103, 118)
+local FOUNDATION = Color3.fromRGB(28, 37, 49)
+local STEEL = Color3.fromRGB(53, 67, 82)
+local SAFE = Color3.fromRGB(96, 111, 127)
 local WARM = Color3.fromRGB(244, 166, 80)
 local HAZARD = Color3.fromRGB(236, 83, 94)
 
@@ -134,6 +134,35 @@ local function addShell(model: Model, origin: Vector3, accent: Color3, title: st
 		end
 	end
 
+	for _, lightOffset in
+		{
+			Vector3.new(-10, 8.8, -8),
+			Vector3.new(10, 8.8, -8),
+			Vector3.new(-10, 8.8, 8),
+			Vector3.new(10, 8.8, 8),
+		}
+	do
+		local practical = makePart(
+			model,
+			"RoomPractical",
+			Vector3.new(2.8, 0.18, 0.55),
+			CFrame.new(origin + lightOffset),
+			Enum.Material.Neon,
+			Color3.fromRGB(220, 235, 244),
+			false
+		)
+		practical.Transparency = 0.08
+		practical.CastShadow = false
+		decorative(practical)
+
+		local point = Instance.new("PointLight")
+		point.Color = if lightOffset.Z < 0 then Color3.fromRGB(255, 221, 185) else accent
+		point.Brightness = 1.0
+		point.Range = 18
+		point.Shadows = false
+		point.Parent = practical
+	end
+
 	for _, z in { -depth / 2 - 0.3, depth / 2 + 0.3 } do
 		local beam = makePart(
 			model,
@@ -150,8 +179,8 @@ local function addShell(model: Model, origin: Vector3, accent: Color3, title: st
 	local titleBoard = makePart(
 		model,
 		"FloorIdentity",
-		Vector3.new(12, 2.6, 0.45),
-		CFrame.new(origin + Vector3.new(0, 7.3, -depth / 2 + 0.35)),
+		Vector3.new(9.5, 1.8, 0.45),
+		CFrame.new(origin + Vector3.new(0, 8.7, -depth / 2 + 0.35)),
 		Enum.Material.Metal,
 		FOUNDATION,
 		false
