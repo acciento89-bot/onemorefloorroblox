@@ -2,7 +2,7 @@
 
 local ProfileRules = {}
 
-ProfileRules.CURRENT_VERSION = 2
+ProfileRules.CURRENT_VERSION = 3
 
 export type Profile = {
 	Version: number,
@@ -26,6 +26,10 @@ export type Profile = {
 	Achievements: { [string]: boolean },
 	SeenFamilies: { [string]: boolean },
 	FamilyWins: { [string]: number },
+	ReviveCredits: number,
+	SkipTokens: number,
+	CoinMultiplierUntil: number,
+	ProcessedReceipts: { [string]: boolean },
 }
 
 local function copyMap(source: { [string]: boolean }): { [string]: boolean }
@@ -75,6 +79,10 @@ function ProfileRules.default(): Profile
 		Achievements = {},
 		SeenFamilies = {},
 		FamilyWins = {},
+		ReviveCredits = 0,
+		SkipTokens = 0,
+		CoinMultiplierUntil = 0,
+		ProcessedReceipts = {},
 	}
 end
 
@@ -108,6 +116,7 @@ function ProfileRules.sanitize(raw: any): Profile
 	local achievements = if type(raw.Achievements) == "table" then copyMap(raw.Achievements) else {}
 	local seenFamilies = if type(raw.SeenFamilies) == "table" then copyMap(raw.SeenFamilies) else {}
 	local familyWins = if type(raw.FamilyWins) == "table" then copyNumberMap(raw.FamilyWins) else {}
+	local processedReceipts = if type(raw.ProcessedReceipts) == "table" then copyMap(raw.ProcessedReceipts) else {}
 	return {
 		Version = ProfileRules.CURRENT_VERSION,
 		BestFloor = integer(raw.BestFloor, 0, 1_000_000, 0),
@@ -132,6 +141,10 @@ function ProfileRules.sanitize(raw: any): Profile
 		Achievements = achievements,
 		SeenFamilies = seenFamilies,
 		FamilyWins = familyWins,
+		ReviveCredits = integer(raw.ReviveCredits, 0, 1_000_000, 0),
+		SkipTokens = integer(raw.SkipTokens, 0, 1_000_000, 0),
+		CoinMultiplierUntil = integer(raw.CoinMultiplierUntil, 0, 4_000_000_000, 0),
+		ProcessedReceipts = processedReceipts,
 	}
 end
 
@@ -156,6 +169,10 @@ function ProfileRules.snapshot(profile: Profile): any
 		Achievements = clean.Achievements,
 		SeenFamilies = clean.SeenFamilies,
 		FamilyWins = clean.FamilyWins,
+		ReviveCredits = clean.ReviveCredits,
+		SkipTokens = clean.SkipTokens,
+		CoinMultiplierUntil = clean.CoinMultiplierUntil,
+		ProcessedReceipts = clean.ProcessedReceipts,
 	}
 end
 

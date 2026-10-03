@@ -4,6 +4,7 @@ local tests = {
 	require("../tests/cosmetic-config.spec"),
 	require("../tests/floor-state-rules.spec"),
 	require("../tests/profile-rules.spec"),
+	require("../tests/receipt-rules.spec"),
 	require("../tests/retention-rules.spec"),
 	require("../tests/security-rules.spec"),
 	require("../tests/selector-rules.spec"),
