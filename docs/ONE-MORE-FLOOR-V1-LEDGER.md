@@ -144,9 +144,11 @@ Implementation note (2026-10-03): profile schema v2 adds UTC-day login streaks, 
 ## P13 Security and persistence hardening
 - [~] P13-T01 Remote/rate-limit audit
 - [~] P13-T02 Server owns floor selection/completion/current floor
-- [ ] P13-T03 Position/teleport/timing/NaN guards
+- [~] P13-T03 Position/teleport/timing/NaN guards
 - [~] P13-T04 Challenge-specific spoof checks
 - [ ] P13-T05 Economy/purchase serialization
+
+Security note (2026-10-03): `SecurityRules` now rejects non-finite vectors, too-fast clears, exit-distance mismatches, impossible average speed and high-speed movement samples. `FloorService` samples authoritative root movement during active floors and validates the final root/exit/timing state before transitioning to Success. Deterministic tests cover valid completion, TooFast, ExitDistance, ImpossibleSpeed, teleport samples and NaN. Runtime exploit/false-positive QA is still required before P13-T03 becomes [x].
 - [ ] P13-T06 DataStore migration/lock/recovery and diagnostics
 
 ## P14 Mandatory full runtime journey

@@ -17,6 +17,7 @@ local SelectorRules = require(shared.game.SelectorRules)
 local ChallengeFactory = require(script.Parent.ChallengeFactory)
 local ProfileService = require(script.Parent.ProfileService)
 local RetentionRules = require(shared.profile.RetentionRules)
+local SecurityRules = require(shared.game.SecurityRules)
 local WorldService = require(script.Parent.WorldService)
 
 local FloorService = {}
@@ -45,6 +46,11 @@ type Course = {
 	ShowHint: boolean,
 	PendingLoginReward: number,
 	PendingLoginStreak: number,
+	StartedAtClock: number,
+	StartPosition: Vector3,
+	LastRootPosition: Vector3,
+	LastRootSampleClock: number,
+	MovementInvalid: boolean,
 }
 
 local courses: { [Player]: Course } = {}
@@ -229,6 +235,30 @@ local function bindRuntime(course: Course)
 				or course.Phase ~= FloorStateRules.State.Active
 				or not isPlayerTouch(course.Player, hit)
 			then
+				return
+			end
+			local root = rootPart(course.Player)
+			if not root then
+				return
+			end
+			local floorOrigin = WorldService.floorOrigin(course.Lane, course.Floor)
+			local completionValid, invalidReason = SecurityRules.validateCompletion(
+				course.StartPosition,
+				root.Position,
+				runtime.Exit.Position,
+				floorOrigin.Y,
+				os.clock() - course.StartedAtClock
+			)
+			local finalStepValid = (root.Position - course.LastRootPosition).Magnitude <= SecurityRules.MAX_SAMPLE_STEP
+			if not completionValid or not finalStepValid or course.MovementInvalid then
+				warn(
+					("[One More Floor] Rejected completion for %d on floor %d: %s"):format(
+						course.Player.UserId,
+						course.Floor,
+						if course.MovementInvalid or not finalStepValid then "MovementSample" else invalidReason
+					)
+				)
+				failCourse(course, "InvalidMovement")
 				return
 			end
 			if not transition(course, FloorStateRules.State.Success) then
@@ -429,7 +459,13 @@ prepareFloor = function(course: Course, reuseSelection: boolean)
 	local profile = ProfileService.get(course.Player)
 	local themeId = if profile then profile.Equipped.Theme else "theme_foundry"
 	course.Runtime = ChallengeFactory.build(course.Lane.Model, course.Selection, course.Params, origin, themeId)
-	course.DeadlineClock = os.clock() + course.Selection.TimeLimitSeconds
+	local now = os.clock()
+	course.StartedAtClock = now
+	course.StartPosition = course.Runtime.StartCFrame.Position
+	course.LastRootPosition = course.StartPosition
+	course.LastRootSampleClock = now
+	course.MovementInvalid = false
+	course.DeadlineClock = now + course.Selection.TimeLimitSeconds
 	course.DeadlineServer = Workspace:GetServerTimeNow() + course.Selection.TimeLimitSeconds
 	bindRuntime(course)
 
@@ -507,6 +543,11 @@ local function addPlayer(player: Player)
 		ShowHint = true,
 		PendingLoginReward = dailyLogin.Reward,
 		PendingLoginStreak = dailyLogin.Streak,
+		StartedAtClock = 0,
+		StartPosition = Vector3.zero,
+		LastRootPosition = Vector3.zero,
+		LastRootSampleClock = 0,
+		MovementInvalid = false,
 	}
 	courses[player] = course
 
@@ -562,9 +603,23 @@ local function heartbeat()
 
 		local floorOrigin = WorldService.floorOrigin(course.Lane, course.Floor)
 		local root = rootPart(course.Player)
-		if root and root.Position.Y < floorOrigin.Y + GameConfig.Floor.KillPlaneOffset then
-			failCourse(course, "Fall")
-			continue
+		if root then
+			local sampleClock = os.clock()
+			local delta = sampleClock - course.LastRootSampleClock
+			if not SecurityRules.validateMovementSample(course.LastRootPosition, root.Position, delta) then
+				course.MovementInvalid = true
+			end
+			course.LastRootPosition = root.Position
+			course.LastRootSampleClock = sampleClock
+
+			if not SecurityRules.isFiniteVector(root.Position) then
+				failCourse(course, "InvalidMovement")
+				continue
+			end
+			if root.Position.Y < floorOrigin.Y + GameConfig.Floor.KillPlaneOffset then
+				failCourse(course, "Fall")
+				continue
+			end
 		end
 
 		local elapsed = Workspace:GetServerTimeNow()
