@@ -24,8 +24,22 @@ type Session = {
 }
 
 local sessions: { [Player]: Session } = {}
-local store = DataStoreService:GetDataStore(STORE_NAME)
+local store: any = nil
 local autosaveStarted = false
+
+local function getStore(): any
+	if store then
+		return store
+	end
+	local ok, result = pcall(function()
+		return DataStoreService:GetDataStore(STORE_NAME)
+	end)
+	if not ok then
+		return nil
+	end
+	store = result
+	return store
+end
 
 local function keyFor(player: Player): string
 	return ("u_%d"):format(player.UserId)
@@ -43,9 +57,15 @@ local function lockRecord(profile: ProfileRules.Profile): any
 end
 
 local function acquire(player: Player): (ProfileRules.Profile, boolean)
+	local activeStore = getStore()
+	if not activeStore then
+		warn("[One More Floor] DataStore unavailable; using ephemeral profile.")
+		return ProfileRules.default(), false
+	end
+
 	if RunService:IsStudio() then
 		local ok = pcall(function()
-			store:GetAsync("__omf_api_probe__")
+			activeStore:GetAsync("__omf_api_probe__")
 		end)
 		if not ok then
 			warn("[One More Floor] DataStore unavailable in Studio; using ephemeral profile.")
@@ -57,7 +77,7 @@ local function acquire(player: Player): (ProfileRules.Profile, boolean)
 		local acquired = false
 		local loaded: ProfileRules.Profile? = nil
 		local ok, err = pcall(function()
-			store:UpdateAsync(keyFor(player), function(existing)
+			activeStore:UpdateAsync(keyFor(player), function(existing)
 				local now = os.time()
 				if type(existing) == "table" and type(existing.Lock) == "table" then
 					local owner = existing.Lock.JobId
@@ -103,9 +123,14 @@ local function writeSession(player: Player, session: Session, releaseLock: boole
 		return true
 	end
 
+	local activeStore = getStore()
+	if not activeStore then
+		return false
+	end
+
 	local snapshot = ProfileRules.snapshot(session.Profile)
 	local ok, err = pcall(function()
-		store:UpdateAsync(keyFor(player), function(existing)
+		activeStore:UpdateAsync(keyFor(player), function(existing)
 			if type(existing) == "table" and type(existing.Lock) == "table" then
 				local owner = existing.Lock.JobId
 				if owner ~= nil and owner ~= game.JobId then
