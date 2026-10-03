@@ -179,14 +179,14 @@ local function addShell(model: Model, origin: Vector3, accent: Color3, title: st
 	local titleBoard = makePart(
 		model,
 		"FloorIdentity",
-		Vector3.new(9.5, 1.8, 0.45),
-		CFrame.new(origin + Vector3.new(0, 8.7, -depth / 2 + 0.35)),
+		Vector3.new(7.8, 1.4, 0.45),
+		CFrame.new(origin + Vector3.new(0, 9.2, -depth / 2 + 0.35)),
 		Enum.Material.Metal,
 		FOUNDATION,
 		false
 	)
 	decorative(titleBoard)
-	labelPart(titleBoard, ("FLOOR %02d  •  %s"):format(floorNumber, string.upper(title)), accent)
+	labelPart(titleBoard, ("F%02d  •  %s"):format(floorNumber, string.upper(title)), accent)
 
 	for _, x in { -12, 12 } do
 		for _, z in { -14, 14 } do

@@ -164,6 +164,7 @@ local function updateResponsive()
 		metricGrid.CellPadding = UDim2.fromOffset(6, 6)
 		objective.Position = UDim2.new(0.5, 0, 0, 138)
 		objective.Size = UDim2.new(1, -28, 0, 72)
+		feedback.Position = UDim2.new(0.5, -150, 0, 220)
 	elseif width < 1050 then
 		status.Size = UDim2.new(1, -34, 0, 66)
 		metricGrid.FillDirectionMaxCells = 4
@@ -171,6 +172,7 @@ local function updateResponsive()
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
 		objective.Position = UDim2.new(0.5, 0, 0, 94)
 		objective.Size = UDim2.fromOffset(500, 72)
+		feedback.Position = UDim2.new(0.5, -150, 0, 176)
 	else
 		status.Size = UDim2.fromOffset(720, 66)
 		metricGrid.FillDirectionMaxCells = 4
@@ -178,6 +180,7 @@ local function updateResponsive()
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
 		objective.Position = UDim2.new(0.5, 0, 0, 94)
 		objective.Size = UDim2.fromOffset(540, 72)
+		feedback.Position = UDim2.new(0.5, -150, 0, 176)
 	end
 end
 
