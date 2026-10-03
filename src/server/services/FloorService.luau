@@ -161,6 +161,9 @@ local function syncAttributes(course: Course)
 		player:SetAttribute("OMFDailyProgress", profile.DailyGoalProgress)
 		player:SetAttribute("OMFDailyTarget", RetentionRules.DAILY_GOAL_TARGET)
 		player:SetAttribute("OMFDailyStreak", profile.DailyStreak)
+		player:SetAttribute("OMFReviveCredits", profile.ReviveCredits)
+		player:SetAttribute("OMFSkipTokens", profile.SkipTokens)
+		player:SetAttribute("OMFCoinMultiplierUntil", profile.CoinMultiplierUntil)
 	end
 end
 
@@ -266,17 +269,20 @@ local function bindRuntime(course: Course)
 			end
 			local previousBest = course.BestFloor
 			course.Streak += 1
-			course.Coins += GameConfig.Economy.FloorCoins
+			local profile = ProfileService.get(course.Player)
+			local coinMultiplier = if profile and profile.CoinMultiplierUntil > os.time() then 2 else 1
+			local earnedCoins = GameConfig.Economy.FloorCoins
 			if course.Streak % GameConfig.Economy.StreakBonusEvery == 0 then
-				course.Coins += GameConfig.Economy.StreakBonusCoins
+				earnedCoins += GameConfig.Economy.StreakBonusCoins
 			end
+			course.Coins += earnedCoins * coinMultiplier
 			if not course.Assisted then
 				course.BestFloor = math.max(course.BestFloor, course.Floor)
 			end
 			syncProfile(course)
 
 			local retention = nil
-			local profile = ProfileService.get(course.Player)
+			profile = ProfileService.get(course.Player)
 			if profile and course.Selection then
 				retention = RetentionRules.recordFloor(
 					profile,
@@ -588,6 +594,50 @@ function FloorService.refreshProfile(player: Player)
 	course.BestFloor = profile.BestFloor
 	course.Coins = profile.Coins
 	emit(course, { Event = "ProfileUpdated" })
+end
+
+function FloorService.useRevive(player: Player): (boolean, string)
+	local course = courses[player]
+	local profile = ProfileService.get(player)
+	if not course or not profile then
+		return false, "NotReady"
+	end
+	if course.Phase ~= FloorStateRules.State.Failed then
+		return false, "NotFailed"
+	end
+	if profile.ReviveCredits <= 0 then
+		return false, "NoCredit"
+	end
+
+	profile.ReviveCredits -= 1
+	course.Assisted = true
+	ProfileService.markDirty(player)
+	prepareFloor(course, true)
+	return true, "Revived"
+end
+
+function FloorService.useSkip(player: Player): (boolean, string)
+	local course = courses[player]
+	local profile = ProfileService.get(player)
+	if not course or not profile then
+		return false, "NotReady"
+	end
+	if course.Phase ~= FloorStateRules.State.Active and course.Phase ~= FloorStateRules.State.Failed then
+		return false, "Unavailable"
+	end
+	if profile.SkipTokens <= 0 then
+		return false, "NoToken"
+	end
+
+	profile.SkipTokens -= 1
+	course.Assisted = true
+	course.Streak = 0
+	course.Floor += 1
+	course.Selection = nil
+	course.Params = nil
+	ProfileService.markDirty(player)
+	prepareFloor(course, false)
+	return true, "Skipped"
 end
 
 local function heartbeat()

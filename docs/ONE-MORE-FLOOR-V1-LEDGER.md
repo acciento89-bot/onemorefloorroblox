@@ -107,19 +107,19 @@ Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/m
 Implementation note (2026-10-03): profile schema v2 adds UTC-day login streaks, a five-floor daily goal, idempotent milestone/family-mastery achievements and persistent first-seen family tracking. The authoritative floor service grants rewards and reports PB/daily/milestone feedback without adding blocking interstitials. First-seen hints are retained for tutorial floors and otherwise disappear after the family is learned. Pure-Luau retention tests cover duplicate-login, streak reset, daily idempotency, milestone idempotency and family mastery. Runtime/rejoin evidence is still required before these gates become [x].
 
 ## P09 Monetization
-- [ ] P09-T01 Final products/passes/prices
-- [ ] P09-T02 Revive restores previous/current valid floor state
-- [ ] P09-T03 Limited skip token cannot purchase leaderboard floor progress without clearly separated competitive treatment
-- [ ] P09-T04 Coin multiplier affects economy only
-- [ ] P09-T05 Receipt allowlist/idempotency/serialization
-- [ ] P09-T06 Explicit-prompt shop and entitlement UI
-- [ ] P09-T07 Duplicate/retry/aborted purchase tests
+- [~] P09-T01 Final products/passes/prices — product keys/prices locked; real Roblox ProductIds remain external blockers
+- [~] P09-T02 Revive restores previous/current valid floor state — server-authoritative credit consumption + same-floor rebuild implemented; live receipt/runtime acceptance remains
+- [~] P09-T03 Limited skip token cannot purchase leaderboard floor progress without clearly separated competitive treatment — skip marks run assisted and assisted runs cannot update Best Floor
+- [x] P09-T04 Coin multiplier affects economy only — multiplier applies only to floor/streak coin earnings; progression/PB selection remains unchanged
+- [~] P09-T05 Receipt allowlist/idempotency/serialization — product allowlist, processed-receipt idempotency and save-before-ack implemented; live Roblox receipt/rejoin remains
+- [~] P09-T06 Explicit-prompt shop and entitlement UI — explicit Boosts panel + owned/active/not-live states + quick revive implemented
+- [~] P09-T07 Duplicate/retry/aborted purchase tests — duplicate/idempotency pure-Luau coverage implemented; live aborted/retry flow remains
 - [!] P09-T08 Real Developer Product receipt + rejoin verification
 
 ## P10 Production UI/UX
 - [~] P10-T01 HUD: floor, PB and immediately relevant objective only
 - [~] P10-T02 New-floor intro is fast and non-blocking
-- [ ] P10-T03 Failure/revive/retry flow
+- [~] P10-T03 Failure/revive/retry flow — immediate Retry plus quick Revive UI implemented; live product receipt acceptance remains
 - [~] P10-T04 Challenge-specific hints disappear once learned
 - [~] P10-T05 Shop/cosmetic preview
 - [~] P10-T06 Compact phone/tablet/desktop
@@ -148,7 +148,7 @@ Accessibility note (2026-10-03): Style Garage now supports direct keyboard/gamep
 - [~] P13-T02 Server owns floor selection/completion/current floor
 - [~] P13-T03 Position/teleport/timing/NaN guards
 - [~] P13-T04 Challenge-specific spoof checks
-- [ ] P13-T05 Economy/purchase serialization
+- [~] P13-T05 Economy/purchase serialization — receipts mutate profile server-side and are persisted before PurchaseGranted; live receipt retry/rejoin remains
 
 Security note (2026-10-03): `SecurityRules` now rejects non-finite vectors, too-fast clears, exit-distance mismatches, impossible average speed and high-speed movement samples. `FloorService` samples authoritative root movement during active floors and validates the final root/exit/timing state before transitioning to Success. Deterministic tests cover valid completion, TooFast, ExitDistance, ImpossibleSpeed, teleport samples and NaN. Runtime exploit/false-positive QA is still required before P13-T03 becomes [x].
 - [ ] P13-T06 DataStore migration/lock/recovery and diagnostics
