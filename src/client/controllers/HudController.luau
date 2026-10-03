@@ -220,6 +220,8 @@ local function applyState(payload: any)
 
 	objectiveTitle.Text = string.upper(tostring(payload.FamilyName or "NEXT FLOOR"))
 	objectiveHint.Text = tostring(payload.Hint or "")
+	objectiveHint.Visible = objectiveHint.Text ~= ""
+	objectiveTitle.Position = if objectiveHint.Visible then UDim2.fromOffset(12, 8) else UDim2.fromOffset(12, 18)
 	resultPanel.Visible = currentPhase == "Failed"
 	objective.Visible = currentPhase ~= "Failed"
 
@@ -232,9 +234,26 @@ local function applyState(payload: any)
 		)
 		GuiService.SelectedObject = retryButton
 	elseif payload.Event == "FloorComplete" then
-		showFeedback("FLOOR CLEARED", COLORS.Green)
+		local achievements = if type(payload.NewAchievements) == "table" then #payload.NewAchievements else 0
+		if payload.NewBest == true then
+			showFeedback(("NEW BEST  •  FLOOR %02d"):format(tonumber(payload.Floor) or 1), COLORS.Warm)
+		elseif payload.DailyCompleted == true then
+			showFeedback("DAILY GOAL  •  +25 ◈", COLORS.Green)
+		elseif achievements > 0 then
+			showFeedback("MILESTONE UNLOCKED", COLORS.Warm)
+		else
+			showFeedback("FLOOR CLEARED", COLORS.Green)
+		end
 	elseif payload.Event == "FloorStart" or payload.Event == "Retry" then
-		showFeedback(("FLOOR %02d"):format(tonumber(payload.Floor) or 1), COLORS.Cyan)
+		local loginReward = tonumber(payload.DailyLoginReward) or 0
+		if payload.Event == "FloorStart" and loginReward > 0 then
+			showFeedback(
+				("DAILY x%d  •  +%d ◈"):format(tonumber(payload.DailyLoginStreak) or 1, loginReward),
+				COLORS.Warm
+			)
+		else
+			showFeedback(("FLOOR %02d"):format(tonumber(payload.Floor) or 1), COLORS.Cyan)
+		end
 		if GuiService.SelectedObject == retryButton then
 			GuiService.SelectedObject = nil
 		end

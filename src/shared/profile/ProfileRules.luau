@@ -2,7 +2,7 @@
 
 local ProfileRules = {}
 
-ProfileRules.CURRENT_VERSION = 1
+ProfileRules.CURRENT_VERSION = 2
 
 export type Profile = {
 	Version: number,
@@ -19,6 +19,13 @@ export type Profile = {
 		MasterVolume: number,
 	},
 	LastDailyDay: number,
+	DailyStreak: number,
+	DailyGoalDay: number,
+	DailyGoalProgress: number,
+	DailyGoalClaimed: boolean,
+	Achievements: { [string]: boolean },
+	SeenFamilies: { [string]: boolean },
+	FamilyWins: { [string]: number },
 }
 
 local function copyMap(source: { [string]: boolean }): { [string]: boolean }
@@ -26,6 +33,16 @@ local function copyMap(source: { [string]: boolean }): { [string]: boolean }
 	for key, value in source do
 		if type(key) == "string" and value == true then
 			result[key] = true
+		end
+	end
+	return result
+end
+
+local function copyNumberMap(source: { [string]: number }): { [string]: number }
+	local result = {}
+	for key, value in source do
+		if type(key) == "string" and type(value) == "number" and value == value and value >= 0 then
+			result[key] = math.clamp(math.floor(value), 0, 1_000_000)
 		end
 	end
 	return result
@@ -51,6 +68,13 @@ function ProfileRules.default(): Profile
 			MasterVolume = 1,
 		},
 		LastDailyDay = 0,
+		DailyStreak = 0,
+		DailyGoalDay = 0,
+		DailyGoalProgress = 0,
+		DailyGoalClaimed = false,
+		Achievements = {},
+		SeenFamilies = {},
+		FamilyWins = {},
 	}
 end
 
@@ -81,6 +105,9 @@ function ProfileRules.sanitize(raw: any): Profile
 
 	local equipped = if type(raw.Equipped) == "table" then raw.Equipped else {}
 	local settings = if type(raw.Settings) == "table" then raw.Settings else {}
+	local achievements = if type(raw.Achievements) == "table" then copyMap(raw.Achievements) else {}
+	local seenFamilies = if type(raw.SeenFamilies) == "table" then copyMap(raw.SeenFamilies) else {}
+	local familyWins = if type(raw.FamilyWins) == "table" then copyNumberMap(raw.FamilyWins) else {}
 	return {
 		Version = ProfileRules.CURRENT_VERSION,
 		BestFloor = integer(raw.BestFloor, 0, 1_000_000, 0),
@@ -98,6 +125,13 @@ function ProfileRules.sanitize(raw: any): Profile
 				else defaults.Settings.MasterVolume,
 		},
 		LastDailyDay = integer(raw.LastDailyDay, 0, 100_000_000, 0),
+		DailyStreak = integer(raw.DailyStreak, 0, 10_000, 0),
+		DailyGoalDay = integer(raw.DailyGoalDay, 0, 100_000_000, 0),
+		DailyGoalProgress = integer(raw.DailyGoalProgress, 0, 10_000, 0),
+		DailyGoalClaimed = raw.DailyGoalClaimed == true,
+		Achievements = achievements,
+		SeenFamilies = seenFamilies,
+		FamilyWins = familyWins,
 	}
 end
 
@@ -115,6 +149,13 @@ function ProfileRules.snapshot(profile: Profile): any
 		Equipped = clean.Equipped,
 		Settings = clean.Settings,
 		LastDailyDay = clean.LastDailyDay,
+		DailyStreak = clean.DailyStreak,
+		DailyGoalDay = clean.DailyGoalDay,
+		DailyGoalProgress = clean.DailyGoalProgress,
+		DailyGoalClaimed = clean.DailyGoalClaimed,
+		Achievements = clean.Achievements,
+		SeenFamilies = clean.SeenFamilies,
+		FamilyWins = clean.FamilyWins,
 	}
 end
 

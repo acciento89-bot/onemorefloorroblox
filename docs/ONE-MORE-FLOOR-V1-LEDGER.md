@@ -98,11 +98,13 @@ Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/m
 
 ## P08 Tutorial and retention
 - [~] P08-T01 First three floors form a natural tutorial without long text
-- [ ] P08-T02 New challenge family can display a one-line first-seen hint
-- [ ] P08-T03 Daily login
-- [ ] P08-T04 Daily floor/challenge goal
-- [ ] P08-T05 Achievements for floor milestones/family mastery
-- [ ] P08-T06 PB celebration and “one more floor” retry hook
+- [~] P08-T02 New challenge family can display a one-line first-seen hint
+- [~] P08-T03 Daily login
+- [~] P08-T04 Daily floor/challenge goal
+- [~] P08-T05 Achievements for floor milestones/family mastery
+- [~] P08-T06 PB celebration and “one more floor” retry hook
+
+Implementation note (2026-10-03): profile schema v2 adds UTC-day login streaks, a five-floor daily goal, idempotent milestone/family-mastery achievements and persistent first-seen family tracking. The authoritative floor service grants rewards and reports PB/daily/milestone feedback without adding blocking interstitials. First-seen hints are retained for tutorial floors and otherwise disappear after the family is learned. Pure-Luau retention tests cover duplicate-login, streak reset, daily idempotency, milestone idempotency and family mastery. Runtime/rejoin evidence is still required before these gates become [x].
 
 ## P09 Monetization
 - [ ] P09-T01 Final products/passes/prices
@@ -118,7 +120,7 @@ Implementation note (2026-10-03): `ProfileRules` now owns schema v1 sanitizing/m
 - [~] P10-T01 HUD: floor, PB and immediately relevant objective only
 - [~] P10-T02 New-floor intro is fast and non-blocking
 - [ ] P10-T03 Failure/revive/retry flow
-- [ ] P10-T04 Challenge-specific hints disappear once learned
+- [~] P10-T04 Challenge-specific hints disappear once learned
 - [~] P10-T05 Shop/cosmetic preview
 - [~] P10-T06 Compact phone/tablet/desktop
 - [ ] P10-T07 Controller focus/accessibility/reduced motion

@@ -16,6 +16,7 @@ local SelectorRules = require(shared.game.SelectorRules)
 
 local ChallengeFactory = require(script.Parent.ChallengeFactory)
 local ProfileService = require(script.Parent.ProfileService)
+local RetentionRules = require(shared.profile.RetentionRules)
 local WorldService = require(script.Parent.WorldService)
 
 local FloorService = {}
@@ -41,6 +42,9 @@ type Course = {
 	CharacterConnections: { RBXScriptConnection },
 	RateStartedAt: number,
 	RateCount: number,
+	ShowHint: boolean,
+	PendingLoginReward: number,
+	PendingLoginStreak: number,
 }
 
 local courses: { [Player]: Course } = {}
@@ -144,8 +148,14 @@ local function syncAttributes(course: Course)
 	player:SetAttribute("OMFAssisted", course.Assisted)
 	player:SetAttribute("OMFFamily", if course.Selection then course.Selection.FamilyId else "")
 	player:SetAttribute("OMFFamilyName", if definition then definition.DisplayName else "")
-	player:SetAttribute("OMFHint", if definition then definition.Hint else "")
+	player:SetAttribute("OMFHint", if definition and course.ShowHint then definition.Hint else "")
 	player:SetAttribute("OMFDeadline", course.DeadlineServer)
+	local profile = ProfileService.get(player)
+	if profile then
+		player:SetAttribute("OMFDailyProgress", profile.DailyGoalProgress)
+		player:SetAttribute("OMFDailyTarget", RetentionRules.DAILY_GOAL_TARGET)
+		player:SetAttribute("OMFDailyStreak", profile.DailyStreak)
+	end
 end
 
 local function emit(course: Course, extra: any?)
@@ -161,9 +171,17 @@ local function emit(course: Course, extra: any?)
 		Deadline = course.DeadlineServer,
 		FamilyId = if course.Selection then course.Selection.FamilyId else "",
 		FamilyName = if definition then definition.DisplayName else "",
-		Hint = if definition then definition.Hint else "",
+		Hint = if definition and course.ShowHint then definition.Hint else "",
 		TimeLimit = if course.Selection then course.Selection.TimeLimitSeconds else 0,
+		DailyProgress = 0,
+		DailyTarget = RetentionRules.DAILY_GOAL_TARGET,
+		DailyStreak = 0,
 	}
+	local profile = ProfileService.get(course.Player)
+	if profile then
+		payload.DailyProgress = profile.DailyGoalProgress
+		payload.DailyStreak = profile.DailyStreak
+	end
 	if type(extra) == "table" then
 		for key, value in extra do
 			payload[key] = value
@@ -216,6 +234,7 @@ local function bindRuntime(course: Course)
 			if not transition(course, FloorStateRules.State.Success) then
 				return
 			end
+			local previousBest = course.BestFloor
 			course.Streak += 1
 			course.Coins += GameConfig.Economy.FloorCoins
 			if course.Streak % GameConfig.Economy.StreakBonusEvery == 0 then
@@ -225,9 +244,30 @@ local function bindRuntime(course: Course)
 				course.BestFloor = math.max(course.BestFloor, course.Floor)
 			end
 			syncProfile(course)
+
+			local retention = nil
+			local profile = ProfileService.get(course.Player)
+			if profile and course.Selection then
+				retention = RetentionRules.recordFloor(
+					profile,
+					RetentionRules.dayNumber(os.time()),
+					course.Selection.FamilyId,
+					course.Floor
+				)
+				course.Coins = profile.Coins
+				ProfileService.markDirty(course.Player)
+			end
+
 			playWinEffect(course)
 			setMovement(course.Player, false)
-			emit(course, { Event = "FloorComplete" })
+			emit(course, {
+				Event = "FloorComplete",
+				NewBest = course.BestFloor > previousBest,
+				DailyCompleted = if retention then retention.DailyCompleted else false,
+				DailyProgress = if retention then retention.DailyProgress else 0,
+				DailyTarget = if retention then retention.DailyTarget else RetentionRules.DAILY_GOAL_TARGET,
+				NewAchievements = if retention then retention.NewAchievements else {},
+			})
 			if not transition(course, FloorStateRules.State.Transition) then
 				return
 			end
@@ -369,6 +409,15 @@ prepareFloor = function(course: Course, reuseSelection: boolean)
 		)
 		course.Selection = selection
 		course.Params = ChallengeRules.parameters(selection)
+		local profile = ProfileService.get(course.Player)
+		local firstSeen = false
+		if profile then
+			firstSeen = RetentionRules.markFamilySeen(profile, selection.FamilyId)
+			if firstSeen then
+				ProfileService.markDirty(course.Player)
+			end
+		end
+		course.ShowHint = course.Floor <= 3 or firstSeen
 		assert(ChallengeRules.isSafe(selection, course.Params), "unsafe challenge selection")
 		table.insert(course.History, selection)
 		if #course.History > 8 then
@@ -394,7 +443,11 @@ prepareFloor = function(course: Course, reuseSelection: boolean)
 	emit(course, {
 		Event = if reuseSelection then "Retry" else "FloorStart",
 		Variant = course.Selection.Variant,
+		DailyLoginReward = course.PendingLoginReward,
+		DailyLoginStreak = course.PendingLoginStreak,
 	})
+	course.PendingLoginReward = 0
+	course.PendingLoginStreak = 0
 end
 
 local function allowAction(course: Course): boolean
@@ -419,6 +472,10 @@ end
 
 local function addPlayer(player: Player)
 	local profile = ProfileService.load(player)
+	local dailyLogin = RetentionRules.applyLogin(profile, RetentionRules.dayNumber(os.time()))
+	if dailyLogin.Claimed then
+		ProfileService.markDirty(player)
+	end
 	if player.Parent ~= Players then
 		ProfileService.release(player)
 		return
@@ -447,6 +504,9 @@ local function addPlayer(player: Player)
 		CharacterConnections = {},
 		RateStartedAt = os.clock(),
 		RateCount = 0,
+		ShowHint = true,
+		PendingLoginReward = dailyLogin.Reward,
+		PendingLoginStreak = dailyLogin.Streak,
 	}
 	courses[player] = course
 
