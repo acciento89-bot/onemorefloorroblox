@@ -1,0 +1,41 @@
+{
+  "name": "OneMoreFloor",
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "$properties": {
+        "StreamingEnabled": false
+      }
+    },
+    "ReplicatedStorage": {
+      "OneMoreFloor": {
+        "$className": "Folder",
+        "Shared": {
+          "$path": "src/shared"
+        }
+      }
+    },
+    "ServerScriptService": {
+      "OneMoreFloorServer": {
+        "$path": "src/server"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "OneMoreFloorClient": {
+          "$path": "src/client"
+        }
+      },
+      "$properties": {
+        "CameraMode": "Classic",
+        "CameraMinZoomDistance": 7,
+        "CameraMaxZoomDistance": 18
+      }
+    },
+    "StarterGui": {
+      "$properties": {
+        "ScreenOrientation": "Sensor"
+      }
+    }
+  }
+}

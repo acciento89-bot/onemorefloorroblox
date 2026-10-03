@@ -24,67 +24,67 @@ Mandatory V1 rules:
 - QA output uses `/tmp/onemorefloorroblox-qa`.
 
 ## P00 Product and content lock
-- [ ] P00-T01 Lock score vocabulary: current floor, best floor, streak/bonus where applicable
-- [ ] P00-T02 Lock floor target duration and overall run pacing
-- [ ] P00-T03 Lock challenge families and minimum V1 content count
-- [ ] P00-T04 Lock difficulty bands and parameter ranges per challenge family
-- [ ] P00-T05 Lock revive/skip rules and anti-pay-to-win boundaries
-- [ ] P00-T06 Measurable content-variety and release-quality criteria
+- [x] P00-T01 Lock score vocabulary: current floor, best floor, streak/bonus where applicable
+- [x] P00-T02 Lock floor target duration and overall run pacing
+- [x] P00-T03 Lock challenge families and minimum V1 content count
+- [x] P00-T04 Lock difficulty bands and parameter ranges per challenge family
+- [x] P00-T05 Lock revive/skip rules and anti-pay-to-win boundaries
+- [x] P00-T06 Measurable content-variety and release-quality criteria
 
 ## P01 Technical foundation
-- [ ] P01-T01 Rojo client/server/shared architecture
-- [ ] P01-T02 Challenge registry/schema/config system
-- [ ] P01-T03 Round/floor state and remote definitions
-- [ ] P01-T04 Lint/format/tests/build toolchain
-- [ ] P01-T05 CI + release readiness
-- [ ] P01-T06 Dev/prod place and canonical build policy
+- [x] P01-T01 Rojo client/server/shared architecture
+- [x] P01-T02 Challenge registry/schema/config system
+- [x] P01-T03 Round/floor state and remote definitions
+- [x] P01-T04 Lint/format/tests/build toolchain
+- [~] P01-T05 CI + release readiness
+- [~] P01-T06 Dev/prod place and canonical build policy
 
 ## P02 Character, camera and control continuity
-- [ ] P02-T01 Safe spawn/lobby/start floor
-- [ ] P02-T02 Unified movement/jump/interact controls
+- [~] P02-T01 Safe spawn/lobby/start floor
+- [~] P02-T02 Unified movement/jump/interact controls
 - [ ] P02-T03 Camera profile system supports different floor layouts without abrupt disorientation
-- [ ] P02-T04 Camera returns cleanly after death/revive/transition
-- [ ] P02-T05 Touch controls and safe areas
-- [ ] P02-T06 Keyboard/mouse/controller parity
+- [~] P02-T04 Camera returns cleanly after death/revive/transition
+- [~] P02-T05 Touch controls and safe areas
+- [~] P02-T06 Keyboard/mouse/controller parity
 - [ ] P02-T07 Runtime multi-floor camera/control acceptance
 
 ## P03 Floor lifecycle
-- [ ] P03-T01 Server-authoritative floor state machine: prepare → active → success/fail → transition
-- [ ] P03-T02 Floor objective appears only when needed and never blocks play
-- [ ] P03-T03 Completion triggers exactly once
-- [ ] P03-T04 Timeout/fall/hazard failures trigger exactly once
-- [ ] P03-T05 Transition cleans prior floor geometry/connections/effects
-- [ ] P03-T06 Next floor starts within target transition time
-- [ ] P03-T07 Retry/revive recreates a valid floor state
+- [~] P03-T01 Server-authoritative floor state machine: prepare → active → success/fail → transition
+- [~] P03-T02 Floor objective appears only when needed and never blocks play
+- [~] P03-T03 Completion triggers exactly once
+- [~] P03-T04 Timeout/fall/hazard failures trigger exactly once
+- [~] P03-T05 Transition cleans prior floor geometry/connections/effects
+- [~] P03-T06 Next floor starts within target transition time
+- [~] P03-T07 Retry/revive recreates a valid floor state
 
 ## P04 Challenge library — V1 content
-- [ ] P04-T01 Precision jump challenge family
-- [ ] P04-T02 Moving-platform timing family
-- [ ] P04-T03 Dodge/hazard pattern family
-- [ ] P04-T04 Narrow-path/balance family
-- [ ] P04-T05 Door/switch/short interaction family
-- [ ] P04-T06 Falling/disappearing platform family
-- [ ] P04-T07 Moving-wall/gap reaction family
+- [~] P04-T01 Precision jump challenge family
+- [~] P04-T02 Moving-platform timing family
+- [~] P04-T03 Dodge/hazard pattern family
+- [~] P04-T04 Narrow-path/balance family
+- [~] P04-T05 Door/switch/short interaction family
+- [~] P04-T06 Falling/disappearing platform family
+- [~] P04-T07 Moving-wall/gap reaction family
 - [ ] P04-T08 At least one additional visually distinct family after playtest evidence
-- [ ] P04-T09 Each family has multiple safe parameterized variants
+- [x] P04-T09 Each family has multiple safe parameterized variants
 - [ ] P04-T10 Every family has runtime acceptance and device fairness evidence
 
 ## P05 Selection, variety and difficulty
-- [ ] P05-T01 Deterministic seeded floor selector for QA
-- [ ] P05-T02 Anti-repeat rules prevent same family/variant spam
-- [ ] P05-T03 Difficulty rises by parameter changes, not unfair speed spikes
-- [ ] P05-T04 Challenge prerequisites prevent impossible device/layout combinations
-- [ ] P05-T05 500-floor simulation validates variety and parameter bounds
+- [x] P05-T01 Deterministic seeded floor selector for QA
+- [x] P05-T02 Anti-repeat rules prevent same family/variant spam
+- [x] P05-T03 Difficulty rises by parameter changes, not unfair speed spikes
+- [~] P05-T04 Challenge prerequisites prevent impossible device/layout combinations
+- [x] P05-T05 500-floor simulation validates variety and parameter bounds
 - [ ] P05-T06 100-floor live soak validates cleanup/memory/collision
 - [ ] P05-T07 Early/mid/late difficulty samples are human-playtested
 
 ## P06 Score, best floor and rewards
-- [ ] P06-T01 Current/best floor model
+- [~] P06-T01 Current/best floor model
 - [ ] P06-T02 Completion speed/clean-play bonus if retained by product lock
-- [ ] P06-T03 Server-only floor advancement
+- [~] P06-T03 Server-only floor advancement
 - [ ] P06-T04 PB update and leaderboard-safe validation
 - [ ] P06-T05 Reward cadence does not interrupt transitions
-- [ ] P06-T06 Anti-skip/replay/fake-completion guards
+- [~] P06-T06 Anti-skip/replay/fake-completion guards
 
 ## P07 Progression and persistence
 - [ ] P07-T01 Currency model
@@ -95,7 +95,7 @@ Mandatory V1 rules:
 - [ ] P07-T06 New-session rejoin retains best floor, currency, cosmetics and settings
 
 ## P08 Tutorial and retention
-- [ ] P08-T01 First three floors form a natural tutorial without long text
+- [~] P08-T01 First three floors form a natural tutorial without long text
 - [ ] P08-T02 New challenge family can display a one-line first-seen hint
 - [ ] P08-T03 Daily login
 - [ ] P08-T04 Daily floor/challenge goal
@@ -113,20 +113,20 @@ Mandatory V1 rules:
 - [!] P09-T08 Real Developer Product receipt + rejoin verification
 
 ## P10 Production UI/UX
-- [ ] P10-T01 HUD: floor, PB and immediately relevant objective only
-- [ ] P10-T02 New-floor intro is fast and non-blocking
+- [~] P10-T01 HUD: floor, PB and immediately relevant objective only
+- [~] P10-T02 New-floor intro is fast and non-blocking
 - [ ] P10-T03 Failure/revive/retry flow
 - [ ] P10-T04 Challenge-specific hints disappear once learned
 - [ ] P10-T05 Shop/cosmetic preview
-- [ ] P10-T06 Compact phone/tablet/desktop
+- [~] P10-T06 Compact phone/tablet/desktop
 - [ ] P10-T07 Controller focus/accessibility/reduced motion
 
 ## P11 Production art
-- [ ] P11-T01 Tower/floor shell has a coherent recognizable identity
-- [ ] P11-T02 Each challenge family is visually distinct but belongs to same world
-- [ ] P11-T03 Hazards and safe surfaces communicate function through shape/material as well as color
+- [~] P11-T01 Tower/floor shell has a coherent recognizable identity
+- [~] P11-T02 Each challenge family is visually distinct but belongs to same world
+- [~] P11-T03 Hazards and safe surfaces communicate function through shape/material as well as color
 - [ ] P11-T04 Transitions conceal generation/cleanup cleanly
-- [ ] P11-T05 Lighting/material pass avoids unreadable dark floors
+- [~] P11-T05 Lighting/material pass avoids unreadable dark floors
 - [ ] P11-T06 Screenshot-quality acceptance across multiple floor families
 
 ## P12 Audio and VFX
@@ -138,10 +138,10 @@ Mandatory V1 rules:
 - [ ] P12-T06 Owned/Roblox-safe assets and reduced-motion/audio QA
 
 ## P13 Security and persistence hardening
-- [ ] P13-T01 Remote/rate-limit audit
-- [ ] P13-T02 Server owns floor selection/completion/current floor
+- [~] P13-T01 Remote/rate-limit audit
+- [~] P13-T02 Server owns floor selection/completion/current floor
 - [ ] P13-T03 Position/teleport/timing/NaN guards
-- [ ] P13-T04 Challenge-specific spoof checks
+- [~] P13-T04 Challenge-specific spoof checks
 - [ ] P13-T05 Economy/purchase serialization
 - [ ] P13-T06 DataStore migration/lock/recovery and diagnostics
 
