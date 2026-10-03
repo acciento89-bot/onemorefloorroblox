@@ -1,5 +1,7 @@
 --!strict
 
+local ContextActionService = game:GetService("ContextActionService")
+local GuiService = game:GetService("GuiService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
@@ -31,6 +33,7 @@ local openButton: TextButton
 local panel: Frame
 local coinsLabel: TextLabel
 local list: ScrollingFrame
+local reducedButton: TextButton
 local state: any = nil
 local itemButtons: { [string]: TextButton } = {}
 local itemCards: { [string]: Frame } = {}
@@ -119,7 +122,13 @@ local function render()
 			line.Transparency = if selected then 0.08 else 0.55
 		end
 	end
+
+	local reduced = state and type(state.Settings) == "table" and state.Settings.ReducedMotion == true
+	reducedButton.Text = if reduced then "REDUCED MOTION  •  ON" else "REDUCED MOTION  •  OFF"
+	reducedButton.BackgroundColor3 = if reduced then COLORS.Green else COLORS.Raised
+	reducedButton.TextColor3 = if reduced then COLORS.Foundation else COLORS.Text
 end
+
 local function createCard(id: string, layoutOrder: number)
 	local item = CosmeticConfig.Items[id]
 	local card = Instance.new("Frame")
@@ -182,6 +191,16 @@ local function updateResponsive()
 	else
 		panel.Size = UDim2.fromOffset(520, math.min(580, viewport.Y - 70))
 		openButton.Position = UDim2.new(1, -22, 1, -22)
+	end
+end
+
+local function setPanelVisible(visible: boolean)
+	panel.Visible = visible
+	if visible then
+		render()
+		GuiService.SelectedObject = itemButtons.trail_none or reducedButton
+	elseif GuiService.SelectedObject and GuiService.SelectedObject:IsDescendantOf(panel) then
+		GuiService.SelectedObject = openButton
 	end
 end
 
@@ -256,7 +275,7 @@ local function buildGui()
 	list = Instance.new("ScrollingFrame")
 	list.Name = "Items"
 	list.Position = UDim2.fromOffset(14, 78)
-	list.Size = UDim2.new(1, -28, 1, -116)
+	list.Size = UDim2.new(1, -28, 1, -158)
 	list.BackgroundTransparency = 1
 	list.BorderSizePixel = 0
 	list.ScrollBarThickness = 5
@@ -274,11 +293,34 @@ local function buildGui()
 		createCard(id, index)
 	end
 
+	reducedButton = Instance.new("TextButton")
+	reducedButton.Name = "ReducedMotion"
+	reducedButton.AnchorPoint = Vector2.new(0.5, 1)
+	reducedButton.Position = UDim2.new(0.5, 0, 1, -34)
+	reducedButton.Size = UDim2.new(1, -28, 0, 38)
+	reducedButton.BackgroundColor3 = COLORS.Raised
+	reducedButton.BorderSizePixel = 0
+	reducedButton.Font = Enum.Font.GothamBold
+	reducedButton.Text = "REDUCED MOTION  •  OFF"
+	reducedButton.TextSize = 11
+	reducedButton.TextColor3 = COLORS.Text
+	reducedButton.Selectable = true
+	reducedButton.Parent = panel
+	round(reducedButton, 10)
+	reducedButton.Activated:Connect(function()
+		local current = state and type(state.Settings) == "table" and state.Settings.ReducedMotion == true
+		cosmeticAction:FireServer({
+			Kind = "Setting",
+			Key = "ReducedMotion",
+			Value = not current,
+		})
+	end)
+
 	local note = label(
 		panel,
 		"Themes apply on the next floor.",
 		UDim2.new(1, -28, 0, 20),
-		UDim2.new(0, 14, 1, -30),
+		UDim2.new(0, 14, 1, -22),
 		10,
 		COLORS.Muted,
 		false
@@ -286,13 +328,10 @@ local function buildGui()
 	note.TextXAlignment = Enum.TextXAlignment.Center
 
 	openButton.Activated:Connect(function()
-		panel.Visible = not panel.Visible
-		if panel.Visible then
-			render()
-		end
+		setPanelVisible(not panel.Visible)
 	end)
 	close.Activated:Connect(function()
-		panel.Visible = false
+		setPanelVisible(false)
 	end)
 
 	updateResponsive()
@@ -310,6 +349,20 @@ function CosmeticController.start()
 			render()
 		end
 	end)
+
+	ContextActionService:BindActionAtPriority("OneMoreFloorStyleToggle", function(_name, inputState)
+		if inputState == Enum.UserInputState.Begin then
+			setPanelVisible(not panel.Visible)
+		end
+		return Enum.ContextActionResult.Sink
+	end, false, Enum.ContextActionPriority.High.Value + 20, Enum.KeyCode.C, Enum.KeyCode.ButtonY)
+	ContextActionService:BindActionAtPriority("OneMoreFloorStyleClose", function(_name, inputState)
+		if inputState == Enum.UserInputState.Begin and panel.Visible then
+			setPanelVisible(false)
+			return Enum.ContextActionResult.Sink
+		end
+		return Enum.ContextActionResult.Pass
+	end, false, Enum.ContextActionPriority.High.Value + 21, Enum.KeyCode.ButtonB, Enum.KeyCode.Escape)
 
 	task.spawn(function()
 		for _ = 1, 4 do

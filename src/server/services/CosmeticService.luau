@@ -31,6 +31,7 @@ local function stateFor(player: Player): any
 		Coins = profile.Coins,
 		OwnedCosmetics = profile.OwnedCosmetics,
 		Equipped = profile.Equipped,
+		Settings = profile.Settings,
 	}
 end
 
@@ -42,6 +43,7 @@ local function syncAttributes(player: Player)
 	player:SetAttribute("OMFTrail", profile.Equipped.Trail)
 	player:SetAttribute("OMFWinEffect", profile.Equipped.WinEffect)
 	player:SetAttribute("OMFTheme", profile.Equipped.Theme)
+	player:SetAttribute("OMFReducedMotion", profile.Settings.ReducedMotion)
 end
 
 local function clearTrail(character: Model)
@@ -107,7 +109,13 @@ local function applyCharacter(player: Player, character: Model)
 		if not root then
 			return
 		end
-		applyTrail(player, character)
+		for _ = 1, 32 do
+			if ProfileService.get(player) then
+				applyTrail(player, character)
+				return
+			end
+			task.wait(0.25)
+		end
 	end)
 end
 
@@ -145,14 +153,31 @@ local function onAction(player: Player, payload: any)
 		return
 	end
 	local kind = payload.Kind
-	local id = payload.Id
-	if type(kind) ~= "string" or type(id) ~= "string" then
+	if type(kind) ~= "string" then
 		return
 	end
 
-	local item = CosmeticConfig.Items[id]
 	local profile = ProfileService.get(player)
-	if not item or not profile then
+	if not profile then
+		return
+	end
+
+	if kind == "Setting" then
+		if payload.Key ~= "ReducedMotion" or type(payload.Value) ~= "boolean" then
+			return
+		end
+		profile.Settings.ReducedMotion = payload.Value
+		ProfileService.markDirty(player)
+		pushState(player, "SettingUpdated")
+		return
+	end
+
+	local id = payload.Id
+	if type(id) ~= "string" then
+		return
+	end
+	local item = CosmeticConfig.Items[id]
+	if not item then
 		return
 	end
 
@@ -211,7 +236,15 @@ function CosmeticService.start()
 		if player.Character then
 			applyCharacter(player, player.Character)
 		end
-		task.defer(pushState, player, "Initial")
+		task.defer(function()
+			for _ = 1, 32 do
+				if ProfileService.get(player) then
+					pushState(player, "Initial")
+					return
+				end
+				task.wait(0.25)
+			end
+		end)
 	end
 
 	Players.PlayerAdded:Connect(bindPlayer)

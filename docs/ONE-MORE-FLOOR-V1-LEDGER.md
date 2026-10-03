@@ -123,7 +123,9 @@ Implementation note (2026-10-03): profile schema v2 adds UTC-day login streaks, 
 - [~] P10-T04 Challenge-specific hints disappear once learned
 - [~] P10-T05 Shop/cosmetic preview
 - [~] P10-T06 Compact phone/tablet/desktop
-- [ ] P10-T07 Controller focus/accessibility/reduced motion
+- [~] P10-T07 Controller focus/accessibility/reduced motion
+
+Accessibility note (2026-10-03): Style Garage now supports direct keyboard/gamepad toggle, deterministic controller focus, B/Escape close and a persistent Reduced Motion setting. Reduced Motion locks the gameplay camera to a stable profile and suppresses cosmetic win-ring motion while keeping gameplay geometry unchanged. The cosmetic server waits for profile load before applying persisted avatar effects, preventing join-order races. Runtime controller/phone acceptance is still required.
 
 ## P11 Production art
 - [~] P11-T01 Tower/floor shell has a coherent recognizable identity
@@ -139,7 +141,7 @@ Implementation note (2026-10-03): profile schema v2 adds UTC-day login streaks, 
 - [ ] P12-T03 Failure/revive/retry feedback
 - [~] P12-T04 PB/milestone/reward feedback
 - [ ] P12-T05 VFX do not obscure short reaction challenges
-- [ ] P12-T06 Owned/Roblox-safe assets and reduced-motion/audio QA
+- [~] P12-T06 Owned/Roblox-safe assets and reduced-motion/audio QA
 
 ## P13 Security and persistence hardening
 - [~] P13-T01 Remote/rate-limit audit

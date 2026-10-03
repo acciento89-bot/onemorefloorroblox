@@ -16,6 +16,13 @@ local currentHeight = GameConfig.Camera.Height
 local currentFocusLead = GameConfig.Camera.FocusLead
 local currentFieldOfView = GameConfig.Camera.FieldOfView
 
+local REDUCED_CAMERA = table.freeze({
+	Distance = 20,
+	Height = 11,
+	FocusLead = 3.5,
+	FieldOfView = 68,
+})
+
 local function keepAvatarVisible(character: Model)
 	for _, descendant in character:GetDescendants() do
 		if descendant:IsA("BasePart") and descendant.LocalTransparencyModifier ~= 0 then
@@ -37,6 +44,9 @@ local function characterParts(): (Model?, Humanoid?, BasePart?)
 	return character, humanoid, nil
 end
 local function activeProfile()
+	if player:GetAttribute("OMFReducedMotion") == true then
+		return REDUCED_CAMERA
+	end
 	local family = player:GetAttribute("OMFFamily")
 	if type(family) == "string" then
 		local profile = GameConfig.Camera.Profiles[family]
