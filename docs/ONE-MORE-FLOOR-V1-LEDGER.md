@@ -189,3 +189,9 @@ Security note (2026-10-03): `SecurityRules` now rejects non-finite vectors, too-
 ## Definition of Done
 
 One More Floor V1 is done only when the challenge library has real mechanical variety, every supported device can fairly complete every launch family, transitions remain clean over long runs, progression survives rejoin, and the published private build passes the complete multi-floor player journey with production-quality presentation.
+
+## 2026-10-04 concept visual-polish pass
+
+- [x] Native Roblox concept-quality presentation pass implemented for this game; no static concept screenshot is used in gameplay.
+- [x] Lighting/VFX and native ScreenGui styling are test-guarded and pass local static verification plus Studio PlaySolo runtime QA.
+- [x] Evidence: `docs/evidence/2026-10-04-concept-visual-polish.md`.

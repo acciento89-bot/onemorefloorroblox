@@ -1,0 +1,53 @@
+--!strict
+
+return {
+	Id = "one-more-floor",
+	Title = "One More Floor",
+	Colors = {
+		Foundation = "#111827",
+		Panel = "#1E293B",
+		Panel2 = "#334155",
+		Accent = "#F6C45C",
+		Accent2 = "#7DD3FC",
+		Accent3 = "#6EE7B7",
+		Text = "#F8FAFC",
+		Muted = "#B6C2D2",
+	},
+	Lighting = {
+		Brightness = 2.25,
+		ClockTime = 18.6,
+		ExposureCompensation = 0.1,
+		EnvironmentDiffuseScale = 0.34,
+		EnvironmentSpecularScale = 0.7,
+		FogStart = 420,
+		FogEnd = 1250,
+		Ambient = "#56617A",
+		OutdoorAmbient = "#858BA3",
+		FogColor = "#9EA7BE",
+	},
+	Atmosphere = {
+		Density = 0.21,
+		Offset = 0.02,
+		Color = "#DCE7FF",
+		Decay = "#C99578",
+		Glare = 0.12,
+		Haze = 1.45,
+	},
+	Effects = {
+		BloomIntensity = 0.38,
+		BloomSize = 28,
+		BloomThreshold = 1.25,
+		Saturation = 0.04,
+		Contrast = 0.08,
+		TintColor = "#FFF2DE",
+		SunRaysIntensity = 0.04,
+		SunRaysSpread = 0.63,
+	},
+	Clouds = {
+		Cover = 0.24,
+		Density = 0.3,
+		Color = "#E7E8F2",
+	},
+	TargetGuis = { "OneMoreFloorHUD" },
+	TargetPrefixes = { "OneMoreFloor" },
+}
