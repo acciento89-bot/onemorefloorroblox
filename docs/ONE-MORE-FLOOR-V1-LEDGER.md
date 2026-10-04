@@ -195,3 +195,10 @@ One More Floor V1 is done only when the challenge library has real mechanical va
 - [x] Native Roblox concept-quality presentation pass implemented for this game; no static concept screenshot is used in gameplay.
 - [x] Lighting/VFX and native ScreenGui styling are test-guarded and pass local static verification plus Studio PlaySolo runtime QA.
 - [x] Evidence: `docs/evidence/2026-10-04-concept-visual-polish.md`.
+
+## 2026-10-04 concept-fidelity pass 2
+
+- [x] Branded wordmark, 10-floor progress hierarchy and Boosts/Style concept quick rail implemented.
+- [x] Duplicate desktop/tablet launcher buttons removed while compact touch launchers remain available.
+- [x] Tower scene now includes brighter authored structure, cloud depth, hero crown and warm sky focal point.
+- [x] Final PlaySolo runtime: server/client initialized with 0 CreatorErrors; expected unpublished-Studio DataStore fallback only; 11 pure-Luau tests and static gates green.

@@ -91,8 +91,8 @@ end
 local function decorateLane(lane: Lane)
 	local art = lane.Environment
 	local origin = lane.Origin
-	local foundation = Color3.fromRGB(21, 28, 38)
-	local steel = Color3.fromRGB(45, 59, 73)
+	local foundation = Color3.fromRGB(35, 45, 58)
+	local steel = Color3.fromRGB(63, 82, 96)
 	local warm = Color3.fromRGB(244, 166, 80)
 
 	for _, side in { -1, 1 } do
@@ -128,9 +128,73 @@ local function decorateLane(lane: Lane)
 			Vector3.new(12 + (index % 3) * 4, height, 14 + ((index + 1) % 3) * 3),
 			CFrame.new(position + Vector3.new(0, height / 2, 0)),
 			Enum.Material.Concrete,
-			Color3.fromRGB(31 + index, 38 + index, 49 + index)
+			Color3.fromRGB(48 + index, 56 + index, 68 + index)
 		)
 	end
+
+	local cloudRing = Instance.new("Folder")
+	cloudRing.Name = "CloudRing"
+	cloudRing.Parent = art
+	for band, y in { 92, 218, 344 } do
+		for index = 1, 8 do
+			local angle = index / 8 * math.pi * 2 + band * 0.18
+			local cloud = makePart(
+				cloudRing,
+				"CloudWisp",
+				Vector3.new(13 + (index % 3) * 3, 3.2, 7 + (index % 2) * 2),
+				CFrame.new(origin + Vector3.new(math.cos(angle) * 54, y, math.sin(angle) * 54)),
+				Enum.Material.SmoothPlastic,
+				Color3.fromRGB(235, 241, 248),
+				0.58
+			)
+			cloud.Shape = Enum.PartType.Ball
+			cloud.CastShadow = false
+		end
+	end
+
+	local crown = Instance.new("Folder")
+	crown.Name = "HeroTowerCrown"
+	crown.Parent = art
+	for _, side in { -1, 1 } do
+		makePart(
+			crown,
+			"CrownPillar",
+			Vector3.new(1.4, 15, 1.4),
+			CFrame.new(origin + Vector3.new(side * 8.5, 248, -48)),
+			Enum.Material.Marble,
+			steel
+		)
+	end
+	makePart(
+		crown,
+		"CrownBeam",
+		Vector3.new(19, 1.4, 1.5),
+		CFrame.new(origin + Vector3.new(0, 255.5, -48)),
+		Enum.Material.Marble,
+		steel
+	)
+	local crownGlow = makePart(
+		crown,
+		"CrownGlow",
+		Vector3.new(14, 0.18, 0.28),
+		CFrame.new(origin + Vector3.new(0, 256.3, -48.2)),
+		Enum.Material.Neon,
+		warm,
+		0.08
+	)
+	crownGlow.CastShadow = false
+
+	local sun = makePart(
+		art,
+		"SkySunDisc",
+		Vector3.new(24, 24, 24),
+		CFrame.new(origin + Vector3.new(78, 210, -180)),
+		Enum.Material.Neon,
+		Color3.fromRGB(255, 193, 118),
+		0.10
+	)
+	sun.Shape = Enum.PartType.Ball
+	sun.CastShadow = false
 
 	local beacon = makePart(
 		art,

@@ -186,9 +186,12 @@ local function updateResponsive()
 	end
 	local viewport = camera.ViewportSize
 	if viewport.X < 620 then
+		openButton.Visible = true
 		panel.Size = UDim2.new(1, -24, 0, math.min(560, viewport.Y - 48))
 		openButton.Position = UDim2.new(1, -16, 1, -18)
 	else
+		-- concept launcher owns desktop/tablet
+		openButton.Visible = false
 		panel.Size = UDim2.fromOffset(520, math.min(580, viewport.Y - 70))
 		openButton.Position = UDim2.new(1, -22, 1, -22)
 	end

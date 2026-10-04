@@ -39,6 +39,11 @@ local resultPanel: Frame
 local resultTitle: TextLabel
 local resultSummary: TextLabel
 local retryButton: TextButton
+local logo: Frame
+local floorProgress: Frame
+local floorProgressFill: Frame
+local floorProgressText: TextLabel
+local quickRail: Frame
 local metricValues: { [string]: TextLabel } = {}
 local deadline = 0
 local timeLimit = 0
@@ -158,6 +163,10 @@ local function updateResponsive()
 	end
 	local width = camera.ViewportSize.X
 	if width < 620 then
+		logo.Visible = false
+		floorProgress.Visible = false
+		quickRail.Visible = false
+		status.Position = UDim2.new(0.5, 0, 0, 16)
 		status.Size = UDim2.new(1, -24, 0, 112)
 		metricGrid.FillDirectionMaxCells = 2
 		metricGrid.CellSize = UDim2.new(0.5, -4, 0, 44)
@@ -166,21 +175,29 @@ local function updateResponsive()
 		objective.Size = UDim2.new(1, -28, 0, 72)
 		feedback.Position = UDim2.new(0.5, -150, 0, 220)
 	elseif width < 1050 then
+		logo.Visible = true
+		floorProgress.Visible = true
+		quickRail.Visible = true
+		status.Position = UDim2.new(0.5, 0, 0, 88)
 		status.Size = UDim2.new(1, -34, 0, 66)
 		metricGrid.FillDirectionMaxCells = 4
 		metricGrid.CellSize = UDim2.new(0.25, -5, 1, 0)
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
-		objective.Position = UDim2.new(0.5, 0, 0, 94)
+		objective.Position = UDim2.new(0.5, 0, 0, 166)
 		objective.Size = UDim2.fromOffset(500, 72)
-		feedback.Position = UDim2.new(0.5, -150, 0, 176)
+		feedback.Position = UDim2.new(0.5, -150, 0, 248)
 	else
-		status.Size = UDim2.fromOffset(720, 66)
+		logo.Visible = true
+		floorProgress.Visible = true
+		quickRail.Visible = true
+		status.Position = UDim2.new(0.5, 0, 0, 88)
+		status.Size = UDim2.fromOffset(620, 66)
 		metricGrid.FillDirectionMaxCells = 4
 		metricGrid.CellSize = UDim2.new(0.25, -5, 1, 0)
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
-		objective.Position = UDim2.new(0.5, 0, 0, 94)
+		objective.Position = UDim2.new(0.5, 0, 0, 166)
 		objective.Size = UDim2.fromOffset(540, 72)
-		feedback.Position = UDim2.new(0.5, -150, 0, 176)
+		feedback.Position = UDim2.new(0.5, -150, 0, 248)
 	end
 end
 
@@ -190,6 +207,11 @@ local function refreshMetrics(payload: any?)
 	local streak = if payload and payload.Streak then payload.Streak else player:GetAttribute("OMFStreak") or 0
 	local coins = if payload and payload.Coins then payload.Coins else player:GetAttribute("OMFCoins") or 0
 	metricValues.FloorMetric.Text = tostring(floor)
+	local tierStart = math.floor((math.max(1, floor) - 1) / 10) * 10 + 1
+	local tierTarget = tierStart + 9
+	local tierProgress = math.clamp((floor - tierStart + 1) / 10, 0, 1)
+	floorProgressText.Text = ("FLOOR %02d / %02d"):format(floor, tierTarget)
+	floorProgressFill.Size = UDim2.fromScale(tierProgress, 1)
 	metricValues.BestMetric.Text = tostring(best)
 	metricValues.StreakMetric.Text = ("x%d"):format(streak)
 	metricValues.CoinsMetric.Text = ("◈ %d"):format(coins)
@@ -274,10 +296,124 @@ local function buildGui()
 	screen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	screen.Parent = playerGui
 
+	logo = Instance.new("Frame")
+	logo.Name = "OneMoreFloorLogo"
+	logo.Position = UDim2.fromOffset(18, 10)
+	logo.Size = UDim2.fromOffset(210, 74)
+	logo.BackgroundTransparency = 1
+	logo.Parent = screen
+
+	local oneMore = label(
+		logo,
+		"OneMore",
+		"ONE MORE",
+		UDim2.fromOffset(174, 32),
+		UDim2.fromOffset(0, 0),
+		25,
+		COLORS.Cyan,
+		Enum.Font.GothamBlack
+	)
+	oneMore.TextStrokeColor3 = Color3.fromRGB(28, 41, 58)
+	oneMore.TextStrokeTransparency = 0.36
+
+	local floorWord = label(
+		logo,
+		"FloorWord",
+		"FLOOR",
+		UDim2.fromOffset(150, 34),
+		UDim2.fromOffset(20, 27),
+		30,
+		COLORS.Warm,
+		Enum.Font.GothamBlack
+	)
+	floorWord.TextStrokeColor3 = Color3.fromRGB(57, 45, 34)
+	floorWord.TextStrokeTransparency = 0.34
+
+	local logoTag = label(
+		logo,
+		"Tagline",
+		"BEAT THE ROOM • CLIMB AGAIN",
+		UDim2.fromOffset(204, 12),
+		UDim2.fromOffset(1, 61),
+		8,
+		COLORS.Muted,
+		Enum.Font.GothamBold
+	)
+	logoTag.TextXAlignment = Enum.TextXAlignment.Left
+
+	floorProgress = Instance.new("Frame")
+	floorProgress.Name = "FloorProgress"
+	floorProgress.AnchorPoint = Vector2.new(0.5, 0)
+	floorProgress.Position = UDim2.new(0.5, 0, 0, 14)
+	floorProgress.Size = UDim2.fromOffset(292, 52)
+	floorProgress.BackgroundColor3 = COLORS.Foundation
+	floorProgress.BackgroundTransparency = 0.03
+	floorProgress.BorderSizePixel = 0
+	floorProgress.Parent = screen
+	corner(floorProgress, 16)
+	stroke(floorProgress, COLORS.Cyan, 0.42, 1.3)
+
+	floorProgressText = label(
+		floorProgress,
+		"Text",
+		"FLOOR 01 / 10",
+		UDim2.new(1, -20, 0, 24),
+		UDim2.fromOffset(10, 4),
+		11,
+		COLORS.Text,
+		Enum.Font.GothamBold
+	)
+	floorProgressText.TextXAlignment = Enum.TextXAlignment.Center
+
+	local progressTrack = Instance.new("Frame")
+	progressTrack.Position = UDim2.fromOffset(12, 34)
+	progressTrack.Size = UDim2.new(1, -24, 0, 10)
+	progressTrack.BackgroundColor3 = Color3.fromRGB(25, 33, 45)
+	progressTrack.BorderSizePixel = 0
+	progressTrack.ClipsDescendants = true
+	progressTrack.Parent = floorProgress
+	corner(progressTrack, 99)
+
+	floorProgressFill = Instance.new("Frame")
+	floorProgressFill.Name = "Fill"
+	floorProgressFill.Size = UDim2.fromScale(0.1, 1)
+	floorProgressFill.BackgroundColor3 = COLORS.Green
+	floorProgressFill.BorderSizePixel = 0
+	floorProgressFill.Parent = progressTrack
+	corner(floorProgressFill, 99)
+
+	quickRail = Instance.new("Frame")
+	quickRail.Name = "ConceptQuickRail"
+	quickRail.AnchorPoint = Vector2.new(1, 0)
+	quickRail.Position = UDim2.new(1, -18, 0, 90)
+	quickRail.Size = UDim2.fromOffset(96, 96)
+	quickRail.BackgroundTransparency = 1
+	quickRail.Parent = screen
+
+	local boostQuick =
+		actionButton(quickRail, "BoostQuick", "BOOSTS", UDim2.fromOffset(96, 42), UDim2.fromOffset(0, 0), COLORS.Cyan)
+	local styleQuick =
+		actionButton(quickRail, "StyleQuick", "STYLE", UDim2.fromOffset(96, 42), UDim2.fromOffset(0, 50), COLORS.Warm)
+
+	boostQuick.Activated:Connect(function()
+		local monetization = playerGui:FindFirstChild("OneMoreFloorMonetization")
+		local panel = monetization and monetization:FindFirstChild("Panel")
+		if panel and panel:IsA("Frame") then
+			panel.Visible = true
+		end
+	end)
+	styleQuick.Activated:Connect(function()
+		local cosmetics = playerGui:FindFirstChild("OneMoreFloorCosmetics")
+		local panel = cosmetics and cosmetics:FindFirstChild("StyleGarage")
+		if panel and panel:IsA("Frame") then
+			panel.Visible = true
+		end
+	end)
+
 	status = Instance.new("Frame")
 	status.Name = "Status"
 	status.AnchorPoint = Vector2.new(0.5, 0)
-	status.Position = UDim2.new(0.5, 0, 0, 16)
+	status.Position = UDim2.new(0.5, 0, 0, 88)
 	status.Size = UDim2.fromOffset(720, 66)
 	status.BackgroundColor3 = COLORS.Foundation
 	status.BackgroundTransparency = 0.03
@@ -313,7 +449,7 @@ local function buildGui()
 	objective = Instance.new("Frame")
 	objective.Name = "Objective"
 	objective.AnchorPoint = Vector2.new(0.5, 0)
-	objective.Position = UDim2.new(0.5, 0, 0, 94)
+	objective.Position = UDim2.new(0.5, 0, 0, 166)
 	objective.Size = UDim2.fromOffset(540, 72)
 	objective.BackgroundColor3 = COLORS.Foundation
 	objective.BackgroundTransparency = 0.08

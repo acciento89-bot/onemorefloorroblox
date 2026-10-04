@@ -312,11 +312,14 @@ local function build()
 		end
 		local width = camera.ViewportSize.X
 		if width < 620 then
+			shopButton.Visible = true
 			panel.Size = UDim2.new(1, -24, 0, 316)
 			panel.Position = UDim2.new(1, -12, 1, -118)
 			shopButton.Position = UDim2.new(1, -124, 1, -60)
 			quickRevive.Position = UDim2.new(0.5, -110, 0.5, 150)
 		else
+			-- concept launcher owns desktop/tablet
+			shopButton.Visible = false
 			panel.Size = UDim2.fromOffset(410, 316)
 			panel.Position = UDim2.new(1, -16, 1, -124)
 			shopButton.Position = UDim2.new(1, -128, 1, -66)
