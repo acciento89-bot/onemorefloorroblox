@@ -215,5 +215,5 @@ One More Floor V1 is done only when the challenge library has real mechanical va
 - [x] Source-side concept graphic fidelity implemented: Vertical tower-city depth, glass facade columns, repeating facade light bands, layered sun glow and cloud depth.
 - [x] Contextual-menu rule preserved: full Shop/Daily/Style/Revive/Result surfaces are not permanently visible during normal gameplay.
 - [x] CI verification green on run `37271364782`; merged source commit `b993a2a`.
-- [ ] Fresh Roblox Studio PlaySolo visual acceptance after this pass.
-- [ ] Publish/republish this exact graphic-fidelity source to the existing canonical Place after Studio acceptance.
+- [x] Fresh Roblox Studio PlaySolo visual acceptance passed: vertical tower composition, avatar/floor readability and contextual Boosts/Style/Daily behavior verified with clean local server/client startup.
+- [x] Graphic-fidelity source published to existing canonical Place `91755924353943` as `v8`; no new Place/Experience created. Post-publish Studio persistence smoke is limited only by disabled Studio API access. Evidence: `docs/evidence/2026-10-05-graphic-fidelity-runtime-publish.md`.
