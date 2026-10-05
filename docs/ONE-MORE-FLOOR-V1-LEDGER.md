@@ -176,7 +176,7 @@ Security note (2026-10-03): `SecurityRules` now rejects non-finite vectors, too-
 ## P16 Release
 - [ ] P16-T01 Production icon/thumbnails/metadata represent actual challenge variety
 - [ ] P16-T02 Privacy/content questionnaire
-- [ ] P16-T03 Canonical private publish
+- [x] P16-T03 Canonical private publish — existing Universe 10769163551 / Place 91755924353943 published from canonical main as v5
 - [ ] P16-T04 Full P14 journey repeated in published private place
 - [ ] P16-T05 Build hash/place version/rollback record
 - [!] P16-T06 Public release after paid receipt/rejoin evidence and zero known P0/P1 defects
@@ -202,3 +202,9 @@ One More Floor V1 is done only when the challenge library has real mechanical va
 - [x] Duplicate desktop/tablet launcher buttons removed while compact touch launchers remain available.
 - [x] Tower scene now includes brighter authored structure, cloud depth, hero crown and warm sky focal point.
 - [x] Final PlaySolo runtime: server/client initialized with 0 CreatorErrors; expected unpublished-Studio DataStore fallback only; 11 pure-Luau tests and static gates green.
+
+
+## 2026-10-05 concept production publish
+
+- [x] Canonical private production publish completed as `v5` on the existing Place.
+- [x] Immediate post-publish server/client initialization passed; expected Studio DataStore fallback only.
