@@ -150,6 +150,21 @@ local function decorateLane(lane: Lane)
 		)
 	end
 
+	for _, side in { -1, 1 } do
+		for _, zSign in { -1, 1 } do
+			local glassColumn = makePart(
+				art,
+				"FacadeGlassColumn",
+				Vector3.new(2.2, 500, 2.2),
+				CFrame.new(origin + Vector3.new(side * 15.5, 250, zSign * 12.5)),
+				Enum.Material.Glass,
+				Color3.fromRGB(96, 142, 164),
+				0.42
+			)
+			glassColumn.CastShadow = false
+		end
+	end
+
 	local cloudRing = Instance.new("Folder")
 	cloudRing.Name = "CloudRing"
 	cloudRing.Parent = art
