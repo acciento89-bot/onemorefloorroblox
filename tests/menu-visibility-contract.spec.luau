@@ -15,5 +15,8 @@ return function()
 	assert(string.find(hud, "setDailyVisible(true)", 1, true), "Daily launcher must open only the Daily panel")
 	assert(string.find(hud, "setDailyVisible(false)", 1, true), "Daily modal needs explicit close paths")
 	assert(string.find(hud, "resultPanel.Visible = false", 1, true), "failure result must remain event-driven")
-	assert(string.find(art, "feature montage", 1, true), "art direction must define the concept image as a feature montage")
+	assert(
+		string.find(art, "feature montage", 1, true),
+		"art direction must define the concept image as a feature montage"
+	)
 end
