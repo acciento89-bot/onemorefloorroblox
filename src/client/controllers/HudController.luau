@@ -9,6 +9,8 @@ local Workspace = game:GetService("Workspace")
 
 local player = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+local shared = ReplicatedStorage:WaitForChild("OneMoreFloor"):WaitForChild("Shared")
+local CosmeticConfig = require(shared.config.CosmeticConfig)
 local remotes = ReplicatedStorage:WaitForChild("OneMoreFloorRemotes")
 local floorAction = remotes:WaitForChild("FloorAction") :: RemoteEvent
 local floorState = remotes:WaitForChild("FloorState") :: RemoteEvent
@@ -44,6 +46,15 @@ local floorProgress: Frame
 local floorProgressFill: Frame
 local floorProgressText: TextLabel
 local quickRail: Frame
+local conceptShowcase: Frame
+local conceptProgressText: TextLabel
+local conceptProgressFill: Frame
+local conceptFloorText: TextLabel
+local conceptBestText: TextLabel
+local conceptStreakText: TextLabel
+local conceptCoinsText: TextLabel
+local conceptDailyCaption: TextLabel
+local conceptDailyTiles: { Frame } = {}
 local metricValues: { [string]: TextLabel } = {}
 local deadline = 0
 local timeLimit = 0
@@ -162,10 +173,13 @@ local function updateResponsive()
 		return
 	end
 	local width = camera.ViewportSize.X
+	conceptShowcase.Visible = width >= 620
+	status.Visible = width < 620
 	if width < 620 then
 		logo.Visible = false
 		floorProgress.Visible = false
 		quickRail.Visible = false
+		quickRail.Position = UDim2.new(1, -18, 0, 90)
 		status.Position = UDim2.new(0.5, 0, 0, 16)
 		status.Size = UDim2.new(1, -24, 0, 112)
 		metricGrid.FillDirectionMaxCells = 2
@@ -174,29 +188,37 @@ local function updateResponsive()
 		objective.Position = UDim2.new(0.5, 0, 0, 138)
 		objective.Size = UDim2.new(1, -28, 0, 72)
 		feedback.Position = UDim2.new(0.5, -150, 0, 220)
+		resultPanel.Position = UDim2.fromScale(0.5, 0.52)
+		resultPanel.Size = UDim2.fromOffset(340, 170)
 	elseif width < 1050 then
 		logo.Visible = true
 		floorProgress.Visible = true
 		quickRail.Visible = true
+		quickRail.Position = UDim2.new(1, -266, 0, 106)
 		status.Position = UDim2.new(0.5, 0, 0, 88)
 		status.Size = UDim2.new(1, -34, 0, 66)
 		metricGrid.FillDirectionMaxCells = 4
 		metricGrid.CellSize = UDim2.new(0.25, -5, 1, 0)
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
-		objective.Position = UDim2.new(0.5, 0, 0, 166)
-		objective.Size = UDim2.fromOffset(500, 72)
+		objective.Position = UDim2.new(0.55, 0, 1, -88)
+		objective.Size = UDim2.fromOffset(360, 64)
 		feedback.Position = UDim2.new(0.5, -150, 0, 248)
+		resultPanel.Position = UDim2.new(0.55, 0, 1, -112)
+		resultPanel.Size = UDim2.fromOffset(320, 154)
+		resultPanel.Position = UDim2.new(0.55, 0, 1, -112)
+		resultPanel.Size = UDim2.fromOffset(320, 154)
 	else
 		logo.Visible = true
 		floorProgress.Visible = true
 		quickRail.Visible = true
+		quickRail.Position = UDim2.new(1, -266, 0, 106)
 		status.Position = UDim2.new(0.5, 0, 0, 88)
 		status.Size = UDim2.fromOffset(620, 66)
 		metricGrid.FillDirectionMaxCells = 4
 		metricGrid.CellSize = UDim2.new(0.25, -5, 1, 0)
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
-		objective.Position = UDim2.new(0.5, 0, 0, 166)
-		objective.Size = UDim2.fromOffset(540, 72)
+		objective.Position = UDim2.new(0.55, 0, 1, -88)
+		objective.Size = UDim2.fromOffset(380, 64)
 		feedback.Position = UDim2.new(0.5, -150, 0, 248)
 	end
 end
@@ -215,6 +237,12 @@ local function refreshMetrics(payload: any?)
 	metricValues.BestMetric.Text = tostring(best)
 	metricValues.StreakMetric.Text = ("x%d"):format(streak)
 	metricValues.CoinsMetric.Text = ("◈ %d"):format(coins)
+	conceptFloorText.Text = ("FLOOR %02d"):format(floor)
+	conceptBestText.Text = ("BEST %02d"):format(best)
+	conceptStreakText.Text = ("STREAK x%d"):format(streak)
+	conceptCoinsText.Text = ("◈ %d"):format(coins)
+	conceptProgressText.Text = ("FLOOR %02d / %02d"):format(floor, tierTarget)
+	conceptProgressFill.Size = UDim2.fromScale(tierProgress, 1)
 end
 
 local function showFeedback(text: string, color: Color3)
@@ -256,6 +284,10 @@ local function applyState(payload: any)
 		)
 		GuiService.SelectedObject = retryButton
 	elseif payload.Event == "FloorComplete" then
+		if payload.DailyCompleted == true then
+			conceptDailyCaption.Text = "DAILY COMPLETE"
+			conceptDailyTiles[1].BackgroundColor3 = Color3.fromRGB(58, 112, 89)
+		end
 		local achievements = if type(payload.NewAchievements) == "table" then #payload.NewAchievements else 0
 		if payload.NewBest == true then
 			showFeedback(("NEW BEST  •  FLOOR %02d"):format(tonumber(payload.Floor) or 1), COLORS.Warm)
@@ -269,6 +301,8 @@ local function applyState(payload: any)
 	elseif payload.Event == "FloorStart" or payload.Event == "Retry" then
 		local loginReward = tonumber(payload.DailyLoginReward) or 0
 		if payload.Event == "FloorStart" and loginReward > 0 then
+			conceptDailyCaption.Text = ("LOGIN STREAK x%d"):format(tonumber(payload.DailyLoginStreak) or 1)
+			conceptDailyTiles[1].BackgroundColor3 = Color3.fromRGB(58, 112, 89)
 			showFeedback(
 				("DAILY x%d  •  +%d ◈"):format(tonumber(payload.DailyLoginStreak) or 1, loginReward),
 				COLORS.Warm
@@ -410,6 +444,383 @@ local function buildGui()
 		end
 	end)
 
+	conceptShowcase = Instance.new("Frame")
+	conceptShowcase.Name = "ConceptShowcase"
+	conceptShowcase.Size = UDim2.fromScale(1, 1)
+	conceptShowcase.BackgroundTransparency = 1
+	conceptShowcase.Visible = false
+	conceptShowcase.Parent = screen
+
+	local function gradient(panel: GuiObject, first: Color3, second: Color3, rotation: number?)
+		local item = Instance.new("UIGradient")
+		item.Rotation = rotation or 110
+		item.Color = ColorSequence.new(first, second)
+		item.Parent = panel
+	end
+
+	local function rgb(values): Color3
+		return Color3.fromRGB(values[1], values[2], values[3])
+	end
+
+	local metricsPill = Instance.new("Frame")
+	metricsPill.Name = "ConceptMetricsPill"
+	metricsPill.Position = UDim2.fromOffset(18, 90)
+	metricsPill.Size = UDim2.fromOffset(316, 48)
+	metricsPill.BackgroundColor3 = COLORS.Foundation
+	metricsPill.BackgroundTransparency = 0.03
+	metricsPill.BorderSizePixel = 0
+	metricsPill.Parent = conceptShowcase
+	corner(metricsPill, 14)
+	stroke(metricsPill, COLORS.Cyan, 0.52, 1.2)
+	gradient(metricsPill, Color3.fromRGB(37, 55, 70), COLORS.Foundation)
+	conceptFloorText = label(
+		metricsPill,
+		"Floor",
+		"FLOOR 01",
+		UDim2.fromOffset(76, 34),
+		UDim2.fromOffset(10, 7),
+		10,
+		COLORS.Text,
+		Enum.Font.GothamBold
+	)
+	conceptBestText = label(
+		metricsPill,
+		"Best",
+		"BEST 00",
+		UDim2.fromOffset(72, 34),
+		UDim2.fromOffset(86, 7),
+		10,
+		COLORS.Warm,
+		Enum.Font.GothamBold
+	)
+	conceptStreakText = label(
+		metricsPill,
+		"Streak",
+		"STREAK x0",
+		UDim2.fromOffset(88, 34),
+		UDim2.fromOffset(158, 7),
+		10,
+		COLORS.Green,
+		Enum.Font.GothamBold
+	)
+	conceptCoinsText = label(
+		metricsPill,
+		"Coins",
+		"◈ 0",
+		UDim2.fromOffset(58, 34),
+		UDim2.fromOffset(248, 7),
+		10,
+		COLORS.Warm,
+		Enum.Font.GothamBold
+	)
+	conceptCoinsText.TextXAlignment = Enum.TextXAlignment.Right
+
+	local styleShowcase = Instance.new("Frame")
+	styleShowcase.Name = "FloorStyleShowcase"
+	styleShowcase.AnchorPoint = Vector2.new(0, 1)
+	styleShowcase.Position = UDim2.new(0, 18, 1, -18)
+	styleShowcase.Size = UDim2.fromOffset(308, 208)
+	styleShowcase.BackgroundColor3 = COLORS.Foundation
+	styleShowcase.BackgroundTransparency = 0.02
+	styleShowcase.BorderSizePixel = 0
+	styleShowcase.Parent = conceptShowcase
+	corner(styleShowcase, 20)
+	stroke(styleShowcase, COLORS.Cyan, 0.38, 1.3)
+	gradient(styleShowcase, Color3.fromRGB(46, 61, 78), COLORS.Foundation)
+	label(
+		styleShowcase,
+		"Title",
+		"FLOOR STYLE",
+		UDim2.fromOffset(180, 28),
+		UDim2.fromOffset(15, 8),
+		17,
+		COLORS.Text,
+		Enum.Font.GothamBlack
+	)
+	local featureHint = label(
+		styleShowcase,
+		"Hint",
+		"FEATURED",
+		UDim2.fromOffset(88, 20),
+		UDim2.fromOffset(202, 11),
+		9,
+		COLORS.Cyan,
+		Enum.Font.GothamBold
+	)
+	featureHint.TextXAlignment = Enum.TextXAlignment.Right
+
+	local featured = {
+		CosmeticConfig.Items.trail_cyan,
+		CosmeticConfig.Items.win_burst,
+		CosmeticConfig.Items.theme_neon,
+	}
+	for index, item in featured do
+		local accent = rgb(item.ColorRGB)
+		local card = Instance.new("Frame")
+		card.Name = ("Featured%02d"):format(index)
+		card.Position = UDim2.fromOffset(14 + (index - 1) * 98, 43)
+		card.Size = UDim2.fromOffset(88, 151)
+		card.BackgroundColor3 = COLORS.Surface
+		card.BorderSizePixel = 0
+		card.Parent = styleShowcase
+		corner(card, 14)
+		stroke(card, accent, 0.42, 1)
+		gradient(card, accent:Lerp(COLORS.Surface, 0.72), COLORS.Foundation)
+		local preview = Instance.new("Frame")
+		preview.Position = UDim2.fromOffset(8, 8)
+		preview.Size = UDim2.fromOffset(72, 58)
+		preview.BackgroundColor3 = Color3.fromRGB(17, 24, 34)
+		preview.BorderSizePixel = 0
+		preview.Parent = card
+		corner(preview, 11)
+		stroke(preview, accent, 0.20, 1)
+		local mark = Instance.new("Frame")
+		mark.AnchorPoint = Vector2.new(0.5, 0.5)
+		mark.Position = UDim2.fromScale(0.5, 0.5)
+		mark.Size = UDim2.fromOffset(if index == 2 then 28 else 46, if index == 2 then 28 else 12)
+		mark.Rotation = if index == 1 then -20 elseif index == 3 then 18 else 45
+		mark.BackgroundColor3 = accent
+		mark.BorderSizePixel = 0
+		mark.Parent = preview
+		corner(mark, if index == 2 then 99 else 7)
+		local name = label(
+			card,
+			"Name",
+			item.DisplayName,
+			UDim2.fromOffset(78, 34),
+			UDim2.fromOffset(5, 69),
+			10,
+			COLORS.Text,
+			Enum.Font.GothamBold
+		)
+		name.TextWrapped = true
+		name.TextXAlignment = Enum.TextXAlignment.Center
+		local cost = label(
+			card,
+			"Cost",
+			("◈ %d"):format(item.Cost),
+			UDim2.fromOffset(78, 16),
+			UDim2.fromOffset(5, 103),
+			9,
+			COLORS.Warm,
+			Enum.Font.GothamBold
+		)
+		cost.TextXAlignment = Enum.TextXAlignment.Center
+		local open = actionButton(card, "OpenStyle", "OPEN", UDim2.fromOffset(70, 24), UDim2.fromOffset(9, 122), accent)
+		open.TextSize = 9
+		open.Activated:Connect(function()
+			local cosmetics = playerGui:FindFirstChild("OneMoreFloorCosmetics")
+			local panel = cosmetics and cosmetics:FindFirstChild("StyleGarage")
+			if panel and panel:IsA("Frame") then
+				panel.Visible = true
+			end
+		end)
+	end
+
+	local rightColumn = Instance.new("Frame")
+	rightColumn.Name = "ConceptRightColumn"
+	rightColumn.AnchorPoint = Vector2.new(1, 0)
+	rightColumn.Position = UDim2.new(1, -18, 0, 96)
+	rightColumn.Size = UDim2.fromOffset(232, 366)
+	rightColumn.BackgroundTransparency = 1
+	rightColumn.Parent = conceptShowcase
+
+	local conceptProgressCard = Instance.new("Frame")
+	conceptProgressCard.Name = "ConceptProgressCard"
+	conceptProgressCard.Size = UDim2.fromOffset(232, 86)
+	conceptProgressCard.BackgroundColor3 = COLORS.Foundation
+	conceptProgressCard.BorderSizePixel = 0
+	conceptProgressCard.Parent = rightColumn
+	corner(conceptProgressCard, 17)
+	stroke(conceptProgressCard, COLORS.Cyan, 0.38, 1.2)
+	gradient(conceptProgressCard, Color3.fromRGB(42, 59, 76), COLORS.Foundation)
+	label(
+		conceptProgressCard,
+		"Title",
+		"TOWER PROGRESS",
+		UDim2.fromOffset(204, 20),
+		UDim2.fromOffset(13, 7),
+		13,
+		COLORS.Text,
+		Enum.Font.GothamBlack
+	)
+	conceptProgressText = label(
+		conceptProgressCard,
+		"Progress",
+		"FLOOR 01 / 10",
+		UDim2.fromOffset(204, 18),
+		UDim2.fromOffset(13, 28),
+		9,
+		COLORS.Muted,
+		Enum.Font.GothamBold
+	)
+	conceptProgressText.TextXAlignment = Enum.TextXAlignment.Center
+	local conceptTrack = Instance.new("Frame")
+	conceptTrack.Position = UDim2.fromOffset(13, 55)
+	conceptTrack.Size = UDim2.fromOffset(206, 14)
+	conceptTrack.BackgroundColor3 = Color3.fromRGB(15, 23, 32)
+	conceptTrack.BorderSizePixel = 0
+	conceptTrack.ClipsDescendants = true
+	conceptTrack.Parent = conceptProgressCard
+	corner(conceptTrack, 99)
+	conceptProgressFill = Instance.new("Frame")
+	conceptProgressFill.Size = UDim2.fromScale(0.1, 1)
+	conceptProgressFill.BackgroundColor3 = COLORS.Green
+	conceptProgressFill.BorderSizePixel = 0
+	conceptProgressFill.Parent = conceptTrack
+	corner(conceptProgressFill, 99)
+
+	local conceptDailyRewards = Instance.new("Frame")
+	conceptDailyRewards.Name = "ConceptDailyRewards"
+	conceptDailyRewards.Position = UDim2.fromOffset(0, 96)
+	conceptDailyRewards.Size = UDim2.fromOffset(232, 128)
+	conceptDailyRewards.BackgroundColor3 = COLORS.Foundation
+	conceptDailyRewards.BorderSizePixel = 0
+	conceptDailyRewards.Parent = rightColumn
+	corner(conceptDailyRewards, 17)
+	stroke(conceptDailyRewards, COLORS.Warm, 0.42, 1.2)
+	gradient(conceptDailyRewards, Color3.fromRGB(57, 49, 66), COLORS.Foundation)
+	label(
+		conceptDailyRewards,
+		"Title",
+		"DAILY REWARDS",
+		UDim2.fromOffset(204, 20),
+		UDim2.fromOffset(13, 6),
+		13,
+		COLORS.Text,
+		Enum.Font.GothamBlack
+	)
+	conceptDailyCaption = label(
+		conceptDailyRewards,
+		"Caption",
+		"CLIMB TO KEEP STREAK",
+		UDim2.fromOffset(204, 16),
+		UDim2.fromOffset(13, 27),
+		8,
+		COLORS.Muted,
+		Enum.Font.GothamBold
+	)
+	conceptDailyCaption.TextXAlignment = Enum.TextXAlignment.Center
+	conceptDailyTiles = {}
+	for index = 1, 5 do
+		local tile = Instance.new("Frame")
+		tile.Position = UDim2.fromOffset(9 + (index - 1) * 44, 48)
+		tile.Size = UDim2.fromOffset(39, 67)
+		tile.BackgroundColor3 = if index == 1 then Color3.fromRGB(59, 106, 89) else Color3.fromRGB(48, 57, 72)
+		tile.BorderSizePixel = 0
+		tile.Parent = conceptDailyRewards
+		corner(tile, 9)
+		stroke(tile, Color3.fromRGB(135, 151, 178), 0.56, 1)
+		local day = label(
+			tile,
+			"Day",
+			("D%d"):format(index),
+			UDim2.fromOffset(35, 14),
+			UDim2.fromOffset(2, 4),
+			8,
+			COLORS.Muted,
+			Enum.Font.GothamBold
+		)
+		day.TextXAlignment = Enum.TextXAlignment.Center
+		local reward = label(
+			tile,
+			"Reward",
+			if index == 1
+				then "✓"
+				elseif index == 2 then "◈"
+				elseif index == 3 then "✦"
+				elseif index == 4 then "◆"
+				else "★",
+			UDim2.fromOffset(35, 31),
+			UDim2.fromOffset(2, 22),
+			15,
+			if index == 1 then COLORS.Green else COLORS.Warm,
+			Enum.Font.GothamBlack
+		)
+		reward.TextXAlignment = Enum.TextXAlignment.Center
+		table.insert(conceptDailyTiles, tile)
+	end
+
+	local conceptVistaCard = Instance.new("Frame")
+	conceptVistaCard.Name = "ConceptVistaCard"
+	conceptVistaCard.Position = UDim2.fromOffset(0, 234)
+	conceptVistaCard.Size = UDim2.fromOffset(232, 132)
+	conceptVistaCard.BackgroundColor3 = COLORS.Foundation
+	conceptVistaCard.BorderSizePixel = 0
+	conceptVistaCard.Parent = rightColumn
+	corner(conceptVistaCard, 17)
+	stroke(conceptVistaCard, COLORS.Cyan, 0.42, 1.2)
+	gradient(conceptVistaCard, Color3.fromRGB(42, 54, 75), COLORS.Foundation)
+	label(
+		conceptVistaCard,
+		"Title",
+		"NEXT FLOOR PREVIEW",
+		UDim2.fromOffset(204, 20),
+		UDim2.fromOffset(13, 6),
+		13,
+		COLORS.Text,
+		Enum.Font.GothamBlack
+	)
+	local conceptViewport = Instance.new("ViewportFrame")
+	conceptViewport.Name = "TowerPreview"
+	conceptViewport.Position = UDim2.fromOffset(12, 31)
+	conceptViewport.Size = UDim2.fromOffset(208, 89)
+	conceptViewport.BackgroundColor3 = Color3.fromRGB(73, 84, 119)
+	conceptViewport.BorderSizePixel = 0
+	conceptViewport.Ambient = Color3.fromRGB(126, 139, 165)
+	conceptViewport.LightColor = Color3.fromRGB(255, 214, 167)
+	conceptViewport.LightDirection = Vector3.new(-1, -1, -0.5)
+	conceptViewport.Parent = conceptVistaCard
+	corner(conceptViewport, 12)
+	local previewWorld = Instance.new("WorldModel")
+	previewWorld.Parent = conceptViewport
+	local previewCamera = Instance.new("Camera")
+	previewCamera.CFrame = CFrame.lookAt(Vector3.new(11, 7, 14), Vector3.new(0, 1.8, 0))
+	previewCamera.FieldOfView = 40
+	previewCamera.Parent = conceptViewport
+	conceptViewport.CurrentCamera = previewCamera
+	local function previewPart(
+		name: string,
+		size: Vector3,
+		position: Vector3,
+		color: Color3,
+		material: Enum.Material
+	): Part
+		local part = Instance.new("Part")
+		part.Name = name
+		part.Size = size
+		part.Position = position
+		part.Anchored = true
+		part.CanCollide = false
+		part.Color = color
+		part.Material = material
+		part.Parent = previewWorld
+		return part
+	end
+	previewPart(
+		"RoomFloor",
+		Vector3.new(10, 0.5, 8),
+		Vector3.new(0, 0, 0),
+		Color3.fromRGB(54, 61, 75),
+		Enum.Material.Concrete
+	)
+	previewPart(
+		"LeftWall",
+		Vector3.new(0.5, 5, 8),
+		Vector3.new(-5, 2.2, 0),
+		Color3.fromRGB(38, 46, 61),
+		Enum.Material.Metal
+	)
+	previewPart(
+		"RightWall",
+		Vector3.new(0.5, 5, 8),
+		Vector3.new(5, 2.2, 0),
+		Color3.fromRGB(38, 46, 61),
+		Enum.Material.Metal
+	)
+	previewPart("Goal", Vector3.new(3.2, 0.25, 2.1), Vector3.new(0, 0.42, -2.2), COLORS.Warm, Enum.Material.Neon)
+	previewPart("Portal", Vector3.new(4.0, 3.4, 0.35), Vector3.new(0, 2.0, -3.7), COLORS.Cyan, Enum.Material.Neon)
+
 	status = Instance.new("Frame")
 	status.Name = "Status"
 	status.AnchorPoint = Vector2.new(0.5, 0)
@@ -507,7 +918,7 @@ local function buildGui()
 	resultPanel.Name = "Result"
 	resultPanel.AnchorPoint = Vector2.new(0.5, 0.5)
 	resultPanel.Position = UDim2.fromScale(0.5, 0.52)
-	resultPanel.Size = UDim2.fromOffset(390, 230)
+	resultPanel.Size = UDim2.fromOffset(340, 170)
 	resultPanel.BackgroundColor3 = COLORS.Foundation
 	resultPanel.BorderSizePixel = 0
 	resultPanel.Visible = false
@@ -519,9 +930,9 @@ local function buildGui()
 		resultPanel,
 		"Title",
 		"FLOOR FAILED",
-		UDim2.new(1, -30, 0, 44),
-		UDim2.fromOffset(15, 18),
-		23,
+		UDim2.new(1, -30, 0, 34),
+		UDim2.fromOffset(15, 8),
+		19,
 		COLORS.Text,
 		Enum.Font.GothamBlack
 	)
@@ -530,9 +941,9 @@ local function buildGui()
 		resultPanel,
 		"Summary",
 		"",
-		UDim2.new(1, -36, 0, 64),
-		UDim2.fromOffset(18, 68),
-		12,
+		UDim2.new(1, -36, 0, 48),
+		UDim2.fromOffset(18, 42),
+		10,
 		COLORS.Muted,
 		Enum.Font.GothamMedium
 	)
@@ -543,8 +954,8 @@ local function buildGui()
 		resultPanel,
 		"Retry",
 		"RETRY  •  R / X",
-		UDim2.fromOffset(230, 54),
-		UDim2.new(0.5, -115, 1, -76),
+		UDim2.fromOffset(220, 42),
+		UDim2.new(0.5, -110, 1, -52),
 		COLORS.Warm
 	)
 	retryButton.Activated:Connect(function()

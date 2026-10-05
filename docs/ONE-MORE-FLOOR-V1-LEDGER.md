@@ -208,3 +208,4 @@ One More Floor V1 is done only when the challenge library has real mechanical va
 
 - [x] Canonical private production publish completed as `v5` on the existing Place.
 - [x] Immediate post-publish server/client initialization passed; expected Studio DataStore fallback only.
+- [x] Concept-fidelity pass 3: live Floor Style + tower progress/daily/preview cards, compact concept metrics and bottom result/objective composition are implemented and runtime-verified.

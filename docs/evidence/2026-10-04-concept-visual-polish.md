@@ -31,3 +31,10 @@ The visual contract was introduced with a failing test before production impleme
 - Tower presentation gained brighter structure, layered cloud rings, a hero crown landmark and a warm sky focal point.
 - Final Studio PlaySolo initialized server/client with 0 CreatorErrors. Local unpublished Studio used the expected ephemeral DataStore profile fallback.
 - Static verification: 11 pure-Luau tests, Selene 0/0, StyLua, Rojo build and git diff check pass.
+
+## Concept-fidelity pass 3
+
+- Added the live medium/large concept composition: Floor Style featured cosmetics, Tower Progress, five-day Daily Rewards, native Next Floor ViewportFrame preview, floor/best/streak/coins pill and compact Boosts/Style rail.
+- Featured cards use real Skyline, Pulse Burst and Night Shift cosmetics and open the production Style Garage.
+- Replaced the bulky medium/large status strip with compact concept metrics and moved the live objective/result toward the bottom so the room and avatar stay central.
+- Final PlaySolo recheck initialized server/client with `0 CreatorErrors`; the unpublished Studio profile used the expected ephemeral DataStore fallback. Static verification passed with 12 pure-Luau tests, Selene 0/0, StyLua, Rojo build and git diff check.
