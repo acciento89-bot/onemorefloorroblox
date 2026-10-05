@@ -209,3 +209,11 @@ One More Floor V1 is done only when the challenge library has real mechanical va
 - [x] Canonical private production publish completed as `v5` on the existing Place.
 - [x] Immediate post-publish server/client initialization passed; expected Studio DataStore fallback only.
 - [x] Concept-fidelity pass 3: live Floor Style + tower progress/daily/preview cards, compact concept metrics and bottom result/objective composition are implemented and runtime-verified.
+
+## 2026-10-05 graphic-fidelity pass 4
+
+- [x] Source-side concept graphic fidelity implemented: Vertical tower-city depth, glass facade columns, repeating facade light bands, layered sun glow and cloud depth.
+- [x] Contextual-menu rule preserved: full Shop/Daily/Style/Revive/Result surfaces are not permanently visible during normal gameplay.
+- [x] CI verification green on run `37271364782`; merged source commit `b993a2a`.
+- [ ] Fresh Roblox Studio PlaySolo visual acceptance after this pass.
+- [ ] Publish/republish this exact graphic-fidelity source to the existing canonical Place after Studio acceptance.
