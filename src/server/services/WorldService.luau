@@ -242,6 +242,18 @@ local function decorateLane(lane: Lane)
 	sun.Shape = Enum.PartType.Ball
 	sun.CastShadow = false
 
+	local sunGlow = makePart(
+		art,
+		"SunGlowHalo",
+		Vector3.new(44, 44, 44),
+		CFrame.new(origin + Vector3.new(78, 210, -182)),
+		Enum.Material.Neon,
+		Color3.fromRGB(255, 214, 162),
+		0.91
+	)
+	sunGlow.Shape = Enum.PartType.Ball
+	sunGlow.CastShadow = false
+
 	local beacon = makePart(
 		art,
 		"TowerBeacon",
