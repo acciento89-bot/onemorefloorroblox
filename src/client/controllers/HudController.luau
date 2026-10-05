@@ -337,9 +337,15 @@ local function applyState(payload: any)
 	currentPhase = tostring(payload.Phase or currentPhase)
 	deadline = tonumber(payload.Deadline) or 0
 	timeLimit = tonumber(payload.TimeLimit) or 0
-	currentDailyProgress = tonumber(payload.DailyProgress) or tonumber(player:GetAttribute("OMFDailyProgress")) or currentDailyProgress
-	currentDailyTarget = tonumber(payload.DailyTarget) or tonumber(player:GetAttribute("OMFDailyTarget")) or currentDailyTarget
-	currentDailyStreak = tonumber(payload.DailyStreak) or tonumber(player:GetAttribute("OMFDailyStreak")) or currentDailyStreak
+	currentDailyProgress = tonumber(payload.DailyProgress)
+		or tonumber(player:GetAttribute("OMFDailyProgress"))
+		or currentDailyProgress
+	currentDailyTarget = tonumber(payload.DailyTarget)
+		or tonumber(player:GetAttribute("OMFDailyTarget"))
+		or currentDailyTarget
+	currentDailyStreak = tonumber(payload.DailyStreak)
+		or tonumber(player:GetAttribute("OMFDailyStreak"))
+		or currentDailyStreak
 	refreshMetrics(payload)
 	refreshDailyPanel()
 
@@ -572,14 +578,8 @@ local function buildGui()
 	)
 	dailyModalTitle.ZIndex = 62
 
-	dailyCloseButton = actionButton(
-		dailyPanel,
-		"Close",
-		"×",
-		UDim2.fromOffset(46, 44),
-		UDim2.new(1, -60, 0, 12),
-		COLORS.Raised
-	)
+	dailyCloseButton =
+		actionButton(dailyPanel, "Close", "×", UDim2.fromOffset(46, 44), UDim2.new(1, -60, 0, 12), COLORS.Raised)
 	dailyCloseButton.TextColor3 = COLORS.Text
 	dailyCloseButton.TextSize = 22
 	dailyCloseButton.ZIndex = 62
@@ -677,14 +677,8 @@ local function buildGui()
 	dailyAutoNote.TextXAlignment = Enum.TextXAlignment.Center
 	dailyAutoNote.ZIndex = 62
 
-	local dailyDone = actionButton(
-		dailyPanel,
-		"Done",
-		"DONE",
-		UDim2.fromOffset(150, 42),
-		UDim2.new(0.5, -75, 1, -54),
-		COLORS.Green
-	)
+	local dailyDone =
+		actionButton(dailyPanel, "Done", "DONE", UDim2.fromOffset(150, 42), UDim2.new(0.5, -75, 1, -54), COLORS.Green)
 	dailyDone.ZIndex = 62
 	dailyCloseButton.Activated:Connect(function()
 		setDailyVisible(false)
