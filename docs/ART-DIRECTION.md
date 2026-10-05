@@ -6,6 +6,12 @@ The approved concept image is a **feature montage**, not a simultaneous gameplay
 ## Target
 A polished, readable Roblox experience that looks intentional from a normal gameplay screenshot. Stylized, clean and modern; never like an empty baseplate or developer prototype.
 
+## Graphic fidelity
+- The **tower-city identity** is vertical first: the playable room stack is framed by tall structural spines, glass facade columns, repeating light bands and cloud layers at multiple heights.
+- A distant city ring adds scale below and around the tower without entering the playable room volume.
+- Warm sunset light and a layered sky focal point contrast with cyan/steel tower structure so each floor remains readable.
+- Decorative city/facade geometry is non-colliding and never changes challenge rules.
+
 ## Visual language
 - Strong silhouette readability at mobile camera distance.
 - One dominant dark/neutral foundation plus one warm accent and one gameplay-state accent.

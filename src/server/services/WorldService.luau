@@ -132,6 +132,52 @@ local function decorateLane(lane: Lane)
 		)
 	end
 
+	local cityRing = Instance.new("Folder")
+	cityRing.Name = "TowerDepthRing"
+	cityRing.Parent = art
+	for index = 1, 14 do
+		local angle = index / 14 * math.pi * 2 + 0.16
+		local radius = 136 + (index % 4) * 15
+		local height = 42 + ((index * 9) % 6) * 11
+		local position = origin + Vector3.new(math.cos(angle) * radius, -24, math.sin(angle) * radius)
+		makePart(
+			cityRing,
+			"FarCityBlock",
+			Vector3.new(15 + (index % 3) * 4, height, 16 + ((index + 1) % 3) * 3),
+			CFrame.new(position + Vector3.new(0, height / 2, 0)),
+			Enum.Material.Concrete,
+			Color3.fromRGB(62 + index, 72 + index, 87 + index)
+		)
+	end
+
+	for _, side in { -1, 1 } do
+		for _, zSign in { -1, 1 } do
+			local glassColumn = makePart(
+				art,
+				"FacadeGlassColumn",
+				Vector3.new(2.2, 500, 2.2),
+				CFrame.new(origin + Vector3.new(side * 15.5, 250, zSign * 12.5)),
+				Enum.Material.Glass,
+				Color3.fromRGB(96, 142, 164),
+				0.42
+			)
+			glassColumn.CastShadow = false
+		end
+	end
+
+	for y = 32, 480, 32 do
+		local band = makePart(
+			art,
+			"FacadeLightBand",
+			Vector3.new(33.5, 0.14, 0.22),
+			CFrame.new(origin + Vector3.new(0, y, -15.2)),
+			Enum.Material.Neon,
+			if math.floor(y / 32) % 2 == 0 then warm else Color3.fromRGB(125, 211, 235),
+			0.30
+		)
+		band.CastShadow = false
+	end
+
 	local cloudRing = Instance.new("Folder")
 	cloudRing.Name = "CloudRing"
 	cloudRing.Parent = art
@@ -195,6 +241,18 @@ local function decorateLane(lane: Lane)
 	)
 	sun.Shape = Enum.PartType.Ball
 	sun.CastShadow = false
+
+	local sunGlow = makePart(
+		art,
+		"SunGlowHalo",
+		Vector3.new(44, 44, 44),
+		CFrame.new(origin + Vector3.new(78, 210, -182)),
+		Enum.Material.Neon,
+		Color3.fromRGB(255, 214, 162),
+		0.91
+	)
+	sunGlow.Shape = Enum.PartType.Ball
+	sunGlow.CastShadow = false
 
 	local beacon = makePart(
 		art,
