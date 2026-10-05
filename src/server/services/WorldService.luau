@@ -165,6 +165,19 @@ local function decorateLane(lane: Lane)
 		end
 	end
 
+	for y = 32, 480, 32 do
+		local band = makePart(
+			art,
+			"FacadeLightBand",
+			Vector3.new(33.5, 0.14, 0.22),
+			CFrame.new(origin + Vector3.new(0, y, -15.2)),
+			Enum.Material.Neon,
+			if math.floor(y / 32) % 2 == 0 then warm else Color3.fromRGB(125, 211, 235),
+			0.30
+		)
+		band.CastShadow = false
+	end
+
 	local cloudRing = Instance.new("Folder")
 	cloudRing.Name = "CloudRing"
 	cloudRing.Parent = art
