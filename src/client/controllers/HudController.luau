@@ -227,70 +227,66 @@ local function updateResponsive()
 	if not camera then
 		return
 	end
+
 	local width = camera.ViewportSize.X
 	conceptShowcase.Visible = false
-	status.Visible = width < 620
-	if width < 620 then
+	local compact = width < 620
+	local tablet = width >= 620 and width < 1050
+
+	if compact then
 		logo.Visible = false
 		floorProgress.Visible = false
+		status.Visible = true
 		quickRail.Visible = true
 		boostQuick.Visible = false
 		styleQuick.Visible = false
 		dailyQuick.Visible = true
+
+		-- Mobile: metrics own the top safe area; the only secondary action sits at
+		-- bottom-right so it never covers the objective or character.
+		quickRail.AnchorPoint = Vector2.new(1, 1)
+		quickRail.Position = UDim2.new(1, -14, 1, -14)
+		quickRail.Size = UDim2.fromOffset(96, 42)
 		dailyQuick.Position = UDim2.fromOffset(0, 0)
-		quickRail.Position = UDim2.new(1, -18, 0, 90)
-		status.Position = UDim2.new(0.5, 0, 0, 16)
-		status.Size = UDim2.new(1, -24, 0, 112)
+
+		status.Position = UDim2.new(0.5, 0, 0, 12)
+		status.Size = UDim2.new(1, -24, 0, 102)
 		metricGrid.FillDirectionMaxCells = 2
-		metricGrid.CellSize = UDim2.new(0.5, -4, 0, 44)
+		metricGrid.CellSize = UDim2.new(0.5, -4, 0, 41)
 		metricGrid.CellPadding = UDim2.fromOffset(6, 6)
-		objective.Position = UDim2.new(0.5, 0, 0, 138)
-		objective.Size = UDim2.new(1, -28, 0, 72)
-		feedback.Position = UDim2.new(0.5, -150, 0, 220)
+
+		objective.Position = UDim2.new(0.5, 0, 0, 126)
+		objective.Size = UDim2.new(1, -28, 0, 70)
+		feedback.Position = UDim2.new(0.5, -150, 0, 204)
 		resultPanel.Position = UDim2.fromScale(0.5, 0.52)
-		resultPanel.Size = UDim2.fromOffset(340, 170)
-	elseif width < 1050 then
-		logo.Visible = true
-		floorProgress.Visible = true
-		quickRail.Visible = true
-		boostQuick.Visible = true
-		styleQuick.Visible = true
-		dailyQuick.Visible = true
-		boostQuick.Position = UDim2.fromOffset(0, 0)
-		styleQuick.Position = UDim2.fromOffset(0, 50)
-		dailyQuick.Position = UDim2.fromOffset(0, 100)
-		quickRail.Position = UDim2.new(1, -266, 0, 106)
-		status.Position = UDim2.new(0.5, 0, 0, 88)
-		status.Size = UDim2.new(1, -34, 0, 66)
-		metricGrid.FillDirectionMaxCells = 4
-		metricGrid.CellSize = UDim2.new(0.25, -5, 1, 0)
-		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
-		objective.Position = UDim2.new(0.55, 0, 1, -88)
-		objective.Size = UDim2.fromOffset(360, 64)
-		feedback.Position = UDim2.new(0.5, -150, 0, 248)
-		resultPanel.Position = UDim2.new(0.55, 0, 1, -112)
-		resultPanel.Size = UDim2.fromOffset(320, 154)
-		resultPanel.Position = UDim2.new(0.55, 0, 1, -112)
-		resultPanel.Size = UDim2.fromOffset(320, 154)
+		resultPanel.Size = UDim2.new(1, -32, 0, 178)
 	else
 		logo.Visible = true
 		floorProgress.Visible = true
+		status.Visible = true
 		quickRail.Visible = true
 		boostQuick.Visible = true
 		styleQuick.Visible = true
 		dailyQuick.Visible = true
+
+		quickRail.AnchorPoint = Vector2.new(1, 0)
+		quickRail.Position = UDim2.new(1, -18, 0, 18)
+		quickRail.Size = UDim2.fromOffset(96, 146)
 		boostQuick.Position = UDim2.fromOffset(0, 0)
 		styleQuick.Position = UDim2.fromOffset(0, 50)
 		dailyQuick.Position = UDim2.fromOffset(0, 100)
-		quickRail.Position = UDim2.new(1, -266, 0, 106)
-		status.Position = UDim2.new(0.5, 0, 0, 88)
-		status.Size = UDim2.fromOffset(620, 66)
+
+		status.Position = UDim2.new(0.5, 0, 0, 82)
+		status.Size = UDim2.fromOffset(if tablet then math.max(420, math.min(620, width - 300)) else 620, 66)
 		metricGrid.FillDirectionMaxCells = 4
 		metricGrid.CellSize = UDim2.new(0.25, -5, 1, 0)
 		metricGrid.CellPadding = UDim2.fromOffset(6, 0)
-		objective.Position = UDim2.new(0.55, 0, 1, -88)
-		objective.Size = UDim2.fromOffset(380, 64)
-		feedback.Position = UDim2.new(0.5, -150, 0, 248)
+
+		objective.Position = UDim2.new(0.5, 0, 1, -88)
+		objective.Size = UDim2.fromOffset(if tablet then 360 else 380, 64)
+		feedback.Position = UDim2.new(0.5, -150, 0, 220)
+		resultPanel.Position = UDim2.fromScale(0.5, 0.52)
+		resultPanel.Size = UDim2.fromOffset(340, 170)
 	end
 end
 

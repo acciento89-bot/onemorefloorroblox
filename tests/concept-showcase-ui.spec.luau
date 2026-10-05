@@ -16,7 +16,7 @@ return function()
 		"concept montage must stay hidden during normal gameplay"
 	)
 	assert(
-		string.find(hud, "objective.Position = UDim2.new(0.55, 0, 1, -88)", 1, true),
+		string.find(hud, "objective.Position = UDim2.new(0.5, 0, 1, -88)", 1, true),
 		"non-compact objective must stay clear of the hero playfield"
 	)
 end
