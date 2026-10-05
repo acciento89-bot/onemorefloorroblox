@@ -132,6 +132,24 @@ local function decorateLane(lane: Lane)
 		)
 	end
 
+	local cityRing = Instance.new("Folder")
+	cityRing.Name = "TowerDepthRing"
+	cityRing.Parent = art
+	for index = 1, 14 do
+		local angle = index / 14 * math.pi * 2 + 0.16
+		local radius = 136 + (index % 4) * 15
+		local height = 42 + ((index * 9) % 6) * 11
+		local position = origin + Vector3.new(math.cos(angle) * radius, -24, math.sin(angle) * radius)
+		makePart(
+			cityRing,
+			"FarCityBlock",
+			Vector3.new(15 + (index % 3) * 4, height, 16 + ((index + 1) % 3) * 3),
+			CFrame.new(position + Vector3.new(0, height / 2, 0)),
+			Enum.Material.Concrete,
+			Color3.fromRGB(62 + index, 72 + index, 87 + index)
+		)
+	end
+
 	local cloudRing = Instance.new("Folder")
 	cloudRing.Name = "CloudRing"
 	cloudRing.Parent = art
