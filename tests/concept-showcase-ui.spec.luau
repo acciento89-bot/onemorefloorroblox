@@ -12,8 +12,8 @@ return function()
 		"visual preview must be native ViewportFrame"
 	)
 	assert(
-		string.find(hud, "conceptShowcase.Visible = width >= 620", 1, true),
-		"showcase must stay off compact layouts"
+		string.find(hud, "conceptShowcase.Visible = false", 1, true),
+		"concept montage must stay hidden during normal gameplay"
 	)
 	assert(
 		string.find(hud, "objective.Position = UDim2.new(0.55, 0, 1, -88)", 1, true),

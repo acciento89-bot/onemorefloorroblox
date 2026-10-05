@@ -1,5 +1,8 @@
 # One More Floor Art Direction
 
+## Concept interpretation
+The approved concept image is a **feature montage**, not a simultaneous gameplay HUD. Boosts, Style/Cosmetics, Daily Rewards and Failure/Retry are contextual overlays that remain hidden until the player opens them or the matching gameplay state triggers them. Normal play keeps the avatar and floor challenge unobstructed.
+
 ## Target
 A polished, readable Roblox experience that looks intentional from a normal gameplay screenshot. Stylized, clean and modern; never like an empty baseplate or developer prototype.
 
