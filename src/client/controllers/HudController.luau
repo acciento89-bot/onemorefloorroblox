@@ -46,6 +46,15 @@ local floorProgress: Frame
 local floorProgressFill: Frame
 local floorProgressText: TextLabel
 local quickRail: Frame
+local boostQuick: TextButton
+local styleQuick: TextButton
+local dailyQuick: TextButton
+local dailyBackdrop: Frame
+local dailyPanel: Frame
+local dailyCloseButton: TextButton
+local dailyStatus: TextLabel
+local dailyChallenge: TextLabel
+local dailyRewardTiles: { Frame } = {}
 local conceptShowcase: Frame
 local conceptProgressText: TextLabel
 local conceptProgressFill: Frame
@@ -59,6 +68,9 @@ local metricValues: { [string]: TextLabel } = {}
 local deadline = 0
 local timeLimit = 0
 local currentPhase = "Preparing"
+local currentDailyProgress = 0
+local currentDailyTarget = 5
+local currentDailyStreak = 0
 
 local function corner(parent: Instance, radius: number)
 	local item = Instance.new("UICorner")
@@ -167,18 +179,65 @@ local function actionButton(
 	return item
 end
 
+local function closeExternalPanels()
+	local monetization = playerGui:FindFirstChild("OneMoreFloorMonetization")
+	local boostPanel = monetization and monetization:FindFirstChild("Panel")
+	if boostPanel and boostPanel:IsA("Frame") then
+		boostPanel.Visible = false
+	end
+	local cosmetics = playerGui:FindFirstChild("OneMoreFloorCosmetics")
+	local stylePanel = cosmetics and cosmetics:FindFirstChild("StyleGarage")
+	if stylePanel and stylePanel:IsA("Frame") then
+		stylePanel.Visible = false
+	end
+end
+
+local function refreshDailyPanel()
+	if not dailyPanel then
+		return
+	end
+	dailyStatus.Text = ("LOGIN STREAK  x%d"):format(currentDailyStreak)
+	dailyChallenge.Text = ("DAILY FLOOR GOAL  %d / %d"):format(
+		math.min(currentDailyProgress, currentDailyTarget),
+		currentDailyTarget
+	)
+	local cycleDay = ((math.max(1, currentDailyStreak) - 1) % 5) + 1
+	for index, tile in dailyRewardTiles do
+		tile.BackgroundColor3 = if index < cycleDay
+			then Color3.fromRGB(54, 96, 82)
+			elseif index == cycleDay then Color3.fromRGB(89, 70, 104)
+			else COLORS.Surface
+	end
+end
+
+local function setDailyVisible(visible: boolean)
+	dailyPanel.Visible = visible
+	dailyBackdrop.Visible = visible
+	if visible then
+		closeExternalPanels()
+		refreshDailyPanel()
+		GuiService.SelectedObject = dailyCloseButton
+	elseif GuiService.SelectedObject and GuiService.SelectedObject:IsDescendantOf(dailyPanel) then
+		GuiService.SelectedObject = nil
+	end
+end
+
 local function updateResponsive()
 	local camera = Workspace.CurrentCamera
 	if not camera then
 		return
 	end
 	local width = camera.ViewportSize.X
-	conceptShowcase.Visible = width >= 620
+	conceptShowcase.Visible = false
 	status.Visible = width < 620
 	if width < 620 then
 		logo.Visible = false
 		floorProgress.Visible = false
-		quickRail.Visible = false
+		quickRail.Visible = true
+		boostQuick.Visible = false
+		styleQuick.Visible = false
+		dailyQuick.Visible = true
+		dailyQuick.Position = UDim2.fromOffset(0, 0)
 		quickRail.Position = UDim2.new(1, -18, 0, 90)
 		status.Position = UDim2.new(0.5, 0, 0, 16)
 		status.Size = UDim2.new(1, -24, 0, 112)
@@ -194,6 +253,12 @@ local function updateResponsive()
 		logo.Visible = true
 		floorProgress.Visible = true
 		quickRail.Visible = true
+		boostQuick.Visible = true
+		styleQuick.Visible = true
+		dailyQuick.Visible = true
+		boostQuick.Position = UDim2.fromOffset(0, 0)
+		styleQuick.Position = UDim2.fromOffset(0, 50)
+		dailyQuick.Position = UDim2.fromOffset(0, 100)
 		quickRail.Position = UDim2.new(1, -266, 0, 106)
 		status.Position = UDim2.new(0.5, 0, 0, 88)
 		status.Size = UDim2.new(1, -34, 0, 66)
@@ -211,6 +276,12 @@ local function updateResponsive()
 		logo.Visible = true
 		floorProgress.Visible = true
 		quickRail.Visible = true
+		boostQuick.Visible = true
+		styleQuick.Visible = true
+		dailyQuick.Visible = true
+		boostQuick.Position = UDim2.fromOffset(0, 0)
+		styleQuick.Position = UDim2.fromOffset(0, 50)
+		dailyQuick.Position = UDim2.fromOffset(0, 100)
 		quickRail.Position = UDim2.new(1, -266, 0, 106)
 		status.Position = UDim2.new(0.5, 0, 0, 88)
 		status.Size = UDim2.fromOffset(620, 66)
@@ -266,7 +337,11 @@ local function applyState(payload: any)
 	currentPhase = tostring(payload.Phase or currentPhase)
 	deadline = tonumber(payload.Deadline) or 0
 	timeLimit = tonumber(payload.TimeLimit) or 0
+	currentDailyProgress = tonumber(payload.DailyProgress) or tonumber(player:GetAttribute("OMFDailyProgress")) or currentDailyProgress
+	currentDailyTarget = tonumber(payload.DailyTarget) or tonumber(player:GetAttribute("OMFDailyTarget")) or currentDailyTarget
+	currentDailyStreak = tonumber(payload.DailyStreak) or tonumber(player:GetAttribute("OMFDailyStreak")) or currentDailyStreak
 	refreshMetrics(payload)
+	refreshDailyPanel()
 
 	objectiveTitle.Text = string.upper(tostring(payload.FamilyName or "NEXT FLOOR"))
 	objectiveHint.Text = tostring(payload.Hint or "")
@@ -274,8 +349,11 @@ local function applyState(payload: any)
 	objectiveTitle.Position = if objectiveHint.Visible then UDim2.fromOffset(12, 8) else UDim2.fromOffset(12, 18)
 	resultPanel.Visible = currentPhase == "Failed"
 	objective.Visible = currentPhase ~= "Failed"
-
+	dailyQuick.Active = currentPhase ~= "Failed"
+	dailyQuick.AutoButtonColor = currentPhase ~= "Failed"
 	if currentPhase == "Failed" then
+		setDailyVisible(false)
+		closeExternalPanels()
 		local reason = tostring(payload.Reason or "Miss")
 		resultTitle.Text = "FLOOR FAILED"
 		resultSummary.Text = ("Floor %d  •  %s\nRetry instantly — same challenge, same rules."):format(
@@ -420,16 +498,20 @@ local function buildGui()
 	quickRail.Name = "ConceptQuickRail"
 	quickRail.AnchorPoint = Vector2.new(1, 0)
 	quickRail.Position = UDim2.new(1, -18, 0, 90)
-	quickRail.Size = UDim2.fromOffset(96, 96)
+	quickRail.Size = UDim2.fromOffset(96, 146)
 	quickRail.BackgroundTransparency = 1
 	quickRail.Parent = screen
 
-	local boostQuick =
+	boostQuick =
 		actionButton(quickRail, "BoostQuick", "BOOSTS", UDim2.fromOffset(96, 42), UDim2.fromOffset(0, 0), COLORS.Cyan)
-	local styleQuick =
+	styleQuick =
 		actionButton(quickRail, "StyleQuick", "STYLE", UDim2.fromOffset(96, 42), UDim2.fromOffset(0, 50), COLORS.Warm)
+	dailyQuick =
+		actionButton(quickRail, "DailyQuick", "DAILY", UDim2.fromOffset(96, 42), UDim2.fromOffset(0, 100), COLORS.Green)
+	dailyQuick.Name = "DailyQuick"
 
 	boostQuick.Activated:Connect(function()
+		setDailyVisible(false)
 		local monetization = playerGui:FindFirstChild("OneMoreFloorMonetization")
 		local panel = monetization and monetization:FindFirstChild("Panel")
 		if panel and panel:IsA("Frame") then
@@ -437,10 +519,182 @@ local function buildGui()
 		end
 	end)
 	styleQuick.Activated:Connect(function()
+		setDailyVisible(false)
 		local cosmetics = playerGui:FindFirstChild("OneMoreFloorCosmetics")
 		local panel = cosmetics and cosmetics:FindFirstChild("StyleGarage")
 		if panel and panel:IsA("Frame") then
 			panel.Visible = true
+		end
+	end)
+	dailyQuick.Activated:Connect(function()
+		if currentPhase ~= "Failed" then
+			setDailyVisible(true)
+		end
+	end)
+
+	dailyBackdrop = Instance.new("Frame")
+	dailyBackdrop.Name = "DailyBackdrop"
+	dailyBackdrop.Size = UDim2.fromScale(1, 1)
+	dailyBackdrop.BackgroundColor3 = Color3.fromRGB(7, 10, 16)
+	dailyBackdrop.BackgroundTransparency = 0.34
+	dailyBackdrop.BorderSizePixel = 0
+	dailyBackdrop.Visible = false
+	dailyBackdrop.ZIndex = 60
+	dailyBackdrop.Parent = screen
+
+	dailyPanel = Instance.new("Frame")
+	dailyPanel.Name = "DailyRewardsPanel"
+	dailyPanel.AnchorPoint = Vector2.new(0.5, 0.5)
+	dailyPanel.Position = UDim2.fromScale(0.5, 0.5)
+	dailyPanel.Size = UDim2.fromOffset(438, 304)
+	dailyPanel.BackgroundColor3 = COLORS.Foundation
+	dailyPanel.BorderSizePixel = 0
+	dailyPanel.Visible = false
+	dailyPanel.ZIndex = 61
+	dailyPanel.Parent = screen
+	corner(dailyPanel, 20)
+	stroke(dailyPanel, COLORS.Warm, 0.30, 1.4)
+
+	local dailyGradient = Instance.new("UIGradient")
+	dailyGradient.Rotation = 115
+	dailyGradient.Color = ColorSequence.new(Color3.fromRGB(57, 48, 70), COLORS.Foundation)
+	dailyGradient.Parent = dailyPanel
+
+	local dailyModalTitle = label(
+		dailyPanel,
+		"Title",
+		"DAILY REWARDS",
+		UDim2.new(1, -90, 0, 38),
+		UDim2.fromOffset(20, 12),
+		22,
+		COLORS.Text,
+		Enum.Font.GothamBlack
+	)
+	dailyModalTitle.ZIndex = 62
+
+	dailyCloseButton = actionButton(
+		dailyPanel,
+		"Close",
+		"×",
+		UDim2.fromOffset(46, 44),
+		UDim2.new(1, -60, 0, 12),
+		COLORS.Raised
+	)
+	dailyCloseButton.TextColor3 = COLORS.Text
+	dailyCloseButton.TextSize = 22
+	dailyCloseButton.ZIndex = 62
+
+	dailyStatus = label(
+		dailyPanel,
+		"Status",
+		"LOGIN STREAK  x0",
+		UDim2.new(1, -40, 0, 24),
+		UDim2.fromOffset(20, 52),
+		11,
+		COLORS.Muted,
+		Enum.Font.GothamBold
+	)
+	dailyStatus.TextXAlignment = Enum.TextXAlignment.Center
+	dailyStatus.ZIndex = 62
+
+	dailyRewardTiles = {}
+	local rewardIcons = { "✓", "◈", "✦", "♢", "★" }
+	local rewardLabels = { "LOGIN", "COINS", "BOOST", "STYLE", "RARE" }
+	for index = 1, 5 do
+		local tile = Instance.new("Frame")
+		tile.Name = ("Day%02d"):format(index)
+		tile.Position = UDim2.fromOffset(18 + (index - 1) * 81, 86)
+		tile.Size = UDim2.fromOffset(73, 108)
+		tile.BackgroundColor3 = COLORS.Surface
+		tile.BorderSizePixel = 0
+		tile.ZIndex = 62
+		tile.Parent = dailyPanel
+		corner(tile, 13)
+		stroke(tile, if index == 1 then COLORS.Warm else COLORS.Cyan, 0.62)
+
+		local day = label(
+			tile,
+			"Day",
+			("DAY %d"):format(index),
+			UDim2.new(1, 0, 0, 18),
+			UDim2.fromOffset(0, 6),
+			9,
+			COLORS.Muted,
+			Enum.Font.GothamBold
+		)
+		day.TextXAlignment = Enum.TextXAlignment.Center
+		day.ZIndex = 63
+		local icon = label(
+			tile,
+			"Icon",
+			rewardIcons[index],
+			UDim2.new(1, 0, 0, 42),
+			UDim2.fromOffset(0, 28),
+			24,
+			if index == 1 then COLORS.Green else COLORS.Warm,
+			Enum.Font.GothamBlack
+		)
+		icon.TextXAlignment = Enum.TextXAlignment.Center
+		icon.ZIndex = 63
+		local reward = label(
+			tile,
+			"Reward",
+			rewardLabels[index],
+			UDim2.new(1, 0, 0, 18),
+			UDim2.fromOffset(0, 80),
+			9,
+			COLORS.Text,
+			Enum.Font.GothamBold
+		)
+		reward.TextXAlignment = Enum.TextXAlignment.Center
+		reward.ZIndex = 63
+		table.insert(dailyRewardTiles, tile)
+	end
+
+	dailyChallenge = label(
+		dailyPanel,
+		"Challenge",
+		"DAILY FLOOR GOAL  0 / 5",
+		UDim2.new(1, -40, 0, 24),
+		UDim2.fromOffset(20, 204),
+		11,
+		COLORS.Cyan,
+		Enum.Font.GothamBold
+	)
+	dailyChallenge.TextXAlignment = Enum.TextXAlignment.Center
+	dailyChallenge.ZIndex = 62
+
+	local dailyAutoNote = label(
+		dailyPanel,
+		"AutoNote",
+		"LOGIN + DAILY GOAL REWARDS APPLY AUTOMATICALLY",
+		UDim2.new(1, -40, 0, 22),
+		UDim2.fromOffset(20, 234),
+		9,
+		COLORS.Muted,
+		Enum.Font.GothamBold
+	)
+	dailyAutoNote.TextXAlignment = Enum.TextXAlignment.Center
+	dailyAutoNote.ZIndex = 62
+
+	local dailyDone = actionButton(
+		dailyPanel,
+		"Done",
+		"DONE",
+		UDim2.fromOffset(150, 42),
+		UDim2.new(0.5, -75, 1, -54),
+		COLORS.Green
+	)
+	dailyDone.ZIndex = 62
+	dailyCloseButton.Activated:Connect(function()
+		setDailyVisible(false)
+	end)
+	dailyDone.Activated:Connect(function()
+		setDailyVisible(false)
+	end)
+	dailyBackdrop.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			setDailyVisible(false)
 		end
 	end)
 
