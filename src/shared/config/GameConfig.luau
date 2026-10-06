@@ -37,6 +37,7 @@ return table.freeze({
 			switch_dash = table.freeze({ Distance = 19.5, Height = 11.0, FocusLead = 5.0, FieldOfView = 70 }),
 			disappearing_tiles = table.freeze({ Distance = 20.5, Height = 12.0, FocusLead = 6.0, FieldOfView = 70 }),
 			moving_wall = table.freeze({ Distance = 21.0, Height = 11.5, FocusLead = 5.5, FieldOfView = 72 }),
+			laser_sweep = table.freeze({ Distance = 20.0, Height = 11.0, FocusLead = 5.0, FieldOfView = 71 }),
 		}),
 	}),
 	Economy = table.freeze({

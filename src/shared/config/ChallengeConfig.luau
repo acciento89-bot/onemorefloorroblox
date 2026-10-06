@@ -8,6 +8,7 @@ local familyOrder = {
 	"switch_dash",
 	"disappearing_tiles",
 	"moving_wall",
+	"laser_sweep",
 }
 
 local families = {
@@ -52,6 +53,12 @@ local families = {
 		Hint = "Find the opening and get through.",
 		VariantCount = 4,
 		AccentRGB = { 99, 179, 255 },
+	}),
+	laser_sweep = table.freeze({
+		DisplayName = "Laser Sweep",
+		Hint = "Read the sweep. Jump the beam and reach the exit.",
+		VariantCount = 4,
+		AccentRGB = { 255, 112, 190 },
 	}),
 }
 

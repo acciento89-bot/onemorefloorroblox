@@ -49,6 +49,13 @@ function ChallengeRules.parameters(selection: any): any
 			WallSpeed = 5 + d * 2.4,
 			Travel = 11 + d * 4,
 		}
+	elseif id == "laser_sweep" then
+		return {
+			SweepSpeed = 0.82 + d * 0.52,
+			BeamLength = 18 + d * 2,
+			BeamHeight = 1.35 + (variant % 2) * 0.08,
+			Phase = (variant - 1) * (math.pi / 4),
+		}
 	end
 	error("unsupported challenge family: " .. tostring(id))
 end
@@ -73,6 +80,13 @@ function ChallengeRules.isSafe(selection: any, params: any): boolean
 		return params.TileHoldSeconds >= 0.9 and params.TileWidth >= 4.5
 	elseif id == "moving_wall" then
 		return params.OpeningWidth >= 6.5 and params.WallSpeed <= 8
+	elseif id == "laser_sweep" then
+		return params.SweepSpeed >= 0.8
+			and params.SweepSpeed <= 1.4
+			and params.BeamLength >= 18
+			and params.BeamLength <= 20.5
+			and params.BeamHeight >= 1.3
+			and params.BeamHeight <= 1.55
 	end
 	return false
 end

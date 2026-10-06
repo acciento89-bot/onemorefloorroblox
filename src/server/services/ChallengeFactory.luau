@@ -18,21 +18,29 @@ export type Mover = {
 	Phase: number,
 }
 
+export type Spinner = {
+	Part: BasePart,
+	BaseCFrame: CFrame,
+	Speed: number,
+	Phase: number,
+}
+
 export type Runtime = {
 	Model: Model,
 	StartCFrame: CFrame,
 	Exit: BasePart,
 	Hazards: { BasePart },
 	Movers: { Mover },
+	Spinners: { Spinner },
 	Switch: BasePart?,
 	Gate: BasePart?,
 	Tiles: { BasePart },
 	Accent: Color3,
 }
 
-local FOUNDATION = Color3.fromRGB(28, 37, 49)
-local STEEL = Color3.fromRGB(53, 67, 82)
-local SAFE = Color3.fromRGB(96, 111, 127)
+local FOUNDATION = Color3.fromRGB(34, 43, 58)
+local STEEL = Color3.fromRGB(66, 83, 101)
+local SAFE = Color3.fromRGB(112, 127, 143)
 local WARM = Color3.fromRGB(244, 166, 80)
 local HAZARD = Color3.fromRGB(236, 83, 94)
 
@@ -90,7 +98,7 @@ local function labelPart(part: BasePart, text: string, accent: Color3)
 end
 
 local function floorPart(parent: Instance, name: string, size: Vector3, position: Vector3): Part
-	return makePart(parent, name, size, CFrame.new(position), Enum.Material.DiamondPlate, SAFE, true)
+	return makePart(parent, name, size, CFrame.new(position), Enum.Material.Concrete, SAFE, true)
 end
 
 local function addShell(
@@ -155,6 +163,51 @@ local function addShell(
 			light.Transparency = 0.18
 			decorative(light)
 		end
+	end
+
+	for _, side in { -1, 1 } do
+		local glass = makePart(
+			model,
+			"RoomGlass",
+			Vector3.new(0.14, 7.4, depth - 8),
+			CFrame.new(origin + Vector3.new(side * (width / 2 + 0.14), 4.4, 0)),
+			Enum.Material.Glass,
+			Color3.fromRGB(116, 181, 208),
+			false
+		)
+		glass.Transparency = 0.76
+		glass.CastShadow = false
+		decorative(glass)
+	end
+
+	for _, z in { -10, 0, 10 } do
+		local ceilingLight = makePart(
+			model,
+			"CeilingLight",
+			Vector3.new(17, 0.12, 0.28),
+			CFrame.new(origin + Vector3.new(0, height - 0.45, z)),
+			Enum.Material.Neon,
+			if z == 0 then accent else themeAccent,
+			false
+		)
+		ceilingLight.Transparency = 0.10
+		ceilingLight.CastShadow = false
+		decorative(ceilingLight)
+	end
+
+	for _, side in { -1, 1 } do
+		local routeRail = makePart(
+			model,
+			"RouteRail",
+			Vector3.new(0.16, 0.12, depth - 5),
+			CFrame.new(origin + Vector3.new(side * 14.15, 0.64, 0)),
+			Enum.Material.Neon,
+			themeAccent,
+			false
+		)
+		routeRail.Transparency = 0.28
+		routeRail.CastShadow = false
+		decorative(routeRail)
 	end
 
 	for _, lightOffset in
@@ -447,6 +500,69 @@ local function buildMovingWall(runtime: Runtime, origin: Vector3, params: any)
 	end
 end
 
+local function buildLaserSweep(runtime: Runtime, origin: Vector3, params: any)
+	local deck = floorPart(runtime.Model, "RunDeck", Vector3.new(28, 1, 30), origin)
+	deck.Color = Color3.fromRGB(88, 104, 122)
+
+	local hub = makePart(
+		runtime.Model,
+		"LaserHub",
+		Vector3.new(1.2, 2.2, 1.2),
+		CFrame.new(origin + Vector3.new(0, 1.6, 0)),
+		Enum.Material.Metal,
+		Color3.fromRGB(54, 64, 80),
+		false
+	)
+	decorative(hub)
+
+	local hubGlow = makePart(
+		runtime.Model,
+		"LaserHubGlow",
+		Vector3.new(1.45, 0.16, 1.45),
+		CFrame.new(origin + Vector3.new(0, 2.75, 0)),
+		Enum.Material.Neon,
+		runtime.Accent,
+		false
+	)
+	hubGlow.Transparency = 0.08
+	hubGlow.CastShadow = false
+	decorative(hubGlow)
+
+	local beamCFrame = CFrame.new(origin + Vector3.new(0, params.BeamHeight, 0))
+	local beam = makePart(
+		runtime.Model,
+		"LaserSweepBeam",
+		Vector3.new(params.BeamLength, 0.48, 0.62),
+		beamCFrame,
+		Enum.Material.Neon,
+		runtime.Accent,
+		false
+	)
+	beam.Transparency = 0.04
+	beam.CastShadow = false
+	addHazard(runtime, beam)
+	table.insert(runtime.Spinners, {
+		Part = beam,
+		BaseCFrame = beamCFrame,
+		Speed = params.SweepSpeed,
+		Phase = params.Phase,
+	})
+
+	for _, z in { -10, 10 } do
+		local safeMark = makePart(
+			runtime.Model,
+			"SafeMark",
+			Vector3.new(8, 0.08, 3.0),
+			CFrame.new(origin + Vector3.new(0, 0.55, z)),
+			Enum.Material.Neon,
+			Color3.fromRGB(105, 214, 151),
+			false
+		)
+		safeMark.Transparency = 0.32
+		decorative(safeMark)
+	end
+end
+
 function ChallengeFactory.build(
 	parent: Instance,
 	selection: any,
@@ -472,6 +588,7 @@ function ChallengeFactory.build(
 		Exit = nil :: any,
 		Hazards = {},
 		Movers = {},
+		Spinners = {},
 		Switch = nil,
 		Gate = nil,
 		Tiles = {},
@@ -494,6 +611,8 @@ function ChallengeFactory.build(
 		buildTiles(runtime, origin, params)
 	elseif selection.FamilyId == "moving_wall" then
 		buildMovingWall(runtime, origin, params)
+	elseif selection.FamilyId == "laser_sweep" then
+		buildLaserSweep(runtime, origin, params)
 	else
 		error("unsupported family: " .. tostring(selection.FamilyId))
 	end

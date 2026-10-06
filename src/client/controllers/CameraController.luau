@@ -2,7 +2,6 @@
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local RunService = game:GetService("RunService")
 local Workspace = game:GetService("Workspace")
 
 local player = Players.LocalPlayer
@@ -11,17 +10,7 @@ local GameConfig = require(shared.config.GameConfig)
 
 local CameraController = {}
 
-local currentDistance = GameConfig.Camera.Distance
-local currentHeight = GameConfig.Camera.Height
-local currentFocusLead = GameConfig.Camera.FocusLead
-local currentFieldOfView = GameConfig.Camera.FieldOfView
-
-local REDUCED_CAMERA = table.freeze({
-	Distance = 20,
-	Height = 11,
-	FocusLead = 3.5,
-	FieldOfView = 68,
-})
+local viewportConnection: RBXScriptConnection? = nil
 
 local function keepAvatarVisible(character: Model)
 	for _, descendant in character:GetDescendants() do
@@ -31,66 +20,103 @@ local function keepAvatarVisible(character: Model)
 	end
 end
 
-local function characterParts(): (Model?, Humanoid?, BasePart?)
-	local character = player.Character
-	if not character then
-		return nil, nil, nil
-	end
-	local humanoid = character:FindFirstChildOfClass("Humanoid")
-	local root = character:FindFirstChild("HumanoidRootPart")
-	if humanoid and root and root:IsA("BasePart") then
-		return character, humanoid, root
-	end
-	return character, humanoid, nil
-end
-local function activeProfile()
+local function profileFieldOfView(): number
 	if player:GetAttribute("OMFReducedMotion") == true then
-		return REDUCED_CAMERA
+		return 68
 	end
 	local family = player:GetAttribute("OMFFamily")
 	if type(family) == "string" then
 		local profile = GameConfig.Camera.Profiles[family]
 		if profile then
-			return profile
+			return profile.FieldOfView
 		end
 	end
-	return GameConfig.Camera
+	return GameConfig.Camera.FieldOfView
 end
 
-local function desired(root: BasePart): CFrame
-	local focus = root.Position + Vector3.new(0, GameConfig.Camera.FocusHeight, currentFocusLead)
-	local position = root.Position + Vector3.new(0, currentHeight, -currentDistance)
-	return CFrame.lookAt(position, focus)
+local function applyCameraProfile(camera: Camera)
+	camera.FieldOfView = profileFieldOfView()
+end
+
+local function bindViewport(camera: Camera)
+	if viewportConnection then
+		viewportConnection:Disconnect()
+		viewportConnection = nil
+	end
+	applyCameraProfile(camera)
+	viewportConnection = camera:GetPropertyChangedSignal("ViewportSize"):Connect(function()
+		applyCameraProfile(camera)
+	end)
+end
+
+local function attachCharacter(character: Model?)
+	local camera = Workspace.CurrentCamera
+	if not camera then
+		return
+	end
+
+	camera.CameraType = Enum.CameraType.Custom
+	applyCameraProfile(camera)
+
+	if not character then
+		return
+	end
+
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		humanoid.CameraOffset = Vector3.new(0, 1.35, 0)
+		camera.CameraSubject = humanoid
+	end
+	keepAvatarVisible(character)
+end
+
+local function configureCharacter(character: Model)
+	local humanoid = character:WaitForChild("Humanoid", 10)
+	if not humanoid or not humanoid:IsA("Humanoid") then
+		return
+	end
+
+	humanoid.CameraOffset = Vector3.new(0, 1.35, 0)
+	attachCharacter(character)
 end
 
 function CameraController.start()
 	local camera = Workspace.CurrentCamera
 	if camera then
-		camera.FieldOfView = GameConfig.Camera.FieldOfView
+		bindViewport(camera)
+	end
+	attachCharacter(player.Character)
+
+	if player.Character then
+		task.defer(configureCharacter, player.Character)
 	end
 
-	RunService:BindToRenderStep("OneMoreFloorCamera", Enum.RenderPriority.Camera.Value + 1, function(dt)
-		local activeCamera = Workspace.CurrentCamera
-		local character, humanoid, root = characterParts()
-		if not activeCamera or not character or not humanoid or not root then
-			return
+	player.CharacterAdded:Connect(function(character)
+		task.defer(configureCharacter, character)
+	end)
+	player.CharacterRemoving:Connect(function()
+		attachCharacter(nil)
+	end)
+
+	player:GetAttributeChangedSignal("OMFFamily"):Connect(function()
+		local current = Workspace.CurrentCamera
+		if current then
+			applyCameraProfile(current)
 		end
+	end)
+	player:GetAttributeChangedSignal("OMFReducedMotion"):Connect(function()
+		local current = Workspace.CurrentCamera
+		if current then
+			applyCameraProfile(current)
+		end
+	end)
 
-		keepAvatarVisible(character)
-		activeCamera.CameraType = Enum.CameraType.Scriptable
-		activeCamera.CameraSubject = humanoid
-
-		local profile = activeProfile()
-		local blendAlpha = 1 - math.exp(-GameConfig.Camera.ProfileBlendSpeed * math.max(0, dt))
-		currentDistance += (profile.Distance - currentDistance) * blendAlpha
-		currentHeight += (profile.Height - currentHeight) * blendAlpha
-		currentFocusLead += (profile.FocusLead - currentFocusLead) * blendAlpha
-		currentFieldOfView += (profile.FieldOfView - currentFieldOfView) * blendAlpha
-		activeCamera.FieldOfView = currentFieldOfView
-
-		local target = desired(root)
-		local alpha = 1 - math.exp(-GameConfig.Camera.Smoothness * math.max(0, dt))
-		activeCamera.CFrame = activeCamera.CFrame:Lerp(target, alpha)
+	Workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
+		local current = Workspace.CurrentCamera
+		if current then
+			bindViewport(current)
+		end
+		attachCharacter(player.Character)
 	end)
 end
 

@@ -679,6 +679,13 @@ local function heartbeat()
 				mover.Part.CFrame = mover.BaseCFrame + mover.Axis * (alpha * mover.Travel * 0.5)
 			end
 		end
+
+		for _, spinner in course.Runtime.Spinners do
+			if spinner.Part.Parent then
+				local angle = elapsed * spinner.Speed + spinner.Phase
+				spinner.Part.CFrame = spinner.BaseCFrame * CFrame.Angles(0, angle, 0)
+			end
+		end
 	end
 end
 
