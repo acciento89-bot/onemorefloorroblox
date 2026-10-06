@@ -1,63 +1,48 @@
 # One More Floor V1 Master Plan
 
-## Product objective
-Ship a tiny, immediately understandable Roblox game with a visible avatar, strong retry compulsion, polished presentation and ethical acceleration/cosmetic monetization.
+## Objective
+Ship a responsive native mobile platformer whose core promise is continuous upward progress with instant checkpoint recovery.
 
-## P00 Product Definition
-Naming, experience identity, score vocabulary, gameplay constants and monetization boundaries.
+## P00 Product lock
+Core loop, checkpoint rules, failure rules, visual identity, progression and monetization.
 
-## P01 Technical Foundation
-Rojo project, strict source layout, remotes, config, tests, CI and release-readiness script.
+## P01 Unity mobile foundation
+Project structure, identifiers, portrait, safe areas, 60 FPS target and build setup.
 
-## P02 Core Character Loop
-Spawn, camera, avatar framing, input abstraction and deterministic state machine.
+## P02 Character/camera
+Touch movement, jump, keyboard fallback, player-controlled orbit camera and collision tuning.
 
-## P03 Primary Mechanic
-Implement and verify the complete mechanic: Clear one tiny obstacle room quickly, transition immediately to the next floor, survive escalating variants and push the personal best.
+## P03 Floor system
+30-stage runs, stage patterns, moving platforms, hazards, deterministic layout and checkpoint placement.
 
-## P04 Scoring & Combo
-Score, best score, Perfect/Good/Miss grades, combo rules, anti-exploit validation and feedback.
+## P04 Recovery
+Immediate fall detection, latest-checkpoint recovery, Continue/Retry and explicit full-run restart only.
 
-## P05 Procedural Challenge Generation
-Deterministic challenge/platform generation, difficulty curve, safe bounds and replay variety.
+## P05 Score/progression
+Score, coins, streak/performance grades, best stage and tower completion.
 
-## P06 Progression
-Coins, lightweight unlock curve, cosmetic ownership and persistent player profile.
+## P06 Production visual world
+Neon dusk city, readable platform edges, checkpoint rings, skyline depth and optimized lighting.
 
-## P07 Retention
-Daily reward, simple daily challenge, achievement hooks and personal best celebration.
+## P07 UI/UX
+Top HUD, checkpoint panel, settings, pause, DE/EN and accessibility.
 
-## P08 Monetization
-Developer Products/Game Passes, receipt idempotency, revive/boost rules and entitlement UI.
+## P08 Audio/VFX/haptics
+Jump, checkpoint, fail/recover, tower complete, haptics and reduced-motion support.
 
-## P09 UI/UX
-Production HUD, retry flow, shop/cosmetics, compact-phone layout, desktop/tablet and controller navigation.
+## P09 Persistence
+Versioned profile, best stage, coins, tower unlocks, settings and migration.
 
-## P10 Production Art
-Environment kit, gameplay asset polish, lighting/material pass, character readability and cosmetic presentation.
+## P10 Retention/monetization
+Daily challenge, cosmetics, optional convenience, StoreKit/Play Billing and restore flow.
 
-## P11 Audio & VFX
-Action/landing/failure/reward audio, Perfect-chain escalation, particles/tweens and reduced-motion handling.
-
-## P12 Security & Persistence
-Server authority audit, remote validation/rate limits, DataStore migration/recovery and receipt safety.
-
-## P13 Runtime QA
-Representative play sessions, failure/retry, persistence, exploit attempts, jump/collision edge cases and performance.
-
-## P14 Device & Input QA
-Compact phone, tablet, desktop, touch, keyboard/mouse and controller.
-
-## P15 Release
-Store metadata/assets, content questionnaire, private publish, rollback, real purchase sandbox/live receipt evidence, controlled public launch.
-
-## P16 Live Operations
-Telemetry review, evidence-based balance adjustment and content/cosmetic cadence.
+## P11 QA/release
+Rules tests, device matrix, performance, store validation and staged release.
 
 ## Definition of Done
-- Code/config committed.
-- Acceptance criteria pass.
-- No known P0/P1 gameplay or purchase defects.
-- Production presentation passes screenshot-quality review.
-- Ledger matches reality.
-- Public exposure remains blocked until purchase/persistence gates are verified.
+- A fall never sends a normal run back to the bottom.
+- Recovery is visually complete in under 0.5 seconds.
+- Camera never steals yaw from the player.
+- Next actionable platform stays visible.
+- 60 FPS target on supported devices.
+- iOS and Android store builds validated.
