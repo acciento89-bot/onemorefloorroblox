@@ -81,7 +81,10 @@ Status: `[ ]` open · `[~]` implemented/not device verified · `[x]` verified ·
 - [ ] P08-T06 performance/thermal pass
 - [ ] P08-T07 App Store package
 - [ ] P08-T08 Play Store package
-- [ ] P08-T09 staged release
+- [ ] P08-T09 TestFlight RC archive + upload
+- [ ] P08-T10 TestFlight processing + internal tester assignment
+- [ ] P08-T11 TestFlight install/smoke test on physical iPhone
+- [ ] P08-T12 staged release
 
 ## Next open task
 P01-T05: Unity compile/import and first Play Mode verification.
