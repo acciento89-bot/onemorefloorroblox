@@ -1,33 +1,41 @@
+using System;
 using System.Collections.Generic;
+using Kamilunavo.OneMoreFloor.Core;
+using Kamilunavo.OneMoreFloor.Visuals;
 using UnityEngine;
-using UnityEngine.UI;
-
 namespace Kamilunavo.OneMoreFloor.Gameplay
 {
-    public sealed class FloorCourse:MonoBehaviour
-    {
-        public Transform Player; public Text StageText; public Text ScoreText; public Text CoinsText; public Image Progress; public RectTransform CheckpointPanel; public Text CheckpointTitle;
-        private readonly List<StagePlatform> _stages=new();
-        private int _stage; private int _checkpoint; private int _score; private int _coins; private Vector3 _checkpointPosition;
-        private static readonly Color Graphite=new(.06f,.07f,.10f); private static readonly Color Gold=new(1f,.57f,.08f); private static readonly Color Cyan=new(.06f,.65f,.95f);
-
-        public void Build(){Random.InitState(260906);var x=0f;var y=0f;var z=0f;for(var i=0;i<30;i++){if(i>0){x=Mathf.Clamp(x+Random.Range(-2.4f,2.4f),-6f,6f);y+=Random.Range(.7f,1.05f);z+=Random.Range(4.3f,5.2f);}var go=GameObject.CreatePrimitive(PrimitiveType.Cube);go.name=$"Stage_{i+1:00}";go.transform.SetParent(transform,false);go.transform.position=new Vector3(x,y,z);go.transform.localScale=new Vector3(5.4f,.65f,4.2f);go.GetComponent<Renderer>().material=new Material(Shader.Find("Standard")){color=Graphite};var marker=go.AddComponent<StagePlatform>();marker.StageIndex=i;marker.IsCheckpoint=i>0&&(i+1)%5==0;_stages.Add(marker);AddEdge(go.transform,marker.IsCheckpoint?Cyan:Gold);if(i>1&&i%4==2){var move=go.AddComponent<MovingPlatform>();move.Distance=1.35f+Mathf.Min(1.25f,i*.03f);move.Speed=.8f+Mathf.Min(.8f,i*.02f);}}_checkpointPosition=_stages[0].transform.position+Vector3.up*1.5f;Player.position=_checkpointPosition;Refresh();BuildSkyline();}
-
-        private static void AddEdge(Transform parent,Color color){var edge=GameObject.CreatePrimitive(PrimitiveType.Cube);edge.name="EdgeLight";edge.transform.SetParent(parent,false);edge.transform.localPosition=new Vector3(0,.56f,0);edge.transform.localScale=new Vector3(1.03f,.06f,1.03f);Destroy(edge.GetComponent<Collider>());edge.GetComponent<Renderer>().material=new Material(Shader.Find("Standard")){color=color};}
-
-        private static void BuildSkyline(){var mat=new Material(Shader.Find("Standard")){color=new Color(.03f,.035f,.07f)};for(var i=0;i<22;i++){var b=GameObject.CreatePrimitive(PrimitiveType.Cube);b.name="City_Backdrop";var side=i%2==0?-1:1;var z=12+i*8f;b.transform.position=new Vector3(side*(10+Random.Range(0,18)),Random.Range(-6,5),z);b.transform.localScale=new Vector3(Random.Range(4,8),Random.Range(10,28),Random.Range(4,8));b.GetComponent<Renderer>().material=mat;Destroy(b.GetComponent<Collider>());}}
-
-        private void Update(){if(Player==null||_stages.Count==0)return;var floorY=_stages[Mathf.Clamp(_stage,0,_stages.Count-1)].transform.position.y;if(Player.position.y<floorY-8f)RespawnCheckpoint();}
-
-        public void Reach(StagePlatform p){if(p.StageIndex<=_stage||p.StageIndex>_stage+1)return;_stage=p.StageIndex;_score+=100+_stage*10;_coins+=1+_stage/5;if(p.IsCheckpoint){_checkpoint=_stage;_checkpointPosition=p.transform.position+Vector3.up*1.5f;ShowCheckpoint();}Refresh();}
-
-        public void Continue(){if(CheckpointPanel!=null)CheckpointPanel.gameObject.SetActive(false);}
-        public void RetryCheckpoint(){if(CheckpointPanel!=null)CheckpointPanel.gameObject.SetActive(false);RespawnCheckpoint();}
-
-        public void RespawnCheckpoint(){var cc=Player.GetComponent<CharacterController>();if(cc!=null)cc.enabled=false;Player.position=_checkpointPosition;if(cc!=null)cc.enabled=true;_stage=_checkpoint;Refresh();}
-
-        private void ShowCheckpoint(){if(CheckpointPanel==null)return;CheckpointTitle.text=$"CHECKPOINT {_checkpoint+1} REACHED!";CheckpointPanel.gameObject.SetActive(true);}
-
-        private void Refresh(){StageText.text=$"STAGE {_stage+1}/30";ScoreText.text=$"SCORE\n{_score:N0}";CoinsText.text=$"COINS\n{_coins}";if(Progress!=null)Progress.fillAmount=(_stage+1)/30f;}
-    }
+ [DefaultExecutionOrder(-100)] public sealed class FloorCourse:MonoBehaviour
+ {
+  public Transform Player;private readonly List<StepMarker> _steps=new();private Vector3 _safe;private bool _paused,_focused=true,_applicationPaused;private float _saveTimer;
+  public FloorProfile Profile{get;private set;}public int Height=>Profile?.Step??0;public IReadOnlyList<StepMarker> Steps=>_steps;public Vector3 SafePosition=>_safe;
+  public event Action Changed,RunStarted,CheckpointReached,Fell,PortalCompleted;public event Action<bool> Landed;
+  public UI.FloorHud Hud;public Monetization.StorePurchases Store;public Monetization.RewardedVideos Videos;
+  public bool Paused{get=>_paused||!_focused||_applicationPaused;set{_paused=value;SyncMotor();}}
+  public void RefreshProfile()=>Refresh();
+  public void Build(){Profile=FloorSave.Load();if(!Profile.Completed)Profile.Step=Profile.Checkpoint;CityArt.Build(transform);BuildRoute();}
+  private void BuildRoute(){foreach(var s in _steps)if(s!=null){s.transform.parent.gameObject.SetActive(false);Destroy(s.transform.parent.gameObject);}_steps.Clear();var points=CoursePatterns.Points(Profile.Realm,Profile.Challenge?DaySeed(Profile.RunDay):260906+Profile.Realm);
+   for(int i=0;i<points.Length;i++){var root=new GameObject("Floor_"+(i+1).ToString("00"));root.transform.SetParent(transform,false);root.transform.position=points[i];var marker=PlatformArt.Build(root.transform,i,Profile.Realm);_steps.Add(marker);if(CoursePatterns.Moves(i)){var moving=root.AddComponent<MovingPlatform>();moving.Speed=.7f+Profile.Realm*.15f;}else MeshArt.Batch(root);}Physics.SyncTransforms();SetSafe();MoveToSafe();Refresh();RunStarted?.Invoke();}
+  private static int DaySeed(string day){unchecked{int hash=17;foreach(char c in day)hash=hash*31+c;return hash;}}
+  public void StartRun(int realm,bool challenge){if(realm<0||realm>Profile.UnlockedRealm)return;Profile.Realm=realm;Profile.Step=Profile.Checkpoint=Profile.RewardedFloor=Profile.Score=Profile.Falls=Profile.Perfects=0;Profile.Elapsed=0;Profile.Completed=false;Profile.Challenge=challenge;Profile.RunDay=FloorRules.Day(DateTime.UtcNow);Save();BuildRoute();}
+  private void SetSafe()=>_safe=_steps[Profile.Completed?29:Profile.Checkpoint].transform.position+Vector3.up*.65f;
+  private void MoveToSafe(){var cc=Player.GetComponent<CharacterController>();if(cc!=null)cc.enabled=false;Player.position=_safe;Physics.SyncTransforms();if(cc!=null)cc.enabled=true;Player.GetComponent<PlayerMotor>()?.ResetMotion();}
+  private void Update(){if(_steps.Count==0||Player==null||Profile==null)return;foreach(var step in _steps){var move=step.transform.parent.GetComponent<MovingPlatform>();if(move!=null)move.Tick(Paused?0:Time.deltaTime);}if(Paused)return;Physics.SyncTransforms();
+   if(!Profile.Completed){Profile.Elapsed+=Time.deltaTime;_saveTimer+=Time.deltaTime;if(_saveTimer>=5){_saveTimer=0;Save();}}
+   if(Player.position.y<_steps[Height].transform.position.y-5)Respawn();}
+  public void Land(StepMarker step){if(Paused||Profile==null)return;var d=Player.position-step.transform.position;bool perfect=new Vector2(d.x,d.z).magnitude<=.8f;int prior=Profile.RewardedFloor;if(!FloorRules.Land(Profile,step.Index,perfect))return;SetSafe();Save();Refresh();Landed?.Invoke(perfect&&step.Index>prior);if((step.Index+1)%5==0){if(step.Index==29)CompletePortal();else CheckpointReached?.Invoke();}}
+  public void Continue()=>Hud?.Close();public void RetryCheckpoint(){FloorRules.Recover(Profile);SetSafe();MoveToSafe();Save();Refresh();Hud?.Close();}
+  public void Respawn(){if(Profile==null)return;
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+ Debug.Log("FLOOR_RECOVERY frame="+Time.frameCount+" player="+Player.position+" safe="+_safe+" fallsBefore="+Profile.Falls);
+#endif
+   FloorRules.Recover(Profile);SetSafe();MoveToSafe();Save();Refresh();Fell?.Invoke();}
+  public bool ClaimDaily(){bool claimed=FloorRules.ClaimDaily(Profile,DateTime.UtcNow);if(claimed)Save();Refresh();return claimed;}
+  public bool SelectStyle(int style){bool selected=FloorRules.SelectStyle(Profile,style);if(selected)Save();Refresh();return selected;}
+  public int CompletePortal(){if(Profile.Completed)return 0;int stars=FloorRules.Complete(Profile,DateTime.UtcNow);if(stars>0){Save();Refresh();PortalCompleted?.Invoke();}return stars;}
+  public void Save(){try{FloorSave.Save(Profile);}catch(Exception e){Debug.LogWarning("Profile save unavailable: "+e.Message);}}
+  private void OnApplicationPause(bool pause){_applicationPaused=pause;SyncFocus();}private void OnApplicationFocus(bool focus){_focused=focus;SyncFocus();}
+  private void SyncMotor(){if(Player!=null){var m=Player.GetComponent<PlayerMotor>();if(m!=null){m.Paused=Paused;m.ResetInput();}}}
+  private void SyncFocus(){if(Profile!=null)Save();SyncMotor();}private void OnApplicationQuit(){if(Profile!=null)Save();}private void Refresh()=>Changed?.Invoke();
+ }
 }
