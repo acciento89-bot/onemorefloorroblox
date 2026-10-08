@@ -6,7 +6,7 @@ using Kamilunavo.OneMoreFloor.Gameplay;
 public static class FloorValidation
 {
  static int checks;static void Check(bool yes,string name){checks++;if(!yes)throw new Exception(name);}
- public static void ValidateAll(){FloorArtImports.Ensure();ValidateRules();ValidateUI();ValidateInput();ValidateGeometry();ValidateLifetime();ValidateReviewRegressions();ValidateMovement();CommerceValidation.Validate();Debug.Log("FLOOR_ALL_PASS checks="+checks);}
+ public static void ValidateAll(){FloorArtImports.Ensure();ValidateRules();ValidateUI();ValidateInput();ValidateGeometry();ValidateLifetime();ValidateReviewRegressions();ValidateMovement();ValidateCarryNegativeControl();ValidateLandingContact();CommerceValidation.Validate();Debug.Log("FLOOR_ALL_PASS checks="+checks);}
  public static void ValidateInput(){
  var canvas=Kamilunavo.OneMoreFloor.UI.UiFactory.Canvas();var j=Kamilunavo.OneMoreFloor.Input.VirtualJoystick.Create(canvas.transform,Vector2.zero,Vector2.one);
  var r=(RectTransform)j.transform;r.anchorMin=r.anchorMax=Vector2.zero;r.pivot=Vector2.zero;r.sizeDelta=new Vector2(112,112);Canvas.ForceUpdateCanvases();
@@ -37,6 +37,8 @@ public static class FloorValidation
  var label=Kamilunavo.OneMoreFloor.UI.UiFactory.Label(root,"Label","Text",30,Vector2.zero,Vector2.one,TextAnchor.MiddleCenter,Color.white);
  Check(!label.raycastTarget,"label does not intercept touch");UnityEngine.Object.DestroyImmediate(canvas.gameObject);Debug.Log("FLOOR_UI_PASS checks="+checks);
  }
+ public static void ValidateLandingContact(){Check(!PlayerMotor.IsLandingSupport(.7f,17.81f,18.7f),"ascending side-corner cannot advance floor while feet below deck");Check(PlayerMotor.IsLandingSupport(1,18.725f,18.7f),"grounded deck landing accepted");Check(!PlayerMotor.IsLandingSupport(.1f,18.725f,18.7f),"side contact rejected");}
+ public static void ValidateCarryNegativeControl(){var method=typeof(Kamilunavo.OneMoreFloor.QA.FloorRuntimeQa).GetMethod("CarryProbePassed",System.Reflection.BindingFlags.Static|System.Reflection.BindingFlags.NonPublic);Check(method!=null,"carry assertion has stationary-player negative control");Check(!(bool)method.Invoke(null,new object[]{.053f,.053f,.053f}),"stationary player rejects weak excursion");Check(!(bool)method.Invoke(null,new object[]{.21f,.21f,.21f}),"stationary player rejects sufficient excursion");Check((bool)method.Invoke(null,new object[]{.0035f,.25f,.21f}),"actual carried player accepted");}
  public static void ValidateMovement(){var root=new GameObject("MovingProbe");try{var move=root.AddComponent<MovingPlatform>();move.Distance=.7f;move.Speed=.8f;move.Tick(.25f);Check(move.Delta.x>.1f&&move.Delta.x<.2f,"moving bounded delta");var at=root.transform.position;move.Tick(0);Check(root.transform.position==at&&move.Delta==Vector3.zero,"paused clock no accumulated carry");for(int i=0;i<30;i++)Check(!CoursePatterns.Moves(i)||(i+1)%5!=0,"checkpoint never moves");}finally{UnityEngine.Object.DestroyImmediate(root);}}
  public static void ValidateRules(){
  var day=new DateTime(2026,10,8,0,0,0,DateTimeKind.Utc);var p=new FloorProfile();

@@ -28,6 +28,7 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
         if(_resetProbe-->0){bool floor=Physics.Raycast(transform.position+Vector3.up,Vector3.down,out var floorHit,3);Debug.Log("FLOOR_START_PROBE frame="+Time.frameCount+" dt="+Time.deltaTime+" pos="+transform.position+" grounded="+_cc.isGrounded+" velocity="+v+" floor="+floor+" floorY="+(floor?floorHit.point.y:0));}
 #endif
         }
-        private void OnControllerColliderHit(ControllerColliderHit hit){if(hit.normal.y<.45f)return;var step=hit.collider.GetComponent<StepMarker>();if(step!=null){_support=step;Course?.Land(step);}}
+        public static bool IsLandingSupport(float normalY,float footY,float topY)=>normalY>=.45f&&footY>=topY-.08f;
+        private void OnControllerColliderHit(ControllerColliderHit hit){if(!IsLandingSupport(hit.normal.y,transform.position.y,hit.collider.bounds.max.y))return;var step=hit.collider.GetComponent<StepMarker>();if(step!=null){_support=step;Course?.Land(step);}}
     }
 }
