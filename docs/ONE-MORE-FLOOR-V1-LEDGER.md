@@ -82,7 +82,7 @@ Status: `[ ]` open · `[~]` implemented/not device verified · `[x]` verified ·
 - [ ] P08-T07 App Store package
 - [ ] P08-T08 Play Store package
 - [ ] P08-T09 TestFlight RC archive + upload
-- [ ] P08-T10 TestFlight processing + internal tester assignment
+- [x] P08-T10 TestFlight processing + internal tester assignment
 - [ ] P08-T11 TestFlight install/smoke test on physical iPhone
 - [ ] P08-T12 staged release
 
@@ -159,3 +159,7 @@ Private/unpublished durable draft406820427 holds IPA+unsigned input+final signed
 ## Lossless archive storage, 2026-10-08
 
 The final Xcode archive is preserved as `outputs/archives/OneMoreFloor-Release-Build1.xcarchive.tar.gz` in the delivery workspace. All 61 regular files were compared byte-for-byte with the original before removing the uncompressed temporary archive. SHA-256: `542fa1f62a0df0b1ee3a5832729d92e2186c9ef377c2d930da82416d89ce15de`. The matching proof manifest is beside the archive. Durable owner-only backup: unpublished draft release asset `622090166`; the server digest matches. Restore with tar extraction before opening in Xcode. Original `/private/tmp` archive paths in earlier entries are historical. Unity source, signed binaries and QA evidence remain preserved.
+
+## Internal TestFlight assignment, 2026-10-08
+
+The restored owner session shows app6819872214, build1.0(1), build ID66f7a81d-80a6-421c-b57e-8a30b5f7ead6. Encryption questionnaire saved for the existing OS-only baseline. Internal group **Kamilunavo Intern** (cf3964c5-35e5-4eac-b68c-9bc7845d0128) has automatic distribution, one existing owner/admin tester and one build. Build status **Bereit zum Testen**; tester status **Eingeladen**, 8October2026. German movement/landing/checkpoint/rotation/save/audio/haptic test notes saved and verified. Local delivery receipt work/floor-testflight-assignment-20261008.json contains no private email. Actual invitation acceptance, physical installation, genuine SDK commerce, approved privacy URL and inaccessible Duo inner display remain open; no public release or App Review submission. Earlier session/processing blockers are historical.
