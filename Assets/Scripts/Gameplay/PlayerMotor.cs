@@ -29,6 +29,10 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
 #endif
         }
         public static bool IsLandingSupport(float normalY,float footY,float topY)=>normalY>=.45f&&footY>=topY-.08f;
-        private void OnControllerColliderHit(ControllerColliderHit hit){if(!IsLandingSupport(hit.normal.y,transform.position.y,hit.collider.bounds.max.y))return;var step=hit.collider.GetComponent<StepMarker>();if(step!=null){_support=step;Course?.Land(step);}}
+        private void OnControllerColliderHit(ControllerColliderHit hit){
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+        var probe=hit.collider.GetComponent<StepMarker>();if(probe!=null&&Course!=null&&probe.Index==Course.Height+1&&hit.normal.y>=.45f)Debug.Log("FLOOR_CONTACT_PROBE step="+probe.Index+" foot="+transform.position.y+" top="+hit.collider.bounds.max.y+" point="+hit.point+" normal="+hit.normal+" vertical="+_vertical+" dt="+Time.deltaTime+" accepted="+IsLandingSupport(hit.normal.y,transform.position.y,hit.collider.bounds.max.y));
+#endif
+        if(!IsLandingSupport(hit.normal.y,transform.position.y,hit.collider.bounds.max.y))return;var step=hit.collider.GetComponent<StepMarker>();if(step!=null){_support=step;Course?.Land(step);}}
     }
 }
