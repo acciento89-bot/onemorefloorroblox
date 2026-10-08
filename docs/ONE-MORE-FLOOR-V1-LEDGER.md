@@ -133,3 +133,5 @@ Native iOS/device/SDK runtime,30minute soak,actual purchase/reward/consent andin
 - Final editor suite7509PASS and33uniquecommercechecksPASS (work/floor-final-review-green.log). No second reviewer dispatched per executing-plans; fixes tested directly.
 - Deferred minor: route hint labels current floor as next; accurate current-stage HUD remains. No public release readiness claim.
 - Review set aside genuine SDK commerce/privacy/reward, unfinished native matrix/soak/signatures, physical thermal/haptics/background and visual acceptance; these remain separate evidence gates.
+
+Shared adapter audit: own RisingSteps and PerfectDrop source still contain the same unguarded delayed-consent callback and initialization-only StoreController connection. Their delivered internal builds are test-ad builds with genuine commerce gates open; queue equivalent regression-backed fixes and refreshed internal binaries before treating monetization as accepted. This finding does not invalidate already recorded source/signature/gameplay evidence.
