@@ -33,8 +33,8 @@ Modify FloorCourse/PlayerMotor/MovingPlatform/GameBootstrap; adopt own verified 
 
 ### Task3 native delivery/backup
 Modify Editor/BuildAutomation,ProjectBootstrap,CommerceBuildHooks/imports; QA/FloorRuntimeQa actualinputs/isolatedprofiles. Interface -qaFloor/-qaFloorSoak,BuildMacPreview/BuildIOSSimulatorQa/BuildIOS/BuildAndroidRelease; shipping excludes QA.
-- [ ] Own catalogs/appIDs optionalcommerce rule regressions and realSDKbuild; retain genuine sandbox/consent gates.
-- [ ] Native compact/iPad/orientations/officialDuo available genuine pose and30minute soak.
-- [ ] One fresh whole-change reviewer,fix justified findings with regressions.
+- [x] Own catalogs/appIDs optionalcommerce rule regressions and realSDKbuild; retain genuine sandbox/consent gates.
+- [x] Native compact/iPad/orientations/officialDuo available genuine pose and30minute soak.
+- [x] One fresh whole-change reviewer,fix justified findings with regressions.
 - [ ] Internal signed iOS/TestFlight tester and central-key Android; verify signatures/manifests/payloads.
 - [ ] Commit/push allUnityinputs,remote tree verification,retain finals/evidence,delete regenerable caches,continue Repair Empire.
