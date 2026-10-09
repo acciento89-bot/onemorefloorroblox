@@ -41,5 +41,5 @@
 **Files:** QA harness, BuildAutomation.cs version metadata and delivery ledger.
 - [x] Native compact/16ProMax portrait+landscape routes, intentional misses, camera constancy, framing, reload and lifecycle.
 - [x] Fresh whole-change review, fix important findings with regression coverage.
-- [ ] iOS archive/sign/export/internal upload, Android native/sign/payload proofs. Verify source remote and unpublished binary backup.
-- [ ] Record exact tested evidence, external gates and retained artifacts; clean only regenerated caches after proof.
+- [x] iOS archive/sign/export/internal upload, Android native/sign/payload proofs. Verify source remote and unpublished binary backup.
+- [x] Record exact tested evidence, external gates and retained artifacts; clean only regenerated caches after proof.
