@@ -39,7 +39,7 @@
 
 ### Task3: Native validation and internal delivery
 **Files:** QA harness, BuildAutomation.cs version metadata and delivery ledger.
-- [ ] Native compact/16ProMax portrait+landscape routes, intentional misses, camera constancy, framing, reload and lifecycle.
-- [ ] Fresh whole-change review, fix important findings with regression coverage.
+- [x] Native compact/16ProMax portrait+landscape routes, intentional misses, camera constancy, framing, reload and lifecycle.
+- [x] Fresh whole-change review, fix important findings with regression coverage.
 - [ ] iOS archive/sign/export/internal upload, Android native/sign/payload proofs. Verify source remote and unpublished binary backup.
 - [ ] Record exact tested evidence, external gates and retained artifacts; clean only regenerated caches after proof.
