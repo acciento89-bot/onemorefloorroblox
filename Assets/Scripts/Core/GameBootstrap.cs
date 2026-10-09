@@ -28,6 +28,6 @@ Screen.orientation=ScreenOrientation.AutoRotation;Screen.autorotateToPortrait=tr
 #endif
 
   }
-  private static void Lighting(){var sun=new GameObject("Sun",typeof(Light)).GetComponent<Light>();sun.type=LightType.Directional;sun.intensity=1.15f;sun.color=new Color(1,.50f,.30f);sun.shadows=LightShadows.Soft;sun.shadowStrength=.55f;sun.transform.rotation=Quaternion.Euler(42,-28,0);}
+  private static void Lighting(){var sun=new GameObject("Sun",typeof(Light)).GetComponent<Light>();sun.type=LightType.Directional;sun.intensity=1.05f;sun.color=new Color(1,.72f,.51f);sun.shadows=LightShadows.Soft;sun.shadowStrength=.55f;sun.transform.rotation=Quaternion.Euler(42,-28,0);var rim=new GameObject("CyanRim",typeof(Light)).GetComponent<Light>();rim.type=LightType.Directional;rim.intensity=.42f;rim.color=new Color(.18f,.65f,1);rim.shadows=LightShadows.None;rim.transform.rotation=Quaternion.Euler(28,145,0);}
  }
 }
