@@ -8,7 +8,7 @@ One More Floor is a native iOS/Android Unity game.
 - Ledger is canonical state.
 - Portrait-first, touch-first, safe-area aware, 60 FPS target.
 - A fall must recover to the latest checkpoint immediately. Never restart at floor zero unless the player explicitly restarts the run.
-- Camera rotation belongs to the player; do not force yaw behind the character every frame.
+- The approved elevator redesign uses a fixed camera rotation; no orbit or forced yaw behind the character.
 - Do not add legacy runtime/platform files, Lua/Luau, Rojo or place files.
 - No production UI may cover the next jump.
 - Commit coherent verified work to main.

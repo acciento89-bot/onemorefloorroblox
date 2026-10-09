@@ -6,7 +6,7 @@ using Kamilunavo.OneMoreFloor.Gameplay;
 public static class FloorValidation
 {
  static int checks;static void Check(bool yes,string name){checks++;if(!yes)throw new Exception(name);}
- public static void ValidateAll(){FloorArtImports.Ensure();ValidateRules();ValidateUI();ValidateInput();ValidateGeometry();ValidateLifetime();ValidateReviewRegressions();ValidateMovement();ValidateCarryNegativeControl();ValidateLandingContact();CommerceValidation.Validate();Debug.Log("FLOOR_ALL_PASS checks="+checks);}
+ public static void ValidateAll(){FloorArtImports.Ensure();ElevatorValidation.Validate();ValidateRules();ValidateUI();ValidateInput();ValidateGeometry();ValidateLifetime();ValidateReviewRegressions();ValidateMovement();ValidateCarryNegativeControl();ValidateLandingContact();CommerceValidation.Validate();Debug.Log("FLOOR_ALL_PASS checks="+checks);}
  public static void ValidateInput(){
  var canvas=Kamilunavo.OneMoreFloor.UI.UiFactory.Canvas();var j=Kamilunavo.OneMoreFloor.Input.VirtualJoystick.Create(canvas.transform,Vector2.zero,Vector2.one);
  var r=(RectTransform)j.transform;r.anchorMin=r.anchorMax=Vector2.zero;r.pivot=Vector2.zero;r.sizeDelta=new Vector2(112,112);Canvas.ForceUpdateCanvases();

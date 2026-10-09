@@ -11,14 +11,15 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
         private int _resetProbe;
 #endif
         private void Awake()=>_cc=GetComponent<CharacterController>();
-        public bool Paused;public Vector3 Velocity=>_cc!=null?_cc.velocity:Vector3.zero;public bool Grounded=>_cc!=null&&_cc.isGrounded;public event System.Action Jumped;
+        public bool Paused;public Vector3 Velocity=>Course!=null&&Course.TimingActive?Course.FlightVelocity:_cc!=null?_cc.velocity:Vector3.zero;public bool Grounded=>Course!=null&&Course.TimingActive?!Course.IsTransferring:_cc!=null&&_cc.isGrounded;public event System.Action Jumped;
         public void ResetInput(){Joystick?.ResetInput();Jump?.ResetInput();}
         public void ResetMotion(){_support=null;_settling=true;_vertical=0;ResetInput();
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
         _resetProbe=8;
 #endif
         }
-        private void Update(){if(Paused){ResetInput();return;}
+        public void NotifyTransfer()=>Jumped?.Invoke();
+        private void Update(){if(Course!=null&&Course.TimingActive){if(Paused){ResetInput();return;}if(UnityEngine.Input.GetKeyDown(KeyCode.Space)||(Jump!=null&&Jump.Consume())){if(Course.Profile.RunBanked)Course.Hud?.ShowHome();else Course.LaunchTransfer();}return;}if(Paused){ResetInput();return;}
         // Route construction can consume a long frame. Establish ground contact before
         // accepting movement, rather than applying that loading time as player input.
         if(_settling){_settling=false;_cc.Move(Vector3.down*.1f);return;}

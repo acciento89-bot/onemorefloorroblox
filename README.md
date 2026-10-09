@@ -1,36 +1,25 @@
 # One More Floor
 
-Native iOS + Android vertical arcade platformer by Kamilunavo.
+Native iOS + Android elevator timing arcade game by Kamilunavo.
 
-## Product
-A fast portrait platformer above a neon city. Clear a sequence of floors, activate checkpoints and keep climbing. Falling returns the player immediately to the latest checkpoint.
+## Current gameplay
+One thumb controls a guided transfer between industrial elevator decks above a neon city. The player chooses the launch time; the moving landing bay must line up at arrival. The camera rotation stays fixed. A visible arc and timing feedback help judge the window.
 
-## Platforms
-- iOS
-- Android
-- Unity / C#
-- Portrait
-- 60 FPS target
+- Three 30-floor towers and a deterministic daily route.
+- Checkpoints every five floors; a miss returns immediately to the last checkpoint.
+- Perfect chains and bonus floors build pending round coins.
+- At checkpoints: bank coins once, or risk another floor for a higher multiplier.
+- A miss loses only pending round coins; wallet, bought items and checkpoint remain.
+- DE/EN, safe-area layouts, wide timing action, sound/haptics/accessibility settings.
+- Existing optional rewarded videos and permanent design purchases.
 
-## Bundle IDs
-- iOS: `com.kamilunavo.onemorefloor`
-- Android: `com.kamilunavo.onemorefloor`
+## Native project
+Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
+The historical repository name does not describe the runtime. No Roblox runtime.
 
-## Current vertical slice
-- 30-stage course
-- checkpoint every 5 stages
-- instant checkpoint respawn after falls
-- touch joystick + jump
-- swipe camera orbit
-- moving-platform variation
-- Stage / Score / Coins HUD
-- Continue / Retry checkpoint panel
-- safe-area layout
+## Current change and validation
+Approved design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
+Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).
+Older parkour tests and build1 delivery entries describe the previous candidate and do not validate this redesign.
 
-Unity editor bootstrap creates `Assets/Scenes/Main.unity`.
-
-## Canonical docs
-1. `docs/MASTER-PLAN.md`
-2. `docs/ART-DIRECTION.md`
-3. `docs/CONCEPT-SPEC.md`
-4. `docs/ONE-MORE-FLOOR-V1-LEDGER.md`
+Editor validation: `FloorValidation.ValidateAll`. New player QA: `-qaElevator` (development builds only, isolated save). Previous `-qaFloor` harness is retained only for the historical parkour build.
