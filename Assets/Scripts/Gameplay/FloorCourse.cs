@@ -8,6 +8,7 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
  [DefaultExecutionOrder(-100)] public sealed class FloorCourse:MonoBehaviour
  {
   public Transform Player;private readonly List<StepMarker> _steps=new();private Vector3 _safe;private bool _paused,_focused=true,_applicationPaused;private float _saveTimer;
+  private FloorProfile _tutorialReturn;public ElevatorTutorial Tutorial{get;private set;}public bool TutorialActive=>Tutorial!=null;public FloorProfile PersistentProfile=>_tutorialReturn??Profile;
   public FloorProfile Profile{get;private set;}public int Height=>Profile?.Step??0;public IReadOnlyList<StepMarker> Steps=>_steps;public Vector3 SafePosition=>_safe;
   public event Action Changed,RunStarted,CheckpointReached,Fell,PortalCompleted;public event Action<bool> Landed;
   public UI.FloorHud Hud;public Monetization.StorePurchases Store;public Monetization.RewardedVideos Videos;
@@ -36,22 +37,24 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
    }Physics.SyncTransforms();SetSafe();MoveToSafe(true);UpdateVisibility();UnityEngine.Camera.main?.GetComponent<CameraSystem.OrbitCamera>()?.FrameNow();Refresh();RunStarted?.Invoke();}
   private void UpdateVisibility(){for(int i=0;i<_steps.Count;i++)_steps[i].transform.parent.gameObject.SetActive(i>=Height&&i<=Height+1);}
   public bool LaunchTransfer(){if(Paused||Profile==null||Profile.Completed||Profile.RunBanked||_flying||Height>=29)return false;_flying=true;_flightTime=0;_flightStart=Player.position;_flightEnd=Destination;Profile.TimingInFlight=true;Save();Player.rotation=Quaternion.LookRotation(new Vector3(0,0,1));Player.GetComponent<PlayerMotor>()?.NotifyTransfer();return true;}
-  public void BankRun(){if(_flying)return;ElevatorRules.Bank(Profile);if(!Profile.RunBanked)return;Save();Refresh();Hud?.ShowBanked();}
+  public void BankRun(){if(_flying)return;if(TutorialActive&&Tutorial.Stage!=ElevatorTutorialStage.Choice&&Tutorial.Stage!=ElevatorTutorialStage.Bank)return;ElevatorRules.Bank(Profile);if(!Profile.RunBanked)return;if(TutorialActive){Tutorial.Banked();if(Tutorial.Complete){EndTutorial(true);Hud?.ShowTutorialComplete();return;}}Save();Refresh();Hud?.ShowBanked();}
   private static int DaySeed(string day){unchecked{int hash=17;foreach(char c in day)hash=hash*31+c;return hash;}}
-  public void StartRun(int realm,bool challenge){if(realm<0||realm>Profile.UnlockedRealm)return;Profile.Realm=realm;Profile.Step=Profile.Checkpoint=Profile.RewardedFloor=Profile.Score=Profile.Falls=Profile.Perfects=0;ElevatorRules.NewRun(Profile);Profile.Elapsed=0;Profile.Completed=false;Profile.Challenge=challenge;Profile.RunDay=FloorRules.Day(DateTime.UtcNow);Save();BuildRoute();}
+  public bool BeginTutorial(){if(_flying||TutorialActive)return false;_tutorialReturn=Profile;Profile=FloorSave.Parse(JsonUtility.ToJson(Profile));Tutorial=new ElevatorTutorial();Profile.Realm=0;Profile.Challenge=false;ElevatorRules.NewRun(Profile);BuildRoute();return true;}
+  public void EndTutorial(bool complete){if(!TutorialActive)return;Profile=_tutorialReturn;_tutorialReturn=null;Tutorial=null;if(complete)Profile.TutorialCompleted=true;Save();BuildRoute();}
+  public void StartRun(int realm,bool challenge){if(TutorialActive)return;if(realm<0||realm>Profile.UnlockedRealm)return;Profile.Realm=realm;Profile.Step=Profile.Checkpoint=Profile.RewardedFloor=Profile.Score=Profile.Falls=Profile.Perfects=0;ElevatorRules.NewRun(Profile);Profile.Elapsed=0;Profile.Completed=false;Profile.Challenge=challenge;Profile.RunDay=FloorRules.Day(DateTime.UtcNow);Save();BuildRoute();}
   private void SetSafe()=>_safe=_steps[Profile.Completed?29:Profile.Checkpoint].transform.position+Vector3.up*.65f;
   private void MoveToSafe(bool current=false){var cc=Player.GetComponent<CharacterController>();if(cc!=null)cc.enabled=false;Player.position=current?_steps[Height].transform.position+Vector3.up*.65f:_safe;_flying=false;_velocity=Vector3.zero;_standingOffset=new Vector3(0,.65f,0);Player.rotation=Quaternion.identity;Physics.SyncTransforms();if(cc!=null)cc.enabled=!TimingActive;Player.GetComponent<PlayerMotor>()?.ResetMotion();}
   private void Update(){if(_steps.Count==0||Player==null||Profile==null||Paused)return;float dt=Time.deltaTime;var prior=Player.position;_clock+=dt;foreach(var step in _steps)step.transform.parent.GetComponent<ElevatorMotion>().Tick(_clock);
    if(!Profile.Completed&&!Profile.RunBanked){Profile.Elapsed+=dt;_saveTimer+=dt;if(_saveTimer>=5){_saveTimer=0;Save();}}
    if(_flying){_flightTime+=dt;float t=Mathf.Clamp01(_flightTime/ElevatorRules.FlightSeconds);Player.position=Vector3.Lerp(_flightStart,_flightEnd,t)+Vector3.up*Mathf.Sin(t*Mathf.PI)*1.8f;
     if(t>=1){_flying=false;Profile.TimingInFlight=false;int next=Height+1;float arrivalX=_steps[next].transform.parent.GetComponent<ElevatorMotion>().At(ElevatorRules.ArrivalClock(_clock,_flightTime)).x;int hit=ElevatorRules.Hit(0,arrivalX,ElevatorRules.HalfBay(next));if(hit==0)Respawn();else{int frontier=Profile.RewardedFloor;ElevatorRules.Land(Profile,next,hit==2);_standingOffset=new Vector3(-arrivalX,.65f,0);Player.position=_steps[next].transform.position+_standingOffset;SetSafe();UpdateVisibility();
-     if(next==29){ElevatorRules.Bank(Profile);FloorRules.Complete(Profile,DateTime.UtcNow);}Save();Refresh();Landed?.Invoke(hit==2&&next>frontier);UnityEngine.Camera.main?.GetComponent<CameraSystem.OrbitCamera>()?.FrameNow();if(next==29)PortalCompleted?.Invoke();else if((next+1)%5==0)CheckpointReached?.Invoke();}}
+     if(next==29){ElevatorRules.Bank(Profile);FloorRules.Complete(Profile,DateTime.UtcNow);}if(TutorialActive){Tutorial.Landing(hit==2,next);if((next+1)%5==0)Tutorial.AtCheckpoint();}Save();Refresh();Landed?.Invoke(hit==2&&next>frontier);UnityEngine.Camera.main?.GetComponent<CameraSystem.OrbitCamera>()?.FrameNow();if(next==29)PortalCompleted?.Invoke();else if((next+1)%5==0)CheckpointReached?.Invoke();}}
 
    }else Player.position=_steps[Height].transform.position+_standingOffset;
    _velocity=dt>0?(Player.position-prior)/dt:Vector3.zero;
   }
   public void Land(StepMarker step){if(Paused||Profile==null)return;var d=Player.position-step.transform.position;bool perfect=new Vector2(d.x,d.z).magnitude<=.8f;int prior=Profile.RewardedFloor;if(!FloorRules.Land(Profile,step.Index,perfect))return;SetSafe();Save();Refresh();Landed?.Invoke(perfect&&step.Index>prior);if((step.Index+1)%5==0){if(step.Index==29)CompletePortal();else CheckpointReached?.Invoke();}}
-  public void Continue(){if(Profile.RunBanked){Hud?.ShowBanked();return;}if(Profile.CheckpointDecisionPending){Profile.RiskLevel=Mathf.Min(5,(Height+1)/5);Profile.CheckpointDecisionPending=false;}Save();Hud?.Close();}public void RetryCheckpoint(){ElevatorRules.Recover(Profile);SetSafe();MoveToSafe();UpdateVisibility();UnityEngine.Camera.main?.GetComponent<CameraSystem.OrbitCamera>()?.FrameNow();Save();Refresh();Hud?.Close();}
+  public void Continue(){if(TutorialActive)Tutorial.Risk();if(Profile.RunBanked){Hud?.ShowBanked();return;}if(Profile.CheckpointDecisionPending){Profile.RiskLevel=Mathf.Min(5,(Height+1)/5);Profile.CheckpointDecisionPending=false;}Save();Hud?.Close();}public void RetryCheckpoint(){ElevatorRules.Recover(Profile);SetSafe();MoveToSafe();UpdateVisibility();UnityEngine.Camera.main?.GetComponent<CameraSystem.OrbitCamera>()?.FrameNow();Save();Refresh();Hud?.Close();}
   public void Respawn(){if(Profile==null)return;
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
  Debug.Log("FLOOR_RECOVERY frame="+Time.frameCount+" player="+Player.position+" safe="+_safe+" fallsBefore="+Profile.Falls);
@@ -60,7 +63,7 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
   public bool ClaimDaily(){bool claimed=FloorRules.ClaimDaily(Profile,DateTime.UtcNow);if(claimed)Save();Refresh();return claimed;}
   public bool SelectStyle(int style){bool selected=FloorRules.SelectStyle(Profile,style);if(selected)Save();Refresh();return selected;}
   public int CompletePortal(){if(Profile.Completed)return 0;int stars=FloorRules.Complete(Profile,DateTime.UtcNow);if(stars>0){Save();Refresh();PortalCompleted?.Invoke();}return stars;}
-  public void Save(){try{FloorSave.Save(Profile);}catch(Exception e){Debug.LogWarning("Profile save unavailable: "+e.Message);}}
+  public void Save(){try{FloorSave.Save(PersistentProfile);}catch(Exception e){Debug.LogWarning("Profile save unavailable: "+e.Message);}}
   private void OnApplicationPause(bool pause){_applicationPaused=pause;SyncFocus();}private void OnApplicationFocus(bool focus){_focused=focus;SyncFocus();}
   private void SyncMotor(){if(Player!=null){var m=Player.GetComponent<PlayerMotor>();if(m!=null){m.Paused=Paused;m.ResetInput();}}}
   private void SyncFocus(){if(Profile!=null)Save();SyncMotor();}private void OnApplicationQuit(){if(Profile!=null)Save();}private void Refresh()=>Changed?.Invoke();

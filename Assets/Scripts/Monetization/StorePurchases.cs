@@ -59,7 +59,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
             finally{_reconnect.EndAttempt();}
         }
         public string Price(string id)=>_store?.GetProductById(id)?.metadata?.localizedPriceString??"";
-        public bool Owned(string id)=>_game!=null && (_game.Profile.Commerce.Entitlements&(id==CommerceRules.Starter?1:id==CommerceRules.Collection?2:0))!=0;
+        public bool Owned(string id)=>_game!=null && (_game.PersistentProfile.Commerce.Entitlements&(id==CommerceRules.Starter?1:id==CommerceRules.Collection?2:0))!=0;
         public bool CanBuy(string id)=>FloorSave.Writable && Ready && !Busy && !_deferred.Contains(id) && !Owned(id) && CommerceRules.KnownProduct(id) &&
             _store?.GetProductById(id)?.availableToPurchase==true && !string.IsNullOrWhiteSpace(Price(id));
         public void Buy(string id)
@@ -93,25 +93,25 @@ namespace Kamilunavo.OneMoreFloor.Monetization
                 var fulfilled=Fulfill(order);pendingFailure|=!fulfilled;
                 if(fulfilled)foreach(var item in order.CartOrdered.Items())if(CommerceRules.KnownProduct(item.Product.definition.id))active.Add(item.Product.definition.id);
             }
-            var previousCommerce=JsonUtility.ToJson(_game.Profile.Commerce);var previousStyles=(bool[])_game.Profile.Styles.Clone();var previousSelection=_game.Profile.Style;
+            var previousCommerce=JsonUtility.ToJson(_game.PersistentProfile.Commerce);var previousStyles=(bool[])_game.PersistentProfile.Styles.Clone();var previousSelection=_game.PersistentProfile.Style;
             foreach(var order in orders.ConfirmedOrders)
                 foreach(var item in order.CartOrdered.Items())
                 {
                     var id=item.Product.definition.id;
                     if(!CommerceRules.KnownProduct(id))continue;
-                    active.Add(id);CommerceRules.RestoreEntitlement(_game.Profile,id);
+                    active.Add(id);CommerceRules.RestoreEntitlement(_game.PersistentProfile,id);
                 }
             foreach(var order in orders.DeferredOrders)
                 foreach(var item in order.CartOrdered.Items())if(CommerceRules.KnownProduct(item.Product.definition.id))_deferred.Add(item.Product.definition.id);
             try
             {
                 // A partial catalog response is not evidence that another owned product was revoked.
-                if(!pendingFailure && _fetched.Contains(CommerceRules.Starter) && _fetched.Contains(CommerceRules.Collection))CommerceRules.ReconcileEntitlements(_game.Profile,active);
-                FloorSave.Save(_game.Profile);
+                if(!pendingFailure && _fetched.Contains(CommerceRules.Starter) && _fetched.Contains(CommerceRules.Collection))CommerceRules.ReconcileEntitlements(_game.PersistentProfile,active);
+                FloorSave.Save(_game.PersistentProfile);
                 Busy=false;SetStatus(pendingFailure?T("Kauf noch offen – später wiederherstellen","Purchase pending – restore later"):_deferred.Count>0?T("Ein Kauf wartet auf Freigabe","A purchase is awaiting approval"):T("Shop bereit","Shop ready"));
                 _game.RefreshProfile();
             }
-            catch(Exception){_game.Profile.Commerce=JsonUtility.FromJson<CommerceProfile>(previousCommerce);_game.Profile.Styles=previousStyles;_game.Profile.Style=previousSelection;Busy=false;SetStatus(T("Käufe konnten nicht gespeichert werden","Purchases could not be saved"));}
+            catch(Exception){_game.PersistentProfile.Commerce=JsonUtility.FromJson<CommerceProfile>(previousCommerce);_game.PersistentProfile.Styles=previousStyles;_game.PersistentProfile.Style=previousSelection;Busy=false;SetStatus(T("Käufe konnten nicht gespeichert werden","Purchases could not be saved"));}
         }
         private bool Fulfill(PendingOrder order)
         {
@@ -120,7 +120,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
             {Busy=false;SetStatus(T("Kauf konnte nicht zugeordnet werden","Purchase could not be matched"));return false;}
             try
             {
-                if(!CommerceRules.FulfillPending(_game.Profile,items[0].Product.definition.id,order.Info.TransactionID,FloorSave.Save))
+                if(!CommerceRules.FulfillPending(_game.PersistentProfile,items[0].Product.definition.id,order.Info.TransactionID,FloorSave.Save))
                 {Busy=false;SetStatus(T("Kaufbestätigung fehlt","Purchase confirmation missing"));return false;}
                 // Never acknowledge until the wallet and transaction marker have persisted together.
                 _store.ConfirmPurchase(order);

@@ -21,7 +21,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
         public bool PrivacyRequired=>_prepared && ConsentInformation.PrivacyOptionsRequirementStatus==PrivacyOptionsRequirementStatus.Required;
         public event Action Changed;
         public string Status {get;private set;}="";
-        public bool CanWatch=>FloorSave.Writable && Application.isMobilePlatform && !IsPresenting && _ad!=null && _ad.CanShowAd() && Time.realtimeSinceStartupAsDouble-_loadedAt<3500 && ConsentInformation.CanRequestAds() && RewardRules.CanClaim(_game.Profile,DateTime.UtcNow);
+        public bool CanWatch=>FloorSave.Writable && Application.isMobilePlatform && !IsPresenting && _ad!=null && _ad.CanShowAd() && Time.realtimeSinceStartupAsDouble-_loadedAt<3500 && ConsentInformation.CanRequestAds() && RewardRules.CanClaim(_game.PersistentProfile,DateTime.UtcNow);
         private string T(string de,string en)=>_game.Hud.T(de,en);
         private void Main(Action action)=>MobileAdsEventExecutor.ExecuteInUpdate(()=>{if(this!=null)action();});
         public void Initialize(FloorCourse game)
@@ -95,7 +95,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
                 if(_session!=session || _rewarded)return;
                 try
                 {
-                    if(RewardRules.Fulfill(_game.Profile,session,DateTime.UtcNow,FloorSave.Save))
+                    if(RewardRules.Fulfill(_game.PersistentProfile,session,DateTime.UtcNow,FloorSave.Save))
                     {_rewarded=true;SetStatus(T("+50 Münzen erhalten","Received +50 coins"));_game.RefreshProfile();}
                 }
                 catch(Exception){SetStatus(T("Belohnung konnte nicht gespeichert werden","Reward could not be saved"));}

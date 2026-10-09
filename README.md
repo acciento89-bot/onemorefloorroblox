@@ -12,6 +12,7 @@ One thumb controls a guided transfer between industrial elevator decks above a n
 - A miss loses only pending round coins; wallet, bought items and checkpoint remain.
 - DE/EN, safe-area layouts, wide timing action, sound/haptics/accessibility settings.
 - Existing optional rewarded videos and permanent design purchases.
+- Distinct lift lobby with tower preview, fixed Continue/Play, and a skippable/replayable timing practice that preserves the saved run and wallet.
 
 ## Native project
 Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
@@ -22,4 +23,4 @@ Approved design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-el
 Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).
 Older parkour tests and build1 delivery entries describe the previous candidate and do not validate this redesign.
 
-Editor validation: `FloorValidation.ValidateAll`. New player QA: `-qaElevator` (development builds only, isolated save). Previous `-qaFloor` harness is retained only for the historical parkour build.
+Editor validation: `FloorValidation.ValidateAll`. New player QA: `-qaElevator` (development builds only, isolated save). Menu/tutorial QA: `-qaElevatorShowcase` (development only, isolated save) captures DE/EN and native orientations and plays timing/Perfect/risk/bank practice. Previous `-qaFloor` harness is retained only for the historical parkour build.
