@@ -1,0 +1,29 @@
+{
+  "game": "OneMoreFloor",
+  "repository": "acciento89-bot/onemorefloorroblox",
+  "nativeSourceCommit": "5559ca74190f132e16f04a994c9fe538f3c820e4",
+  "internalVersion": "1.0(4)",
+  "testflight": {
+    "appId": "6819872214",
+    "buildId": "bdc6376f-7d9f-416d-9417-3ffc70163dee",
+    "version": "1.0",
+    "build": 4,
+    "status": "Im Test",
+    "group": "Kamilunavo Intern",
+    "groupId": "cf3964c5-35e5-4eac-b68c-9bc7845d0128",
+    "testers": 1,
+    "notesSaved": true,
+    "observedVia": "Authenticated Safari App Store Connect UI",
+    "publicRelease": false
+  },
+  "ipa": "/Users/piotrkaminski/Developer/KamilunavoDelivery-20261009/outputs/OneMoreFloor-1.0-build4-AppStore.ipa",
+  "ipaSHA256": "64ace675746056ef067dda3c1cedd0e2acf5453f0144a835d6c15b39a4381a41",
+  "android": "/Users/piotrkaminski/Developer/KamilunavoDelivery-20261009/outputs/onemorefloor-build4-central-signed/OneMoreFloor-1.0-build4.aab",
+  "androidSHA256": "16bd47fe8debcc41fdd26fdeccfd86a1691301b8395750e156e595080ee363d9",
+  "androidPayloadEntries": 573,
+  "signingRun": "37990630737",
+  "unpublishedBackupTag": "onemorefloor-build4-presentation-tutorial",
+  "archiveSHA256": "a36b50a05dfe157f0655b4c047d96062a69951a391be3a36ba62c1bc9635a763",
+  "archiveFilesByteVerified": 61,
+  "vendorSymbolWarning": "UnityRuntime.framework dSYM UUID392D7A7F-6A4F-3A7A-8788-4089FA96FF38 missing; own framework symbols retained in verified archive"
+}
