@@ -24,18 +24,18 @@
 ### Task1: Deterministic rules and compatible persistence
 **Files:** Create Assets/Scripts/Core/ElevatorRules.cs, Assets/Editor/ElevatorValidation.cs; modify FloorProfile.cs.
 **Interfaces:** MotionX(int floor,int realm,int seed,float clock), HalfBay(int floor), Land(FloorProfile,int,bool), Recover(FloorProfile), Bank(FloorProfile), Migrate(FloorProfile), NewRun(FloorProfile).
-- [ ] Write tests for centered/edge/miss, clocks/tower variation, all30floors, perfect/replay/CP recovery, bank twice and reload, legacy migration.
-- [ ] Run tests RED, implement rules, run GREEN with Unity Editor validation.
-- [ ] Commit rules and tests.
+- [x] Write tests for centered/edge/miss, clocks/tower variation, all30floors, perfect/replay/CP recovery, bank twice and reload, legacy migration.
+- [x] Run tests RED, implement rules, run GREEN with Unity Editor validation.
+- [x] Commit rules and tests.
 
 ### Task2: Runtime, art, camera and touch UI
 **Files:** Modify FloorCourse.cs, PlayerMotor.cs, OrbitCamera.cs, FloorHud.cs, GameBootstrap.cs; add ElevatorMotion.cs and ElevatorFlightPreview.cs.
 **Interfaces:** FloorCourse.LaunchTransfer(), IsTransferring, FlightVelocity, TimingActive; same Changed/checkpoint/landing/commerce hooks.
-- [ ] Add runtime QA for full routes, misses, clock freeze, repeated input and actual camera quaternion/framing.
-- [ ] Integrate guided arc evaluated against moving bay at actual arrival; carry grounded runner on source; freeze paused state.
-- [ ] Fixed camera frames source, target and arc inside safe gameplay pane; hide parkour controls, wide centered action and clear pending reward/risk menus.
-- [ ] Run Editor compile/commerce/rules suite; build desktop and run actual player QA with portrait/landscape screenshots.
-- [ ] Commit complete gameplay integration.
+- [x] Add runtime QA for full routes, misses, clock freeze, repeated input and actual camera quaternion/framing.
+- [x] Integrate guided arc evaluated against moving bay at actual arrival; carry grounded runner on source; freeze paused state.
+- [x] Fixed camera frames source, target and arc inside safe gameplay pane; hide parkour controls, wide centered action and clear pending reward/risk menus.
+- [x] Run Editor compile/commerce/rules suite; build desktop and run actual player QA with portrait/landscape screenshots.
+- [x] Commit complete gameplay integration.
 
 ### Task3: Native validation and internal delivery
 **Files:** QA harness, BuildAutomation.cs version metadata and delivery ledger.

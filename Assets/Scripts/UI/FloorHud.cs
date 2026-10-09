@@ -9,7 +9,7 @@ namespace Kamilunavo.OneMoreFloor.UI
 {
  public sealed class FloorHud:MonoBehaviour
  {
-  public FloorCourse Course{get;private set;}public VirtualJoystick Joystick{get;private set;}public PressButton Jump{get;private set;}public bool ModalOpen=>_modal!=null;public bool ShopOpen=>_page=="shop";public event Action UiPressed;
+  public FloorCourse Course{get;private set;}public VirtualJoystick Joystick{get;private set;}public PressButton Jump{get;private set;}public bool ModalOpen=>_modal!=null;public bool ShopOpen=>_page=="shop";public bool CheckpointDecisionVisible=>_page=="checkpoint";public event Action UiPressed;
   private RectTransform _safe,_modal,_content;private Text _height,_coins,_hint,_score,_pending,_action;private Image _progress;private Button _menu;private int _width,_heightScreen;private Vector2 _safeSize;private string _page="";private float _hintUntil,_nextVideoPoll;private Button _watchButton,_retryStoreButton;
   private static readonly Color Navy=new(.025f,.085f,.18f,.95f),Gold=new(1,.73f,.12f),Purple=new(.40f,.10f,.86f),Blue=new(.04f,.48f,.90f);
   private FloorProfile P=>Course.Profile;public string T(string de,string en)=>P.Language=="en"?en:de;
@@ -20,11 +20,12 @@ namespace Kamilunavo.OneMoreFloor.UI
    var scorePanel=UiFactory.Panel(_safe,"Score",Navy,Vector2.zero,Vector2.one);_score=UiFactory.Label(scorePanel,"Value","",18,new Vector2(.04f,.03f),new Vector2(.96f,.97f),TextAnchor.MiddleCenter,Color.white,FontStyle.Bold);
    _hint=UiFactory.Label(_safe,"RouteHint","",17,Vector2.zero,Vector2.one,TextAnchor.MiddleCenter,Color.white,FontStyle.Bold);
    var outline=_hint.gameObject.AddComponent<Outline>();outline.effectColor=new Color(.01f,.04f,.09f,.95f);outline.effectDistance=new Vector2(1,-1);
-   Joystick=VirtualJoystick.Create(_safe,Vector2.zero,Vector2.one);Jump=PressButton.Create(_safe,"",Vector2.zero,Vector2.one,true);_action=Jump.GetComponentInChildren<Text>();_action.fontSize=25;_action.resizeTextMaxSize=25;_action.fontStyle=FontStyle.Bold;Joystick.gameObject.SetActive(false);
+   Joystick=VirtualJoystick.Create(_safe,Vector2.zero,Vector2.one);Jump=PressButton.Create(_safe,"",Vector2.zero,Vector2.one,true);Jump.Pressed+=()=>{if(P.RunBanked)ShowHome();else Course.LaunchTransfer();};_action=Jump.GetComponentInChildren<Text>();_action.fontSize=25;_action.resizeTextMaxSize=25;_action.fontStyle=FontStyle.Bold;Joystick.gameObject.SetActive(false);
    _pending=UiFactory.Label(_safe,"PendingReward","",18,Vector2.zero,Vector2.one,TextAnchor.MiddleCenter,Gold,FontStyle.Bold);var pendingOutline=_pending.gameObject.AddComponent<Outline>();pendingOutline.effectColor=new Color(.01f,.04f,.09f,.95f);pendingOutline.effectDistance=new Vector2(1,-1);
    course.CheckpointReached+=ShowCheckpoint;course.Changed+=Refresh;course.Landed+=perfect=>Hint(perfect?T("PERFEKT!","PERFECT!"):T("Etappe geschafft","Step cleared"));course.Fell+=()=>Hint(T("Zurück am Kontrollpunkt","Back at checkpoint"));course.PortalCompleted+=ShowCompletion;
-   Layout();Refresh();ShowHome();
+   Layout();Refresh();if(P.Completed)ShowCompletion();else if(P.RunBanked)ShowBanked();else if(P.CheckpointDecisionPending)ShowCheckpoint();else ShowHome();
   }
+  public Rect GameplayViewport{get{var cam=UnityEngine.Camera.main;if(cam==null||_pending==null||Jump==null)return new Rect(.08f,.23f,.84f,.54f);var pane=cam.pixelRect;float lower=(UiMetrics.ScreenRect((RectTransform)Jump.transform).yMax+12-pane.yMin)/Mathf.Max(1,pane.height),upper=(UiMetrics.ScreenRect((RectTransform)_pending.transform).yMin-12-pane.yMin)/Mathf.Max(1,pane.height);return Rect.MinMaxRect(.08f,Mathf.Clamp(lower,.08f,.43f),.92f,Mathf.Clamp(upper,.53f,.90f));}}
   private static void Place(RectTransform r,float x,float y,float w,float h,bool bottom=false){r.anchorMin=r.anchorMax=new Vector2(0,bottom?0:1);r.pivot=new Vector2(0,bottom?0:1);r.anchoredPosition=new Vector2(x,bottom?y:-y);r.sizeDelta=new Vector2(w,h);}
   private void Layout(){Canvas.ForceUpdateCanvases();float w=_safe.rect.width,h=_safe.rect.height;float target=UiMetrics.TargetSize(_safe,52),headerX=target+22;Place((RectTransform)_menu.transform,12,12,target,target);Place((RectTransform)_height.transform.parent,headerX,12,Mathf.Max(80,w-headerX-206),target);Place((RectTransform)_score.transform.parent,w-194,12,78,target);Place((RectTransform)_coins.transform.parent,w-108,12,96,target);Place((RectTransform)_hint.transform,headerX,target+18,w-headerX-74,26);
    _score.transform.parent.gameObject.SetActive(w>=340);if(w<340){Place((RectTransform)_height.transform.parent,headerX,12,Mathf.Max(80,w-headerX-118),target);}
@@ -42,7 +43,7 @@ namespace Kamilunavo.OneMoreFloor.UI
    _score.text=T("PUNKTE\n","SCORE\n")+P.Score.ToString("N0");_height.text=T("ETAGE ","STAGE ")+(Course.Height+1)+" / 30";_coins.text=P.Crystals.ToString("N0",System.Globalization.CultureInfo.GetCultureInfo(P.Language=="de"?"de-DE":"en-US"));_progress.fillAmount=(Course.Height+1)/30f;var runner=Course.Player.GetComponentInChildren<RunnerAnimator>();runner?.Style(P.Style);}
   private void Hint(string text){_hint.text=text;_hintUntil=Time.unscaledTime+2.2f;}
   private void Tap(){UiPressed?.Invoke();}
-  public void Close(){if(Course.Store?.IsPresenting==true||Course.Videos?.IsPresenting==true)return;Tap();if(_modal!=null){_modal.gameObject.SetActive(false);Destroy(_modal.gameObject);}_modal=null;_content=null;_page="";Course.Paused=false;}
+  public void Close(){if(Course.Store?.IsPresenting==true||Course.Videos?.IsPresenting==true)return;if(_page!="checkpoint"&&P.CheckpointDecisionPending&&!P.RunBanked){ShowCheckpoint();return;}Tap();if(_modal!=null){_modal.gameObject.SetActive(false);Destroy(_modal.gameObject);}_modal=null;_content=null;_page="";Course.Paused=false;}
   private void Begin(string page,string title){UiFactory.HighContrast=P.HighContrast;Tap();if(_modal!=null){_modal.gameObject.SetActive(false);Destroy(_modal.gameObject);}_page=page;Course.Paused=true;
    _modal=UiFactory.Panel(_safe,"ModalBackdrop",new Color(.015f,.045f,.09f,.52f),Vector2.zero,Vector2.one);
    float sw=_safe.rect.width,sh=_safe.rect.height,w=Mathf.Min(sw-24,540),h=sh-32,closeSize=UiMetrics.TargetSize(_safe,52);var card=UiFactory.Panel(_modal,"ModalCard",Navy,Vector2.zero,Vector2.one);Place(card,(sw-w)/2,16,w,h);

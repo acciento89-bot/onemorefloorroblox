@@ -5,7 +5,7 @@ namespace Kamilunavo.OneMoreFloor.Core
  [Serializable] public sealed class FloorProfile
  {
   public int Schema=1,Crystals,Realm,Step,Checkpoint,RewardedFloor,Score,BestFloor,BestScore,UnlockedRealm,Style,Falls,Perfects,DailyStreak,BestDailyStreak,BestPerfects;
-  public int TimingVersion,PendingCoins,PerfectChain,RiskLevel;public bool RunBanked;
+  public int TimingVersion,PendingCoins,PerfectChain,RiskLevel;public bool RunBanked,TimingInFlight,CheckpointDecisionPending;
   public float Elapsed;public bool Completed,Challenge,Sound=true,Haptics=true,ReducedMotion,HighContrast;
   public string Language="de",DailyDay="",ChallengeDay="",RunDay="";
   public Monetization.CommerceProfile Commerce=new();public Monetization.RewardProfile Rewards=new();
