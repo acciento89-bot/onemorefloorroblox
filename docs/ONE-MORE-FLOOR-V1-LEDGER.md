@@ -81,7 +81,7 @@ Status: `[ ]` open · `[~]` implemented/not device verified · `[x]` verified ·
 - [ ] P08-T06 performance/thermal pass
 - [ ] P08-T07 App Store package
 - [ ] P08-T08 Play Store package
-- [ ] P08-T09 TestFlight RC archive + upload
+- [x] P08-T09 TestFlight signed archive + internal-only upload (build3; physical acceptance remains open)
 - [x] P08-T10 TestFlight processing + internal tester assignment
 - [ ] P08-T11 TestFlight install/smoke test on physical iPhone
 - [ ] P08-T12 staged release
@@ -208,3 +208,10 @@ Actual Unity 6000.6.4f1 SDK/editor build passes10533 elevator rules,1082 lift-me
 Tutorial uses separate live/practice ownership and defers monetization callbacks into the retained live profile; actual guided transitions earn no live progress/coins. Current player and source evidence does not establish physical touch, native store/reward acceptance or TestFlight build3 delivery. Both platform build numbers prepared3; native delivery pending.
 
 Actual final desktop full elevator run also passes8652 checks:87 real timing transfers across all three30-floor towers, deliberate miss/recovery, checkpoint/banking exactly once, pause/resume, rendered fixed-camera and continuous framing. Evidence work/floor-presentation-full-mac1/PASS.txt. This supplements the861 guided-lobby checks without implying physical/native commerce acceptance.
+
+## Lift presentation build3 internal delivery — 2026-10-09
+- Source401e40f0c78a83fbd27e44e2d5a0d01025e7b353. Own compact lift lobby and real9-transfer timing/perfect/checkpoint/choice/risk/bank tutorial. Actual Mac showcase861 and full-game8652 assertions passed,87real transfers across all three30-floor towers, fixed rendered camera, recovery/bank/pause, saved-progress/paid-right isolation and actual portrait/landscape dimensions. Physical one-thumb ergonomics remains user acceptance.
+- Unity iOS and Android release exports passed actual editor rules/UI/commerce gates with loggedErrors0. iOS Release archive succeeded; deep strict Distribution/team/build/entitlements verified and ElevatorRuntimeQa excluded from native generated code. IPA SHA2565c5bde13b02f86e4a8d1b5d7358b00c21531f2f6c333103b99a66f543afb8db7, byte-verified archive cbfbf0d72de528ac6f16f5303dcad5da5d3a5cab112e556ceb29e379eccea860,61files.
+- Authenticated Organizer InternalOnly upload succeeded with known vendor UnityRuntime dSYM warning. App Store Connect observed1.0(3), buildd6e978cb-f1e8-4512-ab9b-6fc47edd5cca, Im Test in existing Kamilunavo Intern group,1invitation. German test notes Gesichert. No public submission.
+- Android3 signed centrally in run37980338904 using the existing pinned Kamilunavo identity. Signed SHA2563f14f23de428f609020a0f121698ee87b4fd0b0a253e28c1ad1e0feaebe15549;573payload entries byte-identical, identical manifest and certificate pins verified. No Play upload.
+- IPA/archive/Organizer metadata, signed AAB/provenance/certificate and all verification receipts backed up in unpublished draft onemorefloor-build3-presentation-tutorial with matching server digests. Owned generated exports/derived/Library/archive duplicates removed after retained verified binaries and backups. Physical performance, genuine SDK reward and sandbox purchase/restore remain separate gates.
