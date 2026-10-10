@@ -1,29 +1,60 @@
 {
   "game": "OneMoreFloor",
   "repository": "acciento89-bot/onemorefloorroblox",
-  "nativeSourceCommit": "5559ca74190f132e16f04a994c9fe538f3c820e4",
-  "internalVersion": "1.0(4)",
+  "nativeSourceCommit": "b960deaf53b63840c21df0aae88ad1ce5561a879",
+  "verifiedRemoteMain": "b960deaf53b63840c21df0aae88ad1ce5561a879",
+  "internalVersion": "1.0(5)",
   "testflight": {
     "appId": "6819872214",
-    "buildId": "bdc6376f-7d9f-416d-9417-3ffc70163dee",
+    "buildId": "f5ccfc1c-1fad-4b97-9850-d96845b12afd",
     "version": "1.0",
-    "build": 4,
+    "build": 5,
     "status": "Im Test",
     "group": "Kamilunavo Intern",
     "groupId": "cf3964c5-35e5-4eac-b68c-9bc7845d0128",
     "testers": 1,
     "notesSaved": true,
     "observedVia": "Authenticated Safari App Store Connect UI",
+    "observedAtUTC": "2026-10-10T18:37:53.733Z",
     "publicRelease": false
   },
-  "ipa": "/Users/piotrkaminski/Developer/KamilunavoDelivery-20261009/outputs/OneMoreFloor-1.0-build4-AppStore.ipa",
-  "ipaSHA256": "64ace675746056ef067dda3c1cedd0e2acf5453f0144a835d6c15b39a4381a41",
-  "android": "/Users/piotrkaminski/Developer/KamilunavoDelivery-20261009/outputs/onemorefloor-build4-central-signed/OneMoreFloor-1.0-build4.aab",
-  "androidSHA256": "16bd47fe8debcc41fdd26fdeccfd86a1691301b8395750e156e595080ee363d9",
+  "ipa": "/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/OneMoreFloor/native-ios/OneMoreFloor-1.0-build5-AppStore.ipa",
+  "ipaSHA256": "955954869f16c4ece0c3c65f9aa7af5139bca2795584a22bd4a8396b947dbb51",
+  "android": "/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/OneMoreFloor/native-android/central-signed/OneMoreFloor-1.0-build5.aab",
+  "androidSHA256": "f7cbdd5ee903cd810f73f5df0dce32cf16e8dc4eee01b65b8dd12b14b1543fbf",
   "androidPayloadEntries": 573,
-  "signingRun": "37990630737",
-  "unpublishedBackupTag": "onemorefloor-build4-presentation-tutorial",
-  "archiveSHA256": "a36b50a05dfe157f0655b4c047d96062a69951a391be3a36ba62c1bc9635a763",
+  "signingRun": "38075858391",
+  "signingRunURL": "https://github.com/acciento89-bot/onemorefloorroblox/actions/runs/38075858391",
+  "unpublishedBackupTag": "onemorefloor-build5-concept-polish",
+  "archiveSHA256": "24b9cc042aa883d1dd55313ddc15706a28a33f6d298361b2e4eb4710388f29cd",
   "archiveFilesByteVerified": 61,
-  "vendorSymbolWarning": "UnityRuntime.framework dSYM UUID392D7A7F-6A4F-3A7A-8788-4089FA96FF38 missing; own framework symbols retained in verified archive"
+  "actualScreens": "/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/Screens/OneMoreFloor-actual.png",
+  "desktopReceipts": [
+    {
+      "file": "/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/OneMoreFloor/runtime-canal-showcase/SHOWCASE-PASS.txt",
+      "receipt": "ELEVATOR_SHOWCASE_PASS checks=1971",
+      "sha256": "3edb4ec508afe3dade693816834c5eeb158110ee44a332693000480b92cc9716"
+    },
+    {
+      "file": "/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/OneMoreFloor/runtime-polish-full/PASS.txt",
+      "receipt": "ELEVATOR_QA_PASS checks=8651 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+      "sha256": "f01dd1642abaf39524df4d99ce8717c5d05e6608e982580033c2a16af0f8d075"
+    },
+    {
+      "file": "/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/OneMoreFloor/runtime-canal-reload/RELOAD-PASS.txt",
+      "receipt": "ELEVATOR_RELOAD_PASS checks=5",
+      "sha256": "ee3a92efb92ed4a999510ddaa97dd6de0fede2198b6f0ae4ac52e51f54e67376"
+    }
+  ],
+  "vendorSymbolWarning": "UnityRuntime.framework dSYM missing; app and UnityFramework dSYM retained",
+  "acceptanceLimits": [
+    "Desktop callbacks and PointerEventData do not establish physical iPhone raw multi-touch or thermal/performance acceptance.",
+    "OneMoreFloor full mechanics receipt precedes final decorative canal quarter; final editor/presentation/reload use latest art.",
+    "Rising camera receipt precedes final material/cliff polish; camera/input code unchanged.",
+    "Repair full mechanics receipt precedes final depth-tested decorative font binding; final presentation uses latest binding.",
+    "No genuine provider purchase/reward acceptance or cinematic equivalence claim.",
+    "Rising build 5 retains the camera/input code already in build 4. Desktop touch-event scenarios pass; the reported physical-phone issue is not declared resolved.",
+    "Known vendor UnityRuntime.framework dSYM is missing; app and UnityFramework symbols remain in retained archives.",
+    "Immutable package-generation proofs precede Apple upload; current TestFlight state is recorded separately here and in native-ios/status.json."
+  ]
 }

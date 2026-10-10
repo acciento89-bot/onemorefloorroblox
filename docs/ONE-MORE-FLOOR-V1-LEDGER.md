@@ -268,3 +268,16 @@ Actual tutorial captures also show mirrored floor numerals. The architectural Te
 - [ ] New native builds and physical-device multi-touch/performance remain open. Existing build 4 distribution is earlier-source evidence.
 
 Receipts/captures: `/Volumes/SSK SSD/Kamilunavo/Builds/VisualRevision-20261010/OneMoreFloor`. Scripted touch callback/raycast and desktop rendering checks are not physical raw touch or measured mobile FPS. Original user primary-concept deletion remains unstaged.
+
+
+## Verified internal concept-polish delivery — 2026-10-10
+
+Native **1.0(5)** is built from source `b960deaf53b63840c21df0aae88ad1ce5561a879`. Fresh iOS Release archive/export, strict Apple Distribution signature, team TKG684N5GL, get-task-allow=false, ARM64 app/framework and excluded QA runner were verified. IPA SHA256 `955954869f16c4ece0c3c65f9aa7af5139bca2795584a22bd4a8396b947dbb51`. The compressed archive was verified byte-for-byte across 61 files and retained on the APFS SSD, with a server-digest-verified private draft backup `onemorefloor-build5-concept-polish`. Xcode InternalOnly upload completed. Authenticated App Store Connect UI confirms **Im Test**, the existing **Kamilunavo Intern** group with one tester and saved German test instructions. New build ID `f5ccfc1c-1fad-4b97-9850-d96845b12afd`.
+
+Android native export and bundle validation passed with the expected manifest, version, own AdMob ID and six ARM64 libraries aligned for 16 KiB pages. The existing central-signing workflow [38075858391](https://github.com/acciento89-bot/onemorefloorroblox/actions/runs/38075858391) succeeded from the exact source commit; the original universal certificate SHA1/SHA256 pins match and all 573 non-signature bundle entries are byte-identical. Signed AAB SHA256 `f7cbdd5ee903cd810f73f5df0dce32cf16e8dc4eee01b65b8dd12b14b1543fbf`. Signed package/provenance/proofs and desktop evidence are retained on the SSD and in the same private draft, with fresh server asset digests checked. No local private keystore was created or downloaded.
+
+The coordinated desktop acceptance receipts and actual rendered views are recorded in `docs/INTERNAL-PRESENTATION-REVISION.json`. [Three actual Unity views](QA/2026-10-10/actual-game-views.png) show the present implementation, not an illustrated concept or an iPhone capture. All Unity sources are backed up on canonical main; the original user-deleted historical `docs/concepts/PRIMARY-CONCEPT.png` remains unstaged. Native caches/exports/archives are retained now that the SSD has sufficient capacity.
+
+Acceptance remains bounded: desktop event-driven input and rendered QA do not establish physical iPhone raw multi-touch, thermal or 60 FPS acceptance; genuine provider purchase/reward transactions and full cinematic equivalence to the concept illustrations remain open. The known vendor UnityRuntime.framework dSYM warning does not prevent internal delivery; the game's own and UnityFramework symbols remain retained. No public App Review submission or Play publication was performed.
+
+The full 87-transfer mechanics acceptance predates only the decorative canal quarter. The final editor, DE/EN presentation and fresh-process reload receipts exercise the current art. Mechanics were not rewritten after that acceptance.
