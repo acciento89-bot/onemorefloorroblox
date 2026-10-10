@@ -36,6 +36,7 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
     var alloy=MeshArt.Mat("LiftAlloy",new Color(.46f,.59f,.65f),0);
     for(int side=-1;side<=1;side+=2){MeshArt.Box(rail.transform,"TrackGuide",new Vector3(0,-.42f,side*.23f),new Vector3(6.9f,.045f,.045f),alloy);MeshArt.Box(rail.transform,"DriveEndHousing",new Vector3(side*3.35f,-.44f,0),new Vector3(.52f,.40f,.64f),steel);for(int slot=0;slot<4;slot++)MeshArt.Box(rail.transform,"TrackEndVent",new Vector3(side*3.35f,-.34f,-.325f+slot*.10f),new Vector3(.35f,.035f,.018f),alloy);}
     for(int joint=0;joint<7;joint++)MeshArt.Box(rail.transform,"RailJoint",new Vector3(-3+joint,-.53f,0),new Vector3(.06f,.09f,.52f),steel);
+    LiftArchitecture.Rails(rail.transform);LiftArchitecture.Bay(rail.transform,i);
     MeshArt.Batch(rail);
    }Physics.SyncTransforms();SetSafe();MoveToSafe(true);UpdateVisibility();UnityEngine.Camera.main?.GetComponent<CameraSystem.OrbitCamera>()?.FrameNow();Refresh();RunStarted?.Invoke();}
   private void UpdateVisibility(){for(int i=0;i<_steps.Count;i++)_steps[i].transform.parent.gameObject.SetActive(i>=Height&&i<=Height+1);}

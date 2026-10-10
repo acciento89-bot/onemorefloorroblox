@@ -49,10 +49,15 @@ Shader "Floor/Panel"
                 float distance=length(max(q,0))+min(max(q.x,q.y),0)-radius;
                 c.a*=1-smoothstep(-.5,1,distance);
                 float edge=1-smoothstep(1,3,abs(distance+2));
-                float gold=step(.5,i.color.r)*step(.3,i.color.g);
-                c.rgb*=lerp(.94,1.06,i.panel.y);
-                c.rgb+=pow(saturate(i.panel.y),8)*lerp(float3(.02,.035,.055),float3(.10,.07,.01),gold);
-                c.rgb=lerp(c.rgb,lerp(float3(.23,.31,.44),float3(1,.87,.41),gold),edge*.38);
+                // Ivory carries blue; only the warm amber action receives gold edging.
+                float gold=step(.5,i.color.r)*step(.3,i.color.g)*(1-step(.45,i.color.b));
+                float cream=step(.72,i.color.r)*step(.68,i.color.g)*step(.60,i.color.b);
+                c.rgb*=lerp(lerp(.94,1.06,i.panel.y),lerp(.98,1.01,i.panel.y),cream);
+                float3 sheen=lerp(float3(.02,.035,.055),float3(.10,.07,.01),gold);
+                c.rgb+=pow(saturate(i.panel.y),8)*lerp(sheen,float3(.012,.010,.007),cream);
+                float3 border=lerp(float3(.23,.31,.44),float3(1,.87,.41),gold);
+                border=lerp(border,float3(.66,.65,.59),cream);
+                c.rgb=lerp(c.rgb,border,edge*lerp(.38,.18,cream));
                 #ifdef UNITY_UI_CLIP_RECT
                 c.a*=UnityGet2DClipping(i.world.xy,_ClipRect);
                 #endif
