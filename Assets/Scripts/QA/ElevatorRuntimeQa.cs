@@ -1,6 +1,8 @@
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,6 +15,17 @@ namespace Kamilunavo.OneMoreFloor.QA
  {
   static bool Enabled=>Array.Exists(Environment.GetCommandLineArgs(),s=>s=="-qaElevator"||s=="-qaElevatorShowcase")||Environment.GetEnvironmentVariable("ELEVATOR_QA")=="1"||Environment.GetEnvironmentVariable("ELEVATOR_QA_SHOWCASE")=="1";
   FloorCourse c;FloorHud h;string output;int checks;
+  readonly List<string> runtimeErrors=new();int runtimeErrorCount;bool listening;
+  void OnEnable(){if(listening)return;listening=true;Application.logMessageReceived+=CollectError;}
+  void OnDisable(){if(!listening)return;listening=false;Application.logMessageReceived-=CollectError;}
+  void CollectError(string message,string stack,LogType type){if(type!=LogType.Error&&type!=LogType.Exception&&type!=LogType.Assert)return;runtimeErrorCount++;if(runtimeErrors.Count<32)runtimeErrors.Add(message);}
+  void CheckNoRuntimeErrors(){Check(runtimeErrorCount==0,"zero captured runtime errors: "+string.Join("; ",runtimeErrors));}
+  void CheckNativeAdsNoop(){
+   var provider=c.Interstitials;Check(provider!=null,"actual scene has interstitial provider");
+   const BindingFlags hidden=BindingFlags.Instance|BindingFlags.NonPublic;var field=typeof(Monetization.RoundInterstitials).GetField("consent",hidden);var previous=field.GetValue(provider);bool read=false;
+   try{field.SetValue(provider,(Func<bool>)(()=>{read=true;throw new Exception("QA must not read native consent SDK");}));typeof(Monetization.RoundInterstitials).GetMethod("Update",hidden).Invoke(provider,null);typeof(Monetization.RoundInterstitials).GetMethod("Prepare",hidden).Invoke(provider,null);Check(!read,"actual playing QA/nonmobile tick never reads native consent");}
+   finally{field.SetValue(provider,previous);}
+  }
   public static void Configure(){if(Enabled)FloorSave.QaKey="kamilunavo.onemorefloor.elevatorqa."+(Environment.GetEnvironmentVariable("ELEVATOR_QA_ID")??"local");}
   public static void MaybeStart(FloorCourse course,FloorHud hud){if(!Enabled)return;var q=new GameObject("ElevatorRuntimeQa").AddComponent<ElevatorRuntimeQa>();q.c=course;q.h=hud;
 #if UNITY_STANDALONE_OSX
@@ -20,6 +33,7 @@ namespace Kamilunavo.OneMoreFloor.QA
 #endif
 q.StartCoroutine(q.Run());}
   IEnumerator Showcase(){
+   CheckNativeAdsNoop();
    c.Profile.UnlockedRealm=2;c.Profile.Crystals=428;c.Profile.Language="de";h.ShowHome();yield return new WaitForEndOfFrame();CheckHome("portrait DE");yield return Capture("lobby-de");c.Profile.Language="en";h.ShowHome();yield return new WaitForEndOfFrame();CheckHome("portrait EN");yield return Capture("lobby-en");
    h.ShowStyle();yield return Capture("styles");h.ShowSettings();yield return Capture("settings");h.ShowShop();yield return Capture("shop");h.ShowDaily();yield return Capture("gift");h.ShowHome();
    var original=c.Profile;int wallet=original.Crystals,step=original.Step,checkpoint=original.Checkpoint,score=original.Score;h.StartTutorial();yield return new WaitForEndOfFrame();Check(c.TutorialActive&&!h.ModalOpen&&!c.Paused,"practice enters actual gameplay");Check(c.PersistentProfile==original&&c.Profile!=original,"practice and live save have separate ownership");Check(c.TargetFramed,"tutorial coach preserves target framing");yield return Capture("tutorial-timing");
@@ -39,7 +53,7 @@ q.StartCoroutine(q.Run());}
 #if UNITY_STANDALONE_OSX
    Screen.SetResolution(430,932,false);
 #endif
-   yield return new WaitForSecondsRealtime(6);Check(Screen.width<Screen.height,"showcase actual portrait restored");h.ShowHome();yield return new WaitForEndOfFrame();CheckHome("portrait restored");yield return Capture("lobby-restored");yield return BankedPresentation("portrait");File.WriteAllText(Path.Combine(output,"SHOWCASE-PASS.txt"),"ELEVATOR_SHOWCASE_PASS checks="+checks);
+   yield return new WaitForSecondsRealtime(6);Check(Screen.width<Screen.height,"showcase actual portrait restored");h.ShowHome();yield return new WaitForEndOfFrame();CheckHome("portrait restored");yield return Capture("lobby-restored");yield return BankedPresentation("portrait");CheckNoRuntimeErrors();File.WriteAllText(Path.Combine(output,"SHOWCASE-PASS.txt"),"ELEVATOR_SHOWCASE_PASS checks="+checks);
   }
   IEnumerator BankedPresentation(string pose){foreach(var language in new[]{"de","en"}){c.Profile.Language=language;c.StartRun(0,false);h.Close();for(int floor=1;floor<=4;floor++)yield return TutorialTransfer(floor);Check(h.CheckpointDecisionVisible,"regular risk decision visible "+pose+language);CheckMenuContrast(pose+language+" risk");CheckConceptRisk(pose+language);yield return Capture("risk-"+pose+"-"+language);GameObject.Find("Bank").GetComponent<UnityEngine.UI.Button>().onClick.Invoke();yield return new WaitForEndOfFrame();Check(c.Profile.RunBanked,"ordinary bank presents result "+pose+language);CheckMenuContrast(pose+language+" result");yield return Capture("banked-"+pose+"-"+language);h.ShowSettings();CheckMenuContrast(pose+language+" settings");yield return Capture("settings-"+pose+"-"+language);h.ShowHome();}}
   void CheckMenuContrast(string pose){var modal=GameObject.Find("ModalCard");Check(modal!=null,pose+" card exists");foreach(var button in modal.GetComponentsInChildren<UnityEngine.UI.Button>()){var image=button.GetComponent<UnityEngine.UI.Image>();foreach(var state in new[]{button.colors.normalColor,button.colors.highlightedColor,button.colors.pressedColor,button.colors.selectedColor,button.colors.disabledColor})foreach(var text in button.GetComponentsInChildren<UnityEngine.UI.Text>())if(!string.IsNullOrWhiteSpace(text.text))Check(UiFactory.Contrast(text.color,image.color*state*button.colors.colorMultiplier)>=4.5f,pose+" readable "+button.name+"/"+text.name);var viewport=button.transform.parent;while(viewport!=null&&viewport.name!="Viewport")viewport=viewport.parent;if(viewport!=null&&(pose.Contains("risk")||pose.Contains("result")))Check(Contains(UiMetrics.ScreenRect((RectTransform)viewport),UiMetrics.ScreenRect((RectTransform)button.transform)),pose+" choices visible above footer "+button.name);}}

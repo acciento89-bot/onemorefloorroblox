@@ -8,6 +8,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
     public sealed class CommerceProfile
     {
         public int Entitlements;
+        public string InterstitialDailyDay="";
         public bool StarterCreditClaimed;
         public List<string> FulfilledTransactions=new();
     }
@@ -15,12 +16,16 @@ namespace Kamilunavo.OneMoreFloor.Monetization
     {
         public const string Starter="com.kamilunavo.onemorefloor.starter";
         public const string Collection="com.kamilunavo.onemorefloor.neoncollection";
-        public static bool KnownProduct(string id)=>id==Starter || id==Collection;
+        public const string RemoveAds="com.kamilunavo.onemorefloor.removeads";
+        public static int ProductMask(string id)=>id==Starter?1:id==Collection?2:id==RemoveAds?4:0;
+        public static bool KnownProduct(string id)=>ProductMask(id)!=0;
+        public static bool AdsRemoved(FloorProfile profile)=>profile?.Commerce!=null&&(profile.Commerce.Entitlements&4)!=0;
         public static int PremiumStyles(int entitlements)=>((entitlements&1)!=0?16:0)|((entitlements&2)!=0?224:0);
         public static void Normalize(FloorProfile profile)
         {
             profile.Commerce??=new CommerceProfile();
-            profile.Commerce.Entitlements&=3;
+            profile.Commerce.Entitlements&=7;
+            profile.Commerce.InterstitialDailyDay??="";
             profile.Commerce.FulfilledTransactions??=new List<string>();
             if(profile.Styles==null||profile.Styles.Length!=8){var previous=profile.Styles;profile.Styles=new bool[8];if(previous!=null)Array.Copy(previous,profile.Styles,Math.Min(8,previous.Length));}profile.Styles[0]=true;var mask=PremiumStyles(profile.Commerce.Entitlements);for(int i=4;i<8;i++)profile.Styles[i]=(mask&(1<<i))!=0;
             profile.Style=Mathf.Clamp(profile.Style,0,7);
@@ -41,7 +46,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
                     profile.Commerce.StarterCreditClaimed=true;
                 }
             }
-            else profile.Commerce.Entitlements|=2;
+            else profile.Commerce.Entitlements|=ProductMask(productId);
             profile.Commerce.FulfilledTransactions.Add(marker);
             Normalize(profile);return true;
         }
@@ -49,15 +54,15 @@ namespace Kamilunavo.OneMoreFloor.Monetization
         {
             if(!KnownProduct(productId))return false;
             Normalize(profile);var before=profile.Commerce.Entitlements;
-            profile.Commerce.Entitlements|=productId==Starter?1:2;
-            // Confirmed restoration restores cosmetics, never starter currency.
+            profile.Commerce.Entitlements|=ProductMask(productId);
+            // Confirmed restoration restores only durable ownership, never starter currency.
             if(productId==Starter)profile.Commerce.StarterCreditClaimed=true;
             Normalize(profile);return before!=profile.Commerce.Entitlements;
         }
         public static void ReconcileEntitlements(FloorProfile profile,IEnumerable<string> activeProductIds)
         {
             var mask=0;
-            foreach(var id in activeProductIds)mask|=id==Starter?1:id==Collection?2:0;
+            foreach(var id in activeProductIds)mask|=ProductMask(id);
             Normalize(profile);profile.Commerce.Entitlements=mask;
             if((mask&1)!=0)profile.Commerce.StarterCreditClaimed=true;
             Normalize(profile);

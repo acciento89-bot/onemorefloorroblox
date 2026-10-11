@@ -6,11 +6,19 @@ using Kamilunavo.OneMoreFloor.Gameplay;
 using Kamilunavo.OneMoreFloor.Core;
 namespace Kamilunavo.OneMoreFloor.Monetization
 {
+    [ExecuteAlways]
     public sealed class StorePurchases : MonoBehaviour
     {
         private StoreController _store;
         private readonly StoreReconnectGate _reconnect=new();
-        public bool CanRetry=>Application.isMobilePlatform&&!Ready&&!Busy&&_reconnect.CanBegin(Time.realtimeSinceStartupAsDouble);
+        private bool QaTrafficBlocked{get{
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+            return !string.IsNullOrEmpty(FloorSave.QaKey);
+#else
+            return false;
+#endif
+        }}
+        public bool CanRetry=>!QaTrafficBlocked&&_game!=null&&_game.CommerceForeground&&!_game.Presentation.IsLocked&&Application.isMobilePlatform&&!Ready&&!Busy&&_reconnect.CanBegin(Time.realtimeSinceStartupAsDouble);
         public void RetryConnection(){if(CanRetry)Connect();}
         private FloorCourse _game;
         private readonly HashSet<string> _fetched=new();
@@ -32,7 +40,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
         }
         private async void Connect()
         {
-            if(Ready||Busy||!_reconnect.TryBegin(Time.realtimeSinceStartupAsDouble))return;
+            if(QaTrafficBlocked||_game==null||!_game.CommerceForeground||_game.Presentation.IsLocked||Ready||Busy||!_reconnect.TryBegin(Time.realtimeSinceStartupAsDouble))return;
             Busy=true;SetStatus(T("Store wird verbunden …","Connecting to store …"));
             try
             {
@@ -49,34 +57,35 @@ namespace Kamilunavo.OneMoreFloor.Monetization
                 // Own pending-order handling also covers restoration, without double dispatch.
                 _store.ProcessPendingOrdersOnPurchasesFetched(false);}
                 await _store.Connect();
-                if(this==null)return;
+                if(this==null||QaTrafficBlocked)return;
                 if(_store.GetConnectionState()!=ConnectionState.Connected){Unavailable(T("Store gerade nicht erreichbar","Store currently unavailable"));return;}
                 _store.FetchProductsWithNoRetries(new List<ProductDefinition>{
                     new(CommerceRules.Starter,ProductType.NonConsumable),
-                    new(CommerceRules.Collection,ProductType.NonConsumable)});
+                    new(CommerceRules.Collection,ProductType.NonConsumable),
+                    new(CommerceRules.RemoveAds,ProductType.NonConsumable)});
             }
             catch(Exception){if(this!=null)Unavailable(T("Store gerade nicht erreichbar","Store currently unavailable"));}
             finally{_reconnect.EndAttempt();}
         }
         public string Price(string id)=>_store?.GetProductById(id)?.metadata?.localizedPriceString??"";
-        public bool Owned(string id)=>_game!=null && (_game.PersistentProfile.Commerce.Entitlements&(id==CommerceRules.Starter?1:id==CommerceRules.Collection?2:0))!=0;
-        public bool CanBuy(string id)=>FloorSave.Writable && Ready && !Busy && !_deferred.Contains(id) && !Owned(id) && CommerceRules.KnownProduct(id) &&
+        public bool Owned(string id)=>_game!=null && (_game.PersistentProfile.Commerce.Entitlements&CommerceRules.ProductMask(id))!=0;
+        public bool CanBuy(string id)=>!QaTrafficBlocked&&_game!=null&&_game.CommerceForeground&&!_game.Presentation.IsLocked&&FloorSave.Writable && Ready && !Busy && !_deferred.Contains(id) && !Owned(id) && CommerceRules.KnownProduct(id) &&
             _store?.GetProductById(id)?.availableToPurchase==true && !string.IsNullOrWhiteSpace(Price(id));
         public void Buy(string id)
         {
-            if(!CanBuy(id))return;
+            if(!CanBuy(id)||!_game.AcquireCommerce(this))return;
             _game.Save();Busy=true;IsPresenting=true;SetStatus(T("Kauf wird geöffnet …","Opening purchase …"));
             try{_store.PurchaseProduct(id);}catch(Exception){Busy=false;SetStatus(T("Kauf konnte nicht gestartet werden","Purchase could not start"));}
         }
         public void Restore()
         {
-            if(_store==null || !Ready || Busy)return;
-            Busy=true;SetStatus(T("Käufe werden wiederhergestellt …","Restoring purchases …"));
-            _store.RestoreTransactions((ok,_)=>
+            if(QaTrafficBlocked||_store==null || !Ready || Busy||!FloorSave.Writable||!_game.AcquireCommerce(this))return;
+            Busy=IsPresenting=true;SetStatus(T("Käufe werden wiederhergestellt …","Restoring purchases …"));
+            try{_store.RestoreTransactions((ok,_)=>
             {
                 if(this==null)return;
                 if(!ok){Busy=false;SetStatus(T("Wiederherstellung nicht verfügbar","Restore unavailable"));}
-            });
+            });}catch(Exception){Busy=false;SetStatus(T("Wiederherstellung nicht verfügbar","Restore unavailable"));}
         }
         private void ProductsFetched(List<Product> products)
         {
@@ -106,7 +115,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
             try
             {
                 // A partial catalog response is not evidence that another owned product was revoked.
-                if(!pendingFailure && _fetched.Contains(CommerceRules.Starter) && _fetched.Contains(CommerceRules.Collection))CommerceRules.ReconcileEntitlements(_game.PersistentProfile,active);
+                if(!pendingFailure && _fetched.Contains(CommerceRules.Starter) && _fetched.Contains(CommerceRules.Collection)&&_fetched.Contains(CommerceRules.RemoveAds))CommerceRules.ReconcileEntitlements(_game.PersistentProfile,active);
                 FloorSave.Save(_game.PersistentProfile);
                 Busy=false;SetStatus(pendingFailure?T("Kauf noch offen – später wiederherstellen","Purchase pending – restore later"):_deferred.Count>0?T("Ein Kauf wartet auf Freigabe","A purchase is awaiting approval"):T("Shop bereit","Shop ready"));
                 _game.RefreshProfile();
@@ -133,7 +142,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
         {
             if(Fulfill(order)){Busy=false;SetStatus(T("Kauf freigeschaltet","Purchase unlocked"));}
         }
-        private void Confirmed(Order order){Busy=false;IsPresenting=false;if(order is FailedOrder)SetStatus(T("Kaufbestätigung noch offen – später wiederherstellen","Purchase confirmation pending – restore later"));else Changed?.Invoke();}
+        private void Confirmed(Order order){Busy=false;IsPresenting=false;_game.ReleaseCommerce(this);if(order is FailedOrder)SetStatus(T("Kaufbestätigung noch offen – später wiederherstellen","Purchase confirmation pending – restore later"));else Changed?.Invoke();}
         private void Failed(FailedOrder order){Busy=false;SetStatus(order.FailureReason==PurchaseFailureReason.UserCancelled?T("Kauf abgebrochen","Purchase cancelled"):T("Kauf nicht abgeschlossen","Purchase not completed"));}
         private void Deferred(DeferredOrder order)
         {
@@ -144,10 +153,10 @@ namespace Kamilunavo.OneMoreFloor.Monetization
         private void ProductsFailed(ProductFetchFailed failure)=>Unavailable(T("Shop gerade nicht verfügbar","Shop currently unavailable"));
         private void PurchasesFailed(PurchasesFetchFailureDescription failure){Busy=false;SetStatus(T("Käufe konnten nicht geladen werden","Purchases could not be loaded"));}
         private void Unavailable(string message){_reconnect.Failed(Time.realtimeSinceStartupAsDouble);Ready=false;Busy=false;SetStatus(message);}
-        private void SetStatus(string message){if(!Busy)IsPresenting=false;Status=message;Changed?.Invoke();}
+        private void SetStatus(string message){if(!Busy){IsPresenting=false;_game?.ReleaseCommerce(this);}Status=message;Changed?.Invoke();}
         private void OnDestroy()
         {
-            if(_store==null)return;
+            _game?.ReleaseCommerce(this);if(_store==null)return;
             _store.OnStoreDisconnected-=Disconnected;_store.OnProductsFetched-=ProductsFetched;_store.OnProductsFetchFailed-=ProductsFailed;
             _store.OnPurchasesFetched-=PurchasesFetched;_store.OnPurchasesFetchFailed-=PurchasesFailed;
             _store.OnPurchasePending-=Pending;_store.OnPurchaseFailed-=Failed;_store.OnPurchaseDeferred-=Deferred;_store.OnPurchaseConfirmed-=Confirmed;
