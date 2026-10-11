@@ -4,7 +4,7 @@
   "sourceSha256": null,
   "reviewer": "Codex actual rendered image inspection",
   "reviewedAt": "2026-10-11",
-  "reason": "Actual cabin, facade and empty lobby still differ substantially from the approved concept.",
+  "reason": "Fresh slim-cabin/teal-backpack player showcase passes2149 functional checks and the fixed-camera head is visible. Actual city and scenic lobby still have sparse flat architectural/material detail compared with the approved warm dense concept. Geometry/budget/mute passes do not clear graphical concept acceptance.",
   "criteria": {
     "concept_similarity": "failed",
     "character_or_tower": "pending",
@@ -23,19 +23,25 @@
     ],
     "menu": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/Runtime/lobby-de.png",
-        "sha256": "113a778742cb0e3990af325a969ba7dfcb39225b207000156da8503562344412",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/FidelityRuntime/lobby-de.png",
+        "sha256": "f7997e6af13bb24f6d9ee3b81ce34792148044d8359880185bddd34721bde1b3",
         "origin": "Unity-render"
       }
     ],
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/Runtime/tutorial-timing.png",
-        "sha256": "ecfd1fe9fb9b977f37ab1053164ebc73e6e010291cecba7840b31dccceb5579a",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/FidelityRuntime/tutorial-timing.png",
+        "sha256": "f6ae91f6da6a300df1b9c322115f309012a40c79c9ea11d50c4a5540a9e30939",
         "origin": "Unity-render"
       }
     ],
-    "submenus": [],
+    "submenus": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/FidelityRuntime/settings.png",
+        "sha256": "7a0c9468d9422ec2a0158b8a7a6b98a31b42dd8ef10faa0c39003a501a8fc2d0",
+        "origin": "Unity-render"
+      }
+    ],
     "variants": []
   }
 }
