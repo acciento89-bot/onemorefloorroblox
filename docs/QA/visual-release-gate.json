@@ -1,0 +1,41 @@
+{
+  "game": "One More Floor",
+  "status": "failed",
+  "sourceSha256": null,
+  "reviewer": "Codex actual rendered image inspection",
+  "reviewedAt": "2026-10-11",
+  "reason": "Actual cabin, facade and empty lobby still differ substantially from the approved concept.",
+  "criteria": {
+    "concept_similarity": "failed",
+    "character_or_tower": "pending",
+    "world_variants": "pending",
+    "menu_identity": "pending",
+    "submenu_navigation": "pending",
+    "readability": "pending"
+  },
+  "evidence": {
+    "concept": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png",
+        "sha256": "49ec586059178ceb804c92723fc65e24aa85a5cd736837fe497609a8a5501d31",
+        "origin": "approved-concept"
+      }
+    ],
+    "menu": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/Runtime/lobby-de.png",
+        "sha256": "113a778742cb0e3990af325a969ba7dfcb39225b207000156da8503562344412",
+        "origin": "Unity-render"
+      }
+    ],
+    "gameplay": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/Runtime/tutorial-timing.png",
+        "sha256": "ecfd1fe9fb9b977f37ab1053164ebc73e6e010291cecba7840b31dccceb5579a",
+        "origin": "Unity-render"
+      }
+    ],
+    "submenus": [],
+    "variants": []
+  }
+}
