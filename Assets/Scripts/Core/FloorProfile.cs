@@ -7,7 +7,7 @@ namespace Kamilunavo.OneMoreFloor.Core
   public int Schema=1,Crystals,Realm,Step,Checkpoint,RewardedFloor,Score,BestFloor,BestScore,UnlockedRealm,Style,Falls,Perfects,DailyStreak,BestDailyStreak,BestPerfects;
   public int TimingVersion,PendingCoins,PerfectChain,RiskLevel;public bool RunBanked,TimingInFlight,CheckpointDecisionPending;
   public bool TutorialCompleted;
-  public float Elapsed;public bool Completed,Challenge,Sound=true,Haptics=true,ReducedMotion,HighContrast;
+  public float Elapsed;public bool Completed,Challenge,Sound=true,Music=true,Haptics=true,ReducedMotion,HighContrast;
   public string Language="de",DailyDay="",ChallengeDay="",RunDay="";
   public Monetization.CommerceProfile Commerce=new();public Monetization.RewardProfile Rewards=new();
   public bool[] Styles={true,false,false,false,false,false,false,false};public int[] Stars=new int[3];

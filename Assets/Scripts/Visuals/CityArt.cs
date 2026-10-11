@@ -11,10 +11,11 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var sky=new Material(Shader.Find("Floor/Sky"));sky.mainTexture=Resources.Load<Texture2D>("Art/SkyPanorama");RenderSettings.skybox=sky;ArtLifetime.Own(parent.gameObject,sky);
    RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.44f,.50f,.56f);RenderSettings.ambientEquatorColor=new Color(.44f,.43f,.38f);RenderSettings.ambientGroundColor=new Color(.24f,.29f,.28f);
    RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.69f,.61f,.52f);RenderSettings.fogDensity=.005f;
-   var stone=MeshArt.Mat("QuarterLimestone",new Color(.59f,.55f,.46f));
-   var shade=MeshArt.Mat("QuarterSandstone",new Color(.47f,.46f,.40f));
-   var trim=MeshArt.Mat("QuarterCornice",new Color(.68f,.63f,.53f));
-   var copper=MeshArt.Mat("QuarterCopper",new Color(.43f,.28f,.17f));
+   var stone=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityStone);
+   var shade=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityShade);
+   var trim=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityTrim);
+   var copper=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.Copper);
+   var foliage=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.Leaf);var leafLight=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.LeafLight);
    var teal=MeshArt.Mat("QuarterTealRoof",new Color(.17f,.30f,.29f));
    var glass=MeshArt.Mat("QuarterWindowGlass",new Color(.17f,.25f,.24f));
    var warmGlass=MeshArt.Mat("QuarterWarmWindow",new Color(.49f,.37f,.22f));
@@ -38,10 +39,12 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     int side=i%2==0?-1:1;float z=12+(i/2)*15f;
     float width=7+(float)random.NextDouble()*4,depth=8+(float)random.NextDouble()*5;
     float x=side*(32+(i%6)*6+(float)random.NextDouble()*4);
-    float roof=-7+z*.15f+(float)random.NextDouble()*11;
+    // Lower foreground roofs expose the sunset and layered city beneath the lift.
+    float roof=-16+z*.10f+(float)random.NextDouble()*8;
     var building=Root(root.transform,"CanalMasonry",new Vector3(x,0,z));
     Body(building,width,depth,roof,i%3==0?shade:stone,trim);
-    Windows(building,width,depth,roof,side,glass,warmGlass,i);
+    Windows(building,width,depth,roof,side,glass,warmGlass,trim,i);
+    if(i<12&&i%3==0)FloorArchitectureDetails.Ivy(building,new Vector3(width*.39f,roof-.6f,-depth*.5f-.20f),2.1f,i+31,foliage,leafLight);
     if(i%4==0)
     {
      MeshArt.Box(building,"DrumCornice",new Vector3(0,roof+1.1f,0),new Vector3(width*.69f,1.8f,depth*.64f),stone);
@@ -96,13 +99,22 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    for(int side=-1;side<=1;side+=2)
     MeshArt.Box(building,"CornerPier",new Vector3(side*(width*.5f-.25f),(Foundation+roof)*.5f,-depth*.5f-.035f),new Vector3(.5f,roof-Foundation,.15f),trim);
   }
-  private static void Windows(Transform building,float width,float depth,float roof,int side,Material glass,Material warm,int variation)
+  private static void Windows(Transform building,float width,float depth,float roof,int side,Material glass,Material warm,Material trim,int variation)
   {
    for(int row=0;row<4;row++)for(int col=0;col<3;col++)
    {
     float y=roof-3-row*4.5f,x=(col-1)*width*.27f;
     var material=(row+col+variation)%7==0?warm:glass;
-    MeshArt.Box(building,"FrontWindowBay",new Vector3(x,y,-depth*.5f-.055f),new Vector3(1.05f,1.8f,.1f),material);
+    bool arched=variation<8&&row<2;
+    MeshArt.Box(building,"FrontWindowBay",new Vector3(x,y-(arched?.10f:0),-depth*.5f-.055f),new Vector3(1.05f,arched?1.50f:1.8f,.1f),material);
+    if(arched){
+     for(int segment=0;segment<7;segment++){var arch=FloorArchitectureDetails.ArchStone(building,"CityArchedLintel",segment*Mathf.PI/7,(segment+1)*Mathf.PI/7,.53f,.67f,y+.65f,-depth*.5f-.18f,.12f,trim);arch.transform.localPosition=Vector3.right*x;}
+     var fan=new Vector3[14];var triangles=new int[36];fan[0]=new Vector3(x,y+.65f,-depth*.5f-.11f);
+     for(int k=0;k<=12;k++){float a=k*Mathf.PI/12;fan[k+1]=new Vector3(x+Mathf.Cos(a)*.53f,y+.65f+Mathf.Sin(a)*.53f,-depth*.5f-.11f);if(k<12){triangles[k*3]=0;triangles[k*3+1]=k+2;triangles[k*3+2]=k+1;}}
+     MeshArt.Mesh(building,"CityTransomGlass",fan,triangles,null,material);
+     for(int edge=-1;edge<=1;edge+=2)MeshArt.Box(building,"WindowStoneReveal",new Vector3(x+edge*.59f,y-.12f,-depth*.5f-.15f),new Vector3(.12f,1.56f,.18f),trim);
+     MeshArt.Box(building,"WindowSill",new Vector3(x,y-.94f,-depth*.5f-.17f),new Vector3(1.42f,.14f,.28f),trim);
+    }
    }
    for(int row=0;row<4;row++)for(int col=0;col<2;col++)
     MeshArt.Box(building,"CanalWindowBay",new Vector3(-side*(width*.5f+.055f),roof-3-row*4.5f,(col-.5f)*depth*.43f),new Vector3(.1f,1.8f,1.25f),(row+col+variation)%7==0?warm:glass);

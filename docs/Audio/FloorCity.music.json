@@ -1,0 +1,1241 @@
+{
+  "title": "Windows at Golden Hour",
+  "game": "floor",
+  "bpm": 80,
+  "bars": 8,
+  "meter": "4/4",
+  "tonality": "C major / A minor",
+  "sample_rate": 22050,
+  "channels": 2,
+  "frames": 529200,
+  "duration": 24.0,
+  "pcm_bytes": 2116800,
+  "peak": 0.5804443359375,
+  "rms": 0.11199657439932131,
+  "dc": 1.539719077735261e-08,
+  "seam": 0.001708984375,
+  "seam_slope": 0.00042724609375,
+  "window_rms_min": 0.04270480770608754,
+  "window_rms_max": 0.1686702602774752,
+  "events": 152,
+  "original_score": [
+    {
+      "beat": 0.0,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 0.035,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 0.07,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 1.5,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 1.535,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 1.57,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 2.75,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 2.785,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 2.82,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 0,
+      "pitch": 36,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 2.5,
+      "pitch": 48,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 0,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 2.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 0.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 1.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 2.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 3.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 0.75,
+      "pitch": 64,
+      "duration": 0.7,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 2.5,
+      "pitch": 67,
+      "duration": 0.9,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 4.0,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 4.035,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 4.07,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 5.5,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 5.535,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 5.57,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 6.75,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 6.785,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 6.82,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 4,
+      "pitch": 33,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 6.5,
+      "pitch": 45,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 4,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 6.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 4.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 5.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 6.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 7.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 4.5,
+      "pitch": 69,
+      "duration": 1.3,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 7,
+      "pitch": 67,
+      "duration": 0.55,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 8.0,
+      "pitch": 53,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 8.035,
+      "pitch": 57,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 8.07,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 9.5,
+      "pitch": 53,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 9.535,
+      "pitch": 57,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 9.57,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 10.75,
+      "pitch": 53,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 10.785,
+      "pitch": 57,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 10.82,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 8,
+      "pitch": 29,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 10.5,
+      "pitch": 41,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 8,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 10.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 8.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 9.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 10.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 11.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 9,
+      "pitch": 65,
+      "duration": 1.2,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 11,
+      "pitch": 64,
+      "duration": 0.55,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 12.0,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": -0.3
+    },
+    {
+      "beat": 12.035,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.0
+    },
+    {
+      "beat": 12.07,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.3
+    },
+    {
+      "beat": 13.5,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": -0.3
+    },
+    {
+      "beat": 13.535,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.0
+    },
+    {
+      "beat": 13.57,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.3
+    },
+    {
+      "beat": 14.75,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": -0.3
+    },
+    {
+      "beat": 14.785,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.0
+    },
+    {
+      "beat": 14.82,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.3
+    },
+    {
+      "beat": 12,
+      "pitch": 31,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 14.5,
+      "pitch": 43,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 12,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 14.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 12.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 13.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 14.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 15.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 12.75,
+      "pitch": 62,
+      "duration": 0.7,
+      "instrument": "rhodes",
+      "gain": 0.09839999999999999,
+      "pan": 0.1
+    },
+    {
+      "beat": 14.75,
+      "pitch": 64,
+      "duration": 0.8,
+      "instrument": "rhodes",
+      "gain": 0.09839999999999999,
+      "pan": 0.1
+    },
+    {
+      "beat": 16.0,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 16.035,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 16.07,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 17.5,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 17.535,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 17.57,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 18.75,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 18.785,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 18.82,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 16,
+      "pitch": 36,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 18.5,
+      "pitch": 48,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 16,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 18.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 16.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 17.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 18.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 19.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 16.5,
+      "pitch": 67,
+      "duration": 1.2,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 18.75,
+      "pitch": 71,
+      "duration": 0.6,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 20.0,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 20.035,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 20.07,
+      "pitch": 62,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 21.5,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 21.535,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 21.57,
+      "pitch": 62,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 22.75,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 22.785,
+      "pitch": 59,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 22.82,
+      "pitch": 62,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 20,
+      "pitch": 28,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 22.5,
+      "pitch": 40,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 20,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 22.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 20.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 21.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 22.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 23.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 21,
+      "pitch": 69,
+      "duration": 0.75,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 22.5,
+      "pitch": 67,
+      "duration": 1,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 24.0,
+      "pitch": 53,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 24.035,
+      "pitch": 57,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 24.07,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 25.5,
+      "pitch": 53,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 25.535,
+      "pitch": 57,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 25.57,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 26.75,
+      "pitch": 53,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": -0.3
+    },
+    {
+      "beat": 26.785,
+      "pitch": 57,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.0
+    },
+    {
+      "beat": 26.82,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.085,
+      "pan": 0.3
+    },
+    {
+      "beat": 24,
+      "pitch": 29,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 26.5,
+      "pitch": 41,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 24,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 26.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 24.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 25.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 26.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 27.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 24.75,
+      "pitch": 65,
+      "duration": 1.2,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 27,
+      "pitch": 64,
+      "duration": 0.6,
+      "instrument": "rhodes",
+      "gain": 0.12,
+      "pan": 0.1
+    },
+    {
+      "beat": 28.0,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": -0.3
+    },
+    {
+      "beat": 28.035,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.0
+    },
+    {
+      "beat": 28.07,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.3
+    },
+    {
+      "beat": 29.5,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": -0.3
+    },
+    {
+      "beat": 29.535,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.0
+    },
+    {
+      "beat": 29.57,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.3
+    },
+    {
+      "beat": 30.75,
+      "pitch": 55,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": -0.3
+    },
+    {
+      "beat": 30.785,
+      "pitch": 60,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.0
+    },
+    {
+      "beat": 30.82,
+      "pitch": 64,
+      "duration": 0.65,
+      "instrument": "rhodes",
+      "gain": 0.0697,
+      "pan": 0.3
+    },
+    {
+      "beat": 28,
+      "pitch": 31,
+      "duration": 1.0,
+      "instrument": "bass",
+      "gain": 0.16,
+      "pan": 0
+    },
+    {
+      "beat": 30.5,
+      "pitch": 43,
+      "duration": 0.8,
+      "instrument": "bass",
+      "gain": 0.09,
+      "pan": 0
+    },
+    {
+      "beat": 28,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 30.5,
+      "pitch": null,
+      "duration": 0.17,
+      "instrument": "kick",
+      "gain": 0.045,
+      "pan": 0
+    },
+    {
+      "beat": 28.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 29.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 30.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 31.5,
+      "pitch": null,
+      "duration": 0.16,
+      "instrument": "brush",
+      "gain": 0.028,
+      "pan": 0.3
+    },
+    {
+      "beat": 28.75,
+      "pitch": 62,
+      "duration": 1,
+      "instrument": "rhodes",
+      "gain": 0.09839999999999999,
+      "pan": 0.1
+    },
+    {
+      "beat": 30.5,
+      "pitch": 59,
+      "duration": 1,
+      "instrument": "rhodes",
+      "gain": 0.09839999999999999,
+      "pan": 0.1
+    }
+  ],
+  "sha256": "2db8a8f515bd1dfc2775a286bf4b545994f7f62e7e7715c8a729f130dfe271dc",
+  "composer_sha256": "2f9952e87747c0daba987857f5f0fe731dab2130b4b90a8fae9405479c7b40c3"
+}

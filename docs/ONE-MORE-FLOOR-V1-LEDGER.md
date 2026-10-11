@@ -281,3 +281,12 @@ The coordinated desktop acceptance receipts and actual rendered views are record
 Acceptance remains bounded: desktop event-driven input and rendered QA do not establish physical iPhone raw multi-touch, thermal or 60 FPS acceptance; genuine provider purchase/reward transactions and full cinematic equivalence to the concept illustrations remain open. The known vendor UnityRuntime.framework dSYM warning does not prevent internal delivery; the game's own and UnityFramework symbols remain retained. No public App Review submission or Play publication was performed.
 
 The full 87-transfer mechanics acceptance predates only the decorative canal quarter. The final editor, DE/EN presentation and fresh-process reload receipts exercise the current art. Mechanics were not rewritten after that acceptance.
+
+
+## Review revisions and original music — 2026-10-11; TestFlight blocked
+
+Four different original musical scores now ship as bounded imported loops with an independent Music choice and master Sound mute. Fresh local Unity aggregate/Mac build exit 0 includes 42 music checks and zero music validation errors. Detailed provenance, current limitations and evidence: `docs/MUSIC-DESIGN-20261011.md`. Intended music source gain .22, .35-second fade, separate focus/pause gates, one owned voice; no third-party music or samples. Physical audible mix acceptance remains pending.
+
+Menus have parent history and a compact tutorial exit. Own scenic lobby passes104 checks; new slender brass cabin/teal runner/backpack preserve collision and timing. Fresh aggregate10920 checks/zero logged errors, cabin fixed-camera visibility33103, runner22082, architecture15721 vertices, music42. The previous actual showcase2151 checks predates the final slim-cabin correction; new renders must be compared before graphical acceptance.
+
+All current visual release reports remain failed/pending. Passing tests, mesh counts or a local build is not graphical acceptance. Do not upload any new TestFlight build until exact-source actual Unity renders satisfy the user’s concept gate. The user-deleted historical docs/concepts/PRIMARY-CONCEPT.png remains unstaged.
