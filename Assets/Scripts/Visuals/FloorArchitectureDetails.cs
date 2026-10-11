@@ -5,6 +5,27 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 {
  public static class FloorArchitectureDetails
  {
+  // One closed authored solid with real clipped corners and upper/lower bevels.
+  public static GameObject BeveledBlock(Transform parent,string name,Vector3 position,Vector3 size,float bevel,Material material)
+  {
+   bevel=Mathf.Min(bevel,Mathf.Min(size.x,Mathf.Min(size.y,size.z))*.24f);
+   float hx=size.x*.5f,hz=size.z*.5f,hy=size.y*.5f;
+   var vertices=new List<Vector3>();var uv=new List<Vector2>();var triangles=new List<int>();
+   Vector3 Point(int corner,int ring){float inset=ring==0||ring==3?bevel:0;float x=hx-inset,z=hz-inset,c=bevel*.62f;var point=corner switch{0=>new Vector2(-x+c,-z),1=>new Vector2(x-c,-z),2=>new Vector2(x,-z+c),3=>new Vector2(x,z-c),4=>new Vector2(x-c,z),5=>new Vector2(-x+c,z),6=>new Vector2(-x,z-c),_=>new Vector2(-x,-z+c)};return new Vector3(point.x,ring==0?-hy:ring==1?-hy+bevel:ring==2?hy-bevel:hy,point.y);}
+   void Tri(Vector3 a,Vector3 b,Vector3 c){int k=vertices.Count;vertices.Add(a);vertices.Add(b);vertices.Add(c);uv.Add(new Vector2(a.x,a.z));uv.Add(new Vector2(b.x,b.z));uv.Add(new Vector2(c.x,c.z));triangles.Add(k);triangles.Add(k+1);triangles.Add(k+2);}
+   void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int k=vertices.Count;vertices.AddRange(new[]{a,b,c,d});foreach(var point in new[]{a,b,c,d})uv.Add(new Vector2(point.x,point.z));triangles.AddRange(new[]{k,k+2,k+1,k,k+3,k+2});}
+   for(int edge=0;edge<8;edge++){int next=(edge+1)%8;Tri(new Vector3(0,-hy,0),Point(edge,0),Point(next,0));Tri(new Vector3(0,hy,0),Point(next,3),Point(edge,3));for(int ring=0;ring<3;ring++){var a=Point(edge,ring);var b=Point(next,ring);var c=Point(next,ring+1);var d=Point(edge,ring+1);Quad(a,b,c,d);}}
+   var go=MeshArt.Mesh(parent,name,vertices.ToArray(),triangles.ToArray(),uv.ToArray(),material);go.transform.localPosition=position;return go;
+  }
+  // Only the rear and side panels are glazed; the entire forward transfer opening stays clear.
+  public static void CabinGlass(Transform parent,Material material)
+  {
+   var v=new List<Vector3>();var t=new List<int>();
+   void Panel(Vector3 a,Vector3 b,Vector3 c,Vector3 d){int k=v.Count;v.AddRange(new[]{a,b,c,d});t.AddRange(new[]{k,k+1,k+2,k,k+2,k+3});}
+   for(int side=-1;side<=1;side+=2){float x=side*1.025f;Panel(new Vector3(x,1.28f,-.13f),new Vector3(x,1.28f,.54f),new Vector3(x,3.405f,.54f),new Vector3(x,3.405f,-.13f));}
+   Panel(new Vector3(-.82f,1.28f,.58f),new Vector3(.82f,1.28f,.58f),new Vector3(.82f,3.405f,.58f),new Vector3(-.82f,3.405f,.58f));
+   MeshArt.Mesh(parent,"CabinSideAndRearGlass",v.ToArray(),t.ToArray(),null,material);
+  }
   public static GameObject ArchStone(Transform parent,string name,float start,float end,float inner,float outer,float y,float z,float halfDepth,Material material)
   {
    Vector3 P(float a,float r,float d)=>new Vector3(Mathf.Cos(a)*r,y+Mathf.Sin(a)*r,z+d);

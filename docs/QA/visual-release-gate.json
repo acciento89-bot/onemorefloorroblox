@@ -1,10 +1,10 @@
 {
   "game": "One More Floor",
   "status": "failed",
-  "sourceSha256": null,
-  "reviewer": "Codex actual rendered image inspection",
+  "sourceSha256": "e0128d0f45ee1d37ad594db4ae76d3dc7191e6be6ce9ede5c9cfd4417f01eef0",
+  "reviewer": "Codex actual rendered image inspection against unchanged Oct10 approved board",
   "reviewedAt": "2026-10-11",
-  "reason": "Fresh slim-cabin/teal-backpack player showcase passes2149 functional checks and the fixed-camera head is visible. Actual city and scenic lobby still have sparse flat architectural/material detail compared with the approved warm dense concept. Geometry/budget/mute passes do not clear graphical concept acceptance.",
+  "reason": "Repetitive skyline, simplified character, sparse decoration, global lighting and oversized gameplay HUD remain below the Concept. Final Mac build exit0; graphics2024; full strict11345/loggedErrors0. Fresh native8670 checks/87 guided physical transfers/all3 towers/miss/bank/pause/framing exit0; final showcase2156/scoped runtime errors0 exit0. Actual background skyline lowered after comparison; exact rooftop-height assertion failed RED then passed GREEN. No mobile device performance or concept acceptance implied.",
   "criteria": {
     "concept_similarity": "failed",
     "character_or_tower": "pending",
@@ -23,25 +23,56 @@
     ],
     "menu": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/FidelityRuntime/lobby-de.png",
-        "sha256": "f7997e6af13bb24f6d9ee3b81ce34792148044d8359880185bddd34721bde1b3",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/lobby-de.png",
+        "sha256": "951827166a57ac22d1018da089127ef9c51768cfcb7462e3d0ed128def249a58",
         "origin": "Unity-render"
       }
     ],
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/FidelityRuntime/tutorial-timing.png",
-        "sha256": "f6ae91f6da6a300df1b9c322115f309012a40c79c9ea11d50c4a5540a9e30939",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/floor7.png",
+        "sha256": "455a04fc3a6097ce2e39fe6f418735f9971c8598c38f10baa527df34ff10028e",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/tutorial-landscape.png",
+        "sha256": "d098092fd3a942975c8c8d75bc679798f784fc569c5f60be1b8d650d5a41bfbf",
         "origin": "Unity-render"
       }
     ],
     "submenus": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/OneMoreFloor/FidelityRuntime/settings.png",
-        "sha256": "7a0c9468d9422ec2a0158b8a7a6b98a31b42dd8ef10faa0c39003a501a8fc2d0",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/risk-portrait-de.png",
+        "sha256": "b4522e0ec2c8dbab83a4da1a5fde1f03195f2a984f078649ea43144ff9865f74",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/settings-portrait-de.png",
+        "sha256": "30548d6cd332f9ebd8100cc0453e8ab60910a2ff5fc8e8d9d892314e816ff4c4",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/styles.png",
+        "sha256": "69c5acc534799121c212f6c4aa584ef097d18622dfd349118e0cc2a6e4e99fc1",
         "origin": "Unity-render"
       }
     ],
-    "variants": []
+    "variants": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/tower0-complete.png",
+        "sha256": "5c2402786277b76e0c8b7f429d8089ffe32a6e42a0c080e3deca42d2d2c3db7a",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/tower1-complete.png",
+        "sha256": "e0c281e15ac3eb21b23a36446a7b556bc9541d14e50c8008e4974d8c4f0e7a35",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/tower2-complete.png",
+        "sha256": "f9536a5a9b5a1606b82fa33e8911bee941a98e0d87ed4fb144cf9d31c8c853d9",
+        "origin": "Unity-render"
+      }
+    ]
   }
 }

@@ -298,3 +298,12 @@ Fresh final slim-cabin Mac showcase exited0 with2149 checks. Actual lobby/tutori
 New source adds a visible direct Shop, permanent separate Remove Ads nonconsumable bit4 (Germany EUR1.99 requested catalog target; actual store metadata only), premium purchase and Restore before long lists. Forced interstitials are considered only at safe genuinely successful result boundaries after at least3 successful completions and at least180 seconds since session start/last actual fullscreen ad. Tutorials, driving/repair/active play, background, other native providers and unavailable ads are excluded; no deferred show. Voluntary rewarded videos remain optional and delay subsequent forced advertising. Purchase persistence/idempotency/partial-catalog revocation protection and parent Back are preserved. QA disables native SDK requests including Store reconnect/purchase/restore; privacy invalidates cached forced ads and generations.
 
 New engine fixture: `Kamilunavo.OneMoreFloor.Editor.FloorInterstitialValidation.Validate`. Independent source review findings were corrected before fresh root validation. Exact final validation/build/runtime receipt lives under `/Volumes/SSK SSD/Kamilunavo/Builds/RisingExpansion-20261011/Commerce-verified-evidence.json`; it distinguishes engine/player success from unrun real-device/store/graphics gates. Catalog creation/price, live units, actual device sandbox purchase/restore/refund and UMP/SDK lifecycle remain pending. All4 visual concept gates remain FAILED; no TestFlight upload or version increment.
+
+
+## 2026-10-11 — actual Concept comparison and graphics refinement
+
+Shaped brass carriage bands, rear/side glass with open front, shadow-aware brass/stone shaders, lowered bell-tower scenery with roofs visible below the first landing, actual richer chapter studios and bounded camera-fit refinement.
+
+Final Mac build exit0; graphics2024; full strict11345/loggedErrors0. Fresh native8670 checks/87 guided physical transfers/all3 towers/miss/bank/pause/framing exit0; final showcase2156/scoped runtime errors0 exit0. Actual background skyline lowered after comparison; exact rooftop-height assertion failed RED then passed GREEN. No mobile device performance or concept acceptance implied.
+
+The repetitive skyline, character, sparse decoration, global lighting and oversized gameplay HUD remain far from the Concept. **Visual gate stays FAILED; no TestFlight.** Exact proof/capture paths and remaining gaps: `docs/GRAPHICS-COMPARISON-20261011.md`.

@@ -9,8 +9,8 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   public static void Build(Transform parent)
   {
    var sky=new Material(Shader.Find("Floor/Sky"));sky.mainTexture=Resources.Load<Texture2D>("Art/SkyPanorama");RenderSettings.skybox=sky;ArtLifetime.Own(parent.gameObject,sky);
-   RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.44f,.50f,.56f);RenderSettings.ambientEquatorColor=new Color(.44f,.43f,.38f);RenderSettings.ambientGroundColor=new Color(.24f,.29f,.28f);
-   RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.69f,.61f,.52f);RenderSettings.fogDensity=.005f;
+   RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.51f,.46f,.41f);RenderSettings.ambientEquatorColor=new Color(.42f,.35f,.28f);RenderSettings.ambientGroundColor=new Color(.24f,.29f,.28f);
+   RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.78f,.57f,.40f);RenderSettings.fogDensity=.005f;
    var stone=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityStone);
    var shade=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityShade);
    var trim=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityTrim);
@@ -40,7 +40,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     float width=7+(float)random.NextDouble()*4,depth=8+(float)random.NextDouble()*5;
     float x=side*(32+(i%6)*6+(float)random.NextDouble()*4);
     // Lower foreground roofs expose the sunset and layered city beneath the lift.
-    float roof=-16+z*.10f+(float)random.NextDouble()*8;
+    float roof=-37+z*.07f+(float)random.NextDouble()*7;
     var building=Root(root.transform,"CanalMasonry",new Vector3(x,0,z));
     Body(building,width,depth,roof,i%3==0?shade:stone,trim);
     Windows(building,width,depth,roof,side,glass,warmGlass,trim,i);
@@ -62,20 +62,25 @@ namespace Kamilunavo.OneMoreFloor.Visuals
      MeshArt.Box(building,"RoofLantern",new Vector3(width*.18f,roof+1.8f,0),new Vector3(1.5f,1.8f,1.8f),copper);
     }
    }
-   // A separate distant, subdued modern district supplies depth at upper floors.
-   // Tall buildings are farther from the transfer than the masonry quarter.
+   // A lower historic skyline exposes actual roof terminations below the lift.
+   // Bell chambers remain below the initial runner rather than filling the sky with piers.
    for(int i=0;i<12;i++)
    {
-    int side=i%2==0?-1:1;float width=8+i%3*2,depth=10,roof=42+(i*11%5)*6;
+    int side=i%2==0?-1:1;float width=4.4f+i%3*.7f,depth=5.1f,roof=-28+(i*11%5)*4;
     var tower=Root(root.transform,"DistantStoneTower",new Vector3(side*(66+i%4*12),0,92+i/2*21));
     Body(tower,width,depth,roof,distant,shade);
-    MeshArt.Box(tower,"CopperSetback",new Vector3(0,roof+2.5f,0),new Vector3(width*.70f,5,depth*.7f),copper);
+    FloorArchitectureDetails.BeveledBlock(tower,"BellTowerPediment",new Vector3(0,roof+.7f,0),new Vector3(width+.5f,.6f,depth+.5f),.10f,trim);
+    var bell=Root(tower,"HistoricBellChamber",new Vector3(0,roof+1,0));
+    for(int edge=-1;edge<=1;edge+=2)FloorArchitectureDetails.BeveledBlock(bell,"BellChamberPier",new Vector3(edge*width*.32f,2.1f,-depth*.28f),new Vector3(.42f,4.2f,.48f),.08f,stone);
+    for(int segment=0;segment<9;segment++)FloorArchitectureDetails.ArchStone(bell,"BellChamberArch",segment*Mathf.PI/9,(segment+1)*Mathf.PI/9,width*.23f,width*.30f,3.75f,-depth*.29f,.22f,trim);
+    FloorArchitectureDetails.BeveledBlock(bell,"BellChamberCornice",new Vector3(0,5.25f,0),new Vector3(width*.91f,.35f,depth*.91f),.07f,trim);
+    var bellRoof=MeshArt.Lathe(bell,"BellTowerCopperSpire",new[]{0f,.40f,1.55f,4.1f},new[]{width*.48f,width*.48f,width*.31f,.06f},12,copper,Vector3.one);bellRoof.transform.localPosition=Vector3.up*5.45f;
     for(int row=0;row<5;row++)for(int col=0;col<2;col++)
      MeshArt.Box(tower,"DistantWindowBay",new Vector3((col-.5f)*width*.44f,roof-5-row*6.5f,-depth*.5f-.025f),new Vector3(1.4f,2.5f,.08f),distantGlass);
    }
    for(int i=0;i<9;i++)
    {
-    float width=7+i%3*2,depth=9,roof=42+(i*13%7)*5;
+    float width=4.8f+i%3*1.1f,depth=6.2f,roof=-20+(i*13%7)*3;
     var tower=Root(root.transform,"RearQuarterSilhouette",new Vector3(-76+i*19,0,208+i%3*15));
     Body(tower,width,depth,roof,distant,shade);
     if(i%3==0)
@@ -93,11 +98,12 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   }
   private static void Body(Transform building,float width,float depth,float roof,Material stone,Material trim)
   {
-   MeshArt.Box(building,"GroundedFacade",new Vector3(0,(Foundation+roof)*.5f,0),new Vector3(width,roof-Foundation,depth),stone);
-   MeshArt.Box(building,"RoofCornice",new Vector3(0,roof,0),new Vector3(width+.65f,.45f,depth+.65f),trim);
-   MeshArt.Box(building,"UpperStringCourse",new Vector3(0,roof-5,0),new Vector3(width+.28f,.28f,depth+.28f),trim);
+   FloorArchitectureDetails.BeveledBlock(building,"GroundedFacade",new Vector3(0,(Foundation+roof)*.5f,0),new Vector3(width,roof-Foundation,depth),.12f,stone);
+   FloorArchitectureDetails.BeveledBlock(building,"RoofCornice",new Vector3(0,roof,0),new Vector3(width+.65f,.45f,depth+.65f),.12f,trim);
+   FloorArchitectureDetails.BeveledBlock(building,"UpperStringCourse",new Vector3(0,roof-5,0),new Vector3(width+.28f,.28f,depth+.28f),.12f,trim);
+   FloorArchitectureDetails.BeveledBlock(building,"QuayMasonryPlinth",new Vector3(0,CanalLevel+1.15f,0),new Vector3(width+.40f,2.3f,depth+.40f),.13f,trim);
    for(int side=-1;side<=1;side+=2)
-    MeshArt.Box(building,"CornerPier",new Vector3(side*(width*.5f-.25f),(Foundation+roof)*.5f,-depth*.5f-.035f),new Vector3(.5f,roof-Foundation,.15f),trim);
+    FloorArchitectureDetails.BeveledBlock(building,"CornerPier",new Vector3(side*(width*.5f-.25f),(Foundation+roof)*.5f,-depth*.5f-.035f),new Vector3(.5f,roof-Foundation,.15f),.12f,trim);
   }
   private static void Windows(Transform building,float width,float depth,float roof,int side,Material glass,Material warm,Material trim,int variation)
   {
@@ -107,6 +113,11 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     var material=(row+col+variation)%7==0?warm:glass;
     bool arched=variation<8&&row<2;
     MeshArt.Box(building,"FrontWindowBay",new Vector3(x,y-(arched?.10f:0),-depth*.5f-.055f),new Vector3(1.05f,arched?1.50f:1.8f,.1f),material);
+    if(!arched){
+     for(int edge=-1;edge<=1;edge+=2)FloorArchitectureDetails.BeveledBlock(building,"SquareWindowReveal",new Vector3(x+edge*.59f,y,-depth*.5f-.19f),new Vector3(.14f,1.99f,.25f),.025f,trim);
+     FloorArchitectureDetails.BeveledBlock(building,"WindowSill",new Vector3(x,y-.96f,-depth*.5f-.21f),new Vector3(1.42f,.14f,.36f),.025f,trim);
+     MeshArt.Box(building,"WindowTransom",new Vector3(x,y+.89f,-depth*.5f-.15f),new Vector3(1.22f,.08f,.15f),trim);
+    }
     if(arched){
      for(int segment=0;segment<7;segment++){var arch=FloorArchitectureDetails.ArchStone(building,"CityArchedLintel",segment*Mathf.PI/7,(segment+1)*Mathf.PI/7,.53f,.67f,y+.65f,-depth*.5f-.18f,.12f,trim);arch.transform.localPosition=Vector3.right*x;}
      var fan=new Vector3[14];var triangles=new int[36];fan[0]=new Vector3(x,y+.65f,-depth*.5f-.11f);

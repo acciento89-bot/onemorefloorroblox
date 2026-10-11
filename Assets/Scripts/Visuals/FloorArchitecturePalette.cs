@@ -4,8 +4,8 @@ using Kamilunavo.OneMoreFloor.Gameplay;
 
 namespace Kamilunavo.OneMoreFloor.Visuals
 {
- public enum FloorArchitectureSurface { Stone,Trim,Brass,Copper,Teal,Leaf,LeafLight,Lamp,Deck,CityStone,CityShade,CityTrim }
- // Twelve finite materials and two original 128² finishes per course/preview root.
+ public enum FloorArchitectureSurface { Stone,Trim,Brass,Copper,Teal,Leaf,LeafLight,Lamp,Deck,CityStone,CityShade,CityTrim,Glass }
+ // Thirteen finite surface kinds and two original 128² finishes per course/preview root.
  // No static generated assets survive a scene or a menu preview.
  [ExecuteAlways] public sealed class FloorArchitecturePalette:MonoBehaviour
  {
@@ -43,11 +43,13 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     FloorArchitectureSurface.Brass=>new Color(.74f,.51f,.23f),FloorArchitectureSurface.Copper=>new Color(.57f,.33f,.17f),
     FloorArchitectureSurface.Teal=>new Color(.035f,.19f,.20f),FloorArchitectureSurface.Leaf=>new Color(.13f,.30f,.14f),FloorArchitectureSurface.LeafLight=>new Color(.30f,.44f,.17f),
     FloorArchitectureSurface.Lamp=>new Color(1,.73f,.31f),FloorArchitectureSurface.Deck=>new Color(.79f,.73f,.60f),
-    FloorArchitectureSurface.CityStone=>new Color(.62f,.58f,.49f),FloorArchitectureSurface.CityShade=>new Color(.49f,.48f,.42f),_=>new Color(.73f,.68f,.57f)};
+    FloorArchitectureSurface.CityStone=>new Color(.70f,.58f,.43f),FloorArchitectureSurface.CityShade=>new Color(.55f,.44f,.34f),FloorArchitectureSurface.Glass=>new Color(.35f,.64f,.64f,.09f),_=>new Color(.82f,.71f,.53f)};
    bool metal=kind==FloorArchitectureSurface.Brass||kind==FloorArchitectureSurface.Copper;
+   if(metal)material.shader=Resources.Load<Shader>("FloorArchitecturalMetal");
+   if(kind==FloorArchitectureSurface.Glass)material.shader=Resources.Load<Shader>("FloorCabinGlass");
    if(metal){if(_metal==null)_metal=Finish(true);material.mainTexture=_metal;}
-   else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim){if(_stone==null)_stone=Finish(false);material.mainTexture=_stone;}
-   material.SetFloat("_Glossiness",metal?.54f:.12f);if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",metal?.64f:0);
+   else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim){material.shader=Resources.Load<Shader>("FloorMasonry");if(_stone==null)_stone=Finish(false);material.mainTexture=_stone;}
+   material.SetFloat("_Glossiness",metal?.72f:.12f);if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",metal?.72f:0);
    if(kind==FloorArchitectureSurface.Lamp){material.EnableKeyword("_EMISSION");material.SetColor("_EmissionColor",material.color*.65f);}
    ArtLifetime.Own(gameObject,material);_materials.Add(kind,material);return material;
   }
