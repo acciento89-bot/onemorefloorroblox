@@ -31,7 +31,7 @@ public static class FloorRunnerArtValidation
    }
    var face=runner.Head.Find("FaceSkin").GetComponent<MeshFilter>().sharedMesh.bounds;
    Check(face.size.x<.47f&&face.size.y>.38f&&face.size.y<.51f,"head uses a bounded humanoid profile");
-   Check(face.size.x*runner.Head.localScale.x<.39f,"lift runner has the smaller mature head silhouette");
+   Check(face.size.x*runner.Head.localScale.x>.45f&&face.size.x*runner.Head.localScale.x<.52f,"approved child adventurer has a bounded larger head silhouette");
    foreach(var renderer in host.GetComponentsInChildren<MeshRenderer>(true)){
     if(renderer.gameObject.activeInHierarchy)activeRenderers++;
     foreach(var material in renderer.sharedMaterials){Check(material!=null&&material.shader!=null,"all character materials resolve");materials.Add(material);if(material.mainTexture!=null)textures.Add(material.mainTexture);}

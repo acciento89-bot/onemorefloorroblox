@@ -14,7 +14,7 @@ public static class FloorAuthoredRunnerValidation
   void Check(bool value,string label){checks++;if(!value)throw new InvalidOperationException("AUTHORED_RUNNER: "+label);}
   try{
    var runner=RunnerArt.Build(host.transform);
-   Check(runner.Hips.localPosition==new Vector3(0,.85f,0)&&runner.Head.localPosition==new Vector3(0,.815f,.003f),"hips and head preserve exact animation origins");
+   Check(runner.Hips.localPosition==new Vector3(0,.711f,0)&&runner.Head.localPosition==new Vector3(0,.815f,.003f),"shorter child rig retains its intended hips/head origins and ground contact");
    foreach(int side in new[]{-1,1}){
     var knee=side<0?runner.LeftKnee:runner.RightKnee;
     Check(knee.localPosition==new Vector3(0,-.35f,.012f),"knee retains guided animation origin");

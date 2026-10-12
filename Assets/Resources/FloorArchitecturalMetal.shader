@@ -25,7 +25,7 @@ Shader "Floor/ArchitecturalMetal" {
   half diffuse=saturate(dot(n,light));half spec=pow(saturate(dot(n,normalize(light+view))),lerp(20,96,_Glossiness));
   half3 ambient=max(ShadeSH9(half4(n,1)),half3(.13,.13,.12));
   half fresnel=pow(1-saturate(dot(n,view)),4);
-  half3 result=albedo*(ambient*.48+_LightColor0.rgb*diffuse*atten*.66)+reflected*lerp(albedo,half3(.91,.79,.50),.28)*(.24+_Metallic*.40)+_LightColor0.rgb*spec*atten*1.05+fresnel*half3(.12,.11,.08);
+  half3 result=albedo*(ambient*.48+_LightColor0.rgb*diffuse*atten*.66)+reflected*lerp(albedo,half3(.91,.79,.50),.28)*(.20+_Metallic*.48)+_LightColor0.rgb*spec*atten*2.1+fresnel*half3(.12,.11,.08);
   result=result/(1+result*.38);fixed4 col=fixed4(result,1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
  }
  ENDCG }

@@ -9,16 +9,16 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var root=new GameObject("HoodieRunner",typeof(RunnerAnimator));root.transform.SetParent(parent,false);
    var animator=root.GetComponent<RunnerAnimator>();
    // All mutable materials and the detail texture belong to this avatar.
-   var skin=Material(root,"LiftRunnerWarmSkin",new Color(.86f,.58f,.36f),.22f);
+   var skin=Material(root,"LiftRunnerWarmSkin",new Color(.94f,.66f,.42f),.22f);
    var pants=Material(root,"RunnerBrownTravelCanvas",new Color(.29f,.20f,.115f),.08f);
    var ivory=Material(root,"LiftRunnerIvoryCanvas",new Color(.78f,.81f,.78f),.14f);
    var dark=Material(root,"LiftRunnerSeamsAndEyes",new Color(.045f,.055f,.067f),.12f);
    var teal=Material(root,"RunnerTealAdventureHoodie",new Color(.035f,.29f,.30f),.10f);
    var amber=Material(root,"RunnerAmberTrim",new Color(.91f,.58f,.14f),.20f);
-   var hair=Material(root,"LiftRunnerChestnutHair",new Color(.30f,.145f,.070f),.20f);
+   var hair=Material(root,"LiftRunnerChestnutHair",new Color(.27f,.115f,.048f),.20f);
    var gold=Material(root,"LiftRunnerPremiumThread",new Color(1,.88f,.39f),.22f);
    hair.mainTexture=HairDetail(root);var weave=ClothDetail(root);teal.mainTexture=weave;pants.mainTexture=weave;ivory.mainTexture=weave;animator.Hoodie=teal;
-   animator.Hips=Pivot(root.transform,"Hips",new Vector3(0,.85f,0));
+   animator.Hips=Pivot(root.transform,"Hips",new Vector3(0,.711f,0));animator.Hips.localScale=new Vector3(1,.84f,1);
 
    RunnerTailorGeometry.Tunic(animator.Hips,teal);
 
@@ -103,15 +103,15 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 
   static void BuildHead(RunnerAnimator animator,Material skin,Material ivory,Material dark,Material hair)
   {
-   animator.Head=Pivot(animator.Hips,"Head",new Vector3(0,.815f,.003f));animator.Head.localScale=new Vector3(1.02f,1.06f,1.02f);
+   animator.Head=Pivot(animator.Hips,"Head",new Vector3(0,.815f,.003f));animator.Head.localScale=new Vector3(1.26f,1.32f,1.26f);
    var neck=new RunnerMeshBuilder(animator.Hips,"Neck",skin);neck.Profile(new Vector3(0,0,.008f),new[]{.56f,.65f,.68f},new[]{.071f,.068f,.073f},new[]{.071f,.068f,.073f},12);neck.Finish();
    var face=new RunnerMeshBuilder(animator.Head,"FaceSkin",skin);
    face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.175f,-.085f,.03f,.12f,.195f,.225f},new[]{.085f,.138f,.181f,.190f,.187f,.151f,.085f},new[]{.069f,.109f,.142f,.154f,.145f,.115f,.06f},24,1f);face.Finish();
    var features=new RunnerMeshBuilder(animator.Head,"FaceFeatures",skin);
-   features.Loft(new[]{new Vector3(0,-.082f,.173f),new Vector3(0,-.055f,.197f),new Vector3(0,-.01f,.178f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.014f),new Vector2(.029f,.024f),new Vector2(.021f,.014f),new Vector2(.013f,.010f)},8);
+   features.Loft(new[]{new Vector3(0,-.082f,.173f),new Vector3(0,-.055f,.184f),new Vector3(0,-.01f,.178f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.014f),new Vector2(.029f,.024f),new Vector2(.021f,.014f),new Vector2(.013f,.010f)},8);
    for(int side=-1;side<=1;side+=2)features.Pebble(new Vector3(side*.196f,-.028f,-.005f),new Vector3(.054f,.096f,.059f),10);features.Finish();
    var eyes=new RunnerMeshBuilder(animator.Head,"EyeWhites",ivory);var expression=new RunnerMeshBuilder(animator.Head,"EyesAndExpression",dark);
-   for(int side=-1;side<=1;side+=2){eyes.Pebble(new Vector3(side*.079f,.021f,.164f),new Vector3(.051f,.058f,.017f),10);expression.Pebble(new Vector3(side*.079f,.018f,.178f),new Vector3(.025f,.035f,.010f),8);expression.Sweep(new[]{new Vector3(side*.043f,.081f,.164f),new Vector3(side*.074f,.089f,.163f),new Vector3(side*.109f,.080f,.153f)},new[]{.008f,.011f,.006f},new[]{.004f,.005f,.003f},6);}
+   for(int side=-1;side<=1;side+=2){eyes.Pebble(new Vector3(side*.079f,.021f,.164f),new Vector3(.067f,.078f,.021f),10);expression.Pebble(new Vector3(side*.079f,.018f,.178f),new Vector3(.030f,.045f,.012f),8);expression.Sweep(new[]{new Vector3(side*.043f,.081f,.164f),new Vector3(side*.074f,.089f,.163f),new Vector3(side*.109f,.080f,.153f)},new[]{.008f,.011f,.006f},new[]{.004f,.005f,.003f},6);}
    expression.Sweep(new[]{new Vector3(-.042f,-.128f,.145f),new Vector3(0,-.136f,.153f),new Vector3(.043f,-.128f,.145f)},new[]{.003f,.004f,.003f},new[]{.002f,.002f,.002f},5);eyes.Finish();expression.Finish();
    RunnerTailorGeometry.Hair(animator.Head,hair);
   }
