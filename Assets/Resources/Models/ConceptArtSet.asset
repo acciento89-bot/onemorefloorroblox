@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9fc9ab5340334118b423c34b5208d62, type: 3}
+  m_Name: ConceptArtSet
+  m_EditorClassIdentifier: Assembly-CSharp::Kamilunavo.OneMoreFloor.Visuals.FloorAuthoredArtSet
+  Boy: {fileID: 6085836031489360829, guid: 0cc1379e86e374e50bfc6dda844b5604, type: 3}
+  Cabin: {fileID: 1150671855475442537, guid: c8831ae590be34941a86df7989db6811, type: 3}
+  Balcony: {fileID: 51109824931110747, guid: 2b6898e9f1da4456eaa89db48d438762, type: 3}
+  Atrium: {fileID: 3551322266551341968, guid: af412bb57027a429a8ef9548d1696b69, type: 3}

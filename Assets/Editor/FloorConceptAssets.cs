@@ -49,6 +49,7 @@ public static class FloorConceptAssets
    importer.isReadable=true;importer.mipmapEnabled=false;importer.alphaIsTransparency=true;importer.wrapMode=TextureWrapMode.Clamp;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.SaveAndReimport();
   }
   var atlas=(TextureImporter)AssetImporter.GetAtPath("Assets/Resources/Art/ConceptStoneIvyAtlas-20261012.png");atlas.wrapMode=TextureWrapMode.Clamp;atlas.mipmapEnabled=true;atlas.maxTextureSize=1024;atlas.textureCompression=TextureImporterCompression.Compressed;atlas.SaveAndReimport();
+  var characterAtlas=(TextureImporter)AssetImporter.GetAtPath("Assets/Resources/Art/ConceptCharacterDetail-20261012.png");characterAtlas.wrapMode=TextureWrapMode.Clamp;characterAtlas.mipmapEnabled=true;characterAtlas.maxTextureSize=512;characterAtlas.textureCompression=TextureImporterCompression.Compressed;characterAtlas.SaveAndReimport();
   FontAsset("Cinzel-Regular");FontAsset("Barlow-Bold");FloorArtImports.Ensure();FloorConceptModelAssets.Export();AssetDatabase.SaveAssets();
   Debug.Log("FLOOR_CONCEPT_ASSETS_CONFIGURED URP17.6/HDR/perPixelPoint/Bloom/WarmGrading/BackgroundDoF/9slice/TMP");
  }

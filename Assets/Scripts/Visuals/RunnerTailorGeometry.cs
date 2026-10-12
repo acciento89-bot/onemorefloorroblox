@@ -90,18 +90,18 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    });
    // Wide overlapping locks travel from the part over the rear silhouette.
    // They have rounded broad roots and flattened tapered ends, not cone spikes.
-   for(int i=0;i<5;i++){
-    float x=-.139f+i*.061f,top=.20f+(1-Mathf.Abs(x)/.17f)*.039f;
+   for(int i=0;i<7;i++){
+    float x=-.151f+i*.047f,top=.20f+(1-Mathf.Abs(x)/.17f)*.039f;
     b.Ribbon(new[]{new Vector3(x-.018f,top-.031f,.081f),new Vector3(x+.019f,top+.012f,.019f),new Vector3(x+.045f,top-.004f,-.090f),new Vector3(x+.033f,.074f+(i%2)*.016f,-.178f)},new[]{.052f,.051f,.045f,.008f},new[]{.023f,.020f,.016f,.005f},10);
    }
    for(int side=-1;side<=1;side+=2)b.Ribbon(new[]{new Vector3(side*.165f,.145f,.039f),new Vector3(side*.196f,.081f,-.047f),new Vector3(side*.172f,-.025f,-.103f)},new[]{.042f,.036f,.012f},new[]{.019f,.017f,.007f},10);
    // Two raised forelocks break the helmet silhouette while retaining the head envelope.
    for(int i=0;i<2;i++){float x=-.06f+i*.09f;b.Ribbon(new[]{new Vector3(x,.214f,.037f),new Vector3(x+.025f,.265f,.020f),new Vector3(x+.061f,.243f,-.034f)},new[]{.041f,.020f,.004f},new[]{.023f,.017f,.003f},10);}
-   for(int i=0;i<3;i++){
-    float x=-.11f+i*.082f;
-    b.Ribbon(new[]{new Vector3(x-.030f,.167f,.087f),new Vector3(x+.008f,.136f,.140f),new Vector3(x+.046f,.077f+(i%2)*.024f,.153f)},new[]{.049f,.041f,.007f},new[]{.021f,.016f,.005f},10);
+   for(int i=0;i<4;i++){
+    float x=-.13f+i*.065f;
+    b.Ribbon(new[]{new Vector3(x-.030f,.167f,.087f),new Vector3(x+.008f,.136f,.140f),new Vector3(x+.029f,.111f+(i%2)*.009f,.153f),new Vector3(x+.046f,.077f+(i%2)*.024f,.153f)},new[]{.049f,.041f,.027f,.007f},new[]{.021f,.016f,.010f,.005f},10);
    }
-   b.Ribbon(new[]{new Vector3(-.068f,.182f,.105f),new Vector3(-.020f,.154f,.163f),new Vector3(.077f,.087f,.173f)},new[]{.044f,.039f,.008f},new[]{.022f,.020f,.006f},10);
+   b.Ribbon(new[]{new Vector3(-.068f,.182f,.105f),new Vector3(-.043f,.173f,.141f),new Vector3(-.020f,.154f,.163f),new Vector3(.031f,.121f,.177f),new Vector3(.077f,.087f,.173f)},new[]{.044f,.043f,.039f,.025f,.008f},new[]{.022f,.021f,.020f,.013f,.006f},10);
    return b.Finish(parent,"SweptChestnutHair",material);
   }
  }

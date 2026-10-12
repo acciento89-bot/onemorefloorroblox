@@ -4,8 +4,10 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 {
  public static class RunnerArt
  {
+  public const float DisplayScale=1.10f;
   public static RunnerAnimator Build(Transform parent)
   {
+   var assets=FloorAuthoredArtSet.Runtime;if(assets!=null)return assets.CreateBoy(parent);
    var root=new GameObject("HoodieRunner",typeof(RunnerAnimator));root.transform.SetParent(parent,false);
    var animator=root.GetComponent<RunnerAnimator>();
    // All mutable materials and the detail texture belong to this avatar.
@@ -17,12 +19,15 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var amber=Material(root,"RunnerAmberTrim",new Color(.91f,.58f,.14f),.20f);
    var hair=Material(root,"LiftRunnerChestnutHair",new Color(.34f,.17f,.07f),.20f);
    var gold=Material(root,"LiftRunnerPremiumThread",new Color(1,.88f,.39f),.22f);
-   hair.mainTexture=HairDetail(root);var weave=ClothDetail(root);teal.mainTexture=weave;pants.mainTexture=weave;ivory.mainTexture=weave;animator.Hoodie=teal;
+   var atlas=Resources.Load<Texture2D>("Art/ConceptCharacterDetail-20261012");
+   hair.mainTexture=atlas!=null?atlas:HairDetail(root);var weave=atlas!=null?atlas:ClothDetail(root);teal.mainTexture=weave;pants.mainTexture=weave;ivory.mainTexture=weave;
+   if(atlas!=null){hair.SetVector("_DetailRegion",new Vector4(.5f,0,.5f,1));foreach(var garment in new[]{teal,pants,ivory}){garment.SetVector("_DetailRegion",new Vector4(0,0,.5f,1));garment.mainTextureScale=new Vector2(3,3);}}
+   animator.Hoodie=teal;
    animator.Hips=Pivot(root.transform,"Hips",new Vector3(0,.711f,0));animator.Hips.localScale=new Vector3(1,.84f,1);
 
    RunnerTailorGeometry.Tunic(animator.Hips,teal);
 
-   var hood=new RunnerMeshBuilder(animator.Hips,"WhiteDrapedHood",ivory);
+   var hood=new RunnerMeshBuilder(animator.Hips,"WhiteDrapedHood",teal);
    hood.Sweep(new[]{new Vector3(-.18f,.525f,.015f),new Vector3(-.20f,.56f,-.08f),new Vector3(-.15f,.615f,-.155f),new Vector3(0,.64f,-.17f),new Vector3(.15f,.615f,-.155f),new Vector3(.20f,.56f,-.08f),new Vector3(.18f,.525f,.015f)},new[]{.043f,.063f,.076f,.082f,.076f,.063f,.043f},new[]{.025f,.038f,.043f,.047f,.043f,.038f,.025f},10);
    for(int side=-1;side<=1;side+=2){hood.Sweep(new[]{new Vector3(side*.086f,.548f,.095f),new Vector3(side*.075f,.48f,.159f),new Vector3(side*.078f,.392f,.167f)},new[]{.006f,.005f,.005f},new[]{.006f,.005f,.005f},6);hood.Pebble(new Vector3(side*.078f,.384f,.168f),new Vector3(.014f,.023f,.014f),6);}
    hood.Finish();
@@ -107,15 +112,17 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    animator.Head=Pivot(animator.Hips,"Head",new Vector3(0,.815f,.003f));animator.Head.localScale=new Vector3(1.26f,1.32f,1.26f);
    var neck=new RunnerMeshBuilder(animator.Hips,"Neck",skin);neck.Profile(new Vector3(0,0,.008f),new[]{.56f,.65f,.68f},new[]{.071f,.068f,.073f},new[]{.071f,.068f,.073f},12);neck.Finish();
    var face=new RunnerMeshBuilder(animator.Head,"FaceSkin",skin);
-   face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.175f,-.085f,.03f,.12f,.195f,.225f},new[]{.085f,.138f,.181f,.190f,.187f,.151f,.085f},new[]{.069f,.109f,.142f,.154f,.145f,.115f,.06f},24,1f);var faceObject=face.Finish();var faceMesh=faceObject.GetComponent<MeshFilter>().sharedMesh;var facePoints=faceMesh.vertices;var faceTint=new Color[facePoints.Length];for(int i=0;i<facePoints.Length;i++){var p=facePoints[i];float blush=Mathf.Exp(-((Mathf.Abs(p.x)-.14f)*(Mathf.Abs(p.x)-.14f)/.004f+(p.y+.065f)*(p.y+.065f)/.004f))*Mathf.Clamp01(p.z*8);faceTint[i]=Color.Lerp(Color.white,new Color(1,.80f,.79f),blush*.65f);}faceMesh.colors=faceTint;
+   // Sculpted chin, soft jaw, cheek volume and round forehead. Added sections
+   // change the actual silhouette; they are not painted onto the old toy head.
+   face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.198f,-.175f,-.132f,-.085f,-.031f,.03f,.075f,.12f,.165f,.195f,.225f},new[]{.075f,.105f,.137f,.164f,.181f,.191f,.190f,.190f,.187f,.173f,.151f,.085f},new[]{.065f,.087f,.109f,.130f,.148f,.158f,.160f,.155f,.145f,.132f,.115f,.060f},32,1f);var faceObject=face.Finish();var faceMesh=faceObject.GetComponent<MeshFilter>().sharedMesh;var facePoints=faceMesh.vertices;var faceTint=new Color[facePoints.Length];for(int i=0;i<facePoints.Length;i++){var p=facePoints[i];float blush=Mathf.Exp(-((Mathf.Abs(p.x)-.14f)*(Mathf.Abs(p.x)-.14f)/.004f+(p.y+.065f)*(p.y+.065f)/.004f))*Mathf.Clamp01(p.z*8);faceTint[i]=Color.Lerp(Color.white,new Color(1,.80f,.79f),blush*.65f);}faceMesh.colors=faceTint;
    var features=new RunnerMeshBuilder(animator.Head,"FaceFeatures",skin);
-   features.Loft(new[]{new Vector3(0,-.082f,.170f),new Vector3(0,-.055f,.178f),new Vector3(0,-.01f,.174f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.012f),new Vector2(.027f,.018f),new Vector2(.021f,.012f),new Vector2(.013f,.010f)},8);
-   for(int side=-1;side<=1;side+=2)features.Pebble(new Vector3(side*.196f,-.028f,-.005f),new Vector3(.054f,.096f,.059f),10);features.Finish();
+   features.Loft(new[]{new Vector3(0,-.082f,.170f),new Vector3(0,-.055f,.178f),new Vector3(0,-.01f,.174f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.012f),new Vector2(.027f,.018f),new Vector2(.021f,.012f),new Vector2(.013f,.010f)},16);
+   for(int side=-1;side<=1;side+=2){features.Pebble(new Vector3(side*.196f,-.028f,-.005f),new Vector3(.054f,.096f,.059f),10);features.Sweep(new[]{new Vector3(side*.211f,.012f,.017f),new Vector3(side*.219f,-.017f,.025f),new Vector3(side*.211f,-.045f,.019f)},new[]{.009f,.011f,.007f},new[]{.006f,.007f,.005f},8);}features.Finish();
    var eyes=new RunnerMeshBuilder(animator.Head,"EyeWhites",ivory);var expression=new RunnerMeshBuilder(animator.Head,"EyesAndExpression",dark);
    // Thin lenses follow the cheek curvature. The far eye sits behind the nose
    // in the fixed side view instead of appearing as a second floating eyeball.
-   for(int side=-1;side<=1;side+=2){var orientation=Quaternion.Euler(0,side*23f,0);var normal=orientation*Vector3.forward;var center=new Vector3(side*.079f,.021f,.154f);eyes.Pebble(center,new Vector3(.077f,.091f,.014f),10,orientation);eyes.Pebble(center+normal*.014f+new Vector3(-side*.003f,.012f,0),new Vector3(.011f,.015f,.005f),8,orientation);expression.Pebble(center+normal*.010f+Vector3.down*.003f,new Vector3(.039f,.058f,.006f),8,orientation);expression.Sweep(new[]{new Vector3(side*.043f,.081f,.164f),new Vector3(side*.074f,.089f,.163f),new Vector3(side*.109f,.080f,.153f)},new[]{.008f,.011f,.006f},new[]{.004f,.005f,.003f},6);}
-   expression.Sweep(new[]{new Vector3(-.042f,-.128f,.145f),new Vector3(0,-.136f,.153f),new Vector3(.043f,-.120f,.145f)},new[]{.003f,.004f,.003f},new[]{.002f,.002f,.002f},5);var eyeObject=eyes.Finish();var eyeMesh=eyeObject.GetComponent<MeshFilter>().sharedMesh;var eyeTint=new Color[eyeMesh.vertexCount];for(int i=0;i<eyeTint.Length;i++)eyeTint[i]=new Color(.96f,.97f,.95f,.5f);eyeMesh.colors=eyeTint;expression.Finish();
+   for(int side=-1;side<=1;side+=2){var orientation=Quaternion.Euler(0,side*23f,0);var normal=orientation*Vector3.forward;var center=new Vector3(side*.079f,.021f,.157f);eyes.Pebble(center,new Vector3(.067f,.079f,.012f),12,orientation);eyes.Pebble(center+normal*.011f+new Vector3(-side*.005f,.012f,0),new Vector3(.011f,.015f,.005f),8,orientation);expression.Pebble(center+normal*.008f+Vector3.down*.002f,new Vector3(.032f,.047f,.005f),10,orientation);expression.Sweep(new[]{new Vector3(side*.045f,.074f,.166f),new Vector3(side*.058f,.080f,.166f),new Vector3(side*.074f,.082f,.165f),new Vector3(side*.091f,.079f,.161f),new Vector3(side*.109f,.074f,.156f)},new[]{.006f,.008f,.009f,.007f,.004f},new[]{.004f,.004f,.004f,.004f,.003f},8);}
+   expression.Sweep(new[]{new Vector3(-.042f,-.128f,.145f),new Vector3(-.025f,-.134f,.150f),new Vector3(0,-.136f,.153f),new Vector3(.025f,-.130f,.151f),new Vector3(.043f,-.120f,.145f)},new[]{.003f,.0035f,.004f,.0035f,.003f},new[]{.002f,.002f,.002f,.002f,.002f},5);var eyeObject=eyes.Finish();var eyeMesh=eyeObject.GetComponent<MeshFilter>().sharedMesh;var eyeTint=new Color[eyeMesh.vertexCount];for(int i=0;i<eyeTint.Length;i++)eyeTint[i]=new Color(.96f,.97f,.95f,.5f);eyeMesh.colors=eyeTint;var expressionObject=expression.Finish();var expressionMesh=expressionObject.GetComponent<MeshFilter>().sharedMesh;var expressionPoints=expressionMesh.vertices;var expressionColours=new Color[expressionPoints.Length];for(int i=0;i<expressionColours.Length;i++)expressionColours[i]=expressionPoints[i].y<-.09f?new Color(.29f,.14f,.075f,.5f):expressionPoints[i].y>.065f?new Color(.21f,.095f,.043f,.5f):Color.white;expressionMesh.colors=expressionColours;
    RunnerTailorGeometry.Hair(animator.Head,hair);
   }
 

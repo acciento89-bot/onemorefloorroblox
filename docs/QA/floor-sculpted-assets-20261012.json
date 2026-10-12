@@ -1,0 +1,198 @@
+{
+  "sourceSha256": "34f82faab4ae561f71aaaba0689075c113fe57104721ecc7cdfeba3153c7054f",
+  "bundleSha256": "b28d3c4eb9844a2b99fcce781e1e44624d7e2ecc218aa238d599dd9c0cb00073",
+  "bundleFiles": 359,
+  "app": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/OneMoreFloor-SculptQa3.app",
+  "baseCommit": "005fadaa4adf2fde8599bedfa9b8bc30a4f332e2",
+  "createdAt": "2026-10-12T21:40:42.304563+00:00",
+  "build": "editor-studio3.log",
+  "buildExitCode": 0,
+  "strictEditorResult": "FLOOR_ALL_PASS checks=14711 loggedErrors=0",
+  "target": "StandaloneOSX development QA from native Mac GUI Editor",
+  "bundleHashDefinition": "Sorted relative file path + NUL + SHA256(file bytes)",
+  "changesAfterFull87Phase1": [
+    "Assets/Editor/FloorArtStudio.cs",
+    "Assets/Models/SculptedConcept/GrandLobby.prefab",
+    "Assets/Models/SculptedConcept/GrandLobbyGeometry-v3.asset",
+    "Assets/Models/SculptedConcept/GrandLobbyGeometry-v3.asset.meta",
+    "Assets/Scripts/UI/FloorHud.cs",
+    "Assets/Scripts/Visuals/LiftAtriumArt.cs"
+  ],
+  "fullRuntime": "ELEVATOR_QA_PASS checks=8759 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+  "reloadRuntime": "ELEVATOR_RELOAD_PASS checks=6",
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2376",
+  "gpuRuntime": "CONCEPT_GPU_PASS maskDelta=0 warmPointRedGain=0.1254902 bloomHaloGain=0.4 nearSharpRatio=0.9991756 farSoftRatio=0.3024167 forcedOpaqueDepthPrepass=true",
+  "reviewedAt": "2026-10-12T21:58:24.676955+00:00",
+  "visualStatus": "failed",
+  "nativeUnityEditorUsed": true,
+  "iosBuildAttempted": false,
+  "testFlightAttempted": false,
+  "providerTransactionsAttempted": false,
+  "scope": "One More Floor only: original curved-face/hair/wardrobe meshes and image-generated shared detail atlas, editable persistent prefabs consumed by actual runtime, native Mac Unity authoring scene/window/mesh export/real GPU closeups, bounded actual doorway lamps, carved balcony capitals/flutes, improved portrait lobby framing, extended modeled foreground marble, opaque child-menu backgrounds. Existing gold UI/URP/camera/collision/economy/checkpoint rules retained.",
+  "limitations": "Overall Concept resemblance remains FAILED: figure finish, richer carved architecture, reflective glass/brass, scenic detail and full lobby composition remain simpler than the unchanged approved illustration. Normalized layout/camera framing do not prove pixel-identical rendering across aspect ratios. Actual Mac development-player evidence is not physical iPhone raw touch/FPS/audio/StoreKit/consent/ad-provider acceptance. A narrow background strip remains at the lower edge of the lobby; further foreground camera composition is open. No TestFlight or other-game changes.",
+  "budgets": {
+    "architectureVertices": 29049,
+    "architectureMaterials": 12,
+    "architectureTextures": 2,
+    "cabinVertices": 7719,
+    "cabinRawRenderers": 32,
+    "runnerVertices": 5760,
+    "runnerTriangles": 9962,
+    "runnerDefaultRenderers": 31,
+    "runnerMaterials": 8,
+    "runnerOwnedGeneratedTextures": 0,
+    "runnerPersistentSharedAtlas": 1,
+    "characterAtlasDefaultImporterLimit": 512
+  },
+  "nativeSavedEditsTest": {
+    "source": "ab2c1f387125581192fc9ab3b12540122659526eac38c1af07c3acc7f62bb71a",
+    "result": "Native Editor: saved artist scene root, transform and active state survive close/reopen; original model instances retained.",
+    "note": "Real native saved artist root position/active state survived close/reopen, followed by owned probe cleanup. The loader logic is retained in final3."
+  },
+  "meaningfulRed": [
+    "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/face-sculpt-red.log",
+    "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/asset-flow-red.txt"
+  ],
+  "reviewFixes": [
+    "Saved authoring scene is opened from disk rather than overwritten on reopen.",
+    "Independent mesh/material ownership prevents paid styles mutating source or peer.",
+    "Synchronous capture-pass compilation prevents missing cold GUI geometry.",
+    "Too-small eye glint corrected after actual areaSquared=3.826443E-13 triangle rejection, without lowering threshold.",
+    "Actual final comparison exposed short foreground floor; original marble geometry now extends toward camera.",
+    "Final settings inspection exposed a gold gameplay-button edge; opaque child backdrops now fully hide gameplay/action, retaining parent Back/resume flow."
+  ],
+  "failedCandidatesAndDiagnostics": "Historical startup untitled-scene exception and tiny-glint rejection retained externally; not passed receipts. Phase1/2 receipts are historical source-bound records. Final3 repeats strict build, actual showcase/GPU, full87 and fresh-process reload on the final exact source/bundle. Mobile/native-provider acceptance unrun.",
+  "validationReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/editor-studio3.log",
+      "sha256": "7770ce67eb6c93c86f53eb4fe74b1d2ddaca6fe2b508e1c92b3b2d6c9c9dfaad"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/sculpt3-source-proof.json",
+      "sha256": "015df4a500791813196804c7c7879a03dda5e2490df5a1b865b29b7be008ab9b"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Full3/PASS.txt",
+      "sha256": "72d8479cf8cddf126edc895be8d7ce8f292899ddd5141cf957bbedfbe7d944dc"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Reload3/RELOAD-PASS.txt",
+      "sha256": "210690843527a123f8beb74d89528c1e4cf77cce20f8dafd638e3438cfee1f74"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/SHOWCASE-PASS.txt",
+      "sha256": "d3655d7362a54b53ac0192b3b9c2f60463d6d7eb53fe729eeb611e45402376d5"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/CONCEPT-GPU-PASS.txt",
+      "sha256": "53aef3138d6c2977d9257c5a85c88734997b2cc1df88e870fd6b89f33febe4c6"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio1/STUDIO-REOPEN-PASS.txt",
+      "sha256": "e9656cf77b9933b6723961ff8594144ea08bc55f3554d6bed54f2dea12451721"
+    }
+  ],
+  "renderedEvidence": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Full3/realm0-lift-ready.png",
+      "sha256": "0fabd3fcb00dbf7d06a5d23ffe4a0b3974f5d98dfbb86895154cc9b28dac7d52",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Full3/floor16.png",
+      "sha256": "77f21165eb1a6682c006403e2d2a0e3aae37b503a341c72d1022fb2d63fab16c",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/lobby-de.png",
+      "sha256": "f2888d66dc6c41adec9d55028db7b77e30a35d5510cfbbd68faff8527a8c7b35",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/lobby-landscape.png",
+      "sha256": "3b76d879f8ad13d9d18168d2f7a2264ab62f44e48a516158c3fecd5edae4c3fd",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/tower-ready-landscape.png",
+      "sha256": "929fe384e53857ef5833a847d3f3aebf095a893f7c3b4278ceffa5e22bb12c59",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/settings-portrait-de.png",
+      "sha256": "7dc39ac2e5201b3f4f1ef9c4a7b509f6f8825f5666583b7635d348b944939526",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/risk-portrait-de.png",
+      "sha256": "9764679179d4a8499a73996483c598b6e9ebafa4386b139740c06735005b26e3",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/banked-portrait-de.png",
+      "sha256": "d1f9fdbc1d170249fd1ecde849d8c9befd4b459148bf662cf7f4037f6f045514",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/character-world0.png",
+      "sha256": "2541d4526b5731f9162e9fa453a78e22e387ffae7930aaacceedb95e1cbcc0fc",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/character-world1.png",
+      "sha256": "2554ca99d12e5f98332ea25919936d7a024945f7fc413e9c9943fe0d667bd192",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/character-world2.png",
+      "sha256": "452557a2ff48fbafeb1f884f766f76d5513a50a1756a761f4065c212b6336864",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/runner-design0.png",
+      "sha256": "71e2d26b9a429200a97731809c93419659aa81c03b6eafb612a9aa7e3581b48f",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/runner-design1.png",
+      "sha256": "691076d630ca9f0eed5ceb0b956697da38d15f84254b1fd83d8188226ef8d0f8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/runner-design3.png",
+      "sha256": "6ac082bd0b526a46c912f1d660a8393f6b374d37cffe1f6096d2a2f3f99cb7e4",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/Showcase3/runner-design7.png",
+      "sha256": "b18d42f362542b0446978ad3ff3801f83536ad1b86ecc7bb444eb845acdd7028",
+      "origin": "Unity-render"
+    }
+  ],
+  "nativeModelRenders": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio/AdventureBoy.png",
+      "sha256": "71a75a6cbe19d3d00320ffed331bdf1acd37246053804e994ecdeae38d9a9f98",
+      "origin": "Unity-Editor-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio/OrnateCarriage.png",
+      "sha256": "a88d85066b5ff2d32112828ae7c219255835d4254756ac9f0b33ba50c75fade1",
+      "origin": "Unity-Editor-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio/CarvedBalcony.png",
+      "sha256": "78bbcf64b64cb55f7161c2ed5a2da0806663c306450cfe5f1aaf38beb9ca6426",
+      "origin": "Unity-Editor-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio/GrandLobby.png",
+      "sha256": "a480b4af2b6b34b9bb7a3b48c4fccde1d06a8eeb4b0c0b3e238c7c78317c0983",
+      "origin": "Unity-Editor-render"
+    }
+  ],
+  "comparisonManifest": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Artifacts/FloorSculptComparison-20261012/Final3/sources.json",
+    "sha256": "afc48e85304da5ae15443ac25a436ec9664f343030ef42318e8c23b35727787e"
+  }
+}

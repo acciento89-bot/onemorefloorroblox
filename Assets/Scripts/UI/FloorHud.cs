@@ -63,7 +63,8 @@ namespace Kamilunavo.OneMoreFloor.UI
   private static bool ChildPage(string page)=>page=="settings"||page=="style"||page=="shop"||page=="daily"||page=="achievements";
   private void Back(){if(NavigationLocked)return;_page=_parents.Count>0?_parents.Pop():"home";Reopen();}
   private bool Begin(string page,string title){if(NavigationLocked)return false;if(!_rebuildingPage&&page!=_page){if(ChildPage(page))_parents.Push(string.IsNullOrEmpty(_page)?"home":_page);else _parents.Clear();}UiFactory.HighContrast=P.HighContrast;Tap();if(_modal!=null){_modal.gameObject.SetActive(false);Destroy(_modal.gameObject);}_page=page;Course.Paused=true;
-   _modal=UiFactory.Panel(_safe,"ModalBackdrop",page=="home"?Color.clear:new Color(.035f,.09f,.12f,.24f),Vector2.zero,Vector2.one);
+   _modal=UiFactory.Panel(_safe,"ModalBackdrop",page=="home"?Color.clear:ChildPage(page)?Ivory:new Color(.035f,.09f,.12f,.24f),Vector2.zero,Vector2.one);
+   if(ChildPage(page))_modal.GetComponent<Image>().material=null;
    float sw=_safe.rect.width,sh=_safe.rect.height,w=Mathf.Min(sw-24,sw>sh?820:460),h=Mathf.Min(sh-24,sw>sh?340:page=="home"?860:page=="checkpoint"?520:page=="banked"||page=="complete"||page=="tutorialComplete"?460:680),closeSize=UiMetrics.TargetSize(_safe,page=="home"&&sw<=sh?64:52),top=page=="home"?(sw>sh&&sh<335?8:54):sw>sh?58:78;if(page=="home"){w=sw;h=sh;}var card=UiFactory.Panel(_modal,"ModalCard",Ivory,Vector2.zero,Vector2.one);Place(card,(sw-w)/2,(sh-h)/2,w,h);
    var mark=UiFactory.Panel(card,"HeaderSignal",Copper,Vector2.zero,Vector2.one);Place(mark,16,16,3,28);
    var titleLabel=UiFactory.Label(card,"Title",title,page=="home"?27:24,Vector2.zero,Vector2.one,TextAnchor.MiddleLeft,Ink,FontStyle.Bold);Place((RectTransform)titleLabel.transform,30,10,w-46,34);titleLabel.font=Resources.Load<Font>("Fonts/Cinzel-Regular")??titleLabel.font;FloorConceptTypography.Apply(titleLabel);

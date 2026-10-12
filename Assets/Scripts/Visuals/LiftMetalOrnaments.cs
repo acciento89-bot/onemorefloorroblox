@@ -31,6 +31,14 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   }
   public static void Balcony(Transform root,Material iron,Material brass)
   {
+   // Small sculpted stone faces share one batch. Curved flutes and volute
+   // capitals create real grazing-light depth instead of painted flat pillars.
+   var stone=FloorArchitecturePalette.Get(root,FloorArchitectureSurface.Trim);
+   var carving=new RunnerMeshBuilder(root,"BalconySculptedStoneProfiles",stone);
+   for(int side=-1;side<=1;side+=2){
+    for(int flute=0;flute<4;flute++){float x=side*1.295f+(flute-1.5f)*.057f;carving.Sweep(new[]{new Vector3(x,.69f,.441f),new Vector3(x,.85f,.431f),new Vector3(x,2.57f,.431f),new Vector3(x,2.74f,.441f)},new[]{.009f,.018f,.018f,.009f},new[]{.014f,.025f,.025f,.014f},6);}
+    for(int turn=-1;turn<=1;turn+=2){var path=new Vector3[7];var widths=new float[7];for(int i=0;i<7;i++){float a=i*Mathf.PI*.36f,r=.098f*(1-i*.10f);path[i]=new Vector3(side*1.295f+turn*(.075f+Mathf.Cos(a)*r),2.80f+Mathf.Sin(a)*r,.419f);widths[i]=.020f;}carving.Sweep(path,widths,widths,6);}
+   }carving.Finish();
    var scrolls=new RunnerMeshBuilder(root,"BalconyForgedScrollwork",iron);
    for(int cell=0;cell<8;cell++)for(int side=-1;side<=1;side+=2){
     var path=new Vector3[14];var width=new float[14];for(int i=0;i<14;i++){float f=i/13f,a=f*Mathf.PI*2.1f,r=.101f*(1-f*.77f);path[i]=new Vector3(-.98f+cell*.28f+side*Mathf.Cos(a)*r,.83f+side*Mathf.Sin(a)*r,-1.19f);width[i]=.011f;}scrolls.Sweep(path,width,width,5);

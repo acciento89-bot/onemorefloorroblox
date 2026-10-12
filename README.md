@@ -20,7 +20,7 @@ The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
 Current literal Concept correction: [One elevator to fixed tower balconies](docs/FLOOR-LIFT-TO-TOWER-20261012.md). Earlier economy and checkpoint design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
-Latest actual URP/gold UI/character/texture batch and bounded evidence: [Concept lighting and UI rebuild](docs/FLOOR-CONCEPT-URP-UI-20261012.md). Earlier [environment/lobby revision](docs/FLOOR-ENVIRONMENT-REBUILD-20261012.md) is historical. Overall graphical acceptance remains failed; no TestFlight upload.
+Latest native Mac Unity Editor / consumed sculpted assets / closed marble lobby / opaque child menus: [Original assets and native Art Studio](docs/FLOOR-UNITY-ART-STUDIO-20261012.md). Graphical acceptance remains failed. Earlier URP/gold UI/character/texture batch and bounded evidence: [Concept lighting and UI rebuild](docs/FLOOR-CONCEPT-URP-UI-20261012.md). Earlier [environment/lobby revision](docs/FLOOR-ENVIRONMENT-REBUILD-20261012.md) is historical. Overall graphical acceptance remains failed; no TestFlight upload.
 Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).
 Older parkour tests and build1 delivery entries describe the previous candidate and do not validate this redesign.
 

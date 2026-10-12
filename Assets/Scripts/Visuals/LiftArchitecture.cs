@@ -9,15 +9,16 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   static Material Finish(Transform owner,FloorArchitectureSurface surface)=>FloorArchitecturePalette.Get(owner,surface);
   public static void Cabin(Transform parent)
   {
+   var assets=FloorAuthoredArtSet.Runtime;if(assets!=null){assets.CreateKit(assets.Cabin,parent,"CopperLiftCabin");return;}
    var root=new GameObject("CopperLiftCabin").transform;root.SetParent(parent,false);
    var copper=Finish(parent,FloorArchitectureSurface.Copper);var brass=Finish(parent,FloorArchitectureSurface.Brass);var teal=Finish(parent,FloorArchitectureSurface.Teal);var glow=Finish(parent,FloorArchitectureSurface.Lamp);
    // The narrow carriage keeps its substantial lower metal body below the original deck.
    CabinAuthoredGeometry.Profile(root,"CabinBaseDrum",new[]{new Vector2(.86f,-.30f),new Vector2(1.01f,-.30f),new Vector2(1.085f,-.255f),new Vector2(1.12f,-.19f),new Vector2(1.105f,-.12f),new Vector2(1.10f,.08f),new Vector2(1.115f,.13f),new Vector2(1.115f,.41f),new Vector2(1.10f,.46f),new Vector2(1.12f,.51f),new Vector2(1.09f,.565f),new Vector2(1.035f,.59f),new Vector2(.86f,.59f)},0,360,48,brass,Vector3.zero);
    MeshArt.Lathe(root,"CabinBaseCoping",new[]{.52f,.54f,.60f,.62f},new[]{1.12f,1.16f,1.16f,1.12f},40,copper,new Vector3(1,1,.80f));
    MeshArt.Lathe(root,"CabinUnderbody",new[]{-.54f,-.44f,-.30f},new[]{.29f,.64f,1.01f},32,teal,new Vector3(1,1,.80f));
-   CabinAuthoredGeometry.Profile(root,"CabinCrown",new[]{new Vector2(.94f,0),new Vector2(1.06f,0),new Vector2(1.115f,.025f),new Vector2(1.14f,.065f),new Vector2(1.11f,.09f),new Vector2(1.105f,.205f),new Vector2(1.135f,.23f),new Vector2(1.14f,.265f),new Vector2(1.085f,.295f),new Vector2(.98f,.295f),new Vector2(.94f,.265f)},0,360,48,brass,Vector3.up*3.43f);
+   CabinAuthoredGeometry.Profile(root,"CabinCrown",new[]{new Vector2(.94f,0),new Vector2(1.06f,0),new Vector2(1.115f,.025f),new Vector2(1.14f,.065f),new Vector2(1.11f,.09f),new Vector2(1.105f,.205f),new Vector2(1.135f,.23f),new Vector2(1.14f,.265f),new Vector2(1.085f,.295f),new Vector2(.98f,.295f),new Vector2(.94f,.265f)},0,360,40,brass,Vector3.up*3.43f);
    CabinAuthoredGeometry.Profile(root,"CabinLanternDrum",new[]{new Vector2(.97f,0),new Vector2(1.09f,0),new Vector2(1.115f,.035f),new Vector2(1.08f,.075f),new Vector2(1.08f,.18f),new Vector2(1.115f,.205f),new Vector2(.97f,.205f)},0,360,24,brass,Vector3.up*3.255f);
-   CabinAuthoredGeometry.Profile(root,"CabinDome",new[]{new Vector2(0,0),new Vector2(1.04f,0),new Vector2(1.085f,.015f),new Vector2(1.10f,.033f),new Vector2(1.04f,.05f),new Vector2(.90f,.064f),new Vector2(.30f,.075f),new Vector2(0,.075f)},0,360,48,brass,Vector3.up*3.66f);
+   CabinAuthoredGeometry.Profile(root,"CabinDome",new[]{new Vector2(0,0),new Vector2(1.04f,0),new Vector2(1.085f,.015f),new Vector2(1.10f,.033f),new Vector2(1.04f,.05f),new Vector2(.90f,.064f),new Vector2(.30f,.075f),new Vector2(0,.075f)},0,360,32,brass,Vector3.up*3.66f);
    MeshArt.Oval(root,"CabinRoofFinial",new Vector3(0,3.76f,0),new Vector3(.10f,.08f,.10f),brass,10);
    // The Concept carriage has a central drive collar and machined roof bands.
    // This shallow rearward mechanism leaves the existing open head space intact.
@@ -53,6 +54,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   }
   public static void Bay(Transform parent,int floor)
   {
+   var assets=FloorAuthoredArtSet.Runtime;if(assets!=null){var instance=assets.CreateKit(assets.Balcony,parent,"ArchitecturalFloorBay");instance.GetComponentInChildren<TextMesh>().text=(floor+1).ToString();return;}
    var root=new GameObject("ArchitecturalFloorBay").transform;root.SetParent(parent,false);root.localPosition=new Vector3(4.75f,0,1.15f);
    var stone=Finish(parent,FloorArchitectureSurface.Stone);var trim=Finish(parent,FloorArchitectureSurface.Trim);var teal=Finish(parent,FloorArchitectureSurface.Teal);var brass=Finish(parent,FloorArchitectureSurface.Brass);var lamp=Finish(parent,FloorArchitectureSurface.Lamp);
    // Both the structural support and thin interior wall sit behind the visible door.
