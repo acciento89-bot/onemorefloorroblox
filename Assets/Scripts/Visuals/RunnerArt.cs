@@ -17,7 +17,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var amber=Material(root,"RunnerAmberTrim",new Color(.91f,.58f,.14f),.20f);
    var hair=Material(root,"LiftRunnerChestnutHair",new Color(.30f,.145f,.070f),.20f);
    var gold=Material(root,"LiftRunnerPremiumThread",new Color(1,.88f,.39f),.22f);
-   hair.mainTexture=HairDetail(root);animator.Hoodie=teal;
+   hair.mainTexture=HairDetail(root);var weave=ClothDetail(root);teal.mainTexture=weave;pants.mainTexture=weave;ivory.mainTexture=weave;animator.Hoodie=teal;
    animator.Hips=Pivot(root.transform,"Hips",new Vector3(0,.85f,0));
 
    RunnerTailorGeometry.Tunic(animator.Hips,teal);
@@ -106,10 +106,10 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    animator.Head=Pivot(animator.Hips,"Head",new Vector3(0,.815f,.003f));animator.Head.localScale=new Vector3(1.02f,1.06f,1.02f);
    var neck=new RunnerMeshBuilder(animator.Hips,"Neck",skin);neck.Profile(new Vector3(0,0,.008f),new[]{.56f,.65f,.68f},new[]{.071f,.068f,.073f},new[]{.071f,.068f,.073f},12);neck.Finish();
    var face=new RunnerMeshBuilder(animator.Head,"FaceSkin",skin);
-   face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.175f,-.085f,.03f,.12f,.195f,.225f},new[]{.080f,.127f,.175f,.190f,.187f,.151f,.085f},new[]{.066f,.105f,.138f,.154f,.145f,.115f,.06f},16,.9f);face.Finish();
+   face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.175f,-.085f,.03f,.12f,.195f,.225f},new[]{.085f,.138f,.181f,.190f,.187f,.151f,.085f},new[]{.069f,.109f,.142f,.154f,.145f,.115f,.06f},24,1f);face.Finish();
    var features=new RunnerMeshBuilder(animator.Head,"FaceFeatures",skin);
-   features.Loft(new[]{new Vector3(0,-.082f,.173f),new Vector3(0,-.055f,.203f),new Vector3(0,-.01f,.178f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.014f),new Vector2(.029f,.024f),new Vector2(.021f,.014f),new Vector2(.013f,.010f)},8);
-   for(int side=-1;side<=1;side+=2)features.Pebble(new Vector3(side*.196f,-.028f,-.005f),new Vector3(.067f,.108f,.070f),10);features.Finish();
+   features.Loft(new[]{new Vector3(0,-.082f,.173f),new Vector3(0,-.055f,.197f),new Vector3(0,-.01f,.178f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.014f),new Vector2(.029f,.024f),new Vector2(.021f,.014f),new Vector2(.013f,.010f)},8);
+   for(int side=-1;side<=1;side+=2)features.Pebble(new Vector3(side*.196f,-.028f,-.005f),new Vector3(.054f,.096f,.059f),10);features.Finish();
    var eyes=new RunnerMeshBuilder(animator.Head,"EyeWhites",ivory);var expression=new RunnerMeshBuilder(animator.Head,"EyesAndExpression",dark);
    for(int side=-1;side<=1;side+=2){eyes.Pebble(new Vector3(side*.079f,.021f,.164f),new Vector3(.051f,.058f,.017f),10);expression.Pebble(new Vector3(side*.079f,.018f,.178f),new Vector3(.025f,.035f,.010f),8);expression.Sweep(new[]{new Vector3(side*.043f,.081f,.164f),new Vector3(side*.074f,.089f,.163f),new Vector3(side*.109f,.080f,.153f)},new[]{.008f,.011f,.006f},new[]{.004f,.005f,.003f},6);}
    expression.Sweep(new[]{new Vector3(-.042f,-.128f,.145f),new Vector3(0,-.136f,.153f),new Vector3(.043f,-.128f,.145f)},new[]{.003f,.004f,.003f},new[]{.002f,.002f,.002f},5);eyes.Finish();expression.Finish();
@@ -118,6 +118,11 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 
   static Material Material(GameObject owner,string name,Color color,float gloss)
   {var material=new Material(Resources.Load<Material>("Materials/Surface")){name=name,color=color};material.SetFloat("_Glossiness",gloss);ArtLifetime.Own(owner,material);return material;}
+  static Texture2D ClothDetail(GameObject owner)
+  {
+   const int size=64;var pixels=new Color[size*size];for(int y=0;y<size;y++)for(int x=0;x<size;x++){float threads=((x+y)%2==0?.025f:-.025f)+Mathf.Sin(x*Mathf.PI*.5f)*.013f+Mathf.Cos(y*Mathf.PI*.5f)*.013f;float value=.96f+threads;pixels[y*size+x]=new Color(value,value,value);}
+   var texture=new Texture2D(size,size,TextureFormat.RGB24,true){name="RunnerWovenCanvasDetail",wrapMode=TextureWrapMode.Repeat,filterMode=FilterMode.Bilinear};texture.SetPixels(pixels);texture.Apply(true,true);ArtLifetime.Own(owner,texture);return texture;
+  }
   static Texture2D HairDetail(GameObject owner)
   {
    const int size=64;var pixels=new Color[size*size];

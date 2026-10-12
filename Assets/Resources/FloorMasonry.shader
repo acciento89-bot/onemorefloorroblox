@@ -19,9 +19,20 @@ Shader "Floor/Masonry" {
   float2 grid=frac(float2(x,i.world.y*_CourseScale));float joint=min(min(grid.x,1-grid.x),min(grid.y,1-grid.y));
   half mortar=1-smoothstep(.008,.035,joint);mortar*=saturate(1-a.y*2);
   half grain=tex2D(_MainTex,i.world.xz*.22+i.world.yy*.16).r;
-  half course=.96+.055*sin(floor(x)*17.13+row*7.71);half3 stone=_Color.rgb*grain*course*(1-mortar*.19);
+  half course=.99+.018*sin(floor(x)*17.13+row*7.71);half3 stone=_Color.rgb*grain*course*(1-mortar*.09);
   half3 light=normalize(UnityWorldSpaceLightDir(i.world));half shade=saturate(dot(n,light));
   half3 ambient=max(ShadeSH9(half4(n,1)),half3(.16,.16,.15));
   fixed4 col=fixed4(stone*(ambient*.76+_LightColor0.rgb*(.28+shade*.74)*atten),1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
- } ENDCG } } Fallback "Mobile/Diffuse"
+ } ENDCG }
+ Pass {Name "SHADOWCASTER" Tags {"LightMode"="ShadowCaster"} ZWrite On ZTest LEqual
+ CGPROGRAM
+ #pragma vertex vertShadow
+ #pragma fragment fragShadow
+ #pragma multi_compile_shadowcaster
+ #include "UnityCG.cginc"
+ struct shadowOutput {V2F_SHADOW_CASTER;};
+ shadowOutput vertShadow(appdata_base v){shadowOutput o;TRANSFER_SHADOW_CASTER_NORMALOFFSET(o);return o;}
+ fixed4 fragShadow(shadowOutput i):SV_Target {SHADOW_CASTER_FRAGMENT(i)}
+ ENDCG }
+ } Fallback "Mobile/Diffuse"
 }

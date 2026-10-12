@@ -9,7 +9,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   public static void Build(Transform parent)
   {
    var sky=new Material(Shader.Find("Floor/Sky"));sky.mainTexture=Resources.Load<Texture2D>("Art/CanalSunset-20261012")??Resources.Load<Texture2D>("Art/SkyPanorama");RenderSettings.skybox=sky;ArtLifetime.Own(parent.gameObject,sky);
-   RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.64f,.57f,.48f);RenderSettings.ambientEquatorColor=new Color(.47f,.42f,.35f);RenderSettings.ambientGroundColor=new Color(.24f,.29f,.28f);
+   RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.52f,.48f,.41f);RenderSettings.ambientEquatorColor=new Color(.29f,.28f,.24f);RenderSettings.ambientGroundColor=new Color(.14f,.19f,.17f);
    RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.84f,.64f,.49f);RenderSettings.fogDensity=.005f;
    var stone=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityStone);
    var shade=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityShade);
@@ -92,7 +92,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    }
    MeshArt.Batch(root);
   }
-  public static void ApplyChapter(int chapter){var sky=RenderSettings.skybox;if(sky==null||sky.shader.name!="Floor/Sky")return;string art=chapter==1?"Art/CanalNeon-20261012":chapter==2?"Art/CanalDay-20261012":"Art/CanalSunset-20261012";var texture=Resources.Load<Texture2D>(art);if(texture!=null)sky.mainTexture=texture;RenderSettings.fogColor=chapter==1?new Color(.16f,.23f,.34f):chapter==2?new Color(.73f,.81f,.82f):new Color(.84f,.64f,.49f);RenderSettings.ambientSkyColor=chapter==1?new Color(.35f,.43f,.59f):chapter==2?new Color(.68f,.73f,.77f):new Color(.64f,.57f,.48f);}
+  public static void ApplyChapter(int chapter){var sky=RenderSettings.skybox;if(sky==null||sky.shader.name!="Floor/Sky")return;string art=chapter==1?"Art/CanalNeon-20261012":chapter==2?"Art/CanalDay-20261012":"Art/CanalSunset-20261012";var texture=Resources.Load<Texture2D>(art);if(texture!=null)sky.mainTexture=texture;RenderSettings.fogColor=chapter==1?new Color(.16f,.23f,.34f):chapter==2?new Color(.73f,.81f,.82f):new Color(.84f,.64f,.49f);RenderSettings.ambientSkyColor=chapter==1?new Color(.28f,.35f,.49f):chapter==2?new Color(.57f,.63f,.67f):new Color(.52f,.48f,.41f);}
   private static Transform Root(Transform parent,string name,Vector3 position)
   {
    var root=new GameObject(name).transform;root.SetParent(parent,false);root.localPosition=position;return root;

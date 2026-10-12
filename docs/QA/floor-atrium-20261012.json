@@ -1,0 +1,22 @@
+{
+  "sourceSha256": "d1755296009ee7d32245a6ab24823ad367095b900d0cfe05d6370371e82a554f",
+  "bundleSha256": "bbaf09c1e8c94567f7ebd22a6424de9092ed40226165cdb221e7310366f4ce74",
+  "app": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/OneMoreFloor-AtriumQa7.app",
+  "proofCreatedAt": "2026-10-12T04:44:11.312970+00:00",
+  "target": "StandaloneOSX development QA",
+  "buildExitCode": 0,
+  "strictLoggedErrors": 0,
+  "conceptStatus": "pending final actual source-bound review; no TestFlight",
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2189",
+  "strictEditorResult": "FLOOR_ALL_PASS checks=14040 loggedErrors=0",
+  "visualStatus": "failed",
+  "nativeOrTestFlightAttempted": false,
+  "fullRuntime": null,
+  "lastFullBeforeFinalShaderPass": {
+    "sourceSha256": "2e1d8fe494ad5605ebc99a97e23dcfaeb0966bdaf94fd6ed3398a02b3542c191",
+    "receipt": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Full5/PASS.txt",
+    "result": "ELEVATOR_QA_PASS checks=8661 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing"
+  },
+  "scope": "Graphics milestone; user then required gameplay correction to a single vertical lift and fixed tower landing targets.",
+  "limitations": "Actual Mac QA only. No fresh full87 run for final shader source; physical iPhone FPS/touch/StoreKit/ads unrun. Final mechanism rebuild follows."
+}

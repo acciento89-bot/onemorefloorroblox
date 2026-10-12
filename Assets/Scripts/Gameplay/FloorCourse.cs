@@ -36,11 +36,11 @@ namespace Kamilunavo.OneMoreFloor.Gameplay
     foreach(var rim in root.GetComponentsInChildren<Transform>()){if(rim.name=="PrecisionBaySide"){var pos=rim.localPosition;pos.x=Mathf.Sign(pos.x)*ElevatorRules.HalfBay(i);rim.localPosition=pos;}if(rim.name=="PrecisionBayEnd"){var scale=rim.localScale;scale.x=ElevatorRules.HalfBay(i)*2;rim.localScale=scale;}}
     MeshArt.Batch(root);
     var rail=new GameObject("StationaryLiftRail");rail.transform.SetParent(root.transform,false);motion.Rail=rail.transform;
-    var cyan=MeshArt.Mat("LiftRailCyan",new Color(.02f,.55f,.85f),-1,true);var steel=MeshArt.Mat("LiftTrackSteel",new Color(.12f,.17f,.23f),1);
+    var cyan=FloorArchitecturePalette.Get(root.transform,FloorArchitectureSurface.Lamp);var steel=FloorArchitecturePalette.Get(root.transform,FloorArchitectureSurface.Teal);
     MeshArt.Box(rail.transform,"Track",new Vector3(0,-.45f,0),new Vector3(7.2f,.17f,.35f),steel);
     MeshArt.Box(rail.transform,"TrackSignal",new Vector3(0,-.32f,-.22f),new Vector3(7.2f,.035f,.06f),cyan);
     for(int side=-1;side<=1;side+=2){MeshArt.Box(rail.transform,"LiftPylon",new Vector3(side*3.5f,-1.1f,0),new Vector3(.22f,1.7f,.3f),steel);MeshArt.Box(rail.transform,"LiftEndSignal",new Vector3(side*3.5f,-.12f,0),new Vector3(.12f,.25f,.18f),cyan);}
-    var alloy=MeshArt.Mat("LiftAlloy",new Color(.46f,.59f,.65f),0);
+    var alloy=FloorArchitecturePalette.Get(root.transform,FloorArchitectureSurface.Brass);
     for(int side=-1;side<=1;side+=2){MeshArt.Box(rail.transform,"TrackGuide",new Vector3(0,-.42f,side*.23f),new Vector3(6.9f,.045f,.045f),alloy);MeshArt.Box(rail.transform,"DriveEndHousing",new Vector3(side*3.35f,-.44f,0),new Vector3(.52f,.40f,.64f),steel);for(int slot=0;slot<4;slot++)MeshArt.Box(rail.transform,"TrackEndVent",new Vector3(side*3.35f,-.34f,-.325f+slot*.10f),new Vector3(.35f,.035f,.018f),alloy);}
     for(int joint=0;joint<7;joint++)MeshArt.Box(rail.transform,"RailJoint",new Vector3(-3+joint,-.53f,0),new Vector3(.06f,.09f,.52f),steel);
     LiftArchitecture.Rails(rail.transform);LiftArchitecture.Bay(rail.transform,i);

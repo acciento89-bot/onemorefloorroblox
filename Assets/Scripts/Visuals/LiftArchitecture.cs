@@ -35,7 +35,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     for(int z=0;z<3;z++)CabinAuthoredGeometry.Profile(root,"CabinBaluster",new[]{new Vector2(0,-.12f),new Vector2(.014f,-.12f),new Vector2(.014f,.12f),new Vector2(0,.12f)},0,360,10,brass,new Vector3(side*1.06f,1.12f,-.08f+z*.22f));
    }
    FloorArchitectureDetails.CabinGlass(root,Finish(parent,FloorArchitectureSurface.Glass));
-   MeshArt.Box(root,"CabinBackPlaque",new Vector3(0,1.99f,.78f),new Vector3(.48f,.59f,.035f),teal);MeshArt.Box(root,"CabinPlaqueMark",new Vector3(0,1.99f,.758f),new Vector3(.037f,.31f,.017f),brass);
+   LiftMetalOrnaments.Cabin(root,brass,copper);MeshArt.Box(root,"CabinBackPlaque",new Vector3(0,1.99f,.78f),new Vector3(.48f,.59f,.035f),teal);MeshArt.Box(root,"CabinPlaqueMark",new Vector3(0,1.99f,.758f),new Vector3(.037f,.31f,.017f),brass);
   }
   public static void Bay(Transform parent,int floor)
   {
@@ -53,6 +53,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    }
    for(int segment=0;segment<13;segment++){
     FloorArchitectureDetails.ArchStone(root,"ArchVoussoir",segment*Mathf.PI/13+.009f,(segment+1)*Mathf.PI/13-.009f,.96f,1.28f,2.82f,.72f,.24f,trim);
+    FloorArchitectureDetails.ArchStone(root,"BayVaultedSoffit",segment*Mathf.PI/13,(segment+1)*Mathf.PI/13,.960f,1.02f,2.82f,1.32f,.57f,stone);
     FloorArchitectureDetails.ArchStone(root,"ArchInnerMolding",segment*Mathf.PI/13,(segment+1)*Mathf.PI/13,.925f,.957f,2.82f,.462f,.025f,brass);
    }
    FloorArchitectureDetails.BeveledBlock(root,"BayCeilingCornice",new Vector3(0,4.13f,.99f),new Vector3(2.83f,.22f,1.27f),.045f,stone);MeshArt.Box(root,"CorniceDentilRail",new Vector3(0,3.99f,.38f),new Vector3(2.69f,.055f,.085f),trim);
@@ -72,7 +73,8 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    MeshArt.Box(root,"BalconyHandrail",new Vector3(0,1.15f,-1.18f),new Vector3(2.45f,.049f,.055f),brass);for(int i=0;i<9;i++)MeshArt.Box(root,"BalconyBaluster",new Vector3(-1.12f+i*.28f,.81f,-1.18f),new Vector3(.027f,.61f,.027f),teal);
    MeshArt.Box(root,"FloorBanner",new Vector3(-1.26f,2.12f,.34f),new Vector3(.47f,.75f,.055f),teal);var label=new GameObject("ArchitecturalFloorNumber",typeof(TextMesh));label.transform.SetParent(root,false);label.transform.localPosition=new Vector3(-1.26f,2.12f,.305f);label.transform.localRotation=Quaternion.identity;var text=label.GetComponent<TextMesh>();text.text=(floor+1).ToString();text.anchor=TextAnchor.MiddleCenter;text.fontSize=36;text.characterSize=.12f;text.color=new Color(1,.85f,.56f);
    for(int side=-1;side<=1;side+=2){Lantern(root,new Vector3(side*.90f,2.02f,.32f),brass,lamp);Planter(root,parent,new Vector3(side*.98f,.52f,-.72f),floor+side);}
-   var shade=Finish(parent,FloorArchitectureSurface.Leaf);var leafLight=Finish(parent,FloorArchitectureSurface.LeafLight);
+   for(int side=-1;side<=1;side+=2){FloorArchitectureDetails.BeveledBlock(root,"BalconyCarvedCorbel",new Vector3(side*.92f,-.43f,.18f),new Vector3(.24f,.56f,1.65f),.045f,trim);FloorArchitectureDetails.BeveledBlock(root,"CorbelCap",new Vector3(side*.92f,-.18f,-.12f),new Vector3(.33f,.14f,2.01f),.028f,trim);}
+   LiftMetalOrnaments.Balcony(root,teal,brass);var shade=Finish(parent,FloorArchitectureSurface.Leaf);var leafLight=Finish(parent,FloorArchitectureSurface.LeafLight);
    FloorArchitectureDetails.Ivy(root,new Vector3(1.26f,3.87f,.29f),1.64f,floor+19,shade,leafLight);FloorArchitectureDetails.Ivy(root,new Vector3(-1.14f,.47f,-1.19f),1.45f,floor+71,shade,leafLight);
   }
   static void Lantern(Transform root,Vector3 at,Material brass,Material lamp)

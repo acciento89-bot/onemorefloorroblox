@@ -12,7 +12,15 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    for(int ring=0;ring<=segments;ring++){float a=Mathf.Lerp(from,to,(float)ring/segments)*Mathf.Deg2Rad;for(int p=0;p<count;p++){vertices.Add(new Vector3(Mathf.Cos(a)*section[p].x,section[p].y,Mathf.Sin(a)*section[p].x*.8f));uv.Add(new Vector2((float)ring/segments,(float)p/count));}}
    for(int ring=0;ring<segments;ring++)for(int p=0;p<count;p++){int next=(p+1)%count,a=ring*count+p,b=(ring+1)*count+p,c=ring*count+next,d=(ring+1)*count+next;triangles.AddRange(new[]{a,c,b,c,d,b});}
    if(to-from<359.9f){var cap=Triangulate(section);foreach(int end in new[]{0,segments})for(int i=0;i<cap.Count;i+=3){int offset=end*count;triangles.AddRange(end==0?new[]{offset+cap[i],offset+cap[i+2],offset+cap[i+1]}:new[]{offset+cap[i],offset+cap[i+1],offset+cap[i+2]});}}
-   var go=MeshArt.Mesh(parent,name,vertices.ToArray(),triangles.ToArray(),uv.ToArray(),material);go.transform.localPosition=at;SmoothSeams(go.GetComponent<MeshFilter>().sharedMesh);return go;
+   var go=MeshArt.Mesh(parent,name,vertices.ToArray(),triangles.ToArray(),uv.ToArray(),material);go.transform.localPosition=at;var mesh=go.GetComponent<MeshFilter>().sharedMesh;SmoothSeams(mesh);PaintRecessedMetal(mesh,name);return go;
+  }
+  // Rolled lips catch light; the broad recessed copper fields remain darker.
+  // Packed vertex paint shares the existing mesh/material rather than another texture.
+  static void PaintRecessedMetal(Mesh mesh,string name)
+  {
+   if(name!="CabinCrown"&&name!="CabinBaseDrum"&&name!="CabinPassengerSkirt")return;
+   var vertices=mesh.vertices;var colors=new Color32[vertices.Length];var bounds=mesh.bounds;
+   for(int i=0;i<vertices.Length;i++){float y=Mathf.InverseLerp(bounds.min.y,bounds.max.y,vertices[i].y);bool field=name=="CabinCrown"?y>.32f&&y<.75f:name=="CabinPassengerSkirt"?y>.25f&&y<.82f:y>.27f&&y<.80f;float value=field?(name=="CabinCrown"?.43f:.57f):.98f;colors[i]=new Color(value,value*(field?.91f:1),value*(field?.79f:1),1);}mesh.colors32=colors;
   }
   static float Cross(Vector2 a,Vector2 b)=>a.x*b.y-a.y*b.x;
   // A rolled cross section is concave. Clip real polygon ears instead of
