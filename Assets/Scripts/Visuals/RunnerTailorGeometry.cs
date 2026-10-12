@@ -60,6 +60,8 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    });
    b.Profile(new Vector3(0,0,.154f),new[]{.159f,.19f,.265f,.296f},new[]{.10f,.147f,.139f,.108f},new[]{.006f,.018f,.022f,.008f},.48f);
    b.Profile(Vector3.zero,new[]{.043f,.063f,.080f},new[]{.206f,.219f,.217f},new[]{.134f,.146f,.144f},.67f,24);
+   // Shaped jacket collar and raised opening preserve the original joint envelope.
+   for(int side=-1;side<=1;side+=2)b.Ribbon(new[]{new Vector3(side*.077f,.556f,.092f),new Vector3(side*.107f,.510f,.142f),new Vector3(side*.061f,.418f,.171f)},new[]{.014f,.018f,.012f},new[]{.008f,.011f,.007f},8);
    return b.Finish(parent,"TailoredLiftHoodie",material);
   }
   public static GameObject TravelPack(Transform parent,Material material)

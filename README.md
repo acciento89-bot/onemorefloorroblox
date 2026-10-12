@@ -20,8 +20,8 @@ The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
 Current literal Concept correction: [One elevator to fixed tower balconies](docs/FLOOR-LIFT-TO-TOWER-20261012.md). Earlier economy and checkpoint design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
-Latest original environment/lobby graphics and bounded actual acceptance: [Environment and lobby revision](docs/FLOOR-ENVIRONMENT-REBUILD-20261012.md).
+Latest actual URP/gold UI/character/texture batch and bounded evidence: [Concept lighting and UI rebuild](docs/FLOOR-CONCEPT-URP-UI-20261012.md). Earlier [environment/lobby revision](docs/FLOOR-ENVIRONMENT-REBUILD-20261012.md) is historical. Overall graphical acceptance remains failed; no TestFlight upload.
 Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).
 Older parkour tests and build1 delivery entries describe the previous candidate and do not validate this redesign.
 
-Editor validation: `FloorValidation.ValidateAll`. New player QA: `-qaElevator` (development builds only, isolated save). Menu/tutorial QA: `-qaElevatorShowcase` (development only, isolated save) captures DE/EN and native orientations and plays timing/Perfect/risk/bank practice. Previous `-qaFloor` harness is retained only for the historical parkour build.
+Editor validation: `FloorValidation.ValidateAll`. New player QA: `-qaElevator` (development builds only, isolated save). Menu/tutorial QA: `-qaElevatorShowcase` (development only, isolated save) captures DE/EN and actual portrait/landscape dimensions and plays timing/Perfect/risk/bank practice. Current evidence is a Mac player, not physical iPhone validation. `-qaConceptRender` additionally probes real light/bloom/focus pixels. Previous `-qaFloor` harness is retained only for the historical parkour build.

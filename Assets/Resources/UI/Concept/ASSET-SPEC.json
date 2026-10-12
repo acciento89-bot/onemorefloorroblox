@@ -1,0 +1,24 @@
+{
+  "origin": "Original code-native vector design; no text baked into textures",
+  "sprites": [
+    "GoldAction",
+    "GlassBanner",
+    "IvoryNavigation",
+    "ChapterFrame",
+    "TealAction",
+    "GlassMeter"
+  ],
+  "nineSliceBorderPixels": [
+    28,
+    28,
+    28,
+    28
+  ],
+  "primaryNavigation": [
+    "Stil",
+    "Route",
+    "Shop",
+    "Lernen"
+  ],
+  "missionCards": "Sunset/Neon/Skyline: live cached real Unity chapter views, ChapterFrame nine-slice, owned earned/outline star geometry"
+}

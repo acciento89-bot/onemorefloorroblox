@@ -41,7 +41,7 @@ public static class FloorRunnerArtValidation
    foreach(var texture in textures)Check(texture.width*texture.height<=4096,"small character detail texture budget");
    var peerHost=new GameObject("StyleIsolationFixture");try{var peer=RunnerArt.Build(peerHost.transform);Color initial=peer.Hoodie.color;runner.Style(7);Check(peer.Hoodie.color==initial&&peer.Hoodie!=runner.Hoodie,"style material is isolated per avatar");}finally{UnityEngine.Object.DestroyImmediate(peerHost);}
    for(int style=0;style<8;style++){runner.Style(style);for(int crest=4;crest<8;crest++)Check(runner.Hips.Find("PremiumCrest"+crest).gameObject.activeSelf==(style==crest),"eight-style premium crest selection");}
-   runner.Style(-1);Check(runner.Hoodie.color==new Color(.035f,.29f,.30f),"invalid negative style clamps to approved teal");
+   runner.Style(-1);Check(runner.Hoodie.color==new Color(.035f,.255f,.155f),"invalid negative style clamps to requested dark-green default");
    runner.Style(99);Check(runner.Hoodie.color==new Color(.035f,.055f,.14f),"invalid high style clamps to night");
    Debug.Log("FLOOR_RUNNER_BUDGET vertices="+vertices+" triangles="+triangles+" activeRenderers="+activeRenderers+" materials="+materials.Count+" textures="+textures.Count);
    UnityEngine.Object.DestroyImmediate(host);
@@ -82,7 +82,7 @@ public static class FloorRunnerArtValidation
    pixels=new Texture2D(768,1024,TextureFormat.RGB24,false);
    string[] names={"front","three-quarter","rear","side"};Vector3[] views={new Vector3(0,1.04f,5),new Vector3(3.2f,1.22f,4.4f),new Vector3(0,1.1f,-5),new Vector3(5,1.08f,0)};
    for(int i=0;i<views.Length;i++){
-    cameraObject.transform.localPosition=views[i];cameraObject.transform.LookAt(stage.transform.position+new Vector3(0,.97f,0));camera.Render();RenderTexture.active=target;
+    cameraObject.transform.localPosition=views[i];cameraObject.transform.LookAt(stage.transform.position+new Vector3(0,.97f,0));Kamilunavo.OneMoreFloor.Visuals.FloorConceptLighting.RenderPreview(camera,target);RenderTexture.active=target;
     pixels.ReadPixels(new Rect(0,0,768,1024),0,0);pixels.Apply();System.IO.File.WriteAllBytes(System.IO.Path.Combine(directory,"runner-"+names[i]+".png"),pixels.EncodeToPNG());
    }
    Debug.Log("FLOOR_RUNNER_CAPTURE_VIEWS "+directory);

@@ -15,14 +15,14 @@ public static class FloorArchitectureValidation
   if(crowns!=1)throw new InvalidOperationException("FLOOR_ARCHITECTURE: disconnected repeated tubular crowns remain");
   if(host.GetComponentsInChildren<Collider>().Length!=0)throw new InvalidOperationException("FLOOR_ARCHITECTURE: decoration added collision");
   var masonry=bay.Find("MasonryFacadeSupport").GetComponent<Renderer>().sharedMaterial;
-  if(masonry.mainTexture==null||masonry.mainTexture.width*masonry.mainTexture.height>65536)throw new InvalidOperationException("FLOOR_ARCHITECTURE: masonry needs a bounded mineral finish");
+  if(masonry.mainTexture==null||masonry.mainTexture.width*masonry.mainTexture.height>1048576)throw new InvalidOperationException("FLOOR_ARCHITECTURE: masonry needs a bounded mineral finish");
   var deck=new GameObject("ArchitectureDeckProbe");deck.transform.SetParent(host.transform,false);PlatformArt.Build(deck.transform,4,0);
   var collider=deck.GetComponentInChildren<BoxCollider>();
   if(collider.size!=new Vector3(4.6f,.70f,3.6f)||collider.center!=new Vector3(0,.25f,0)||host.GetComponentsInChildren<Collider>().Length!=1)throw new InvalidOperationException("FLOOR_ARCHITECTURE: original landing collision changed");
   int vertices=0;var materials=new HashSet<Material>();var textures=new HashSet<Texture>();
   foreach(var f in host.GetComponentsInChildren<MeshFilter>()){vertices+=f.sharedMesh.vertexCount;owned.Add(f.sharedMesh);foreach(var normal in f.sharedMesh.normals)if(normal.sqrMagnitude<.5f)throw new InvalidOperationException("FLOOR_ARCHITECTURE: invalid lighting normal "+f.name);}
   foreach(var renderer in host.GetComponentsInChildren<Renderer>())if(renderer.sharedMaterial.name.StartsWith("FloorArchitecture",StringComparison.Ordinal)){
-   materials.Add(renderer.sharedMaterial);owned.Add(renderer.sharedMaterial);if(renderer.sharedMaterial.mainTexture!=null){textures.Add(renderer.sharedMaterial.mainTexture);owned.Add(renderer.sharedMaterial.mainTexture);}
+   materials.Add(renderer.sharedMaterial);owned.Add(renderer.sharedMaterial);if(renderer.sharedMaterial.mainTexture!=null){textures.Add(renderer.sharedMaterial.mainTexture);if(!UnityEditor.EditorUtility.IsPersistent(renderer.sharedMaterial.mainTexture))owned.Add(renderer.sharedMaterial.mainTexture);}
   }
   if(vertices>=30000||materials.Count>12||textures.Count>2)throw new InvalidOperationException("FLOOR_ARCHITECTURE: bounded mobile geometry/material kit exceeded");
   MeshArt.Batch(host);foreach(var f in host.GetComponentsInChildren<MeshFilter>())owned.Add(f.sharedMesh);

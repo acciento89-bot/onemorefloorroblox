@@ -13,7 +13,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var pants=Material(root,"RunnerBrownTravelCanvas",new Color(.19f,.20f,.16f),.08f);
    var ivory=Material(root,"LiftRunnerIvoryCanvas",new Color(.87f,.83f,.72f),.14f);
    var dark=Material(root,"LiftRunnerSeamsAndEyes",new Color(.045f,.055f,.067f),.12f);
-   var teal=Material(root,"RunnerTealAdventureHoodie",new Color(.035f,.29f,.30f),.10f);
+   var teal=Material(root,"RunnerTealAdventureHoodie",new Color(.035f,.255f,.155f),.10f);
    var amber=Material(root,"RunnerAmberTrim",new Color(.91f,.58f,.14f),.20f);
    var hair=Material(root,"LiftRunnerChestnutHair",new Color(.34f,.17f,.07f),.20f);
    var gold=Material(root,"LiftRunnerPremiumThread",new Color(1,.88f,.39f),.22f);
@@ -40,6 +40,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    for(int bar=0;bar<3;bar++){float x=-.035f+bar*.035f;trim.Stitch(new Vector3(x,.275f,-.339f),new Vector3(x,.32f+bar*.025f,-.339f),.007f);}
    // Tiny buckle and flap stitching remain in the existing amber detail batch.
    for(int side=-1;side<=1;side+=2){trim.Stitch(new Vector3(side*.123f,.377f,.192f),new Vector3(side*.123f,.414f,.193f),.006f);trim.Stitch(new Vector3(side*.10f,.438f,-.355f),new Vector3(side*.10f,.477f,-.363f),.005f);}
+   for(int clasp=0;clasp<3;clasp++)trim.Pebble(new Vector3(.015f,.25f+clasp*.087f,.189f),new Vector3(.014f,.014f,.008f),6);
    trim.Finish();
 
    for(int side=-1;side<=1;side+=2){BuildLeg(animator,side,pants,ivory,amber,dark);BuildArm(animator,side,teal,skin,dark,amber);}
