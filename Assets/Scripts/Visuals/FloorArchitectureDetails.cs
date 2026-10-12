@@ -5,6 +5,9 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 {
  public static class FloorArchitectureDetails
  {
+  // Opaque surface modes are resolved per vertex in the shared masonry shader:
+  // .25 polished marble, .5 architectural window; no new material/texture.
+  public static void SurfaceMode(GameObject surface,float mode){var mesh=surface.GetComponent<MeshFilter>().sharedMesh;var colors=new Color[mesh.vertexCount];for(int i=0;i<colors.Length;i++)colors[i]=new Color(1,1,1,mode);mesh.colors=colors;}
   // One closed authored solid with real clipped corners and upper/lower bevels.
   public static GameObject BeveledBlock(Transform parent,string name,Vector3 position,Vector3 size,float bevel,Material material)
   {

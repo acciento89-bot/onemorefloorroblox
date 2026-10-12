@@ -52,7 +52,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    if(metal){if(_metal==null)_metal=Finish(true);material.mainTexture=_metal;}
    else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim||kind==FloorArchitectureSurface.DoorWood){material.shader=Resources.Load<Shader>("FloorMasonry");if(_stone==null)_stone=Finish(false);material.mainTexture=_stone;}
    if(kind==FloorArchitectureSurface.DoorWood)material.SetFloat("_WoodGrain",1);
-   if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.DoorWood){var course=GetComponent<FloorCourse>();if(course!=null){material.SetFloat("_RoomGlow",.55f);material.SetVector("_RoomOrigin",transform.position+new Vector3(TowerLiftMotion.TowerX,0,TowerLiftMotion.TowerZ));material.SetFloat("_RoomPeriod",TowerLiftMotion.FloorSpacing);}}
+   if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.DoorWood){var course=GetComponent<FloorCourse>();if(course!=null){material.SetFloat("_RoomGlow",.85f);material.SetVector("_RoomOrigin",transform.position+new Vector3(TowerLiftMotion.TowerX,0,TowerLiftMotion.TowerZ));material.SetFloat("_RoomPeriod",TowerLiftMotion.FloorSpacing);}}
    material.SetFloat("_Glossiness",metal?.72f:.12f);if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",metal?.72f:0);
    if(kind==FloorArchitectureSurface.Lamp){material.EnableKeyword("_EMISSION");material.SetColor("_EmissionColor",material.color*2.4f);}
    ArtLifetime.Own(gameObject,material);_materials.Add(kind,material);return material;

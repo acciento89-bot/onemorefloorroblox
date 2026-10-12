@@ -18,7 +18,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   // Packed vertex paint shares the existing mesh/material rather than another texture.
   static void PaintRecessedMetal(Mesh mesh,string name)
   {
-   if(name!="CabinCrown"&&name!="CabinBaseDrum"&&name!="CabinPassengerSkirt")return;
+   if(name!="CabinCrown"&&name!="CabinLanternDrum"&&name!="CabinBaseDrum"&&name!="CabinPassengerSkirt")return;
    var vertices=mesh.vertices;var colors=new Color32[vertices.Length];var bounds=mesh.bounds;
    for(int i=0;i<vertices.Length;i++){float y=Mathf.InverseLerp(bounds.min.y,bounds.max.y,vertices[i].y);bool field=name=="CabinCrown"?y>.32f&&y<.75f:name=="CabinPassengerSkirt"?y>.25f&&y<.82f:y>.27f&&y<.80f;float value=field?(name=="CabinCrown"?.43f:.57f):.98f;colors[i]=new Color(value,value*(field?.86f:1),value*(field?.70f:1),1);}mesh.colors32=colors;
   }

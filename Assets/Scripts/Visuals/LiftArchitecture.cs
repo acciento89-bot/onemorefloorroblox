@@ -16,18 +16,20 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    MeshArt.Lathe(root,"CabinBaseCoping",new[]{.52f,.54f,.60f,.62f},new[]{1.12f,1.16f,1.16f,1.12f},40,copper,new Vector3(1,1,.80f));
    MeshArt.Lathe(root,"CabinUnderbody",new[]{-.54f,-.44f,-.30f},new[]{.29f,.64f,1.01f},32,teal,new Vector3(1,1,.80f));
    CabinAuthoredGeometry.Profile(root,"CabinCrown",new[]{new Vector2(.94f,0),new Vector2(1.06f,0),new Vector2(1.115f,.025f),new Vector2(1.14f,.065f),new Vector2(1.11f,.09f),new Vector2(1.105f,.205f),new Vector2(1.135f,.23f),new Vector2(1.14f,.265f),new Vector2(1.085f,.295f),new Vector2(.98f,.295f),new Vector2(.94f,.265f)},0,360,48,brass,Vector3.up*3.43f);
+   CabinAuthoredGeometry.Profile(root,"CabinLanternDrum",new[]{new Vector2(.97f,0),new Vector2(1.09f,0),new Vector2(1.115f,.035f),new Vector2(1.08f,.075f),new Vector2(1.08f,.18f),new Vector2(1.115f,.205f),new Vector2(.97f,.205f)},0,360,24,brass,Vector3.up*3.255f);
    CabinAuthoredGeometry.Profile(root,"CabinDome",new[]{new Vector2(0,0),new Vector2(1.04f,0),new Vector2(1.085f,.015f),new Vector2(1.10f,.033f),new Vector2(1.04f,.05f),new Vector2(.90f,.064f),new Vector2(.30f,.075f),new Vector2(0,.075f)},0,360,48,brass,Vector3.up*3.66f);
    MeshArt.Oval(root,"CabinRoofFinial",new Vector3(0,3.76f,0),new Vector3(.10f,.08f,.10f),brass,10);
    // The Concept carriage has a central drive collar and machined roof bands.
    // This shallow rearward mechanism leaves the existing open head space intact.
-   CabinAuthoredGeometry.Profile(root,"CabinDriveCollar",new[]{new Vector2(.25f,0),new Vector2(.42f,0),new Vector2(.44f,.025f),new Vector2(.40f,.05f),new Vector2(.36f,.05f),new Vector2(.36f,.15f),new Vector2(.33f,.18f),new Vector2(.25f,.18f)},0,360,32,teal,new Vector3(0,3.74f,.16f));
-   CabinAuthoredGeometry.Profile(root,"CabinDriveGilding",new[]{new Vector2(.37f,0),new Vector2(.405f,0),new Vector2(.419f,.012f),new Vector2(.405f,.033f),new Vector2(.37f,.033f)},0,360,32,brass,new Vector3(0,3.82f,.16f));
+   CabinAuthoredGeometry.Profile(root,"CabinDriveCollar",new[]{new Vector2(.25f,0),new Vector2(.42f,0),new Vector2(.44f,.025f),new Vector2(.40f,.05f),new Vector2(.36f,.05f),new Vector2(.36f,.15f),new Vector2(.33f,.18f),new Vector2(.25f,.18f)},0,360,32,teal,new Vector3(0,3.74f,.69f));
+   CabinAuthoredGeometry.Profile(root,"CabinDriveGilding",new[]{new Vector2(.37f,0),new Vector2(.405f,0),new Vector2(.419f,.012f),new Vector2(.405f,.033f),new Vector2(.37f,.033f)},0,360,32,brass,new Vector3(0,3.82f,.69f));
    // Low shaped brass body now rises above the broad deck instead of disappearing below it.
    // The 110-degree front entrance is open; no panel crosses the runner/transfer centre.
    CabinAuthoredGeometry.Profile(root,"CabinPassengerSkirt",new[]{new Vector2(1.045f,.665f),new Vector2(1.085f,.665f),new Vector2(1.13f,.70f),new Vector2(1.135f,.745f),new Vector2(1.11f,.78f),new Vector2(1.105f,1.03f),new Vector2(1.13f,1.065f),new Vector2(1.115f,1.10f),new Vector2(1.065f,1.115f),new Vector2(1.04f,1.075f),new Vector2(1.04f,.71f)},-35,215,48,brass,Vector3.zero);
    var railSection=new Vector2[10];for(int i=0;i<railSection.Length;i++){float a=i*Mathf.PI*2/railSection.Length;railSection[i]=new Vector2(1.075f+Mathf.Cos(a)*.035f,1.24f+Mathf.Sin(a)*.035f);}CabinAuthoredGeometry.Profile(root,"CabinCurvedPassengerRail",railSection,-35,215,48,brass,Vector3.zero);
    CabinAuthoredGeometry.Rivets(root,copper);
    CabinAuthoredGeometry.Profile(root,"CabinCeilingGlow",new[]{new Vector2(.97f,-.015f),new Vector2(1.085f,-.015f),new Vector2(1.085f,.015f),new Vector2(.97f,.015f)},0,360,40,glow,Vector3.up*3.42f);
+   CabinAuthoredGeometry.Profile(root,"CabinLanternLightBand",new[]{new Vector2(1.095f,0),new Vector2(1.126f,0),new Vector2(1.126f,.033f),new Vector2(1.095f,.033f)},0,360,24,glow,Vector3.up*3.275f);
    var diffuser=MeshArt.Ring(root,"CabinCeilingDiffuser",1.005f,.18f,0,glow,40);diffuser.transform.localScale=new Vector3(1,1,.80f);diffuser.transform.localRotation=Quaternion.Euler(180,0,0);diffuser.transform.localPosition=Vector3.up*3.415f;
    // A lit underside surface gives the cabin its warm ceiling without a new Light.
    var ceiling=new MaterialPropertyBlock();ceiling.SetColor("_EmissionColor",new Color(2.6f,1.8f,.65f));diffuser.GetComponent<MeshRenderer>().SetPropertyBlock(ceiling);
@@ -69,17 +71,10 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    }
    FloorArchitectureDetails.BeveledBlock(root,"BayCeilingCornice",new Vector3(0,4.13f,.99f),new Vector3(2.83f,.22f,1.27f),.045f,stone);MeshArt.Box(root,"CorniceDentilRail",new Vector3(0,3.99f,.38f),new Vector3(2.69f,.055f,.085f),trim);
    for(int tooth=0;tooth<10;tooth++)MeshArt.Box(root,"CorniceDentil",new Vector3(-1.19f+tooth*.265f,3.93f,.40f),new Vector3(.09f,.10f,.12f),trim);
-   FloorArchitectureDetails.BeveledBlock(root,"RecessedTealDoor",new Vector3(0,1.68f,1.38f),new Vector3(1.28f,2.45f,.10f),.045f,Finish(parent,FloorArchitectureSurface.DoorWood));
-   for(int side=-1;side<=1;side+=2)MeshArt.Box(root,"DoorFrame",new Vector3(side*.69f,1.68f,1.30f),new Vector3(.08f,2.57f,.12f),brass);
-   MeshArt.Box(root,"DoorLintel",new Vector3(0,2.96f,1.30f),new Vector3(1.46f,.08f,.12f),brass);
-   for(int row=0;row<2;row++)for(int side=-1;side<=1;side+=2){
-    var p=new Vector3(side*.31f,1.02f+row*1.04f,1.319f);FloorArchitectureDetails.BeveledBlock(root,"DoorRecessedPanel",p,new Vector3(.48f,.81f,.025f),.045f,Finish(parent,FloorArchitectureSurface.Copper));
-    MeshArt.Box(root,"DoorPanelInset",p+Vector3.back*.019f,new Vector3(.41f,.74f,.013f),Finish(parent,FloorArchitectureSurface.DoorWood));
-   }
-   MeshArt.Box(root,"DoorCenterMullion",new Vector3(0,1.68f,1.305f),new Vector3(.035f,2.41f,.035f),brass);MeshArt.Oval(root,"DoorBrassHandle",new Vector3(.13f,1.63f,1.275f),new Vector3(.045f,.19f,.045f),brass,8);
+   TowerEntranceArt.Build(root,Finish(parent,FloorArchitectureSurface.DoorWood),brass);
    var transom=new Vector3[20];var transomTriangles=new int[18*3];transom[0]=new Vector3(0,2.82f,1.53f);
    for(int i=0;i<=18;i++){float a=i*Mathf.PI/18;transom[i+1]=new Vector3(Mathf.Cos(a)*.91f,2.82f+Mathf.Sin(a)*.91f,1.53f);if(i<18){transomTriangles[i*3]=0;transomTriangles[i*3+1]=i+2;transomTriangles[i*3+2]=i+1;}}
-   MeshArt.Mesh(root,"ArchedTransomRecess",transom,transomTriangles,null,teal);
+   var fan=MeshArt.Mesh(root,"ArchedTransomRecess",transom,transomTriangles,null,Finish(parent,FloorArchitectureSurface.DoorWood));FloorArchitectureDetails.SurfaceMode(fan,.5f);
    for(int ray=0;ray<5;ray++){float a=(ray+1)*Mathf.PI/6;var mullion=MeshArt.Box(root,"TransomFanMullion",new Vector3(Mathf.Cos(a)*.34f,2.85f+Mathf.Sin(a)*.34f,1.506f),new Vector3(.025f,.70f,.027f),brass);mullion.transform.localRotation=Quaternion.Euler(0,0,a*Mathf.Rad2Deg-90);}
    MeshArt.Box(root,"BalconyHandrail",new Vector3(0,1.15f,-1.18f),new Vector3(2.45f,.049f,.055f),brass);for(int i=0;i<9;i++)MeshArt.Box(root,"BalconyBaluster",new Vector3(-1.12f+i*.28f,.81f,-1.18f),new Vector3(.027f,.61f,.027f),teal);
    var bannerPoints=new[]{new Vector3(-.29f,.62f,0),new Vector3(.29f,.62f,0),new Vector3(.29f,-.43f,0),new Vector3(0,-.70f,.018f),new Vector3(-.29f,-.43f,0)};var banner=MeshArt.Mesh(root,"FloorBanner",bannerPoints,new[]{0,1,3,1,2,3,0,3,4},null,teal);var edgeVertices=new Vector3[20];var edgeTriangles=new int[30];for(int edge=0;edge<5;edge++){int next=(edge+1)%5;var a=bannerPoints[edge];var b=bannerPoints[next];edgeVertices[edge*4]=a+Vector3.back*.008f;edgeVertices[edge*4+1]=b+Vector3.back*.008f;edgeVertices[edge*4+2]=Vector3.Scale(b,new Vector3(.94f,.97f,1))+Vector3.back*.01f;edgeVertices[edge*4+3]=Vector3.Scale(a,new Vector3(.94f,.97f,1))+Vector3.back*.01f;int k=edge*4;for(int triangle=0;triangle<6;triangle++)edgeTriangles[edge*6+triangle]=k+new[]{0,1,2,0,2,3}[triangle];}var stitched=MeshArt.Mesh(root,"BannerGoldBorder",edgeVertices,edgeTriangles,null,brass);stitched.transform.localPosition=new Vector3(-1.26f,2.12f,.34f);banner.transform.localPosition=new Vector3(-1.26f,2.12f,.34f);MeshArt.Box(root,"BannerBrassRail",new Vector3(-1.26f,2.77f,.34f),new Vector3(.64f,.04f,.06f),brass);var label=new GameObject("ArchitecturalFloorNumber",typeof(TextMesh));label.transform.SetParent(root,false);label.transform.localPosition=new Vector3(-1.26f,2.12f,.305f);label.transform.localRotation=Quaternion.identity;var text=label.GetComponent<TextMesh>();text.text=(floor+1).ToString();text.anchor=TextAnchor.MiddleCenter;text.fontSize=36;text.characterSize=.18f;text.color=new Color(1,.85f,.56f);
@@ -92,6 +87,8 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    MeshArt.Box(root,"ResidenceLowerCornice",new Vector3(2.75f,.46f,-.28f),new Vector3(2.95f,.12f,.38f),trim);
    for(int side=-1;side<=1;side+=2)MeshArt.Box(root,"VaultedEntrySideWall",new Vector3(side*.95f,1.70f,1.66f),new Vector3(.16f,2.3f,1.7f),stone);
    MeshArt.Box(root,"EntryMarbleThreshold",new Vector3(0,.57f,1.63f),new Vector3(1.84f,.09f,1.75f),trim);
+   var interior=MeshArt.Box(root,"InteriorMarbleFloor",new Vector3(0,.57f,2.01f),new Vector3(1.84f,.07f,1.60f),trim);FloorArchitectureDetails.SurfaceMode(interior,.25f);
+   var ceiling=MeshArt.Ring(root,"EntryCeilingLamp",.27f,.23f,0,lamp,16);ceiling.transform.localRotation=Quaternion.Euler(180,0,0);ceiling.transform.localPosition=new Vector3(0,3.38f,1.95f);
    foreach(Transform part in root)if(part.name.StartsWith("Door")||part.name=="RecessedTealDoor"||part.name=="ArchedTransomRecess"||part.name=="TransomFanMullion")part.localPosition+=Vector3.forward;
    LiftMetalOrnaments.Balcony(root,teal,brass);var shade=Finish(parent,FloorArchitectureSurface.Leaf);var leafLight=Finish(parent,FloorArchitectureSurface.LeafLight);
    FloorArchitectureDetails.Ivy(root,new Vector3(1.26f,3.87f,.29f),1.64f,floor+19,shade,leafLight);FloorArchitectureDetails.Ivy(root,new Vector3(-1.14f,.47f,-1.19f),1.45f,floor+71,shade,leafLight);
@@ -110,7 +107,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   public static void Rails(Transform parent)
   {
    var teal=Finish(parent,FloorArchitectureSurface.Teal);var brass=Finish(parent,FloorArchitectureSurface.Brass);
-   for(int side=-1;side<=1;side+=2){MeshArt.Box(parent,"VerticalLiftRail",new Vector3(side*2.15f,1.75f,1.85f),new Vector3(.12f,6.2f,.17f),teal);MeshArt.Box(parent,"CopperRailGuide",new Vector3(side*2.15f,1.75f,1.748f),new Vector3(.036f,6.2f,.025f),brass);for(int k=0;k<6;k++)MeshArt.Box(parent,"RailMount",new Vector3(side*2.15f,-.9f+k*1.05f,1.94f),new Vector3(.23f,.09f,.23f),brass);}
+   var guides=new GameObject("CopperLiftGuides").transform;guides.SetParent(parent,false);LiftGuideArt.Build(guides,-3,8,teal,brass,"VerticalLiftRail");
   }
   static void Planter(Transform parent,Transform owner,Vector3 at,int seed)
   {

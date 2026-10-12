@@ -20,6 +20,7 @@ The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
 Current literal Concept correction: [One elevator to fixed tower balconies](docs/FLOOR-LIFT-TO-TOWER-20261012.md). Earlier economy and checkpoint design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
+Latest original environment/lobby graphics and bounded actual acceptance: [Environment and lobby revision](docs/FLOOR-ENVIRONMENT-REBUILD-20261012.md).
 Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).
 Older parkour tests and build1 delivery entries describe the previous candidate and do not validate this redesign.
 

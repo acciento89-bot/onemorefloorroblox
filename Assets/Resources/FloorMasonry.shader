@@ -9,9 +9,9 @@ Shader "Floor/Masonry" {
  #include "UnityCG.cginc"
  #include "Lighting.cginc"
  #include "AutoLight.cginc"
- sampler2D _MainTex;fixed4 _Color;float _CourseScale,_RoomGlow,_RoomPeriod,_WoodGrain;float4 _RoomOrigin;
- struct v2f {float4 pos:SV_POSITION;float3 world:TEXCOORD0;half3 normal:TEXCOORD1;UNITY_FOG_COORDS(2) SHADOW_COORDS(3)};
- v2f vert(appdata_base v){v2f o;o.pos=UnityObjectToClipPos(v.vertex);o.world=mul(unity_ObjectToWorld,v.vertex).xyz;o.normal=UnityObjectToWorldNormal(v.normal);UNITY_TRANSFER_FOG(o,o.pos);TRANSFER_SHADOW(o);return o;}
+ sampler2D _MainTex;fixed4 _Color;float _CourseScale,_RoomGlow,_RoomPeriod,_WoodGrain,_Glossiness;float4 _RoomOrigin;
+ struct v2f {float4 pos:SV_POSITION;float3 world:TEXCOORD0;half3 normal:TEXCOORD1;UNITY_FOG_COORDS(2) SHADOW_COORDS(3) half2 surface:TEXCOORD4;};
+ v2f vert(appdata_full v){v2f o;o.pos=UnityObjectToClipPos(v.vertex);o.world=mul(unity_ObjectToWorld,v.vertex).xyz;o.normal=UnityObjectToWorldNormal(v.normal);o.surface=half2(step(.24,v.color.a)*(1-step(.26,v.color.a)),step(.49,v.color.a)*(1-step(.51,v.color.a)));UNITY_TRANSFER_FOG(o,o.pos);TRANSFER_SHADOW(o);return o;}
  fixed4 frag(v2f i):SV_Target{
   UNITY_LIGHT_ATTENUATION(atten,i,i.world);
   half3 n=normalize(i.normal),a=abs(n);float horizontal=a.x>a.z?i.world.z:i.world.x;
@@ -28,9 +28,19 @@ Shader "Floor/Masonry" {
   // realtime lights, per-renderer blocks, texture samplers or reflection cameras.
   float3 room=i.world-_RoomOrigin.xyz;room.x=(room.x-.72)/1.65;if(_RoomPeriod>0)room.y-=floor(room.y/_RoomPeriod)*_RoomPeriod;
   half inside=saturate((1.2-abs(room.x))*4)*saturate((room.z-.2)*3)*saturate((3.9-room.y)*3)*saturate((room.y-.45)*3);
-  float3 left=float3(-.90,2.02,.32)-room,right=float3(.90,2.02,.32)-room;
+  float3 left=float3(-.90,2.02,.32)-room,right=float3(.90,2.02,.32)-room,ceiling=float3(0,3.38,1.95)-room;
   left.x*=1.65;right.x*=1.65;half warm=inside*_RoomGlow*((.25+saturate(dot(n,left*rsqrt(max(dot(left,left),.0001)))))/(1+dot(left,left)*.7)+(.25+saturate(dot(n,right*rsqrt(max(dot(right,right),.0001)))))/(1+dot(right,right)*.7));
-  fixed4 col=fixed4(stone*(ambient*.60+_LightColor0.rgb*(.18+shade*.88)*atten+half3(1,.58,.22)*warm),1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
+  ceiling.x*=1.65;half ceilingDiffuse=saturate(dot(n,ceiling*rsqrt(max(dot(ceiling,ceiling),.001))));warm+=inside*_RoomGlow*(.20+ceilingDiffuse)/(1+dot(ceiling,ceiling)*.65);
+  half3 view=normalize(_WorldSpaceCameraPos.xyz-i.world),ray=reflect(-view,n);
+  half ribbon=pow(saturate(1-abs(ray.x*.72+ray.z*.34-.20)),48);
+  half spec=pow(saturate(dot(n,normalize(light+view))),52)*atten;
+  half vein=1-smoothstep(.02,.08,abs(sin(i.world.x*1.6+i.world.z*.73+sin(i.world.z*1.7)*.65)));
+  half3 base=stone*(ambient*.60+_LightColor0.rgb*(.18+shade*.88)*atten+half3(1,.58,.22)*warm);
+  half3 marble=_Color.rgb*grain*(1-vein*.12)*(ambient*.58+_LightColor0.rgb*(.20+shade*.68)*atten)+spec*.45+ribbon*half3(.22,.20,.16);
+  // Opaque architectural glazing uses bounded authored reflected sky and warm
+  // interior light; it is not a second camera or a claimed realtime reflection.
+  half sky=saturate(ray.y*.6+.5);half3 glazing=lerp(half3(.09,.18,.19),half3(.50,.63,.64),sky)*.40+half3(.43,.23,.075)+ribbon*half3(.60,.56,.40)+spec*.65;
+  fixed4 col=fixed4(lerp(lerp(base,marble,i.surface.x),glazing,i.surface.y),1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
  } ENDCG }
  Pass {Name "SHADOWCASTER" Tags {"LightMode"="ShadowCaster"} ZWrite On ZTest LEqual
  CGPROGRAM
