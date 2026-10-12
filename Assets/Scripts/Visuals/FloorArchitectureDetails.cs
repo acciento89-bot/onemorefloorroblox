@@ -35,27 +35,45 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    for(int i=0;i<faces.Length;i++){vertices[i]=p[faces[i]];uv[i]=new Vector2(vertices[i].x*.55f,vertices[i].y*.55f);t[i]=i;}
    return MeshArt.Mesh(parent,name,vertices,t,uv,material);
   }
+  // Folded single-sided leaf surfaces keep coherent normals. The shared shader
+  // handles back faces; duplicate reversed triangles cancelled the old normals.
+  static void Leaf(List<Vector3> v,List<int> t,List<Vector2> uv,List<Color> colors,Vector3 p,Vector3 tip,Vector3 across,float width,bool ivy,float tone)
+  {
+   int k=v.Count;var along=tip-p;Vector3 normal=Vector3.Cross(across,along).normalized;
+   Vector2[] shape=ivy?new[]{new Vector2(0,0),new Vector2(-.58f,.18f),new Vector2(-1,.48f),new Vector2(-.49f,.52f),new Vector2(0,1),new Vector2(.49f,.52f),new Vector2(1,.48f),new Vector2(.58f,.18f)}:new[]{new Vector2(0,0),new Vector2(-.80f,.26f),new Vector2(-1,.55f),new Vector2(0,1),new Vector2(1,.55f),new Vector2(.80f,.26f)};
+   v.Add(p+along*.48f+normal*width*.22f);uv.Add(new Vector2(.5f,.48f));colors.Add(new Color(tone,tone,tone,1));
+   foreach(var point in shape){v.Add(p+along*point.y+across*(point.x*width));uv.Add(new Vector2(.5f+point.x*.5f,point.y));colors.Add(new Color(tone,tone,tone,1));}
+   for(int edge=0;edge<shape.Length;edge++)t.AddRange(new[]{k,k+1+edge,k+1+(edge+1)%shape.Length});
+  }
+  static void Stem(List<Vector3> v,List<int> t,List<Vector2> uv,List<Color> colors,Vector3 a,Vector3 b,float width)
+  {
+   int k=v.Count;Vector3 side=Vector3.Cross(b-a,Vector3.forward).normalized*width;
+   v.AddRange(new[]{a-side,a+side,b+side,b-side});uv.AddRange(new[]{Vector2.zero,Vector2.right,Vector2.one,Vector2.up});for(int i=0;i<4;i++)colors.Add(new Color(.68f,.72f,.57f,1));t.AddRange(new[]{k,k+1,k+2,k,k+2,k+3});
+  }
   public static void Ivy(Transform parent,Vector3 origin,float length,int seed,Material shade,Material light)
   {
    var root=new GameObject("HangingIvy");root.transform.SetParent(parent,false);root.transform.localPosition=origin;
    for(int strand=0;strand<3;strand++){
-    var v=new List<Vector3>();var t=new List<int>();float drop=length*(.72f+strand*.14f);
-    for(int leaf=0;leaf<12;leaf++){
-     float f=leaf/11f;var p=new Vector3(strand*.085f+.057f*Mathf.Sin(f*7+seed),-f*drop,-.045f-.08f*Mathf.Sin(f*4+strand));
-     float a=leaf*2.4f+seed*.21f;var along=new Vector3(Mathf.Cos(a)*.045f,-.13f,Mathf.Sin(a)*.045f);var side=new Vector3(.085f*Mathf.Cos(a),.008f,.085f*Mathf.Sin(a));int k=v.Count;
-     v.AddRange(new[]{p,p+along*.3f-side,p+along,p+along*.3f+side,p+along*.43f+Vector3.back*.018f});
-     t.AddRange(new[]{k,k+1,k+4,k+1,k+2,k+4,k+2,k+3,k+4,k+3,k,k+4,k+4,k+1,k,k+4,k+2,k+1,k+4,k+3,k+2,k+4,k,k+3});
+    var v=new List<Vector3>();var t=new List<int>();var uv=new List<Vector2>();var colors=new List<Color>();float drop=length*(.72f+strand*.14f);Vector3 previous=new Vector3(strand*.14f,0,0);
+    for(int leaf=0;leaf<19;leaf++){
+     float f=leaf/18f;var p=new Vector3(strand*.14f+.08f*Mathf.Sin(f*7+seed),-f*drop,-.08f-.09f*Mathf.Sin(f*4+strand));if(leaf>0)Stem(v,t,uv,colors,previous,p,.008f);previous=p;
+     float side=leaf%2==0?-1:1;var tip=p+new Vector3(side*(.17f+.04f*Mathf.Sin(seed+leaf)), -.10f-.035f*(leaf%3),-.045f);var across=new Vector3(.42f,.89f,.10f)*side;
+     Leaf(v,t,uv,colors,p,tip,across,.115f-(f*.025f),true,.82f+(leaf%4)*.075f);
     }
-    MeshArt.Mesh(root.transform,"IvyLeaves",v.ToArray(),t.ToArray(),null,strand==1?light:shade);
+    MeshArt.Mesh(root.transform,"IvyLeaves",v.ToArray(),t.ToArray(),uv.ToArray(),strand==1?light:shade,colors:colors.ToArray());
    }
   }
   public static void Plant(Transform parent,Vector3 origin,Material shade,Material light,int seed)
   {
-   var v=new List<Vector3>();var t=new List<int>();
-   for(int leaf=0;leaf<11;leaf++){float a=leaf*2.39996f+seed*.21f;var outwards=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));var across=new Vector3(-outwards.z,0,outwards.x);float length=.48f+(leaf%4)*.14f;int start=v.Count;
-    for(int joint=0;joint<7;joint++){float f=joint/6f;var center=origin+Vector3.up*(.06f+length*f*(1-.34f*f))+outwards*(.07f+.52f*f*f);float width=Mathf.Sin(f*Mathf.PI)*(.052f+(leaf%3)*.015f);v.Add(center-across*width);v.Add(center+Vector3.up*.018f);v.Add(center+across*width);if(joint<6){int k=start+joint*3;t.AddRange(new[]{k,k+3,k+1,k+1,k+3,k+4,k+1,k+4,k+2,k+2,k+4,k+5,k+1,k+3,k,k+4,k+3,k+1,k+2,k+4,k+1,k+5,k+4,k+2});}}
-   }MeshArt.Mesh(parent,"PlantLeaf",v.ToArray(),t.ToArray(),null,shade);
-
+   for(int tone=0;tone<2;tone++){
+    var v=new List<Vector3>();var t=new List<int>();var uv=new List<Vector2>();var colors=new List<Color>();
+    for(int branch=tone;branch<7;branch+=2){float a=branch*2.39996f+seed*.21f;var outwards=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));float height=.68f+(branch%3)*.17f;var basePoint=origin+Vector3.up*.27f;Vector3 previous=basePoint;
+     for(int joint=1;joint<=5;joint++){float f=joint/5f;var center=basePoint+Vector3.up*(height*f)+outwards*(.42f*f*f);Stem(v,t,uv,colors,previous,center,.012f);previous=center;
+      for(int side=-1;side<=1;side+=2){var axis=new Vector3(-outwards.z,0,outwards.x)*side;var tip=center+axis*(.23f+.15f*Mathf.Sin(f*Mathf.PI))+outwards*.11f+Vector3.up*(.14f-f*.11f);var across=(Vector3.up+outwards*.32f).normalized;Leaf(v,t,uv,colors,center,tip,across,.11f+(joint%2)*.024f,false,.78f+(branch%4)*.08f);}
+     }
+    }
+    MeshArt.Mesh(parent,"PlantLeaf",v.ToArray(),t.ToArray(),uv.ToArray(),tone==0?shade:light,colors:colors.ToArray());
+   }
   }
  }
 }

@@ -1,0 +1,323 @@
+{
+  "sourceSha256": "53f3dc4bf2bcc5cc59e353b4f4a6557b14888e22a6ce61d592748528761d967a",
+  "bundleSha256": "1e02e7068ad40520abbb45a3507f5aa716114b3df7ebe7e3068a1d8240056ecb",
+  "app": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/OneMoreFloor-InstrumentQa5.app",
+  "createdAt": "2026-10-12T09:53:31.019577+00:00",
+  "target": "StandaloneOSX development QA",
+  "buildExitCode": 0,
+  "strictEditorResult": "FLOOR_ALL_PASS checks=13610 loggedErrors=0",
+  "scope": "Concept brass landing instrument/station symbols/authoritative calibrated safe-perfect zones/white outlined needle/tutorial placement/transfer chevrons, folded broad leaves/stems/veins/shared two-sided shader, warm entrance timber and brass-edged pointed floor banners",
+  "nativeOrTestFlightAttempted": false,
+  "fullRuntime": "ELEVATOR_QA_PASS checks=8752 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+  "reloadRuntime": "ELEVATOR_RELOAD_PASS checks=6",
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2223",
+  "visualStatus": "failed",
+  "reviewedAt": "2026-10-12T12:15:43.101418+00:00",
+  "scopeLimit": "One More Floor only; no native/TestFlight/version/provider transaction or other-game changes. Existing camera quaternion/landing authority/physics/rewards/save/styles/parent navigation retained. Only HUD presentation/calibration and owned art/shading extended.",
+  "limitations": "Genuine Mac development-player QA, not physical iPhone touch/FPS/music mix or real StoreKit/UMP/advertising transactions. True430x932 and932x430 orientations are Showcase5; Full5 orientation requests do not resize macOS. Landing instrument closely resembles the approved Concept, with actual hit-authority calibration. Overall similarity remains failed: canopy/metal surfaces and avatar/architectural illumination/composition/menu scene detail still differ visibly from the approved board. No native performance improvement claimed.",
+  "budgets": {
+    "architectureVertices": 26692,
+    "architectureMaterials": 12,
+    "architectureTextures": 2,
+    "cabinVertices": 6765,
+    "cabinRawRenderers": 28,
+    "runnerVertices": 4806,
+    "runnerTriangles": 8250,
+    "runnerDefaultRenderers": 31,
+    "runnerMaterials": 8,
+    "runnerTextures": 2
+  },
+  "meaningfulRed": [
+    "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/instrument-red.log",
+    "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/zone-readability-red.log",
+    "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/needle-bounds-red2.log"
+  ],
+  "reviewFixes": [
+    "Vertical needle capsule originally drew a25px disk; reproduced real vector vertex bounds RED and generalized capsule radius/axis correctly",
+    "Legibility mapping uses authoritative ElevatorRules.Hit to resolve Mono intermediate-precision boundary alias without changing gameplay thresholds; all3603 sampled offsets across3windows classify correctly",
+    "Initial needle fixture reflection overloaded method corrected before meaningful RED",
+    "Broad single-sided folded foliage has explicit UV/tint/valid normals and a shared two-sided shader; day chapter preview uses same finish",
+    "Pointed gold-edged banners and warm DoorWood mode share owned architecture palette and existing two textures"
+  ],
+  "exploratoryEvidence": "Candidate3 Showcase passed; candidate4 full run was intentionally stopped after capture review to strengthen white needle outline. Neither is represented as final5 full evidence.",
+  "validationReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/instrument-build5.log",
+      "sha256": "a0429e744c7935075f976fee12e7044c5494331d1c856148c1607caca3057456"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/PASS.txt",
+      "sha256": "03b9c7e641946f7101439e3cccb28d6535b01558092e37497d743e38d8d86215"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Reload5/RELOAD-PASS.txt",
+      "sha256": "210690843527a123f8beb74d89528c1e4cf77cce20f8dafd638e3438cfee1f74"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/SHOWCASE-PASS.txt",
+      "sha256": "802c8c394b642256a215444380d0e056377f549d548cf89a8c274b0cec737a8b"
+    }
+  ],
+  "renderedEvidence": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/floor16.png",
+      "sha256": "f63f05a90130cdf5eb233c62376ebd0b39a4a0b16c9194354b9d969556191447",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/floor2.png",
+      "sha256": "6cdfd47f4de90955d9fdeaa85bca9abc7b6c89bc32e474aed8690ec5f77adf62",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/floor7.png",
+      "sha256": "ff346f596c80244f792c435d96b88f92e86eedd2b942670a63b50e73efc724cc",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/home.png",
+      "sha256": "533de09440440f86400bfc5ed9f06a9a47bf85112cb3b86cd61c59f991ecd9c1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/landscape-shop.png",
+      "sha256": "241c3244679b254165f120b5a09b7f8ad0703085fe693e6744005b1a8b255418",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/landscape.png",
+      "sha256": "f42b5a620f5ba739791419b8945c7fa228436793442d21f06bbcdd4f1f1ae118",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/portrait-restored.png",
+      "sha256": "64d6749b4f96c97029f1b8a62b1d4f2f91158cd95743737d5d97a2e326140ea1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/portrait.png",
+      "sha256": "6a2878c1333f42c82fdaed006aced010cfd257c1fafc2f531ccac55750f711dd",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm0-lift-ready.png",
+      "sha256": "c93f7e91a413ffc496ee9672c7e55186f159877bbb2a9c6bdda5c5bea85eb56c",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm1-lift-ready.png",
+      "sha256": "63623070cef95c1a9c1238b085a478f885d34efbe3ac31315e735ebf27dfa0d7",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm2-lift-ready.png",
+      "sha256": "604aeb6e88c65bbc8c6676b6c1a4932110541de352f7539362e050ec45a9ccf1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/tower0-complete.png",
+      "sha256": "7206c66a285f690a02ca6727b35d2716ec63a63a7ef1423eea21f7323224f789",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/tower1-complete.png",
+      "sha256": "aa7fb290c0191e2963e867f0686d0d539e032c9aedcd00ef091f343144c979fc",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/tower2-complete.png",
+      "sha256": "0cadc394fd821e57c34d3cdab1d597d0559cec441c0261242eb66107b9ed4a8b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Reload5/restored-checkpoint-banked.png",
+      "sha256": "2cb38776b1d205b35d67450b67a993c6002f924cd52297d1ff6d8b64f5a770a0",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/banked-landscape-de.png",
+      "sha256": "140ae024c176777bec81582dd075f1778f58f1a98f8a46f717f35690b6294a96",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/banked-landscape-en.png",
+      "sha256": "af19a304c4a7c69781d256d75ec3a49d600d7d4aa91d9c8f7678a32d95f38a12",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/banked-portrait-de.png",
+      "sha256": "d235a12ec45cb9ad7aceeb590900f5e691a2d5ee8f6bbe0e746d366341a4479e",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/banked-portrait-en.png",
+      "sha256": "369311fd84a40309ce4898bce3bd16797239783740ac2e40d2687f3300955941",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/gift.png",
+      "sha256": "ce93e857a14fac3a7b1d7c632d7a27417e711eee85ee624d5aaf5aeb469c6913",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-de.png",
+      "sha256": "02a5cdd76cb662f88b43b0a53c6caae3cc49efad41f73ba9d3b18f326b5461f1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-en.png",
+      "sha256": "272d2f48beaefc33de734763a427a85a417fa4f439a91febd6ea1a73bec1c0df",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-landscape.png",
+      "sha256": "d91c0f5a8013f6a7c1f2aa736d32122a229af87a8f96954bb9889bd1af9badf8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-rating0.png",
+      "sha256": "6390479be45c1ee552127a0a7658d41b5a8dfb00870b96bc5000f69eb3047c1c",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-rating1.png",
+      "sha256": "d95ea266bac2d9df2be0dad12a60cad72827ef6189fe209b81b9bdbe557872c4",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-rating3.png",
+      "sha256": "b26cdb9c21205b67173991f78ec82fcd26a73319c8677d19a3f22044d2b93890",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-restored.png",
+      "sha256": "7929f230ee9b63280e266f1a72d5286f67e9f096c3fd307615c3c8ec13c29c86",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/risk-landscape-de.png",
+      "sha256": "60b96372ade918c37230c172e3c491d5a8d5c35bf0da8121fbf687245c11da5c",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/risk-landscape-en.png",
+      "sha256": "658a742a22e60e8e5fe9ea15f27781fd54a778c01ff5d005d49a2bae768984ca",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/risk-portrait-de.png",
+      "sha256": "e8197c7504dc3daf611e32529dc904f50990ff4695da9b82f325db8b3d0153b0",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/risk-portrait-en.png",
+      "sha256": "b621052f69bcbc06eb6cb01a2de798887ef02610584a75c220a56f036b1e51de",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design0.png",
+      "sha256": "9b3302d5a9dc553bb65285f475d9ceab95ab707f3880d49a4d4aa5d23354799a",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design1.png",
+      "sha256": "aaad35a43346c8bc7b9ec9793dd4cdfa02a530572099cab6f20024a9e78775b8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design3.png",
+      "sha256": "bb43ecd973e9916195a90d4bc761413aeb20cf47a52b5cbbe5ae4c03e3b2c7e2",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design7.png",
+      "sha256": "fbd12864715df4f4520832249fc2cee5d5e5db8c4e8d15bcd2e8e00a99eb8c5b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/settings-landscape-de.png",
+      "sha256": "f0c37cc9c237039ebfadfe61af790051f23ba639b5739a6dd18f83b59b16cd53",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/settings-landscape-en.png",
+      "sha256": "fa1772b7c43f3515f527ebd5719a2428637db53ef91547e52695ae11b41947d3",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/settings-portrait-de.png",
+      "sha256": "3750b4d57a479a7f26ac21a12a8ed89f4f1c8ca2acbaffb926f50f69ef456c04",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/settings-portrait-en.png",
+      "sha256": "3ef9d4026ca5b25f5a2bdba9559cfb81406f2996aebf1b070524c1c5743be054",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/settings.png",
+      "sha256": "cf6d98556fddd86f570a0681800d5dffcb0aee8429364e1d4c917a8830e584de",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/shop-landscape.png",
+      "sha256": "3e944f45712a9d7eb22dece70b7bcfbf70f367731c8acf0988b4a96716374b88",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/shop.png",
+      "sha256": "d091b82f2332b5af39e527e235a424f8af63218cfc40d768fc52a51433433ef1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/styles.png",
+      "sha256": "65ba3b2f8e51323ef53f57e1094fc247d40756b30e498247c7d25c9729a56fc8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tower-ready-landscape.png",
+      "sha256": "7404cc27d03261de7777fabb8584fb88982c2b844048c0b7ca4a270f01d5b255",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tower-ready-portrait.png",
+      "sha256": "97a3f55de778b299bfd3ed01e13af4b6fd3eae4b0f322fc8a0e645ad3eebf15b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-bank-lesson.png",
+      "sha256": "66a3f7a39f944300f060c881a1c7de242fe3e7d98401cfc87d91639eadedb428",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-choice.png",
+      "sha256": "2aea071f7489a646025d9316522cb1cdcb4c4ea8e84deefdf2ece81b862ce9be",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-complete.png",
+      "sha256": "1020d9da3ffc6136df53b206e49ab8c3751a10545d7d66fcb975508deb4d1755",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-landscape.png",
+      "sha256": "8df87739cadf0d9dccbd52bbe133fbc9f99b202daec2e30ca5a2c7e271afeb7e",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-perfect.png",
+      "sha256": "6960836d53d38aa2ffe6f6e8783054b6149fc3c30672fedb7914f08c23436200",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-risk.png",
+      "sha256": "00564437347de9dfdaa883b29f92a2f724c492d45e2214b66500c5b3d061e9c8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tutorial-timing.png",
+      "sha256": "ab4c1dcf2a46d9800cda0e35a4250e1e29831d1bbea802946c4ff4f2d3763150",
+      "origin": "Unity-render"
+    }
+  ]
+}

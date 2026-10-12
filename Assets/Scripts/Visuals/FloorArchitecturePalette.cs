@@ -4,8 +4,8 @@ using Kamilunavo.OneMoreFloor.Gameplay;
 
 namespace Kamilunavo.OneMoreFloor.Visuals
 {
- public enum FloorArchitectureSurface { Stone,Trim,Brass,Copper,Teal,Leaf,LeafLight,Lamp,Deck,CityStone,CityShade,CityTrim,Glass,Halo }
- // Fourteen finite surface kinds and two original 128² finishes per course/preview root.
+ public enum FloorArchitectureSurface { Stone,Trim,Brass,Copper,Teal,Leaf,LeafLight,Lamp,Deck,CityStone,CityShade,CityTrim,Glass,Halo,DoorWood }
+ // Fifteen finite surface kinds and two original 128² finishes per course/preview root.
  // No static generated assets survive a scene or a menu preview.
  [ExecuteAlways] public sealed class FloorArchitecturePalette:MonoBehaviour
  {
@@ -41,16 +41,18 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    material.color=kind switch {
     FloorArchitectureSurface.Stone=>new Color(.84f,.79f,.66f),FloorArchitectureSurface.Trim=>new Color(.91f,.85f,.72f),
     FloorArchitectureSurface.Brass=>new Color(.92f,.65f,.28f),FloorArchitectureSurface.Copper=>new Color(.67f,.41f,.21f),
-    FloorArchitectureSurface.Teal=>new Color(.035f,.19f,.20f),FloorArchitectureSurface.Leaf=>new Color(.13f,.30f,.14f),FloorArchitectureSurface.LeafLight=>new Color(.30f,.44f,.17f),
+    FloorArchitectureSurface.DoorWood=>new Color(.66f,.39f,.15f),FloorArchitectureSurface.Teal=>new Color(.035f,.19f,.20f),FloorArchitectureSurface.Leaf=>new Color(.13f,.30f,.14f),FloorArchitectureSurface.LeafLight=>new Color(.30f,.44f,.17f),
     FloorArchitectureSurface.Halo=>new Color(1,.60f,.16f,.32f),FloorArchitectureSurface.Lamp=>new Color(1,.73f,.31f),FloorArchitectureSurface.Deck=>new Color(.36f,.23f,.13f),
     FloorArchitectureSurface.CityStone=>new Color(.70f,.58f,.43f),FloorArchitectureSurface.CityShade=>new Color(.55f,.44f,.34f),FloorArchitectureSurface.Glass=>new Color(.35f,.64f,.64f,.09f),_=>new Color(.82f,.71f,.53f)};
    bool metal=kind==FloorArchitectureSurface.Brass||kind==FloorArchitectureSurface.Copper;
+   if(kind==FloorArchitectureSurface.Leaf||kind==FloorArchitectureSurface.LeafLight)material.shader=Resources.Load<Shader>("FloorFoliage");
    if(kind==FloorArchitectureSurface.Halo)material.shader=Resources.Load<Shader>("FloorLightHalo");
    if(metal)material.shader=Resources.Load<Shader>("FloorArchitecturalMetal");
    if(kind==FloorArchitectureSurface.Glass)material.shader=Resources.Load<Shader>("FloorCabinGlass");
    if(metal){if(_metal==null)_metal=Finish(true);material.mainTexture=_metal;}
-   else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim){material.shader=Resources.Load<Shader>("FloorMasonry");if(_stone==null)_stone=Finish(false);material.mainTexture=_stone;}
-   if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim){var course=GetComponent<FloorCourse>();if(course!=null){material.SetFloat("_RoomGlow",.55f);material.SetVector("_RoomOrigin",transform.position+new Vector3(TowerLiftMotion.TowerX,0,TowerLiftMotion.TowerZ));material.SetFloat("_RoomPeriod",TowerLiftMotion.FloorSpacing);}}
+   else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim||kind==FloorArchitectureSurface.DoorWood){material.shader=Resources.Load<Shader>("FloorMasonry");if(_stone==null)_stone=Finish(false);material.mainTexture=_stone;}
+   if(kind==FloorArchitectureSurface.DoorWood)material.SetFloat("_WoodGrain",1);
+   if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.DoorWood){var course=GetComponent<FloorCourse>();if(course!=null){material.SetFloat("_RoomGlow",.55f);material.SetVector("_RoomOrigin",transform.position+new Vector3(TowerLiftMotion.TowerX,0,TowerLiftMotion.TowerZ));material.SetFloat("_RoomPeriod",TowerLiftMotion.FloorSpacing);}}
    material.SetFloat("_Glossiness",metal?.72f:.12f);if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",metal?.72f:0);
    if(kind==FloorArchitectureSurface.Lamp){material.EnableKeyword("_EMISSION");material.SetColor("_EmissionColor",material.color*2.4f);}
    ArtLifetime.Own(gameObject,material);_materials.Add(kind,material);return material;

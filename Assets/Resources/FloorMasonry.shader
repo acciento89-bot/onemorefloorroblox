@@ -1,5 +1,5 @@
 Shader "Floor/Masonry" {
- Properties {_Color("Stone tint",Color)=(.84,.79,.66,1) _MainTex("Original mineral grain",2D)="white"{} _Glossiness("Polish",Range(0,1))=.12 _Metallic("Metal",Range(0,1))=0 _CourseScale("Masonry joints per metre",Float)=1.7 _RoomGlow("Warm entrance fill",Range(0,1))=0 _RoomOrigin("Entrance origin",Vector)=(0,0,0,0) _RoomPeriod("Repeated floor height",Float)=0}
+ Properties {_Color("Stone tint",Color)=(.84,.79,.66,1) _MainTex("Original mineral grain",2D)="white"{} _Glossiness("Polish",Range(0,1))=.12 _Metallic("Metal",Range(0,1))=0 _CourseScale("Masonry joints per metre",Float)=1.7 _WoodGrain("Carved entrance timber",Range(0,1))=0 _RoomGlow("Warm entrance fill",Range(0,1))=0 _RoomOrigin("Entrance origin",Vector)=(0,0,0,0) _RoomPeriod("Repeated floor height",Float)=0}
  SubShader {Tags {"RenderType"="Opaque"} LOD 150
  Pass {Tags {"LightMode"="ForwardBase"} CGPROGRAM
  #pragma vertex vert
@@ -9,7 +9,7 @@ Shader "Floor/Masonry" {
  #include "UnityCG.cginc"
  #include "Lighting.cginc"
  #include "AutoLight.cginc"
- sampler2D _MainTex;fixed4 _Color;float _CourseScale,_RoomGlow,_RoomPeriod;float4 _RoomOrigin;
+ sampler2D _MainTex;fixed4 _Color;float _CourseScale,_RoomGlow,_RoomPeriod,_WoodGrain;float4 _RoomOrigin;
  struct v2f {float4 pos:SV_POSITION;float3 world:TEXCOORD0;half3 normal:TEXCOORD1;UNITY_FOG_COORDS(2) SHADOW_COORDS(3)};
  v2f vert(appdata_base v){v2f o;o.pos=UnityObjectToClipPos(v.vertex);o.world=mul(unity_ObjectToWorld,v.vertex).xyz;o.normal=UnityObjectToWorldNormal(v.normal);UNITY_TRANSFER_FOG(o,o.pos);TRANSFER_SHADOW(o);return o;}
  fixed4 frag(v2f i):SV_Target{
@@ -19,6 +19,8 @@ Shader "Floor/Masonry" {
   float2 grid=frac(float2(x,i.world.y*_CourseScale));float joint=min(min(grid.x,1-grid.x),min(grid.y,1-grid.y));
   half mortar=1-smoothstep(.008,.035,joint);mortar*=saturate(1-a.y*2);
   half grain=tex2D(_MainTex,i.world.xz*.22+i.world.yy*.16).r;
+  float fibre=i.world.x*95+sin(i.world.y*2.1+i.world.x*5)*2.2+sin(i.world.y*.7)*1.2;half wood=.78+.10*sin(fibre)+.065*sin(fibre*2.13);
+  grain=lerp(grain,wood,_WoodGrain);mortar*=1-_WoodGrain;
   half course=.99+.018*sin(floor(x)*17.13+row*7.71);half3 stone=_Color.rgb*grain*course*(1-mortar*.09);
   half3 light=normalize(UnityWorldSpaceLightDir(i.world));half shade=saturate(dot(n,light));
   half3 ambient=max(ShadeSH9(half4(n,1)),half3(.16,.16,.15));
