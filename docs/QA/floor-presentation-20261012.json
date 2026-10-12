@@ -32,5 +32,7 @@
     430,
     932
   ],
-  "reviewFindings": "2P2 UI defects reproduced RED then corrected GREEN; no additional P1/P2 source findings; actual visual quality remains failed."
+  "reviewFindings": "2P2 UI defects reproduced RED then corrected GREEN; no additional P1/P2 source findings; actual visual quality remains failed.",
+  "sourceCommit": "d26f19ac866dcc1015def2b18b319c8f671346ab",
+  "diffCheckLimitation": "Runtime/editor/shader source diff whitespace clean. Full staged diff reports Unity-generated empty YAML .meta values and the unchanged SIL font-license whitespace; retained exactly to preserve frozen imported source and license. Not a compile/runtime issue."
 }
