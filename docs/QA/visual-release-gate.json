@@ -1,17 +1,17 @@
 {
   "game": "One More Floor",
   "status": "failed",
-  "sourceSha256": "e0128d0f45ee1d37ad594db4ae76d3dc7191e6be6ce9ede5c9cfd4417f01eef0",
-  "reviewer": "Codex actual rendered image inspection against unchanged Oct10 approved board",
-  "reviewedAt": "2026-10-11",
-  "reason": "Repetitive skyline, simplified character, sparse decoration, global lighting and oversized gameplay HUD remain below the Concept. Final Mac build exit0; graphics2024; full strict11345/loggedErrors0. Fresh native8670 checks/87 guided physical transfers/all3 towers/miss/bank/pause/framing exit0; final showcase2156/scoped runtime errors0 exit0. Actual background skyline lowered after comparison; exact rooftop-height assertion failed RED then passed GREEN. No mobile device performance or concept acceptance implied.",
+  "sourceSha256": "03c308e0eeddd7511f6e378647b01f32bc1102999c9a220e728454b05075a26e",
+  "reviewer": "Codex direct actual rendered Mac image comparison against unchanged approved Concept",
+  "reviewedAt": "2026-10-12T01:11:11.730121+00:00",
+  "reason": "Fresh actual Unity Mac renders reviewed against unchanged approved Oct10 board. Oval brass passenger cabin, larger side-facing original runner, warm reflection finish, original Sunset/Neon/day distant environments, readable parent navigation, fixed camera and compact HUD are improved. Still below the requested Concept: sparse/simpler near architecture and greenery, less ornate luminous cabin detailing and character material/silhouette refinement, flat scenic chapter cards and framed modal lobby rather than the reference full spatial atrium. Functional build/runtime success does not approve these visual differences. No TestFlight or native version bump.",
   "criteria": {
     "concept_similarity": "failed",
-    "character_or_tower": "pending",
-    "world_variants": "pending",
+    "character_or_tower": "failed",
+    "world_variants": "passed",
     "menu_identity": "pending",
-    "submenu_navigation": "pending",
-    "readability": "pending"
+    "submenu_navigation": "passed",
+    "readability": "passed"
   },
   "evidence": {
     "concept": [
@@ -23,54 +23,49 @@
     ],
     "menu": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/lobby-de.png",
-        "sha256": "951827166a57ac22d1018da089127ef9c51768cfcb7462e3d0ed128def249a58",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/lobby-de.png",
+        "sha256": "fa18fe9939df74b327e3d5652139f34aa4e3721df3ad2707139856f037279a22",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/lobby-landscape.png",
+        "sha256": "3f9b2d46a3ecd0d6170d765461828b794ce129a73aa070e3749ac42ac4e3b81b",
         "origin": "Unity-render"
       }
     ],
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/floor7.png",
-        "sha256": "455a04fc3a6097ce2e39fe6f418735f9971c8598c38f10baa527df34ff10028e",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Full4/floor7.png",
+        "sha256": "6ed0b51cbcf41a1a25fccf55a99681862683db66e1821be2f4056e8f8535ccef",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/tutorial-landscape.png",
-        "sha256": "d098092fd3a942975c8c8d75bc679798f784fc569c5f60be1b8d650d5a41bfbf",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/tutorial-landscape.png",
+        "sha256": "9a5b221d605fa039294ae16270409afe8cbf14eec59cfdab6f2604932949f305",
         "origin": "Unity-render"
       }
     ],
     "submenus": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/risk-portrait-de.png",
-        "sha256": "b4522e0ec2c8dbab83a4da1a5fde1f03195f2a984f078649ea43144ff9865f74",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/risk-portrait-de.png",
+        "sha256": "b6f83390acb1317ee5693ede2ab5628d1d996254e267ac10e79ea2de1fb2d5f1",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/settings-portrait-de.png",
-        "sha256": "30548d6cd332f9ebd8100cc0453e8ab60910a2ff5fc8e8d9d892314e816ff4c4",
-        "origin": "Unity-render"
-      },
-      {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/RuntimeFinal/styles.png",
-        "sha256": "69c5acc534799121c212f6c4aa584ef097d18622dfd349118e0cc2a6e4e99fc1",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/settings-portrait-de.png",
+        "sha256": "918796d91eecc4f39b366e402fee91b3ed31c16c2a6534eac9852bebca96ecf0",
         "origin": "Unity-render"
       }
     ],
     "variants": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/tower0-complete.png",
-        "sha256": "5c2402786277b76e0c8b7f429d8089ffe32a6e42a0c080e3deca42d2d2c3db7a",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Full4/tower1-complete.png",
+        "sha256": "6979a40025a9ed036de911798568f2b2e69324780af683a4f98a6b380d918dee",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/tower1-complete.png",
-        "sha256": "e0c281e15ac3eb21b23a36446a7b556bc9541d14e50c8008e4974d8c4f0e7a35",
-        "origin": "Unity-render"
-      },
-      {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/GraphicsRefinement-20261011/Floor/TransfersFinal/tower2-complete.png",
-        "sha256": "f9536a5a9b5a1606b82fa33e8911bee941a98e0d87ed4fb144cf9d31c8c853d9",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Full4/tower2-complete.png",
+        "sha256": "4478bb0f9ec6c851713e039a731069dfbfc078ff00ae856a8571fc8e55739ed2",
         "origin": "Unity-render"
       }
     ]

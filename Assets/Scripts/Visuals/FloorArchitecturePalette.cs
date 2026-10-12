@@ -40,9 +40,9 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var material=new Material(Resources.Load<Material>(kind==FloorArchitectureSurface.Lamp?"Materials/Glow":"Materials/Surface")){name="FloorArchitecture"+kind};
    material.color=kind switch {
     FloorArchitectureSurface.Stone=>new Color(.84f,.79f,.66f),FloorArchitectureSurface.Trim=>new Color(.91f,.85f,.72f),
-    FloorArchitectureSurface.Brass=>new Color(.74f,.51f,.23f),FloorArchitectureSurface.Copper=>new Color(.57f,.33f,.17f),
+    FloorArchitectureSurface.Brass=>new Color(.84f,.61f,.30f),FloorArchitectureSurface.Copper=>new Color(.67f,.41f,.21f),
     FloorArchitectureSurface.Teal=>new Color(.035f,.19f,.20f),FloorArchitectureSurface.Leaf=>new Color(.13f,.30f,.14f),FloorArchitectureSurface.LeafLight=>new Color(.30f,.44f,.17f),
-    FloorArchitectureSurface.Lamp=>new Color(1,.73f,.31f),FloorArchitectureSurface.Deck=>new Color(.79f,.73f,.60f),
+    FloorArchitectureSurface.Lamp=>new Color(1,.73f,.31f),FloorArchitectureSurface.Deck=>new Color(.36f,.23f,.13f),
     FloorArchitectureSurface.CityStone=>new Color(.70f,.58f,.43f),FloorArchitectureSurface.CityShade=>new Color(.55f,.44f,.34f),FloorArchitectureSurface.Glass=>new Color(.35f,.64f,.64f,.09f),_=>new Color(.82f,.71f,.53f)};
    bool metal=kind==FloorArchitectureSurface.Brass||kind==FloorArchitectureSurface.Copper;
    if(metal)material.shader=Resources.Load<Shader>("FloorArchitecturalMetal");

@@ -54,6 +54,7 @@ Shader "Floor/Panel"
                 float cream=step(.72,i.color.r)*step(.68,i.color.g)*step(.60,i.color.b);
                 c.rgb*=lerp(lerp(.94,1.06,i.panel.y),lerp(.98,1.01,i.panel.y),cream);
                 float3 sheen=lerp(float3(.02,.035,.055),float3(.10,.07,.01),gold);
+                c.rgb*=lerp(1,lerp(.74,1.03,i.panel.y),gold);
                 c.rgb+=pow(saturate(i.panel.y),8)*lerp(sheen,float3(.012,.010,.007),cream);
                 float3 border=lerp(float3(.23,.31,.44),float3(1,.87,.41),gold);
                 border=lerp(border,float3(.66,.65,.59),cream);

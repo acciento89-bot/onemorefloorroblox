@@ -1,0 +1,31 @@
+{
+  "assets": [
+    {
+      "kind": "Sunset",
+      "path": "Assets/Resources/Art/CanalSunset-20261012.png",
+      "sha256": "f814d0a35eaaa588a14c76a8a88c829796170e20d286de2d9bde41de0035897a",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-8d601570-9ca7-4cd3-917d-8941cd415a62.png",
+      "provider": "built-in image_gen",
+      "role": "original distant environment texture, never gameplay screenshot"
+    },
+    {
+      "kind": "Neon",
+      "path": "Assets/Resources/Art/CanalNeon-20261012.png",
+      "sha256": "520a743e40744937a8fadbd5c02540e22588a300a6522d4cb415276d413e3347",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-6be5ab84-6e7e-430b-aad6-17d8600a2a7f.png",
+      "provider": "built-in image_gen",
+      "role": "original distant environment texture, never gameplay screenshot"
+    },
+    {
+      "kind": "Day",
+      "path": "Assets/Resources/Art/CanalDay-20261012.png",
+      "sha256": "7e97c3871add606e730059388880a3b6cb698619e0dbf7c6ed6a86cd5e3fa15c",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-b2ac1e3e-09e4-4cc2-8dbf-4a9cceb0ba15.png",
+      "provider": "built-in image_gen",
+      "role": "original distant environment texture, never gameplay screenshot"
+    }
+  ],
+  "originalConceptChanged": false,
+  "promptBrief": "Historic cream canal city, copper/teal domes, warm arched windows, gardens, distant layered rooftops and waterways. 3:1 landscape. Sunset golden-hour original; night and bright day retain framing/architecture. No UI, text, character, lift, foreground balcony, collage or watermark.",
+  "variants": "Night: indigo/teal domes/warm amber lights/violet-cyan canal. Day: azure sky/ivory sunlit stone/green gardens/clear blue water."
+}

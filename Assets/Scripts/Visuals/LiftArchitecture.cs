@@ -11,31 +11,30 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var root=new GameObject("CopperLiftCabin").transform;root.SetParent(parent,false);
    var copper=Finish(parent,FloorArchitectureSurface.Copper);var brass=Finish(parent,FloorArchitectureSurface.Brass);var teal=Finish(parent,FloorArchitectureSurface.Teal);var glow=Finish(parent,FloorArchitectureSurface.Lamp);
    // The narrow carriage keeps its substantial lower metal body below the original deck.
-   MeshArt.Lathe(root,"CabinBaseDrum",new[]{-.30f,-.26f,-.21f,-.16f,-.10f,.06f,.12f,.41f,.47f,.52f,.57f,.59f},new[]{1.01f,1.06f,1.10f,1.12f,1.10f,1.10f,1.115f,1.115f,1.10f,1.12f,1.07f,1.04f},40,brass,new Vector3(1,1,.80f));
+   CabinAuthoredGeometry.Profile(root,"CabinBaseDrum",new[]{new Vector2(.86f,-.30f),new Vector2(1.01f,-.30f),new Vector2(1.085f,-.255f),new Vector2(1.12f,-.19f),new Vector2(1.105f,-.12f),new Vector2(1.10f,.08f),new Vector2(1.115f,.13f),new Vector2(1.115f,.41f),new Vector2(1.10f,.46f),new Vector2(1.12f,.51f),new Vector2(1.09f,.565f),new Vector2(1.035f,.59f),new Vector2(.86f,.59f)},0,360,64,brass,Vector3.zero);
    MeshArt.Lathe(root,"CabinBaseCoping",new[]{.52f,.54f,.60f,.62f},new[]{1.12f,1.16f,1.16f,1.12f},40,copper,new Vector3(1,1,.80f));
    MeshArt.Lathe(root,"CabinUnderbody",new[]{-.54f,-.44f,-.30f},new[]{.29f,.64f,1.01f},32,teal,new Vector3(1,1,.80f));
-   var crown=MeshArt.Lathe(root,"CabinCrown",new[]{0f,.025f,.055f,.08f,.20f,.235f,.275f,.295f,.275f,.025f,0f},new[]{1.06f,1.12f,1.13f,1.105f,1.105f,1.13f,1.13f,1.065f,.98f,.98f,1.06f},40,brass,new Vector3(1,1,.80f));crown.transform.localPosition=Vector3.up*3.43f;
-   var roof=MeshArt.Lathe(root,"CabinDome",new[]{0f,.025f,.065f,.075f},new[]{1.045f,1.085f,.88f,.075f},40,brass,new Vector3(1,1,.80f));roof.transform.localPosition=Vector3.up*3.66f;
+   CabinAuthoredGeometry.Profile(root,"CabinCrown",new[]{new Vector2(.94f,0),new Vector2(1.06f,0),new Vector2(1.115f,.025f),new Vector2(1.14f,.065f),new Vector2(1.11f,.09f),new Vector2(1.105f,.205f),new Vector2(1.135f,.23f),new Vector2(1.14f,.265f),new Vector2(1.085f,.295f),new Vector2(.98f,.295f),new Vector2(.94f,.265f)},0,360,64,brass,Vector3.up*3.43f);
+   CabinAuthoredGeometry.Profile(root,"CabinDome",new[]{new Vector2(0,0),new Vector2(1.04f,0),new Vector2(1.085f,.015f),new Vector2(1.10f,.033f),new Vector2(1.04f,.05f),new Vector2(.90f,.064f),new Vector2(.30f,.075f),new Vector2(0,.075f)},0,360,64,brass,Vector3.up*3.66f);
    MeshArt.Oval(root,"CabinRoofFinial",new Vector3(0,3.76f,0),new Vector3(.10f,.08f,.10f),brass,10);
+   // Low shaped brass body now rises above the broad deck instead of disappearing below it.
+   // The 110-degree front entrance is open; no panel crosses the runner/transfer centre.
+   CabinAuthoredGeometry.Profile(root,"CabinPassengerSkirt",new[]{new Vector2(1.045f,.665f),new Vector2(1.085f,.665f),new Vector2(1.13f,.70f),new Vector2(1.135f,.745f),new Vector2(1.11f,.78f),new Vector2(1.105f,1.03f),new Vector2(1.13f,1.065f),new Vector2(1.115f,1.10f),new Vector2(1.065f,1.115f),new Vector2(1.04f,1.075f),new Vector2(1.04f,.71f)},-35,215,48,brass,Vector3.zero);
+   var railSection=new Vector2[10];for(int i=0;i<railSection.Length;i++){float a=i*Mathf.PI*2/railSection.Length;railSection[i]=new Vector2(1.075f+Mathf.Cos(a)*.035f,1.24f+Mathf.Sin(a)*.035f);}CabinAuthoredGeometry.Profile(root,"CabinCurvedPassengerRail",railSection,-35,215,48,brass,Vector3.zero);
+   CabinAuthoredGeometry.Rivets(root,copper);
    var lamp=MeshArt.Ring(root,"CabinCeilingGlow",1.02f,.035f,0,glow,40);lamp.transform.localScale=new Vector3(1,1,.80f);lamp.transform.localRotation=Quaternion.Euler(180,0,0);lamp.transform.localPosition=Vector3.up*3.42f;
    var diffuser=MeshArt.Ring(root,"CabinCeilingDiffuser",1.005f,.84f,0,glow,40);diffuser.transform.localScale=new Vector3(1,1,.80f);diffuser.transform.localRotation=Quaternion.Euler(180,0,0);diffuser.transform.localPosition=Vector3.up*3.415f;
    // A lit underside surface gives the cabin its warm ceiling without a new Light.
    var ceiling=new MaterialPropertyBlock();ceiling.SetColor("_EmissionColor",new Color(1.20f,.86f,.37f));diffuser.GetComponent<MeshRenderer>().SetPropertyBlock(ceiling);
-   // Slender connected mullions leave the whole forward avatar/transfer opening clear.
+   // Turned posts have rounded shoulders and broad feet; they remain at the existing side/rear positions.
    for(int side=-1;side<=1;side+=2){
-    MeshArt.Box(root,"CabinRearPost",new Vector3(side*.85f,2.04f,.58f),new Vector3(.068f,2.88f,.068f),brass);
-    MeshArt.Box(root,"CabinSideMullion",new Vector3(side*1.04f,2.03f,-.19f),new Vector3(.061f,2.86f,.061f),brass);
+    var postSection=new[]{new Vector2(0,-1.44f),new Vector2(.053f,-1.44f),new Vector2(.053f,-1.36f),new Vector2(.039f,-1.31f),new Vector2(.039f,1.30f),new Vector2(.050f,1.35f),new Vector2(.050f,1.44f),new Vector2(0,1.44f)};
+    CabinAuthoredGeometry.Profile(root,"CabinRearPost",postSection,0,360,16,brass,new Vector3(side*.85f,2.04f,.58f));
+    CabinAuthoredGeometry.Profile(root,"CabinSideMullion",postSection,0,360,16,brass,new Vector3(side*1.04f,2.03f,-.19f));
     MeshArt.Box(root,"CabinGuideShoe",new Vector3(side*.94f,2.16f,.69f),new Vector3(.15f,.23f,.16f),teal);
-    MeshArt.Box(root,"CabinSideRail",new Vector3(side*1.06f,1.24f,0),new Vector3(.055f,.055f,.82f),brass);
-    for(int z=0;z<6;z++)MeshArt.Box(root,"CabinBaluster",new Vector3(side*1.06f,.94f,-.35f+z*.14f),new Vector3(.027f,.55f,.027f),teal);
-    MeshArt.Box(root,"CabinFrontHandrail",new Vector3(side*.79f,1.24f,-.43f),new Vector3(.36f,.055f,.055f),brass);
+    for(int z=0;z<3;z++)CabinAuthoredGeometry.Profile(root,"CabinBaluster",new[]{new Vector2(0,-.12f),new Vector2(.014f,-.12f),new Vector2(.014f,.12f),new Vector2(0,.12f)},0,360,10,brass,new Vector3(side*1.06f,1.12f,-.08f+z*.22f));
    }
    FloorArchitectureDetails.CabinGlass(root,Finish(parent,FloorArchitectureSurface.Glass));
-   for(int panel=0;panel<12;panel++){
-    float a=panel*Mathf.PI/6;var p=new Vector3(Mathf.Cos(a)*1.126f,.175f,Mathf.Sin(a)*.901f);
-    var molding=MeshArt.Box(root,"DrumPanelMullion",p,new Vector3(.027f,.50f,.026f),copper);molding.transform.localRotation=Quaternion.Euler(0,-a*Mathf.Rad2Deg,0);
-    var trim=MeshArt.Box(root,"CrownPanelMullion",new Vector3(Mathf.Cos(a)*1.127f,3.547f,Mathf.Sin(a)*.902f),new Vector3(.025f,.13f,.025f),copper);trim.transform.localRotation=molding.transform.localRotation;
-   }
    MeshArt.Box(root,"CabinBackPlaque",new Vector3(0,1.99f,.78f),new Vector3(.48f,.59f,.035f),teal);MeshArt.Box(root,"CabinPlaqueMark",new Vector3(0,1.99f,.758f),new Vector3(.037f,.31f,.017f),brass);
   }
   public static void Bay(Transform parent,int floor)

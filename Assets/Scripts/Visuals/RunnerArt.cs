@@ -11,7 +11,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    // All mutable materials and the detail texture belong to this avatar.
    var skin=Material(root,"LiftRunnerWarmSkin",new Color(.86f,.58f,.36f),.22f);
    var pants=Material(root,"RunnerBrownTravelCanvas",new Color(.29f,.20f,.115f),.08f);
-   var ivory=Material(root,"LiftRunnerIvoryCanvas",new Color(.94f,.955f,.90f),.14f);
+   var ivory=Material(root,"LiftRunnerIvoryCanvas",new Color(.78f,.81f,.78f),.14f);
    var dark=Material(root,"LiftRunnerSeamsAndEyes",new Color(.045f,.055f,.067f),.12f);
    var teal=Material(root,"RunnerTealAdventureHoodie",new Color(.035f,.29f,.30f),.10f);
    var amber=Material(root,"RunnerAmberTrim",new Color(.91f,.58f,.14f),.20f);
@@ -20,28 +20,14 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    hair.mainTexture=HairDetail(root);animator.Hoodie=teal;
    animator.Hips=Pivot(root.transform,"Hips",new Vector3(0,.85f,0));
 
-   var hoodie=new RunnerMeshBuilder(animator.Hips,"TailoredLiftHoodie",teal);
-   hoodie.Profile(Vector3.zero,new[]{.045f,.10f,.22f,.40f,.51f,.57f},new[]{.205f,.215f,.212f,.233f,.245f,.155f},new[]{.133f,.142f,.147f,.150f,.135f,.095f},16,.72f);
-   // The front pocket has a flat opening and tapered curved lower corners.
-   hoodie.Loft(new[]{new Vector3(0,.15f,.145f),new Vector3(0,.19f,.163f),new Vector3(0,.28f,.168f),new Vector3(0,.305f,.156f)},new[]{new Vector2(.11f,.008f),new Vector2(.153f,.018f),new Vector2(.143f,.018f),new Vector2(.10f,.008f)},12,.62f);
-   hoodie.Profile(Vector3.zero,new[]{.04f,.075f,.10f},new[]{.207f,.218f,.211f},new[]{.136f,.146f,.141f},16,.72f);hoodie.Finish();
+   RunnerTailorGeometry.Tunic(animator.Hips,teal);
 
    var hood=new RunnerMeshBuilder(animator.Hips,"WhiteDrapedHood",ivory);
    hood.Sweep(new[]{new Vector3(-.18f,.525f,.015f),new Vector3(-.20f,.56f,-.08f),new Vector3(-.15f,.615f,-.155f),new Vector3(0,.64f,-.17f),new Vector3(.15f,.615f,-.155f),new Vector3(.20f,.56f,-.08f),new Vector3(.18f,.525f,.015f)},new[]{.043f,.063f,.076f,.082f,.076f,.063f,.043f},new[]{.025f,.038f,.043f,.047f,.043f,.038f,.025f},10);
    for(int side=-1;side<=1;side+=2){hood.Sweep(new[]{new Vector3(side*.086f,.548f,.095f),new Vector3(side*.075f,.48f,.159f),new Vector3(side*.078f,.392f,.167f)},new[]{.006f,.005f,.005f},new[]{.006f,.005f,.005f},6);hood.Pebble(new Vector3(side*.078f,.384f,.168f),new Vector3(.014f,.023f,.014f),6);}
    hood.Finish();
 
-   var hipFabric=new RunnerMeshBuilder(animator.Hips,"CargoWaist",pants);
-   hipFabric.Profile(Vector3.zero,new[]{-.055f,.015f,.10f},new[]{.19f,.218f,.205f},new[]{.113f,.133f,.126f},14,.72f);
-   // A tailored travel pack shares the existing brown canvas batch: shoulder straps,
-   // broad flap and side pockets are real depth, rather than another flat crest.
-   hipFabric.Profile(new Vector3(0,0,-.235f),new[]{.145f,.185f,.31f,.465f,.52f},new[]{.115f,.155f,.165f,.161f,.127f},new[]{.058f,.086f,.094f,.093f,.072f},14,.62f);
-   hipFabric.Profile(new Vector3(0,0,-.252f),new[]{.44f,.485f,.54f,.555f},new[]{.158f,.176f,.170f,.125f},new[]{.093f,.115f,.105f,.078f},14,.64f);
-   for(int side=-1;side<=1;side+=2){
-    hipFabric.Profile(new Vector3(side*.158f,0,-.224f),new[]{.17f,.205f,.31f,.355f},new[]{.028f,.045f,.048f,.029f},new[]{.045f,.073f,.070f,.041f},10,.60f);
-    hipFabric.Sweep(new[]{new Vector3(side*.112f,.27f,.157f),new Vector3(side*.121f,.405f,.174f),new Vector3(side*.137f,.52f,.174f),new Vector3(side*.158f,.575f,-.065f),new Vector3(side*.127f,.486f,-.17f)},new[]{.018f,.020f,.022f,.022f,.019f},new[]{.009f,.009f,.010f,.011f,.010f},8);
-   }
-   hipFabric.Finish();
+   RunnerTailorGeometry.TravelPack(animator.Hips,pants);
    var seams=new RunnerMeshBuilder(animator.Hips,"HoodieAndWaistSeams",dark);
    seams.Stitch(new Vector3(-.10f,.29f,.181f),new Vector3(-.15f,.22f,.18f),.003f);
    seams.Stitch(new Vector3(.10f,.29f,.181f),new Vector3(.15f,.22f,.18f),.003f);
@@ -78,15 +64,20 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var pocket=new RunnerMeshBuilder(leg,"CargoPocketFlap",dark);
    pocket.Stitch(new Vector3(side*.151f,-.137f,-.05f),new Vector3(side*.151f,-.137f,.067f),.004f);pocket.Stitch(new Vector3(side*.114f,-.30f,.067f),new Vector3(side*.112f,-.21f,.10f),.003f);pocket.Finish();
    var shin=new RunnerMeshBuilder(knee,"CargoShinAndCuff",pants);
-   shin.Profile(new Vector3(0,0,-.012f),new[]{-.325f,-.29f,-.17f,-.04f,.015f},new[]{.072f,.077f,.084f,.095f,.083f},new[]{.076f,.081f,.091f,.099f,.077f},12,.76f);
-   shin.Profile(new Vector3(0,0,-.012f),new[]{-.328f,-.307f,-.28f},new[]{.078f,.084f,.082f},new[]{.081f,.087f,.086f},12,.68f);shin.Finish();
+   shin.Profile(new Vector3(0,0,-.012f),new[]{-.325f,-.29f,-.17f,-.04f,.015f},new[]{.068f,.072f,.080f,.092f,.083f},new[]{.071f,.075f,.087f,.096f,.077f},12,.76f);
+   shin.Profile(new Vector3(0,0,-.012f),new[]{-.286f,-.266f,-.242f},new[]{.079f,.086f,.083f},new[]{.083f,.089f,.087f},12,.68f);shin.Finish();
    var footOrigin=new Vector3(0,-.36f,-.007f);
    var white=new RunnerMeshBuilder(knee,"WhiteSneakerLast",ivory);
    white.Shoe(footOrigin,-.13f,-.081f,0);white.Shoe(footOrigin,-.081f,.025f,.035f);
+   // Structured ankle collar and raised tongue turn the existing footwear last
+   // into travel boots without moving the authoritative feet or adding batches.
+   white.Profile(footOrigin+new Vector3(0,0,-.035f),new[]{-.021f,.026f,.073f,.092f},new[]{.077f,.079f,.076f,.068f},new[]{.064f,.070f,.061f,.051f},12,.69f);
+   white.Loft(new[]{footOrigin+new Vector3(0,.007f,.073f),footOrigin+new Vector3(0,.037f,.053f),footOrigin+new Vector3(0,.082f,.024f)},new[]{new Vector2(.042f,.010f),new Vector2(.039f,.012f),new Vector2(.030f,.009f)},10,.62f);
    for(int lace=0;lace<3;lace++){float z=.025f+lace*.040f;white.Stitch(footOrigin+new Vector3(-.064f,.026f-lace*.006f,z),footOrigin+new Vector3(.064f,.026f-lace*.006f,z),.006f);}white.Finish();
    var accent=new RunnerMeshBuilder(knee,"AmberSneakerPanels",amber);
    accent.Sweep(new[]{footOrigin+new Vector3(side*.082f,-.040f,-.09f),footOrigin+new Vector3(side*.106f,-.048f,.015f),footOrigin+new Vector3(side*.106f,-.046f,.105f)},new[]{.027f,.029f,.017f},new[]{.006f,.006f,.005f},6);
-   accent.Profile(footOrigin+new Vector3(0,0,-.079f),new[]{-.075f,-.027f,.030f},new[]{.075f,.079f,.070f},new[]{.027f,.030f,.023f},10,.7f);accent.Finish();
+   accent.Profile(footOrigin+new Vector3(0,0,-.079f),new[]{-.075f,-.027f,.030f},new[]{.075f,.079f,.070f},new[]{.027f,.030f,.023f},10,.7f);
+   accent.Sweep(new[]{footOrigin+new Vector3(-.067f,.088f,-.049f),footOrigin+new Vector3(0,.095f,-.089f),footOrigin+new Vector3(.067f,.088f,-.049f)},new[]{.008f,.009f,.008f},new[]{.006f,.006f,.006f},8);accent.Finish();
    var tread=new RunnerMeshBuilder(knee,"SneakerSoleEdge",dark);
    for(int i=0;i<3;i++)tread.Stitch(footOrigin+new Vector3(-.084f,-.132f,-.065f+i*.083f),footOrigin+new Vector3(.084f,-.132f,-.065f+i*.083f),.003f);tread.Finish();
   }
@@ -112,28 +103,17 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 
   static void BuildHead(RunnerAnimator animator,Material skin,Material ivory,Material dark,Material hair)
   {
-   animator.Head=Pivot(animator.Hips,"Head",new Vector3(0,.815f,.003f));animator.Head.localScale=new Vector3(.91f,.94f,.91f);
+   animator.Head=Pivot(animator.Hips,"Head",new Vector3(0,.815f,.003f));animator.Head.localScale=new Vector3(1.02f,1.06f,1.02f);
    var neck=new RunnerMeshBuilder(animator.Hips,"Neck",skin);neck.Profile(new Vector3(0,0,.008f),new[]{.56f,.65f,.68f},new[]{.071f,.068f,.073f},new[]{.071f,.068f,.073f},12);neck.Finish();
    var face=new RunnerMeshBuilder(animator.Head,"FaceSkin",skin);
-   face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.175f,-.085f,.03f,.12f,.195f,.225f},new[]{.085f,.132f,.181f,.196f,.19f,.151f,.085f},new[]{.066f,.105f,.140f,.157f,.145f,.115f,.06f},16,.9f);face.Finish();
+   face.Profile(new Vector3(0,0,.015f),new[]{-.215f,-.175f,-.085f,.03f,.12f,.195f,.225f},new[]{.080f,.127f,.175f,.190f,.187f,.151f,.085f},new[]{.066f,.105f,.138f,.154f,.145f,.115f,.06f},16,.9f);face.Finish();
    var features=new RunnerMeshBuilder(animator.Head,"FaceFeatures",skin);
    features.Loft(new[]{new Vector3(0,-.082f,.173f),new Vector3(0,-.055f,.203f),new Vector3(0,-.01f,.178f),new Vector3(0,.014f,.165f)},new[]{new Vector2(.025f,.014f),new Vector2(.029f,.024f),new Vector2(.021f,.014f),new Vector2(.013f,.010f)},8);
    for(int side=-1;side<=1;side+=2)features.Pebble(new Vector3(side*.196f,-.028f,-.005f),new Vector3(.067f,.108f,.070f),10);features.Finish();
    var eyes=new RunnerMeshBuilder(animator.Head,"EyeWhites",ivory);var expression=new RunnerMeshBuilder(animator.Head,"EyesAndExpression",dark);
-   for(int side=-1;side<=1;side+=2){eyes.Pebble(new Vector3(side*.079f,.021f,.164f),new Vector3(.059f,.071f,.019f),10);expression.Pebble(new Vector3(side*.079f,.018f,.178f),new Vector3(.027f,.042f,.011f),8);expression.Sweep(new[]{new Vector3(side*.043f,.081f,.164f),new Vector3(side*.074f,.089f,.163f),new Vector3(side*.109f,.080f,.153f)},new[]{.008f,.011f,.006f},new[]{.004f,.005f,.003f},6);}
+   for(int side=-1;side<=1;side+=2){eyes.Pebble(new Vector3(side*.079f,.021f,.164f),new Vector3(.051f,.058f,.017f),10);expression.Pebble(new Vector3(side*.079f,.018f,.178f),new Vector3(.025f,.035f,.010f),8);expression.Sweep(new[]{new Vector3(side*.043f,.081f,.164f),new Vector3(side*.074f,.089f,.163f),new Vector3(side*.109f,.080f,.153f)},new[]{.008f,.011f,.006f},new[]{.004f,.005f,.003f},6);}
    expression.Sweep(new[]{new Vector3(-.042f,-.128f,.145f),new Vector3(0,-.136f,.153f),new Vector3(.043f,-.128f,.145f)},new[]{.003f,.004f,.003f},new[]{.002f,.002f,.002f},5);eyes.Finish();expression.Finish();
-   var crown=new RunnerMeshBuilder(animator.Head,"SweptChestnutHair",hair);crown.HairCrown();
-   // Calmer side-swept ridges grow from one crown; locks rake back rather than
-   // forming a radial collection of identical cone spikes.
-   for(int lockIndex=0;lockIndex<7;lockIndex++){
-    float x=-.145f+lockIndex*.044f,y=.165f+(1-Mathf.Abs(x)/.16f)*.05f;
-    crown.Sweep(new[]{new Vector3(x,y,.044f),new Vector3(x+.032f,y+.052f,-.013f),new Vector3(x+.060f,y+.061f+(lockIndex%3)*.006f,-.083f)},new[]{.045f,.033f,.004f},new[]{.035f,.021f,.003f},5,true);
-   }
-   for(int fringe=0;fringe<4;fringe++){
-    float x=-.115f+fringe*.065f;
-    crown.Sweep(new[]{new Vector3(x-.033f,.16f,.103f),new Vector3(x,.13f,.14f),new Vector3(x+.037f,.085f+(fringe%2)*.016f,.154f)},new[]{.042f,.032f,.004f},new[]{.024f,.018f,.003f},5,true);
-   }
-   crown.Finish();
+   RunnerTailorGeometry.Hair(animator.Head,hair);
   }
 
   static Material Material(GameObject owner,string name,Color color,float gloss)

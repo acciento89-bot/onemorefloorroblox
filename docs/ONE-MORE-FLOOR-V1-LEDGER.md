@@ -307,3 +307,33 @@ Shaped brass carriage bands, rear/side glass with open front, shadow-aware brass
 Final Mac build exit0; graphics2024; full strict11345/loggedErrors0. Fresh native8670 checks/87 guided physical transfers/all3 towers/miss/bank/pause/framing exit0; final showcase2156/scoped runtime errors0 exit0. Actual background skyline lowered after comparison; exact rooftop-height assertion failed RED then passed GREEN. No mobile device performance or concept acceptance implied.
 
 The repetitive skyline, character, sparse decoration, global lighting and oversized gameplay HUD remain far from the Concept. **Visual gate stays FAILED; no TestFlight.** Exact proof/capture paths and remaining gaps: `docs/GRAPHICS-COMPARISON-20261011.md`.
+
+
+## 2026-10-11 — original authored asset pass and actual Concept evidence
+
+Original closed turned carriage base/crown/dome, recessed partial passenger shell, rolled rails and machined rivets; proper ear-clipped concave end caps; asymmetric tailored clothes, raised backpack seams, shaped boots and swept hair. Exact original collision authority/animation pivots retained.
+
+Final Mac aggregate/build exit0; authored cabin5279 vertices/26raw renderers/cap23763checks; runner4680vertices/8018triangles/31default renderers; full aggregate13180checks/error0. Actual Mac8673checks/87guided transfers/3towers; fresh DE/EN tutorial/menu/result/resize showcase2155checks/zeroerrors exit0.
+
+Actor remains too small in gameplay; empty skyline piers, simplistic vegetation, flat surface detail and menu typography still fall short of the approved board. **Visual acceptance stays FAILED. No TestFlight or version bump.** Exact proof/scene-source digests: `docs/GRAPHICS-COMPARISON-20261011.md`; provenance: `docs/ORIGINAL-ASSETS-20261011.md`. User-deleted historical Concept PNG remains unstaged.
+
+
+## 2026-10-12 — next-game presentation batch in progress
+
+User requests the next game after accepted Perfect Drop delivery; One More Floor is next, against the already approved Oct10 board. Continue the existing in-place authored work on main (AGENTS canonical-main rule), preserving the historical Concept deletion. Baseline diff is retained externally under Builds/FloorFinal-20261012. No new prototype/concept approval or game-wide parallel change.
+
+One combined batch: original oval passenger deck/brass body, larger side-facing runner, polished warm metals/stone, botanical blade meshes, lowered rear silhouette, original Imagegen distant canal environment in three times of day, camera space gained through compact 49-point HUD/amber action, Cinzel lobby title and scenic tower cards. Existing collider/timing/checkpoint/reward/save/paid rights remain authoritative. Real engine passenger-deck regression watched RED on the broad prototype floor (passenger-deck-red.log). Implementation/whole-suite/rendered review pending; visual gate remains failed, no native distribution.
+
+
+### October12 engine / review evidence
+
+Passenger deck regression watched RED on prototype footprint, then real engine GREEN as part of full build. Reviewer found two P2 UI regressions in Oct12 Layout: portrait coach covering timing feedback; Header floor/coins overlapping at280-width. New real fixture watched RED on both (`feedback-header-red.log`), then GREEN294checks after feedback relocation/camera reservation and available-interval header sizing. Rounded generated coin initially mutated Graphic.color during mesh rebuild; strict aggregate caught the error, local vertex ink corrected it, final aggregate12121checks/loggedErrors0. Enlarged head briefly exceeded the existing mature-head bound; correction retains the original bound without weakening its test.
+
+Whole authored graphics/deck/cabin/runner/navigation/music/interstitial/build validates. Final3 full Mac player PASS8674 checks/87actual transfers/all3towers/miss/checkpoint/repeated-bank/pause/framing. Source051d568cc30c9eb423897d939d839ee73f564a6081ee8acc98c4fab971c992ad is frozen in final3-source-proof.json. Actual rendered review still caught the sky vertically flipped despite compile/suite success; no visual acceptance inferred. Final4 changes only sky UV orientation and decorative lower-city height, preserving prior evidence and the exact mechanics. Fresh final4 capture remains required. Physical/native/store acceptance unchanged/unrun.
+
+
+### October12 final batch evidence and current next task
+
+Final4 exact source `03c308e0eeddd7511f6e378647b01f32bc1102999c9a220e728454b05075a26e`, build exit0/aggregate12121/loggedErrors0. Full real route ELEVATOR_QA_PASS checks=8678 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing; showcase ELEVATOR_SHOWCASE_PASS checks=2152. Source/bundle/file hashes retained at Builds/FloorFinal-20261012. Directly inspected correct-upright background, real models, menu, bank/risk/settings and actual932×430 landscape tutorial. Fresh camera/motion/input/economy/tutorial/parent-back proofs PASS. All3 original environment textures retained; Cinzel license included. Review's two P2 items reproduced RED then GREEN294 checks. No new production package, native settings, profile migration or provider transaction.
+
+**Visual release gate remains FAILED.** Remaining: richer original cabin/near-facade/foliage details, more refined actor and a genuinely spatial full-atrium menu matching the Concept composition. Next work is those visual requirements, then new exact-source actual captures and native validation; no TestFlight upload/version increment before graphical acceptance. Physical iPhone raw touch/FPS/music mix and genuine StoreKit/UMP/ads still unrun. Other games untouched. Historical Concept deletion preserved unstaged. Actual comparison and precise status: GRAPHICS-COMPARISON-20261011.md and QA/floor-presentation-20261012.json.

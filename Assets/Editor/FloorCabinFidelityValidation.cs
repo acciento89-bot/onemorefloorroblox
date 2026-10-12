@@ -73,7 +73,7 @@ namespace Kamilunavo.OneMoreFloor.Editor
   }
   static Vector3 GameCamera(float aspect,Vector3 player)
   {
-   var source=Vector3.up*.65f;var next=new Vector3(0,2.35f,3.7f);var focus=(source+next)*.5f+Vector3.up*.8f;var rotation=Quaternion.Euler(27,-18,0);var view=new Rect(.08f,.23f,.84f,.54f);const float fov=60;
+   var source=Vector3.up*.65f;var next=new Vector3(0,2.35f,3.7f);var rotation=OrbitCamera.FixedRotation;var view=new Rect(.08f,.23f,.84f,.54f);const float fov=58;var focus=OrbitCamera.BestFocus(rotation,fov,aspect,source,next,player+Vector3.up*2.5f,view);
    float distance=OrbitCamera.FitDistance(focus,rotation,fov,aspect,source,next,player+Vector3.up*2.5f,view);float tangent=Mathf.Tan(fov*.5f*Mathf.Deg2Rad);return focus+rotation*Vector3.up*(distance*tangent*(1-2*view.center.y))-rotation*Vector3.forward*distance;
   }
   static bool RoofBlocks(Transform cabin,Vector3 eye,Vector3 point)

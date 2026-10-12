@@ -8,9 +8,9 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   private const float Foundation=-96f,CanalLevel=-72f;
   public static void Build(Transform parent)
   {
-   var sky=new Material(Shader.Find("Floor/Sky"));sky.mainTexture=Resources.Load<Texture2D>("Art/SkyPanorama");RenderSettings.skybox=sky;ArtLifetime.Own(parent.gameObject,sky);
-   RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.51f,.46f,.41f);RenderSettings.ambientEquatorColor=new Color(.42f,.35f,.28f);RenderSettings.ambientGroundColor=new Color(.24f,.29f,.28f);
-   RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.78f,.57f,.40f);RenderSettings.fogDensity=.005f;
+   var sky=new Material(Shader.Find("Floor/Sky"));sky.mainTexture=Resources.Load<Texture2D>("Art/CanalSunset-20261012")??Resources.Load<Texture2D>("Art/SkyPanorama");RenderSettings.skybox=sky;ArtLifetime.Own(parent.gameObject,sky);
+   RenderSettings.ambientMode=UnityEngine.Rendering.AmbientMode.Trilight;RenderSettings.ambientSkyColor=new Color(.64f,.57f,.48f);RenderSettings.ambientEquatorColor=new Color(.47f,.42f,.35f);RenderSettings.ambientGroundColor=new Color(.24f,.29f,.28f);
+   RenderSettings.fog=true;RenderSettings.fogMode=FogMode.ExponentialSquared;RenderSettings.fogColor=new Color(.84f,.64f,.49f);RenderSettings.fogDensity=.005f;
    var stone=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityStone);
    var shade=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityShade);
    var trim=FloorArchitecturePalette.Get(parent,FloorArchitectureSurface.CityTrim);
@@ -22,7 +22,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var distant=MeshArt.Mat("QuarterDistantStone",new Color(.44f,.46f,.43f));
    var distantGlass=MeshArt.Mat("QuarterDistantGlass",new Color(.29f,.36f,.34f));
    var water=MeshArt.Mat("QuarterCanalWater",new Color(.21f,.34f,.32f));
-   var root=new GameObject("CanalQuarter");root.transform.SetParent(parent,false);
+   var root=new GameObject("CanalQuarter");root.transform.SetParent(parent,false);root.transform.localPosition=Vector3.down*65;
    // A continuous lower city, rather than towers cut off just beneath the decks.
    MeshArt.Box(root.transform,"Canal",new Vector3(0,CanalLevel,110),new Vector3(46,.35f,320),water);
    for(int side=-1;side<=1;side+=2)
@@ -40,7 +40,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     float width=7+(float)random.NextDouble()*4,depth=8+(float)random.NextDouble()*5;
     float x=side*(32+(i%6)*6+(float)random.NextDouble()*4);
     // Lower foreground roofs expose the sunset and layered city beneath the lift.
-    float roof=-37+z*.07f+(float)random.NextDouble()*7;
+    float roof=-66+z*.025f+(float)random.NextDouble()*5;
     var building=Root(root.transform,"CanalMasonry",new Vector3(x,0,z));
     Body(building,width,depth,roof,i%3==0?shade:stone,trim);
     Windows(building,width,depth,roof,side,glass,warmGlass,trim,i);
@@ -66,7 +66,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    // Bell chambers remain below the initial runner rather than filling the sky with piers.
    for(int i=0;i<12;i++)
    {
-    int side=i%2==0?-1:1;float width=4.4f+i%3*.7f,depth=5.1f,roof=-28+(i*11%5)*4;
+    int side=i%2==0?-1:1;float width=4.4f+i%3*.7f,depth=5.1f,roof=-64+(i*11%5)*2;
     var tower=Root(root.transform,"DistantStoneTower",new Vector3(side*(66+i%4*12),0,92+i/2*21));
     Body(tower,width,depth,roof,distant,shade);
     FloorArchitectureDetails.BeveledBlock(tower,"BellTowerPediment",new Vector3(0,roof+.7f,0),new Vector3(width+.5f,.6f,depth+.5f),.10f,trim);
@@ -80,7 +80,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    }
    for(int i=0;i<9;i++)
    {
-    float width=4.8f+i%3*1.1f,depth=6.2f,roof=-20+(i*13%7)*3;
+    float width=4.8f+i%3*1.1f,depth=6.2f,roof=-66+(i*13%7)*2;
     var tower=Root(root.transform,"RearQuarterSilhouette",new Vector3(-76+i*19,0,208+i%3*15));
     Body(tower,width,depth,roof,distant,shade);
     if(i%3==0)
@@ -92,6 +92,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    }
    MeshArt.Batch(root);
   }
+  public static void ApplyChapter(int chapter){var sky=RenderSettings.skybox;if(sky==null||sky.shader.name!="Floor/Sky")return;string art=chapter==1?"Art/CanalNeon-20261012":chapter==2?"Art/CanalDay-20261012":"Art/CanalSunset-20261012";var texture=Resources.Load<Texture2D>(art);if(texture!=null)sky.mainTexture=texture;RenderSettings.fogColor=chapter==1?new Color(.16f,.23f,.34f):chapter==2?new Color(.73f,.81f,.82f):new Color(.84f,.64f,.49f);RenderSettings.ambientSkyColor=chapter==1?new Color(.35f,.43f,.59f):chapter==2?new Color(.68f,.73f,.77f):new Color(.64f,.57f,.48f);}
   private static Transform Root(Transform parent,string name,Vector3 position)
   {
    var root=new GameObject(name).transform;root.SetParent(parent,false);root.localPosition=position;return root;

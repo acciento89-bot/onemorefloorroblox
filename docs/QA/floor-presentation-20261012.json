@@ -1,0 +1,36 @@
+{
+  "sourceSha256": "03c308e0eeddd7511f6e378647b01f32bc1102999c9a220e728454b05075a26e",
+  "bundleSha256": "9fdb57a968814e5b7067b73bc7202d0bc5a1d3d563bcc650923e92244ec8724c",
+  "app": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/OneMoreFloor-FinalQa4.app",
+  "builtAt": "2026-10-12T01:00:24.022714+00:00",
+  "target": "StandaloneOSX development QA",
+  "buildExitCode": 0,
+  "strictLoggedErrors": 0,
+  "conceptStatus": "pending exact-source actual render review",
+  "fullRuntime": "ELEVATOR_QA_PASS checks=8678 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2152",
+  "runtimeReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Full4/PASS.txt",
+      "sha256": "793bce9a2f31a54523ce4c5fe54c5be0415c779fd1fd91f92ad0e8b5fdf7c27b",
+      "origin": "runtime-receipt"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/SHOWCASE-PASS.txt",
+      "sha256": "23959fed55959bfb2bf4ab19607ddb9f3e68da29bb45866d85093c4beeabac49",
+      "origin": "runtime-receipt"
+    }
+  ],
+  "visualStatus": "failed",
+  "nativeOrTestFlightAttempted": false,
+  "actualLandscapeSource": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorFinal-20261012/Showcase4/tutorial-landscape.png",
+  "actualLandscapePixels": [
+    932,
+    430
+  ],
+  "actualPortraitPixels": [
+    430,
+    932
+  ],
+  "reviewFindings": "2P2 UI defects reproduced RED then corrected GREEN; no additional P1/P2 source findings; actual visual quality remains failed."
+}

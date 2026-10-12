@@ -51,10 +51,11 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   }
   public static void Plant(Transform parent,Vector3 origin,Material shade,Material light,int seed)
   {
-   for(int i=0;i<7;i++){
-    float a=i*2.39996f+seed*.21f;var p=origin+new Vector3(Mathf.Cos(a)*.20f,.36f+(i%3)*.11f,Mathf.Sin(a)*.20f);
-    var leaf=MeshArt.Oval(parent,"PlantLeaf",p,new Vector3(.21f,.58f,.16f),i%3==0?light:shade,8);leaf.transform.localRotation=Quaternion.Euler(8,i*137,23+i%3*7);
-   }
+   var v=new List<Vector3>();var t=new List<int>();
+   for(int leaf=0;leaf<11;leaf++){float a=leaf*2.39996f+seed*.21f;var outwards=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));var across=new Vector3(-outwards.z,0,outwards.x);float length=.48f+(leaf%4)*.14f;int start=v.Count;
+    for(int joint=0;joint<7;joint++){float f=joint/6f;var center=origin+Vector3.up*(.06f+length*f*(1-.34f*f))+outwards*(.07f+.52f*f*f);float width=Mathf.Sin(f*Mathf.PI)*(.052f+(leaf%3)*.015f);v.Add(center-across*width);v.Add(center+Vector3.up*.018f);v.Add(center+across*width);if(joint<6){int k=start+joint*3;t.AddRange(new[]{k,k+3,k+1,k+1,k+3,k+4,k+1,k+4,k+2,k+2,k+4,k+5,k+1,k+3,k,k+4,k+3,k+1,k+2,k+4,k+1,k+5,k+4,k+2});}}
+   }MeshArt.Mesh(parent,"PlantLeaf",v.ToArray(),t.ToArray(),null,shade);
+
   }
  }
 }

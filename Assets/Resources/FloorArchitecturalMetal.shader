@@ -19,13 +19,13 @@ Shader "Floor/ArchitecturalMetal" {
   // without a reflection camera, per-frame cubemap or a scene-global probe.
   half horizon=pow(saturate(1-abs(ray.y+.10)),9);half ceiling=pow(saturate(ray.y*.5+.5),2);
   half ribbon=pow(saturate(1-abs(ray.x*.82+ray.z*.36-.27)),28);
-  half3 reflected=lerp(half3(.055,.13,.16),half3(.72,.58,.33),ceiling)+horizon*half3(.44,.30,.13)+ribbon*half3(.54,.60,.56);
+  half3 reflected=lerp(half3(.08,.17,.19),half3(1.0,.84,.53),ceiling)+horizon*half3(.70,.49,.21)+ribbon*half3(.98,1.02,.86);
   half3 albedo=tex2D(_MainTex,i.uv).rgb*_Color.rgb;
   half diffuse=saturate(dot(n,light));half spec=pow(saturate(dot(n,normalize(light+view))),lerp(20,96,_Glossiness));
   half3 ambient=max(ShadeSH9(half4(n,1)),half3(.13,.13,.12));
   half fresnel=pow(1-saturate(dot(n,view)),4);
-  half3 result=albedo*(ambient*.48+_LightColor0.rgb*diffuse*atten*.66)+reflected*lerp(albedo,half3(.91,.79,.50),.28)*(.35+_Metallic*.50)+_LightColor0.rgb*spec*atten*.66+fresnel*half3(.12,.11,.08);
-  fixed4 col=fixed4(result,1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
+  half3 result=albedo*(ambient*.48+_LightColor0.rgb*diffuse*atten*.66)+reflected*lerp(albedo,half3(.91,.79,.50),.28)*(.48+_Metallic*.56)+_LightColor0.rgb*spec*atten*1.05+fresnel*half3(.12,.11,.08);
+  result=result/(1+result*.38);fixed4 col=fixed4(result,1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
  }
  ENDCG } } Fallback "Mobile/Diffuse"
 }

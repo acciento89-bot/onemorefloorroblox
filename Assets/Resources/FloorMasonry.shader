@@ -22,6 +22,6 @@ Shader "Floor/Masonry" {
   half course=.96+.055*sin(floor(x)*17.13+row*7.71);half3 stone=_Color.rgb*grain*course*(1-mortar*.19);
   half3 light=normalize(UnityWorldSpaceLightDir(i.world));half shade=saturate(dot(n,light));
   half3 ambient=max(ShadeSH9(half4(n,1)),half3(.16,.16,.15));
-  fixed4 col=fixed4(stone*(ambient*.64+_LightColor0.rgb*(.24+shade*.72)*atten),1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
+  fixed4 col=fixed4(stone*(ambient*.76+_LightColor0.rgb*(.28+shade*.74)*atten),1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
  } ENDCG } } Fallback "Mobile/Diffuse"
 }
