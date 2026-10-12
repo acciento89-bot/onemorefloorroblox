@@ -21,6 +21,12 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     foreach(float y in new[]{1.29f,3.30f})fittings.Profile(new Vector3(x,y,z),new[]{-.056f,-.032f,.032f,.056f},new[]{.051f,.069f,.069f,.051f},new[]{.051f,.069f,.069f,.051f},10);
    }
    for(int ray=0;ray<12;ray++){float a=ray*Mathf.PI/6;var center=new Vector3(Mathf.Cos(a)*1.117f,3.565f,Mathf.Sin(a)*1.117f*.8f);fittings.Pebble(center,new Vector3(.034f,.073f,.034f),7);}
+   // Continuous double rolled bands, rather than a plain yellow cap. Accumulate
+   // them into the existing owned fittings mesh, with no extra material or draw.
+   foreach(float y in new[]{3.51f,3.66f}){
+    var path=new Vector3[33];var widths=new float[33];for(int i=0;i<=32;i++){float a=i*Mathf.PI/16;path[i]=new Vector3(Mathf.Cos(a)*1.116f,y,Mathf.Sin(a)*1.116f*.8f);widths[i]=.018f;}
+    fittings.Sweep(path,widths,widths,6);
+   }
    fittings.Finish();
   }
   public static void Balcony(Transform root,Material iron,Material brass)

@@ -76,7 +76,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     b.Ribbon(new[]{new Vector3(side*.110f,.27f,.157f),new Vector3(side*.122f,.405f,.177f),new Vector3(side*.137f,.52f,.176f),new Vector3(side*.158f,.576f,-.060f),new Vector3(side*.129f,.49f,-.178f)},new[]{.018f,.023f,.025f,.024f,.021f},new[]{.008f,.008f,.009f,.010f,.009f},10);
    }
    b.Ribbon(new[]{new Vector3(-.071f,.519f,-.236f),new Vector3(-.064f,.579f,-.225f),new Vector3(.032f,.592f,-.225f),new Vector3(.063f,.536f,-.238f)},new[]{.009f,.013f,.012f,.009f},new[]{.008f,.009f,.009f,.008f},8);
-   return b.Finish(parent,"CargoWaist",material);
+   var go=b.Finish(parent,"CargoWaist",material);var mesh=go.GetComponent<MeshFilter>().sharedMesh;var points=mesh.vertices;var tint=new Color[points.Length];for(int i=0;i<points.Length;i++)tint[i]=points[i].y>.13f?new Color(.32f,.20f,.095f,.5f):Color.white;mesh.colors=tint;return go;
   }
   public static GameObject Hair(Transform parent,Material material)
   {
@@ -99,6 +99,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     float x=-.11f+i*.082f;
     b.Ribbon(new[]{new Vector3(x-.030f,.167f,.087f),new Vector3(x+.008f,.136f,.140f),new Vector3(x+.046f,.077f+(i%2)*.024f,.153f)},new[]{.049f,.041f,.007f},new[]{.021f,.016f,.005f},10);
    }
+   b.Ribbon(new[]{new Vector3(-.068f,.182f,.105f),new Vector3(-.020f,.154f,.163f),new Vector3(.077f,.087f,.173f)},new[]{.044f,.039f,.008f},new[]{.022f,.020f,.006f},10);
    return b.Finish(parent,"SweptChestnutHair",material);
   }
  }

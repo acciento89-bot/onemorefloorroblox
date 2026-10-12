@@ -18,14 +18,17 @@ Shader "Floor/ArchitecturalMetal" {
   half3 n=normalize(i.normal),view=normalize(_WorldSpaceCameraPos.xyz-i.world),light=normalize(UnityWorldSpaceLightDir(i.world));half3 ray=reflect(-view,n);
   // Authored sunset/softbox reflection gives polished brass readable bands on mobile,
   // without a reflection camera, per-frame cubemap or a scene-global probe.
-  half horizon=pow(saturate(1-abs(ray.y+.10)),9);half ceiling=pow(saturate(ray.y*.5+.5),2);
-  half ribbon=pow(saturate(1-abs(ray.x*.82+ray.z*.36-.27)),28);
-  half3 reflected=lerp(half3(.08,.17,.19),half3(1.0,.84,.53),ceiling)+horizon*half3(.70,.49,.21)+ribbon*half3(.98,1.02,.86);
+  half ceiling=smoothstep(-.24,.52,ray.y);
+  half horizon=exp2(-abs(ray.y+.10)*14);
+  half ribbon=pow(saturate(1-abs(ray.x*.82+ray.z*.36-.27)),64);
+  half3 reflected=lerp(half3(.025,.060,.073),half3(.92,.73,.44),ceiling);
+  reflected=lerp(reflected,half3(.12,.16,.17),horizon*.72);
+  reflected+=ribbon*half3(1.25,1.18,.95);
   half3 paint=lerp(half3(1,1,1),i.tint.rgb,step(.01,i.tint.a));half3 albedo=tex2D(_MainTex,i.uv).rgb*_Color.rgb*paint;
   half diffuse=saturate(dot(n,light));half spec=pow(saturate(dot(n,normalize(light+view))),lerp(20,96,_Glossiness));
   half3 ambient=max(ShadeSH9(half4(n,1)),half3(.13,.13,.12));
   half fresnel=pow(1-saturate(dot(n,view)),4);
-  half3 result=albedo*(ambient*.48+_LightColor0.rgb*diffuse*atten*.66)+reflected*lerp(albedo,half3(.91,.79,.50),.28)*(.20+_Metallic*.48)+_LightColor0.rgb*spec*atten*2.1+fresnel*half3(.12,.11,.08);
+  half3 result=albedo*(ambient*.32+_LightColor0.rgb*diffuse*atten*.44)+reflected*lerp(albedo,half3(.91,.79,.50),.22)*(.25+_Metallic*.70)+_LightColor0.rgb*spec*atten*2.4+fresnel*half3(.18,.15,.09);
   result=result/(1+result*.38);fixed4 col=fixed4(result,1);UNITY_APPLY_FOG(i.fogCoord,col);return col;
  }
  ENDCG }

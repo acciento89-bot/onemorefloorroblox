@@ -61,8 +61,8 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   }
   public void Stitch(Vector3 from,Vector3 to,float width)
   {Sweep(new[]{from,to},new[]{width,width},new[]{width*.65f,width*.65f},5);}
-  public void Pebble(Vector3 center,Vector3 size,int sides=10)
-  {Profile(center,new[]{-.5f*size.y,-.32f*size.y,0,.32f*size.y,.5f*size.y},new[]{.18f*size.x,.42f*size.x,.5f*size.x,.42f*size.x,.18f*size.x},new[]{.18f*size.z,.42f*size.z,.5f*size.z,.42f*size.z,.18f*size.z},sides);}
+  public void Pebble(Vector3 center,Vector3 size,int sides=10,Quaternion? orientation=null)
+  {int first=_vertices.Count;Profile(center,new[]{-.5f*size.y,-.32f*size.y,0,.32f*size.y,.5f*size.y},new[]{.18f*size.x,.42f*size.x,.5f*size.x,.42f*size.x,.18f*size.x},new[]{.18f*size.z,.42f*size.z,.5f*size.z,.42f*size.z,.18f*size.z},sides);if(orientation.HasValue)for(int i=first;i<_vertices.Count;i++)_vertices[i]=center+orientation.Value*(_vertices[i]-center);}
   public void HairCrown()
   {
    const int sides=20,rings=6;int start=_vertices.Count;
@@ -108,7 +108,11 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    if(_vertices.Count==0)return null;
    // Shared mesh creation supplies normal/bounds checks and the existing mesh
    // lifetime component. No static batching across animated joints.
-   return MeshArt.Mesh(_parent,_name,_vertices.ToArray(),_indices.ToArray(),_uv.ToArray(),_material);
+   var go=MeshArt.Mesh(_parent,_name,_vertices.ToArray(),_indices.ToArray(),_uv.ToArray(),_material);var mesh=go.GetComponent<MeshFilter>().sharedMesh;var points=mesh.vertices;var normals=mesh.normals;var sums=new Dictionary<Vector3Int,Vector3>();
+   Vector3Int Key(Vector3 p)=>new(Mathf.RoundToInt(p.x*100000),Mathf.RoundToInt(p.y*100000),Mathf.RoundToInt(p.z*100000));
+   for(int i=0;i<points.Length;i++){var key=Key(points[i]);sums.TryGetValue(key,out var normal);sums[key]=normal+normals[i];}
+   for(int i=0;i<points.Length;i++){var normal=sums[Key(points[i])];if(normal.sqrMagnitude>.001f)normals[i]=normal.normalized;}mesh.normals=normals;
+   return go;
   }
  }
 }

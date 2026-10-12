@@ -1,10 +1,10 @@
 {
   "game": "One More Floor",
   "status": "failed",
-  "sourceSha256": "53f3dc4bf2bcc5cc59e353b4f4a6557b14888e22a6ce61d592748528761d967a",
-  "reviewer": "Codex direct actual Unity Mac capture comparison against unchanged approved Concept",
-  "reviewedAt": "2026-10-12T12:15:43.101418+00:00",
-  "reason": "The landing instrument is now a dark brass capsule with distinct elevator/tower stations, readable calibrated green/gold zones and a narrow white/gold-contour needle above the transfer action. Timing practice shows the instrument with unobstructed portrait/landscape coach. Real broad folded plant/ivy foliage has veins and coherent normals, and real timber entrance panels/pointed gold-trimmed banners bring the foreground closer. Source-bound actual final5 DE/EN/real orientations/risk/menu/design/world captures, full87primary route and fresh-process checkpoint/once-bank validation pass. Overall Concept similarity still fails because canopy/metal surfaces and avatar/architectural illumination/composition/menu scene detail remain visibly simpler. No native/TestFlight/version/provider transaction.",
+  "sourceSha256": "daed1b651d2138903c45c75b1f98b7c1825090b456cf5fa431e3ee18925341c7",
+  "reviewer": "Codex direct actual Unity Mac render inspection against unchanged approved Concept",
+  "reviewedAt": "2026-10-12T17:27:55.441326+00:00",
+  "reason": "The real original character now has a soft skin/hair/cloth finish, continuous face-seam normals, cheek-aligned thin eyes/shortened nose and the Concept wardrobe: long selected-style sleeves, gloves, grey trousers, beige hood, brown pack/straps and boots. The real carriage has a rearward drive collar/brass rim, aggregated crown bands and stronger bounded reflected-metal contrast. Exact final6 editor/build and actual3worlds/4styles/DEEN/portraitlandscape/tutorial/bank/menu capture tests pass. Actual87 primary route and fresh-process checkpoint banking passed on candidate5, preceding only final eye/nose geometry; they are recorded as prior-source evidence. Overall similarity still fails because hair/skin/cloth and architecture lighting/reflection richness, canopy depth and menu miniatures/type remain visibly simpler. No native/TestFlight attempt.",
   "criteria": {
     "concept_similarity": "failed",
     "character_or_tower": "failed",
@@ -24,94 +24,94 @@
     ],
     "menu": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-de.png",
-        "sha256": "02a5cdd76cb662f88b43b0a53c6caae3cc49efad41f73ba9d3b18f326b5461f1",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/lobby-de.png",
+        "sha256": "744d79c28a493cce0c29eb849a4d7b9673e179c05a149f34115269a7a7ee80b8",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-landscape.png",
-        "sha256": "d91c0f5a8013f6a7c1f2aa736d32122a229af87a8f96954bb9889bd1af9badf8",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/lobby-landscape.png",
+        "sha256": "5a1e45249eab50ac57b28060d393d4067f8095b3dd42edeaacee26889cdb9a7f",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-rating1.png",
-        "sha256": "d95ea266bac2d9df2be0dad12a60cad72827ef6189fe209b81b9bdbe557872c4",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/lobby-rating1.png",
+        "sha256": "c2c6402acfb8b09ecb29083d7b272b027eb2ff8439b170741f4b04b093710e80",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/lobby-rating3.png",
-        "sha256": "b26cdb9c21205b67173991f78ec82fcd26a73319c8677d19a3f22044d2b93890",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/lobby-rating3.png",
+        "sha256": "fe97a36b004abb93e87a19246d0b5b1b2512fe6ebf4abd889911eac6f1443f48",
         "origin": "Unity-render"
       }
     ],
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm0-lift-ready.png",
-        "sha256": "c93f7e91a413ffc496ee9672c7e55186f159877bbb2a9c6bdda5c5bea85eb56c",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/character-world0.png",
+        "sha256": "69fb98d1403c870094a2c8a0a126c738808fb2fa1e0bdb18365121cb255935fe",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/floor2.png",
-        "sha256": "6cdfd47f4de90955d9fdeaa85bca9abc7b6c89bc32e474aed8690ec5f77adf62",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/character-balcony0.png",
+        "sha256": "6b3abed670d56efa7a2e7e3d46f7cfd3ac781733b7742bd1d3a879475ea7e8d5",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/tower-ready-landscape.png",
-        "sha256": "7404cc27d03261de7777fabb8584fb88982c2b844048c0b7ca4a270f01d5b255",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/tower-ready-landscape.png",
+        "sha256": "eeb3af193342df972098850382ccbb9659513f447a7dad9ad6615c6bb7585b95",
         "origin": "Unity-render"
       }
     ],
     "submenus": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/risk-portrait-de.png",
-        "sha256": "e8197c7504dc3daf611e32529dc904f50990ff4695da9b82f325db8b3d0153b0",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/risk-portrait-de.png",
+        "sha256": "531c25db94ab7956c6b4b319cbcb918d2ba60060d337db80b8ca4c8bd848f0e5",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/settings-portrait-de.png",
-        "sha256": "3750b4d57a479a7f26ac21a12a8ed89f4f1c8ca2acbaffb926f50f69ef456c04",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/settings-portrait-de.png",
+        "sha256": "aee5874d25ef16b7ce5e138fba2f94147bada954ed4551fb76310d8b9a0187f2",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/banked-portrait-de.png",
-        "sha256": "d235a12ec45cb9ad7aceeb590900f5e691a2d5ee8f6bbe0e746d366341a4479e",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/banked-portrait-de.png",
+        "sha256": "dbbf2544ccc5d1ce2efff22ffc058acae7b65126e6da73fba4484f98185063a7",
         "origin": "Unity-render"
       }
     ],
     "variants": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm0-lift-ready.png",
-        "sha256": "c93f7e91a413ffc496ee9672c7e55186f159877bbb2a9c6bdda5c5bea85eb56c",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/character-world0.png",
+        "sha256": "69fb98d1403c870094a2c8a0a126c738808fb2fa1e0bdb18365121cb255935fe",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm1-lift-ready.png",
-        "sha256": "63623070cef95c1a9c1238b085a478f885d34efbe3ac31315e735ebf27dfa0d7",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/character-world1.png",
+        "sha256": "036652005af0320eb0d212958234f87e70ea99cc16be14370c4275da82b90e4f",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Full5/realm2-lift-ready.png",
-        "sha256": "604aeb6e88c65bbc8c6676b6c1a4932110541de352f7539362e050ec45a9ccf1",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/character-world2.png",
+        "sha256": "33b44330e4e29ccf55a715ab718eaf6e1f1f624519cd92fa0779525d73aeb3e3",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design0.png",
-        "sha256": "9b3302d5a9dc553bb65285f475d9ceab95ab707f3880d49a4d4aa5d23354799a",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/runner-design0.png",
+        "sha256": "2cd76f1a5cabfaeb0bece8899a3ef72395f1f0400fbcb037a6e01616feaec3bf",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design1.png",
-        "sha256": "aaad35a43346c8bc7b9ec9793dd4cdfa02a530572099cab6f20024a9e78775b8",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/runner-design1.png",
+        "sha256": "4838f139d887e8b803a87051b9a78f42dc198dd8e3e00ec02f208b338d441c1e",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design3.png",
-        "sha256": "bb43ecd973e9916195a90d4bc761413aeb20cf47a52b5cbbe5ae4c03e3b2c7e2",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/runner-design3.png",
+        "sha256": "ab15952e86be74a47b27760639490c3ea9098a3fc3b3e42790ec7d19b4c6715c",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorInstrument-20261012/Showcase5/runner-design7.png",
-        "sha256": "fbd12864715df4f4520832249fc2cee5d5e5db8c4e8d15bcd2e8e00a99eb8c5b",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorCharacter-20261012/Showcase6/runner-design7.png",
+        "sha256": "838437641f91ae38abea32ee9748033e4ee4c8905fd0418eb31e8cb587399148",
         "origin": "Unity-render"
       }
     ]

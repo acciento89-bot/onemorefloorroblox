@@ -18,6 +18,10 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    CabinAuthoredGeometry.Profile(root,"CabinCrown",new[]{new Vector2(.94f,0),new Vector2(1.06f,0),new Vector2(1.115f,.025f),new Vector2(1.14f,.065f),new Vector2(1.11f,.09f),new Vector2(1.105f,.205f),new Vector2(1.135f,.23f),new Vector2(1.14f,.265f),new Vector2(1.085f,.295f),new Vector2(.98f,.295f),new Vector2(.94f,.265f)},0,360,48,brass,Vector3.up*3.43f);
    CabinAuthoredGeometry.Profile(root,"CabinDome",new[]{new Vector2(0,0),new Vector2(1.04f,0),new Vector2(1.085f,.015f),new Vector2(1.10f,.033f),new Vector2(1.04f,.05f),new Vector2(.90f,.064f),new Vector2(.30f,.075f),new Vector2(0,.075f)},0,360,48,brass,Vector3.up*3.66f);
    MeshArt.Oval(root,"CabinRoofFinial",new Vector3(0,3.76f,0),new Vector3(.10f,.08f,.10f),brass,10);
+   // The Concept carriage has a central drive collar and machined roof bands.
+   // This shallow rearward mechanism leaves the existing open head space intact.
+   CabinAuthoredGeometry.Profile(root,"CabinDriveCollar",new[]{new Vector2(.25f,0),new Vector2(.42f,0),new Vector2(.44f,.025f),new Vector2(.40f,.05f),new Vector2(.36f,.05f),new Vector2(.36f,.15f),new Vector2(.33f,.18f),new Vector2(.25f,.18f)},0,360,32,teal,new Vector3(0,3.74f,.16f));
+   CabinAuthoredGeometry.Profile(root,"CabinDriveGilding",new[]{new Vector2(.37f,0),new Vector2(.405f,0),new Vector2(.419f,.012f),new Vector2(.405f,.033f),new Vector2(.37f,.033f)},0,360,32,brass,new Vector3(0,3.82f,.16f));
    // Low shaped brass body now rises above the broad deck instead of disappearing below it.
    // The 110-degree front entrance is open; no panel crosses the runner/transfer centre.
    CabinAuthoredGeometry.Profile(root,"CabinPassengerSkirt",new[]{new Vector2(1.045f,.665f),new Vector2(1.085f,.665f),new Vector2(1.13f,.70f),new Vector2(1.135f,.745f),new Vector2(1.11f,.78f),new Vector2(1.105f,1.03f),new Vector2(1.13f,1.065f),new Vector2(1.115f,1.10f),new Vector2(1.065f,1.115f),new Vector2(1.04f,1.075f),new Vector2(1.04f,.71f)},-35,215,48,brass,Vector3.zero);

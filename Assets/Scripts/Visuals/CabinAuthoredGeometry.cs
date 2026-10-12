@@ -20,7 +20,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
   {
    if(name!="CabinCrown"&&name!="CabinBaseDrum"&&name!="CabinPassengerSkirt")return;
    var vertices=mesh.vertices;var colors=new Color32[vertices.Length];var bounds=mesh.bounds;
-   for(int i=0;i<vertices.Length;i++){float y=Mathf.InverseLerp(bounds.min.y,bounds.max.y,vertices[i].y);bool field=name=="CabinCrown"?y>.32f&&y<.75f:name=="CabinPassengerSkirt"?y>.25f&&y<.82f:y>.27f&&y<.80f;float value=field?(name=="CabinCrown"?.43f:.57f):.98f;colors[i]=new Color(value,value*(field?.91f:1),value*(field?.79f:1),1);}mesh.colors32=colors;
+   for(int i=0;i<vertices.Length;i++){float y=Mathf.InverseLerp(bounds.min.y,bounds.max.y,vertices[i].y);bool field=name=="CabinCrown"?y>.32f&&y<.75f:name=="CabinPassengerSkirt"?y>.25f&&y<.82f:y>.27f&&y<.80f;float value=field?(name=="CabinCrown"?.43f:.57f):.98f;colors[i]=new Color(value,value*(field?.86f:1),value*(field?.70f:1),1);}mesh.colors32=colors;
   }
   static float Cross(Vector2 a,Vector2 b)=>a.x*b.y-a.y*b.x;
   // A rolled cross section is concave. Clip real polygon ears instead of
