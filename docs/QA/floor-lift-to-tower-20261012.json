@@ -1,0 +1,262 @@
+{
+  "sourceSha256": "3811a5074eb6898af55e53ba20386295ce69c813a5fd0edbe27d15b39e049679",
+  "bundleSha256": "48c431c513ac857255cd8ea083541d1dcb4d524a6e5d4be74ece2e92a8ed2251",
+  "app": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/OneMoreFloor-TowerQa4.app",
+  "createdAt": "2026-10-12T05:30:00.440730+00:00",
+  "target": "StandaloneOSX development QA",
+  "buildExitCode": 0,
+  "strictEditorResult": "FLOOR_ALL_PASS checks=14040 loggedErrors=0",
+  "scope": "One vertical lift, fixed tower balconies, deterministic jump and boarding, checkpoint balcony restore, actual current/next risk previews and tutorial cues",
+  "nativeOrTestFlightAttempted": false,
+  "fullRuntime": "ELEVATOR_QA_PASS checks=8750 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+  "reloadRuntime": "ELEVATOR_RELOAD_PASS checks=6",
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2219",
+  "visualStatus": "failed",
+  "reviewedAt": "2026-10-12T05:46:03.459518+00:00",
+  "limitations": "Mac development QA with pointer callbacks, not physical iPhone touch/FPS/StoreKit/ads. Full route covers all87 primary transfers and continuous new orthographic framing. Only Showcase supplies actual 430x932/932x430 orientations; old37503-check perspective helper is historical and not validation of the new camera. Character/near-facade/cabin detailing and lighting still differ from Concept. Banked HUD retains the historical pending-coin AT RISK caption behind its modal and should be corrected in the next UI polish batch.",
+  "validationReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/tower-build4.log",
+      "sha256": "cb3839e41bb338bf626ce36bf86b661b85d982e8daf3c1330ae9a4b69fa2ebf2"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/PASS.txt",
+      "sha256": "986950c379e9b6444969d842b6f691cfe06370a9c5917ea3c79b6ab08e786077"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerReload4/RELOAD-PASS.txt",
+      "sha256": "210690843527a123f8beb74d89528c1e4cf77cce20f8dafd638e3438cfee1f74"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/SHOWCASE-PASS.txt",
+      "sha256": "c9f61b62a829013c19fdf1bb4b9aa97954ef6af427f3fe7c6d8c748cd72c4137"
+    }
+  ],
+  "renderedEvidence": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/floor16.png",
+      "sha256": "13ea4e4c3e4fcdcaac8b20088971ee7a663cec27675c061ff753514b0d5781de",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/floor2.png",
+      "sha256": "b767f81e27239263664e65f36c42fcf167017ab051c8f113dba70f5964938671",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/floor7.png",
+      "sha256": "7eeb5ef43b7ef43b473b0c1e36b8314a3ba57201a9fd63392415e3e09b31af40",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/home.png",
+      "sha256": "ffaab9adfc78a841ff60f4f10c5400413abfd0322a22ab537d5fc8b2639cad47",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/landscape-shop.png",
+      "sha256": "125d8dab65b5cea8f5559346d6d8d173faed4400b8bea24908d443c7bdb10372",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/landscape.png",
+      "sha256": "57b2230adde2497af92311d30524e46c737593fb1768414acdc83bd30ac8fc84",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/portrait-restored.png",
+      "sha256": "67eb1b2d782662bc8ec91260fefe00d83858673077e8730061f172b20fa20c72",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/portrait.png",
+      "sha256": "92fc9d45300426e0ae8a1db66d7ec2a4e4eb453ea4cb0fe64a535018bda09e9e",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm0-lift-ready.png",
+      "sha256": "9569f79fac0513be5a1a073c932ed5992442cb3cb11d1eee7b570a1073d86a76",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm1-lift-ready.png",
+      "sha256": "f9cf0ff44c32ee711cce690ff6da92dd9dd60e8515519998c795832066e687ca",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm2-lift-ready.png",
+      "sha256": "e5c77e0f3aceb9a49e50b2860b99a3d144bdb08053990456131a9074398abfad",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/tower0-complete.png",
+      "sha256": "fbe31dd54a232d5e16f587ac9f6a36e2065514d3de73a4e8062885d07cb3ba5a",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/tower1-complete.png",
+      "sha256": "1da9b752d68cb87240e0534bc78416ebbfff0996c143b5d08fd244ba6de1c17b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/tower2-complete.png",
+      "sha256": "7909a3e8468fea5e73170a160d6ab0d958e206c6ba94d70eed3a0f63be9c5873",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerReload4/restored-checkpoint-banked.png",
+      "sha256": "df89ba2b1d9cf6adb42d6e7f205295655d6a4cbe58fa6d4782dd88716e53b27a",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/banked-landscape-de.png",
+      "sha256": "d2cbf795c6bea06f2df7959fe0093edd288715072f9d87cf82882ee554df979e",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/banked-landscape-en.png",
+      "sha256": "36a6191fa6330c3df529ac10c9218b4e7e4ed97aaff17918521ae0b422e38151",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/banked-portrait-de.png",
+      "sha256": "4758c698f4fda743622925fd71ab8538af5fe0f611fce6c2be0141921ea0172b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/banked-portrait-en.png",
+      "sha256": "0429b5fb029acbdf1c1c643f69b009a3095999340b01eb520599a164f5904645",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/gift.png",
+      "sha256": "7532980dbfea5b7c248b0e68102e4b734e4cab92a0915d13b1a59fb4909aa370",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/lobby-de.png",
+      "sha256": "db2a5b11145f9012b7164c259e817adbb572eb366f0e06d86447ebd879cd9174",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/lobby-en.png",
+      "sha256": "eedd8e2cd5cf85fe1c43a0b13a5fea6db4bf688dbdb6b03d2b295c379ad10334",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/lobby-landscape.png",
+      "sha256": "d8761f375a15fad7efaa1d7e85751531944085bf127ed7b6b10f15f37f226ca8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/lobby-restored.png",
+      "sha256": "c9b0ce676cdfa121e3ed0ef9bc459901c09d844660708d21f1727d925a7e82b6",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/risk-landscape-de.png",
+      "sha256": "115dad05d694b478a76239c5fa5c49e18533f912d43cfad0656673cc1496b7a2",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/risk-landscape-en.png",
+      "sha256": "ba999b5d2d90c388423b806a9476cb818aa1861f6efe1c46ecc6d1c8b39c3caa",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/risk-portrait-de.png",
+      "sha256": "f7390e0916675cd1a30e1a1d19442cb0a91d9f01ed7dd2ae0fa2dbee097c2aa7",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/risk-portrait-en.png",
+      "sha256": "a58e182fa77a9f44794ef0ce555b190656a65b1efd62187d46a129785a28c238",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/settings-landscape-de.png",
+      "sha256": "c86103534bab4f0dfd16303911706e3df9e0ebd9e567172bcaa4d6f17954ff51",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/settings-landscape-en.png",
+      "sha256": "1c3a6b3b2154867752ae4a7f9e3114260f0b831618f9d3013682577d0d431622",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/settings-portrait-de.png",
+      "sha256": "62253d2f2f08672ae3c86ab89d14cf5995d61df4d81b45ef9a9bc57589b6273a",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/settings-portrait-en.png",
+      "sha256": "a1b8c8872b184b176e63484852f39ccd167e208f1fe317a1080f61ce8600d28a",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/settings.png",
+      "sha256": "f079c9c6402879dce356d6644db62082051c7867d506de770e7cd68a8084ef4f",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/shop-landscape.png",
+      "sha256": "10c77966908091d2383e760f803708a61c19f17652454c0d98ec203e11444650",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/shop.png",
+      "sha256": "74c67874581506b3ef65895ced14369451bbe8f414a3ec4e2aecd8f5bf45df93",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/styles.png",
+      "sha256": "4eb3c20d1e3410b325006ce12b757e98c701852f1e56abf8c8a70a686f6a5ebb",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tower-ready-landscape.png",
+      "sha256": "fae29de9d7c20cb405c2f4d99354baab58003fa692ef10a2fa05e08b256311c1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tower-ready-portrait.png",
+      "sha256": "12d9c3bf935c57ae6ca9045cad3add2d35011e172e3cbaa89167d433f4fdfd90",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-bank-lesson.png",
+      "sha256": "eda29de78e5e8a032acc4a14dbb4a83362bf564f13805f1f440a4f7aa787eadb",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-choice.png",
+      "sha256": "e098c63c617099146b1a3eeb906998e3f32a5589fbb8cedb3a5739d6a5557889",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-complete.png",
+      "sha256": "b2251b89b7377cbf4f26661dcbd850c8887652943c7975b26c9a72dce3a5fb46",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-landscape.png",
+      "sha256": "e1a7a4cbd58fc3e217d06a0477525a6e92a5fcb6f7c4d84ca98912319ff71ed0",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-perfect.png",
+      "sha256": "729f3b8794f5e0f0c875ed358965e9b775a10bf1df36dd55ca6de580d3b2547e",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-risk.png",
+      "sha256": "e3c16684d818b9626663c6d7819ed8b1f52d113cc828051fddf48d748e8b6607",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tutorial-timing.png",
+      "sha256": "88ad9aa31f2f439f0ef360b38ea907c5dec4a3926e441304b7be8c46b6ad0d27",
+      "origin": "Unity-render"
+    }
+  ]
+}

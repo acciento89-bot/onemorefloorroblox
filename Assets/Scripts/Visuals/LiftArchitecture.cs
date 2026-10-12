@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace Kamilunavo.OneMoreFloor.Visuals
 {
- // Decoration only: the original deck collider, transfer rules and camera are authoritative.
+ // Shared authored carriage and tower surfaces; FloorCourse owns gameplay colliders.
  public static class LiftArchitecture
  {
   public static readonly Color Ivory=new(.80f,.78f,.70f),Copper=new(.57f,.32f,.18f),Teal=new(.035f,.18f,.20f);
@@ -37,12 +37,18 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    FloorArchitectureDetails.CabinGlass(root,Finish(parent,FloorArchitectureSurface.Glass));
    LiftMetalOrnaments.Cabin(root,brass,copper);MeshArt.Box(root,"CabinBackPlaque",new Vector3(0,1.99f,.78f),new Vector3(.48f,.59f,.035f),teal);MeshArt.Box(root,"CabinPlaqueMark",new Vector3(0,1.99f,.758f),new Vector3(.037f,.31f,.017f),brass);
   }
+  public static void LandingDeck(Transform parent,bool highContrast=false)
+  {
+   FloorArchitectureDetails.BeveledBlock(parent,"TowerLandingDeck",new Vector3(0,.575f,-.20f),new Vector3(2.55f,.05f,2.70f),.008f,Finish(parent,FloorArchitectureSurface.Deck));var glow=Finish(parent,FloorArchitectureSurface.Lamp);
+   var contrast=new GameObject("RouteContrastRim");contrast.transform.SetParent(parent,false);var white=MeshArt.Mat("ContrastIvory",Color.white);
+   for(int side=-1;side<=1;side+=2){MeshArt.Box(parent,"TowerLandingGoldRim",new Vector3(side*1.255f,.607f,-.2f),new Vector3(.035f,.012f,2.67f),glow);MeshArt.Box(parent,"TowerLandingGoldRim",new Vector3(0,.607f,-.20f+side*1.335f),new Vector3(2.55f,.012f,.035f),glow);MeshArt.Box(contrast.transform,"ReadableBorder",new Vector3(side*1.255f,.627f,-.2f),new Vector3(.06f,.025f,2.67f),white);MeshArt.Box(contrast.transform,"ReadableBorder",new Vector3(0,.627f,-.20f+side*1.335f),new Vector3(2.55f,.025f,.06f),white);}contrast.SetActive(highContrast);
+  }
   public static void Bay(Transform parent,int floor)
   {
    var root=new GameObject("ArchitecturalFloorBay").transform;root.SetParent(parent,false);root.localPosition=new Vector3(4.75f,0,1.15f);
    var stone=Finish(parent,FloorArchitectureSurface.Stone);var trim=Finish(parent,FloorArchitectureSurface.Trim);var teal=Finish(parent,FloorArchitectureSurface.Teal);var brass=Finish(parent,FloorArchitectureSurface.Brass);var lamp=Finish(parent,FloorArchitectureSurface.Lamp);
    // Both the structural support and thin interior wall sit behind the visible door.
-   FloorArchitectureDetails.BeveledBlock(root,"MasonryFacadeSupport",new Vector3(.45f,-4.65f,2.25f),new Vector3(1.60f,10f,1.70f),.045f,stone);
+   FloorArchitectureDetails.BeveledBlock(root,"MasonryFacadeSupport",new Vector3(.45f,-1.83f,2.25f),new Vector3(1.60f,4.6f,1.70f),.045f,stone);
    FloorArchitectureDetails.BeveledBlock(root,"BayRearWall",new Vector3(0,2.10f,1.90f),new Vector3(2.75f,3.45f,.28f),.045f,stone);
    FloorArchitectureDetails.BeveledBlock(root,"BalconyPlinth",new Vector3(0,.08f,0),new Vector3(2.55f,.65f,2.7f),.045f,stone);FloorArchitectureDetails.BeveledBlock(root,"BalconyCornice",new Vector3(0,.43f,-.10f),new Vector3(2.74f,.14f,2.8f),.045f,trim);
    for(int side=-1;side<=1;side+=2){

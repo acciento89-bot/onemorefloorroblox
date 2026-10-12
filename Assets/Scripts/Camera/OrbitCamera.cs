@@ -11,8 +11,15 @@ namespace Kamilunavo.OneMoreFloor.CameraSystem
   private Camera _camera;
   private void Awake()=>_camera=GetComponent<Camera>();
   private void LateUpdate()=>FrameNow();
-  public void FrameNow(){if(Target==null)return;if(_camera==null)_camera=GetComponent<Camera>();var rotation=FixedRotation;var source=Course!=null&&Course.Steps.Count>0?Course.Steps[Course.Height].transform.position+Vector3.up*.65f:Target.position;var next=Course!=null&&Course.Steps.Count>0?Course.Steps[Mathf.Min(29,Course.Height+1)].transform.position+Vector3.up*.65f:source;var view=Course!=null?Course.GameplayViewport:new Rect(.08f,.23f,.84f,.54f);
+  public void FrameNow(){if(Target==null)return;if(_camera==null)_camera=GetComponent<Camera>();var rotation=FixedRotation;var source=Course!=null&&Course.Steps.Count>0?Course.SourcePosition:Target.position;var next=Course!=null&&Course.Steps.Count>0?Course.TargetPosition:source;var view=Course!=null?Course.GameplayViewport:new Rect(.08f,.23f,.84f,.54f);
+   if(Course!=null&&Course.Cabin!=null){FrameTower(source,next,view);return;}_camera.orthographic=false;
    var focus=BestFocus(rotation,_camera.fieldOfView,_camera.aspect,source,next,Target.position+Vector3.up*2.5f,view);float distance=FitDistance(focus,rotation,_camera.fieldOfView,_camera.aspect,source,next,Target.position+Vector3.up*2.5f,view);float tangent=Mathf.Tan(_camera.fieldOfView*.5f*Mathf.Deg2Rad);var offset=rotation*Vector3.up*(distance*tangent*(1-2*view.center.y));transform.SetPositionAndRotation(focus+offset-rotation*Vector3.forward*distance,rotation);
+  }
+  void FrameTower(Vector3 source,Vector3 next,Rect view){var rotation=FixedRotation;var inverse=Quaternion.Inverse(rotation);var origin=(source+next)*.5f;float minX=float.PositiveInfinity,maxX=float.NegativeInfinity,minY=float.PositiveInfinity,maxY=float.NegativeInfinity;
+   void Include(Vector3 point){var p=inverse*(point-origin);minX=Mathf.Min(minX,p.x);maxX=Mathf.Max(maxX,p.x);minY=Mathf.Min(minY,p.y);maxY=Mathf.Max(maxY,p.y);}
+   for(int kit=0;kit<2;kit++){var center=(kit==0?source:next)+Vector3.up*(kit==0?1.0f:1.35f);var extent=kit==0?new Vector3(1.3f,2.2f,1.55f):new Vector3(1.5f,2.25f,1.9f);for(int x=-1;x<=1;x+=2)for(int y=-1;y<=1;y+=2)for(int z=-1;z<=1;z+=2)Include(center+new Vector3(x*extent.x,y*extent.y,z*extent.z));}
+   Include(Target.position);Include(Target.position+Vector3.up*2.75f);float aspect=Mathf.Max(.2f,_camera.aspect),size=Mathf.Max(3,Mathf.Max((maxY-minY)/(2*Mathf.Max(.1f,view.height-.03f)),(maxX-minX)/(2*aspect*Mathf.Max(.1f,view.width-.03f))))+.12f;
+   var focus=origin+rotation*new Vector3((minX+maxX)*.5f+(1-2*view.center.x)*size*aspect,(minY+maxY)*.5f+(1-2*view.center.y)*size,0);_camera.orthographic=true;_camera.orthographicSize=size;transform.SetPositionAndRotation(focus-rotation*Vector3.forward*24,rotation);
   }
   // Balance the perspective support planes, rather than only searching world height.
   // For each axis the feasible focus interval is [max(P-right*Z), min(P-left*Z)].

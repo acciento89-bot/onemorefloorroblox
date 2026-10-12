@@ -3,7 +3,7 @@
 Native iOS + Android elevator timing arcade game by Kamilunavo.
 
 ## Current gameplay
-One thumb controls a guided transfer between industrial elevator decks above a neon city. The player chooses the launch time; the moving landing bay must line up at arrival. The camera rotation stays fixed. A visible arc and timing feedback help judge the window.
+One thumb times a jump from a single vertical brass elevator onto a fixed tower balcony. The carriage rises beside thirty numbered stone floors; a successful jump visibly ends on the tower before the same carriage prepares the next floor. Prediction and arrival share one deterministic forecast. The camera rotation stays fixed; a visible arc and timing feedback help judge the landing window.
 
 - Three 30-floor towers and a deterministic daily route.
 - Checkpoints every five floors; a miss returns immediately to the last checkpoint.
@@ -19,7 +19,7 @@ Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
 The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
-Approved design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
+Current literal Concept correction: [One elevator to fixed tower balconies](docs/FLOOR-LIFT-TO-TOWER-20261012.md). Earlier economy and checkpoint design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
 Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).
 Older parkour tests and build1 delivery entries describe the previous candidate and do not validate this redesign.
 

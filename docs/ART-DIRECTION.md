@@ -1,49 +1,19 @@
 # One More Floor Art Direction
 
-## Target
-Buildable neon-city arcade style. Warm sunset/orange route edges balanced by cyan accent light and dark navy UI.
+## Binding approved Concept
 
-## Palette
-- UI navy: #07121F
-- Platform graphite: #171B24
-- Route gold: #FFB72E
-- Cyan state accent: #28C7F7
-- Sunset coral: #FF6A45
-- Primary text: #F7FAFF
-- Secondary text: #A7B5C6
+The approved October10 three-view lift board supersedes the historical floating-platform cyberpunk concept. The original board is preserved at `/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png`, SHA256 `49ec586059178ceb804c92723fc65e24aa85a5cd736837fe497609a8a5501d31`. Do not recreate the deleted historical `PRIMARY-CONCEPT.png`.
 
-## Environment
-- Modular floating platforms over a dense but optimized city backdrop.
-- A visible checkpoint ring every checkpoint band.
-- Limited background geometry; baked/lightweight effects later.
-- Platform edge light communicates route.
-- Avoid visual noise behind the next jump.
+Warm stone and brass architecture, a slender ornate teal/brass elevator cage on the left, fixed arched tower balconies on the right, rounded brown-haired teal adventurer, a sunset canal skyline, climbing ivy, lamps, recessed doors and carved cornices. The platform IS the elevator. The character jumps from its open side onto the tower balcony. There is only one carriage, never a second target cabin or a sideways cabin runway. See FLOOR-LIFT-TO-TOWER-20261012.md for the authorized mechanic correction.
 
-## UI
-- Pause top-left.
-- Stage/progress top-center.
-- Score + Coins top-right.
-- Checkpoint dialog only when a checkpoint is reached.
-- Joystick left, jump right.
-- No persistent oversized menu during active movement.
+## Gameplay composition
 
-## Primary visual reference
+Fixed camera quaternion; no forced orbit or yaw. Keep the moving carriage, target landing and character readable above actual controls in both orientations. A real trajectory and compact timing meter communicate the forecast. Visible accepted landings occur on the tower. Boarding the same lift cannot grant rewards. At checkpoints the character remains on the reached balcony while the bank/continue decision is open.
 
-![Primary One More Floor concept](concepts/PRIMARY-CONCEPT.png)
+## Menu identity
 
-This image is the binding visual target for cyberpunk city depth, sunset grading, neon route edges, checkpoint language, runner presentation and compact mobile HUD. Checkpoint/continue/retry panels are state-driven overlays only and must never remain over active movement.
+A full architectural lift atrium fills the safe area, with a large actual carriage and three compact scenic destinations. Warm ivory, teal and gold surfaces, clear type and shaped controls. Submenus return to their parent; gameplay resume is explicit. Risk/bank sheets stay compact and below the playable area, with owned 3D views of the actual occupied current balcony and empty next balcony. DE/EN and at least48 logical-point targets remain required.
 
-### Non-negotiable visual gates
-- The route must read instantly against the city backdrop.
-- Platform geometry needs authored industrial/cyberpunk form; simple cubes are collision/prototype only.
-- Orange/gold and cyan lighting must create route/checkpoint hierarchy without saturating the whole scene.
-- Falling must recover immediately to the latest valid checkpoint with controls restored on the first playable frame.
-- Camera and touch controls must support fast vertical movement without forced recentering.
+## Evidence
 
-
-
-## Approved lift city revision — 2026-10-10 (current)
-
-The approved three-view board at `/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png` and [the focused implementation contract](FLOOR-CONCEPT-2026-10-10.md) supersede the historical floating-platform and orbit/joystick art instructions above. Current gameplay is the fixed-camera one-thumb elevator timing game. The deleted historical primary concept must not be restored.
-
-Warm ivory masonry and lobby surfaces, copper lift crowns, two dark teal guide rails, arched floor balconies, small amber lanterns and restrained greenery provide the current direction. The lobby and Sunset/Neon/Skyline chapter cards render authored 3D kit. Bank-or-risk is a compact ivory lower sheet with permanent amber bank / teal continue actions. All environment decoration is non-colliding; landing dimensions, arrival timing, checkpoint/save/economy and paid ownership remain authoritative. Engine screenshots and device performance still require verification before visual acceptance.
+Use actual Unity renders, never generated gameplay mockups, as implementation evidence. Compilation, source checks and behavior tests do not imply Concept similarity. Inspect menu, gameplay, character/architecture and variants beside the unchanged approved board. TestFlight requires a passed exact-source visual report plus all native checks. The current visual gate remains failed; refined proportions, character silhouette and lighting are still required.

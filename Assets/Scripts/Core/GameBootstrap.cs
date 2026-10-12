@@ -14,7 +14,7 @@ namespace Kamilunavo.OneMoreFloor
 #endif
 
 
-Screen.orientation=ScreenOrientation.AutoRotation;Screen.autorotateToPortrait=true;Screen.autorotateToPortraitUpsideDown=false;Screen.autorotateToLandscapeLeft=true;Screen.autorotateToLandscapeRight=true;Application.targetFrameRate=60;QualitySettings.vSyncCount=0;QualitySettings.shadows=ShadowQuality.All;QualitySettings.shadowDistance=24;
+Screen.orientation=ScreenOrientation.AutoRotation;Screen.autorotateToPortrait=true;Screen.autorotateToPortraitUpsideDown=false;Screen.autorotateToLandscapeLeft=true;Screen.autorotateToLandscapeRight=true;Application.targetFrameRate=60;QualitySettings.vSyncCount=0;QualitySettings.shadows=ShadowQuality.All;QualitySettings.shadowDistance=32;
    if(FindFirstObjectByType<EventSystem>()==null)new GameObject("EventSystem",typeof(EventSystem),typeof(StandaloneInputModule));Lighting();
    var player=new GameObject("Runner",typeof(CharacterController),typeof(PlayerMotor));var cc=player.GetComponent<CharacterController>();cc.height=1.96f;cc.radius=.25f;cc.center=new Vector3(0,.98f,0);cc.stepOffset=.15f;cc.skinWidth=.025f;
    var motor=player.GetComponent<PlayerMotor>();var runner=RunnerArt.Build(player.transform);runner.Motor=motor;runner.transform.localRotation=Quaternion.Euler(0,60,0);runner.transform.localScale=Vector3.one*1.35f;

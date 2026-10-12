@@ -1,10 +1,10 @@
 {
   "game": "One More Floor",
   "status": "failed",
-  "sourceSha256": "d1755296009ee7d32245a6ab24823ad367095b900d0cfe05d6370371e82a554f",
-  "reviewer": "Codex direct actual rendered Mac image comparison against unchanged approved Concept",
-  "reviewedAt": "2026-10-12T04:56:33.644885+00:00",
-  "reason": "Actual Showcase7 Mac renders reviewed against unchanged approved Oct10 board. Full spatial atrium, bounded cached owned preview, complete carriage framing, smaller chapter cards, real consecutive floor previews, ornate meshes and more contrasted metal/shadow finishes are improved. Concept remains failed: simpler character and near architecture/lighting, and the user explicitly clarified that gameplay must be one vertical elevator to fixed tower balconies, not transfers between sideways moving cabins. That core rebuild is now the active required work. No native/TestFlight upload or version bump.",
+  "sourceSha256": "3811a5074eb6898af55e53ba20386295ce69c813a5fd0edbe27d15b39e049679",
+  "reviewer": "Codex direct actual Unity Mac render comparison against unchanged approved Concept",
+  "reviewedAt": "2026-10-12T05:46:03.459518+00:00",
+  "reason": "The literal single vertical elevator to fixed tower balconies is now implemented and verified across all3towers, actual tower landings, boarding/pause/no-mint, deliberate miss/recovery and fresh checkpoint restore/bank-once. Final4 actual DE/EN/portrait/landscape renders are bound to this source. Concept similarity remains failed: the character silhouette/materials, wider recessed facade composition, ornate illuminated cabin surfaces and lighting still differ visibly from the approved board. Menu identity and parent navigation are retained. No TestFlight/native distribution or version bump.",
   "criteria": {
     "concept_similarity": "failed",
     "character_or_tower": "failed",
@@ -23,40 +23,61 @@
     ],
     "menu": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Showcase7/lobby-de.png",
-        "sha256": "eaa793b8853c789d242af0490407def1e68f85ef3e9e48718d24e734053c3715",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/lobby-de.png",
+        "sha256": "db2a5b11145f9012b7164c259e817adbb572eb366f0e06d86447ebd879cd9174",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Showcase7/lobby-landscape.png",
-        "sha256": "e9393fb7cedb50b92493a0c513750e22e057f18f278adad027d4555c8f32109c",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/lobby-landscape.png",
+        "sha256": "d8761f375a15fad7efaa1d7e85751531944085bf127ed7b6b10f15f37f226ca8",
         "origin": "Unity-render"
       }
     ],
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Showcase7/tutorial-timing.png",
-        "sha256": "12341f3a47998e5827f7d02abec34556de23e6b1203e144e59f2b3ce25cdea9e",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm0-lift-ready.png",
+        "sha256": "9569f79fac0513be5a1a073c932ed5992442cb3cb11d1eee7b570a1073d86a76",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Showcase7/tutorial-landscape.png",
-        "sha256": "4c3c9f10fbdffdaeec6bc16d7a192bbe403423fa22b2920886a7d4a8e2d762a4",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/floor2.png",
+        "sha256": "b767f81e27239263664e65f36c42fcf167017ab051c8f113dba70f5964938671",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/tower-ready-landscape.png",
+        "sha256": "fae29de9d7c20cb405c2f4d99354baab58003fa692ef10a2fa05e08b256311c1",
         "origin": "Unity-render"
       }
     ],
     "submenus": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Showcase7/risk-portrait-de.png",
-        "sha256": "2e0e359907bfc6d7bbbf4200daf52a5dcf5dec1b7e1c22d1b0ddfce42706715f",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/risk-portrait-de.png",
+        "sha256": "f7390e0916675cd1a30e1a1d19442cb0a91d9f01ed7dd2ae0fa2dbee097c2aa7",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/Showcase7/settings-portrait-de.png",
-        "sha256": "7624545fe36762f7487684d20255b547a0bb2093798b56b41d120f70992cbc75",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerShowcase4/settings-portrait-de.png",
+        "sha256": "62253d2f2f08672ae3c86ab89d14cf5995d61df4d81b45ef9a9bc57589b6273a",
         "origin": "Unity-render"
       }
     ],
-    "variants": []
+    "variants": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm0-lift-ready.png",
+        "sha256": "9569f79fac0513be5a1a073c932ed5992442cb3cb11d1eee7b570a1073d86a76",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm1-lift-ready.png",
+        "sha256": "f9cf0ff44c32ee711cce690ff6da92dd9dd60e8515519998c795832066e687ca",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorAtrium-20261012/TowerFull4/realm2-lift-ready.png",
+        "sha256": "e5c77e0f3aceb9a49e50b2860b99a3d144bdb08053990456131a9074398abfad",
+        "origin": "Unity-render"
+      }
+    ]
   }
 }
