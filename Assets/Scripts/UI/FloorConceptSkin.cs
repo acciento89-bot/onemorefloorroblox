@@ -12,7 +12,7 @@ namespace Kamilunavo.OneMoreFloor.UI
   }
   public static void Apply(Image image,string name)
   {
-   image.sprite=Resources.Load<Sprite>("UI/Concept/"+name);image.type=Image.Type.Sliced;image.material=null;
+   image.sprite=Resources.Load<Sprite>("UI/Concept/"+(name=="GoldAction"?"GoldAction-v2":name));image.type=Image.Type.Sliced;image.material=null;
    image.color=Color.white;image.pixelsPerUnitMultiplier=name=="GoldAction"||name=="TealAction"?2:3;
   }
   public static void Button(Button button,string name)

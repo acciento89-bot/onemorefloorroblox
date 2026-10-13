@@ -19,7 +19,9 @@ Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
 The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
-Latest native graphics pass: [Original reflections and composition](docs/FLOOR-REFLECTION-COMPOSITION-20261013.md). Character prominence, original-room reflections and continuous lobby foreground are improved; overall Concept approval remains blocked.
+Latest native menu assets: [World cards, lettering and coin](docs/FLOOR-MENU-ASSETS-20261013.md). Original menu paintings, live stars, derived serif logo/titles and original currency sprite are connected to the actual UI; final4 strict native menu/GPU checks pass. Overall Concept gate remains failed.
+
+Previous native graphics pass: [Original reflections and composition](docs/FLOOR-REFLECTION-COMPOSITION-20261013.md). Character prominence, original-room reflections and continuous lobby foreground are improved; overall Concept approval remains blocked.
 Current literal Concept correction: [One elevator to fixed tower balconies](docs/FLOOR-LIFT-TO-TOWER-20261012.md). Earlier economy and checkpoint design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).
 Latest native Mac Unity Editor / consumed sculpted assets / closed marble lobby / opaque child menus: [Original assets and native Art Studio](docs/FLOOR-UNITY-ART-STUDIO-20261012.md). Graphical acceptance remains failed. Earlier URP/gold UI/character/texture batch and bounded evidence: [Concept lighting and UI rebuild](docs/FLOOR-CONCEPT-URP-UI-20261012.md). Earlier [environment/lobby revision](docs/FLOOR-ENVIRONMENT-REBUILD-20261012.md) is historical. Overall graphical acceptance remains failed; no TestFlight upload.
 Implementation progress and actual native/internal delivery evidence: [V1 ledger](docs/ONE-MORE-FLOOR-V1-LEDGER.md).

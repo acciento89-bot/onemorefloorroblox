@@ -52,3 +52,8 @@ Rules tests, device matrix, performance, store validation and staged release.
 - Next actionable platform stays visible.
 - 60 FPS target on supported devices.
 - iOS and Android store builds validated.
+
+
+## 2026-10-13 — menu artwork, lettering and currency
+
+Original scenic world-card images and alpha gold coin are integrated into actual live One More Floor UI, together with native sliced gold/clip/frame sprites, properly cased derived serif titles/logo, readable heavy sans controls and retained live star/progression/Shop/parent Back flow. Actual player draw-callback and caret mesh regressions were fixed and preserved as meaningful REDs. Final4 clean strict native build/player/GPU evidence and unchanged-board comparisons: QA/floor-menu-assets-20261013.json and FLOOR-MENU-ASSETS-20261013.md. Overall graphical gate remains FAILED; actor/cabin/stone/full-atrium quality remains open. No TestFlight or other-game/provider work.

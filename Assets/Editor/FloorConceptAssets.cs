@@ -13,7 +13,7 @@ public static class FloorConceptAssets
  public static void BuildAndValidate(){Configure();FloorConceptLightingValidation.ValidateLight();BuildAutomation.BuildMacPreview();}
  public static void Configure()
  {
-  Directory.CreateDirectory(Folder);AssetDatabase.Refresh();
+  Directory.CreateDirectory(Folder);AssetDatabase.Refresh();FloorMenuAssetsAuthoring.Configure();
   var renderer=AssetDatabase.LoadAssetAtPath<UniversalRendererData>(Folder+"/ConceptRenderer.asset");
   if(renderer==null)
   {

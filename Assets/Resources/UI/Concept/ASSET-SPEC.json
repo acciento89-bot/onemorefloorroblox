@@ -1,24 +1,12 @@
 {
-  "origin": "Original code-native vector design; no text baked into textures",
-  "sprites": [
-    "GoldAction",
-    "GlassBanner",
-    "IvoryNavigation",
-    "ChapterFrame",
-    "TealAction",
-    "GlassMeter"
-  ],
-  "nineSliceBorderPixels": [
-    28,
-    28,
-    28,
-    28
-  ],
-  "primaryNavigation": [
-    "Stil",
-    "Route",
-    "Shop",
-    "Lernen"
-  ],
-  "missionCards": "Sunset/Neon/Skyline: live cached real Unity chapter views, ChapterFrame nine-slice, owned earned/outline star geometry"
+  "origin": "Original code-native geometry with native Unity rasterization; built-in Imagegen original paintings and alpha coin; live labels and earned ratings never baked",
+  "sprites": ["GoldAction-v2", "GlassBanner", "IvoryNavigation", "WorldFrame-v1", "CardClip-v1", "GoldCoin-v1", "TealAction", "GlassMeter"],
+  "nineSliceBorderPixels": [28, 28, 28, 28],
+  "coinBorderPixels": [0, 0, 0, 0],
+  "primaryNavigation": ["Stil", "Route", "Shop", "Lernen"],
+  "missionCards": "Sunset/Neon/Skyline: distinct original menu paintings, rounded stencil mask, gold open-center frame, direct proper-case serif labels and live earned/outline stars",
+  "menuPaintingsAreGameplay": false,
+  "liveScenePreviews": "Full actual atrium and adjacent tower checkpoint views; actual gameplay worlds independently validated",
+  "typefaces": {"worldNames": "Floor Concept Serif Bold SDF", "brand": "Floor Concept Serif Bold SDF", "actionsAndCounters": "Barlow Bold SDF"},
+  "assetProvenance": "docs/FLOOR-MENU-ASSETS-20261013.md"
 }

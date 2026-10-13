@@ -1,0 +1,52 @@
+{
+  "reference": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png",
+    "sha256": "49ec586059178ceb804c92723fc65e24aa85a5cd736837fe497609a8a5501d31"
+  },
+  "assets": [
+    {
+      "asset": "Assets/Resources/UI/Concept/GoldCoin-v1.png",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-35b8e8da-2a20-4104-8a0e-aef2e7417743.png",
+      "sha256": "6a5878c199ebdc0af91750f15986412bda90a4a50b9b0fddb0ee0ce4f34fcd42",
+      "mode": "built-in image_gen.imagegen",
+      "transparent_background": true,
+      "referenced_image_paths": [
+        "/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: single production-ready Unity mobile game currency icon sprite. The attached approved One More Floor board is a REFERENCE only: match the small polished gold coin next to the 248/127 balance at the top of those screens. Generate ONLY one large isolated coin, not the board and not a UI mockup. A round warm gold currency coin, almost front facing, tilted about 10 degrees so a narrow thick milled right edge is visible, raised double circular rim, believable beveled metal highlights from upper left and deep amber recesses. A tasteful embossed tiny vintage elevator door motif in its face; no letter or number. Elegant high-end stylized 3D game render, matching the reference's lustrous gold, dimensional curved metal, readable at 24-32 pixels. Centered coin occupies about 85% of a square canvas. True transparent background, no checkerboard, no surrounding frame, no other coins, no text, no colored background, no hands. Crisp clean alpha silhouette and restrained contactless soft glow only within the coin edge. Save the coin asset as a new original image; do not change the approved reference."
+    },
+    {
+      "asset": "Assets/Resources/UI/Concept/Cards/Sunset-v1.png",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-08603c1b-b225-4ae9-a24a-fc6f9f020b39.png",
+      "sha256": "ac829cb378e5c4cca05a53f243dab635d557c59843f5dcb9ce070a22467f7927",
+      "mode": "built-in image_gen.imagegen",
+      "transparent_background": false,
+      "referenced_image_paths": [
+        "/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ORIGINAL production artwork for the Sunset world-selection card in the Unity game One More Floor. Attached board is reference only, specifically the FIRST Sunset card in its left Lift-Lobby panel. Generate ONE standalone very wide landscape illustration (approximately 2:1 aspect), covering the entire canvas, NO card border, NO UI, NO lettering, NO stars, NO logos. Recreate that reference card's art direction closely: rich warm European canal city at orange-gold sunset, ornate Venetian/Gothic palace and tall cathedral spires on the RIGHT, stone bridge and calm canal across the lower middle, illuminated waterfront facades, distant layered towers and sunset haze on the left, beautiful golden reflections on water. Elegant premium stylized 3D/painterly game illustration with detailed carved stone, glowing small windows, cinematic warm shadows, dimensional depth; not low-poly blocks or generic rectangles. Leave the upper-left quarter as dark warm atmospheric sky/building silhouettes where live white title and gold stars will later be placed by Unity; all artwork should still feel complete. Keep landmark silhouette fully inside frame. Match the Sunset card colors/composition/quality on the supplied board. This is MENU ARTWORK, not a pretend gameplay screenshot. Do not modify the supplied approved board."
+    },
+    {
+      "asset": "Assets/Resources/UI/Concept/Cards/Neon-v1.png",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-c4e29324-4911-4a27-a138-6bd6807f71fc.png",
+      "sha256": "af93d99accfe7fff9d3bcf3fcecc829e295c824cb1ec71166dd183b0cb244e5d",
+      "mode": "built-in image_gen.imagegen",
+      "transparent_background": false,
+      "referenced_image_paths": [
+        "/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ORIGINAL production artwork for the NEON world-selection card in the Unity mobile game One More Floor. Attached approved board is REFERENCE only, especially the SECOND Neon card inside the left Lift-Lobby panel. Generate ONE very wide standalone landscape artwork, approximately 2:1 aspect, full bleed; NO UI, NO labels or lettering, NO stars, NO card border. Rich beautiful historic European canal city at deep blue night, ornate palaces with decorative domes and tall towers glowing in turquoise cyan, electric royal blue and tasteful magenta architectural lighting. Foreground waterfront and bridge with long colored reflections in calm water; landmark domed civic palace and spires chiefly in the right half; layered nighttime city depth left. Match the supplied Neon card's high-end stylized 3D/painterly casual-game rendering, polished stone details, cinematic glows, warm tiny windows amongst cool blue/magenta light. Avoid modern generic rectangular skyscrapers and low-poly blocks. Upper-left quarter should be readable dark navy/violet atmosphere to place a live white title and gold stars later in Unity. Distinct from orange Sunset and bright ivory daylight Skyline, but same architectural universe. Keep detailed landmark silhouette inside frame. This is actual MENU illustration asset, never presented as a gameplay screenshot. Do not alter the approved board."
+    },
+    {
+      "asset": "Assets/Resources/UI/Concept/Cards/Skyline-v1.png",
+      "generatedPath": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-afa3faeb-15ce-43d5-b17a-de6f27190cbe.png",
+      "sha256": "6a89e5bd9bd06c2e7367bfd1bd9bd93131e9c543ca4e449a446b4c355c9727d9",
+      "mode": "built-in image_gen.imagegen",
+      "transparent_background": false,
+      "referenced_image_paths": [
+        "/Volumes/SSK SSD/Kamilunavo/Artifacts/KamilunavoDelivery-20261009/concepts-20261010/one-more-floor-3-ansichten.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ORIGINAL production artwork for the SKYLINE world-selection card in One More Floor Unity mobile game. The attached approved board is reference only, specifically the THIRD light daylight Skyline card inside the LEFT Lift-Lobby panel. Generate ONE standalone very wide landscape illustration (about 2:1 aspect), full bleed, no card border, no stars, no labels, no lettering, no UI. Match reference's ornate warm ivory European palace district in bright clear daylight: elegant large blue-copper domed civic palace toward RIGHT, a tall slender campanile and carved golden-stone facades, greenery and flowering plants on terraces, a foreground pedestrian stone bridge beside a clear turquoise canal. Beautiful blue sky with soft clouds, warm sunlight from left, dimensional stone carvings, polished pale marble, detailed balustrades, many distant spires, welcoming premium stylized 3D/painterly casual-game illustration. Place landmark architecture within the right half and let the upper-left quarter be clean softly lit ivory/blue atmosphere for a dark live title and gold stars in Unity. Clearly different from deep blue Neon and orange Sunset, same architectural world. No modern blocks, no low-poly appearance, no harsh white overexposure. Keep composition and colors very close to the supplied Skyline selection card; complete landmark inside frame. This is MENU ARTWORK and must never be called a gameplay screenshot. Preserve the supplied reference unchanged."
+    }
+  ]
+}
