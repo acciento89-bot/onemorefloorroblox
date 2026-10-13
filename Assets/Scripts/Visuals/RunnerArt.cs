@@ -4,7 +4,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 {
  public static class RunnerArt
  {
-  public const float DisplayScale=1.10f;
+  public const float DisplayScale=1.24f;
   public static RunnerAnimator Build(Transform parent)
   {
    var assets=FloorAuthoredArtSet.Runtime;if(assets!=null)return assets.CreateBoy(parent);

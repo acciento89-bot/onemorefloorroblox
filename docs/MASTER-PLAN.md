@@ -1,8 +1,10 @@
 # One More Floor V1 Master Plan
 
-## Current product contract — October12
+## Current product contract — October13
 
 The approved October10 lift board and FLOOR-LIFT-TO-TOWER-20261012.md supersede the original joystick/orbit/neon platformer tasks below. Current gameplay is a single vertical elevator to fixed tower balconies, one-thumb timing, fixed camera, checkpoint recovery and exactly-once banking. ART-DIRECTION.md describes the active target. Historical P02/P03/P06 entries are not instructions to restore the old mechanic. TestFlight remains blocked until exact-source actual Concept similarity and native validation pass.
+
+Latest actual native graphics evidence: [Original room reflections and composition](FLOOR-REFLECTION-COMPOSITION-20261013.md). The next authorized pass addresses world cards, typography and coin graphics against the same unchanged board; overall Concept acceptance still fails.
 
 ## Objective
 Ship a responsive native mobile platformer whose core promise is continuous upward progress with instant checkpoint recovery.

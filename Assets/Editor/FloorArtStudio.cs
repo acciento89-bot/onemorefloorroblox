@@ -15,7 +15,7 @@ using Kamilunavo.OneMoreFloor.Visuals;
 {
  const string Folder="Assets/Models/SculptedConcept";
  const string Command="/tmp/one-more-floor-art-studio.command";
- static readonly string Output="/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio";
+ static readonly string Output=Environment.GetEnvironmentVariable("FLOOR_ART_OUTPUT")??"/Volumes/SSK SSD/Kamilunavo/Builds/FloorSculpt-20261012/EditorStudio";
  static string _exportRevision="";
  static readonly string[] Names={"AdventureBoy","OrnateCarriage","CarvedBalcony","GrandLobby"};
  GameObject _stage;Camera _camera;Light _key,_fill;RenderTexture _target;int _selected;
@@ -24,7 +24,7 @@ using Kamilunavo.OneMoreFloor.Visuals;
  {
   if(EditorApplication.isCompiling||EditorApplication.isUpdating||!File.Exists(Command))return;
   string command=File.ReadAllText(Command).Trim();File.Delete(Command);
-  try{switch(command){case "capture":Open();break;case "rebuild-lobby":ExportLobby();Open();break;case "reopen-test":ValidateReopening();break;case "rebuild":_exportRevision="-v2";try{ExportModels();CreateCatalogue();Open();}finally{_exportRevision="";}break;case "asset-red":FloorAssetConsumptionValidation.Validate();break;case "validate":FloorValidation.ValidateAll();File.WriteAllText(Output+"/validation-pass.txt","Editor validation completed");break;case "build":BuildAutomation.BuildMacPreview();File.WriteAllText(Output+"/build-pass.txt","Mac development build completed");break;case "play":GetWindow<FloorArtStudio>().Close();EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");EditorApplication.isPlaying=true;break;case "stop":EditorApplication.isPlaying=false;break;case "quit":EditorApplication.Exit(0);break;default:throw new InvalidOperationException("Unknown studio command");}}
+  try{switch(command){case "capture":Open();break;case "bake-reflection":FloorReflectionAuthoring.Begin(Output);break;case "composition-green":FloorCompositionReflectionValidation.Validate();break;case "composition-red":FloorCompositionReflectionValidation.ValidateFloor();break;case "reflection-red":FloorCompositionReflectionValidation.ValidateReflection();break;case "rebuild-lobby":ExportLobby();Open();break;case "reopen-test":ValidateReopening();break;case "rebuild":_exportRevision="-v2";try{ExportModels();CreateCatalogue();Open();}finally{_exportRevision="";}break;case "asset-red":FloorAssetConsumptionValidation.Validate();break;case "validate":FloorValidation.ValidateAll();File.WriteAllText(Output+"/validation-pass.txt","Editor validation completed");break;case "build":BuildAutomation.BuildMacPreview();File.WriteAllText(Output+"/build-pass.txt","Mac development build completed");break;case "play":GetWindow<FloorArtStudio>().Close();EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");EditorApplication.isPlaying=true;break;case "stop":EditorApplication.isPlaying=false;break;case "quit":EditorApplication.Exit(0);break;default:throw new InvalidOperationException("Unknown studio command");}}
   catch(Exception error){Debug.LogException(error);Directory.CreateDirectory(Output);File.WriteAllText(Output+"/command-failure.txt",command+"\n"+error);}
  }
  [MenuItem("One More Floor/Art Studio/Open original concept models")]
@@ -151,7 +151,7 @@ using Kamilunavo.OneMoreFloor.Visuals;
  static void ExportLobby()
  {
   var host=new GameObject("OriginalLobbyFloorAuthoring");
-  _exportRevision="-v3";
+  _exportRevision="-v4";
   try{
    var lobby=new GameObject(Names[3]);lobby.transform.SetParent(host.transform,false);
    LiftAtriumArt.Build(lobby.transform);LiftArchitecture.Cabin(lobby.transform);LiftArchitecture.Rails(lobby.transform);

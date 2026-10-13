@@ -44,8 +44,9 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    foreach(int side in new[]{-1,1}){emblem.Stitch(anchor+new Vector3(side*.27f,.82f,0),anchor+new Vector3(side*.27f,-.70f,0),.012f);emblem.Stitch(anchor+new Vector3(side*.27f,-.70f,0),anchor+new Vector3(0,-.94f,0),.012f);emblem.Stitch(anchor+new Vector3(side*.12f,-.38f,-.014f),anchor+new Vector3(side*.12f,.20f,-.014f),.014f);}
    emblem.Stitch(anchor+new Vector3(-.27f,.82f,0),anchor+new Vector3(.27f,.82f,0),.012f);emblem.Stitch(anchor+new Vector3(-.16f,-.41f,-.014f),anchor+new Vector3(.16f,-.41f,-.014f),.017f);emblem.Stitch(anchor+new Vector3(-.16f,.22f,-.014f),anchor+new Vector3(.16f,.22f,-.014f),.017f);
    var bannerArch=new Vector3[13];var sizes=new float[13];for(int i=0;i<13;i++){float a=i*Mathf.PI/12;bannerArch[i]=anchor+new Vector3(Mathf.Cos(a)*.15f,.22f+Mathf.Sin(a)*.15f,-.014f);sizes[i]=.014f;}emblem.Sweep(bannerArch,sizes,sizes,5);emblem.Finish();
+   MeshArt.Box(room,"AtriumContinuousMarbleBase",new Vector3(2.4f,.165f,-4.8f),new Vector3(18.4f,.024f,22.7f),stone);
    // Geometric stone inlays make the floor a room surface rather than a flat banner.
-   for(int row=-10;row<5;row++)for(int col=0;col<7;col++){
+   for(int row=-10;row<5;row++)for(int col=0;col<12;col++){
     var tile=MeshArt.Box(room,"AtriumMarbleTile",new Vector3(-5.4f+col*1.6f,.185f,-.3f+row*1.5f),new Vector3(1.57f,.012f,1.47f),(row+col)%2==0?trim:stone);
     FloorArchitectureDetails.SurfaceMode(tile,.25f);
     if(row<3&&col%2==0){var mark=MeshArt.Box(room,"MarbleDiamondInlay",tile.transform.localPosition+Vector3.up*.012f,new Vector3(.21f,.011f,.21f),teal);mark.transform.localRotation=Quaternion.Euler(0,45,0);}

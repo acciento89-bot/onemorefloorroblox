@@ -6,10 +6,10 @@ namespace Kamilunavo.OneMoreFloor.Visuals
 {
  public enum FloorArchitectureSurface { Stone,Trim,Brass,Copper,Teal,Leaf,LeafLight,Lamp,Deck,CityStone,CityShade,CityTrim,Glass,Halo,DoorWood }
  // Fifteen finite surface kinds and two original 128² finishes per course/preview root.
- // No static generated assets survive a scene or a menu preview.
+ // The immutable original scene reflection is shared; root-owned finishes release with previews.
  [ExecuteAlways] public sealed class FloorArchitecturePalette:MonoBehaviour
  {
-  readonly Dictionary<FloorArchitectureSurface,Material> _materials=new();Texture2D _stone,_metal;
+  readonly Dictionary<FloorArchitectureSurface,Material> _materials=new();Texture2D _stone,_metal;Cubemap _reflection;bool _reflectionLoaded;
   public static Material Get(Transform parent,FloorArchitectureSurface surface)
   {
    var course=parent.GetComponentInParent<FloorCourse>();var inherited=parent.GetComponentInParent<FloorArchitecturePalette>();
@@ -49,6 +49,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    if(kind==FloorArchitectureSurface.Halo)material.shader=Resources.Load<Shader>("FloorLightHalo");
    if(metal)material.shader=Resources.Load<Shader>("FloorArchitecturalMetal");
    if(kind==FloorArchitectureSurface.Glass)material.shader=Resources.Load<Shader>("FloorCabinGlass");
+   if(metal||kind==FloorArchitectureSurface.Glass){if(!_reflectionLoaded){_reflection=Resources.Load<Cubemap>("Rendering/CapturedAtriumReflection");_reflectionLoaded=true;}material.SetTexture("_ReflectionCube",_reflection);material.SetFloat("_ReflectionStrength",_reflection==null?0:metal?.68f:.38f);}
    if(metal){if(_metal==null)_metal=Finish(true);material.mainTexture=_metal;}
    else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim||kind==FloorArchitectureSurface.DoorWood){material.shader=Resources.Load<Shader>("FloorMasonry");if(_stone==null)_stone=Resources.Load<Texture2D>("Art/ConceptStoneIvyAtlas-20261012");material.mainTexture=_stone;}
    if(kind==FloorArchitectureSurface.Leaf||kind==FloorArchitectureSurface.LeafLight){if(_stone==null)_stone=Resources.Load<Texture2D>("Art/ConceptStoneIvyAtlas-20261012");material.mainTexture=_stone;}

@@ -1,0 +1,177 @@
+{
+  "sourceSha256": "8e20b2679eede802213fa797c66005bcc5b884cb7cc473716c9f0f0ab5b49ab0",
+  "bundleSha256": "6dc08a0e401a204c66d6d826a4eb33fda48a448b3850ad87dd0b7c9ab1633410",
+  "bundlePath": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/OneMoreFloor-ReflectQa1.app",
+  "createdAt": "2026-10-13T03:22:22.225467+00:00",
+  "nativeEditorLog": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/editor-native.log",
+  "editorValidation": "FLOOR_ALL_PASS checks=14712 loggedErrors=0",
+  "testFlightAttempted": false,
+  "fullRuntime": "ELEVATOR_QA_PASS checks=8773 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+  "reloadRuntime": "ELEVATOR_RELOAD_PASS checks=6",
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2378",
+  "gpuRuntime": "CONCEPT_GPU_PASS maskDelta=0 warmPointRedGain=0.1254902 bloomHaloGain=0.4 nearSharpRatio=0.9991756 farSoftRatio=0.3024167 forcedOpaqueDepthPrepass=true originalBrassReflectionDelta=0.1176471 originalGlassReflectionDelta=0.007843137",
+  "reviewedAt": "2026-10-13T03:45:22.475948+00:00",
+  "visualStatus": "failed",
+  "nativeUnityEditorUsed": true,
+  "iosBuildAttempted": false,
+  "providerTransactionsAttempted": false,
+  "scope": "One More Floor only: original native six-face environment map, actual consumed Brass/Copper/Glass shader reflections and orthographic view vectors, softer cloth/skin/hair specular, larger1.24 actor display, fixed gameplay camera fitted to actual pre-static-batch silhouette, actual persisted wider continuous inlaid marble lobby with corrected portrait camera. Controller/collision/timing/economy/DEEN/menu authority unchanged.",
+  "limitations": "Overall graphical Concept gate remains FAILED: character face/hair finish, thin ornate carriage proportions, carved stone/recess detail, scenic card richness, reflective marble and complete atrium framing remain simpler than the unchanged approved illustration. New actual portrait/wide images remove the lower lobby backdrop strip; normalized camera/layout and shader tests do not establish pixel-identical parity. Mac-player captures do not establish physical iPhone performance/touch/audio/native ad/StoreKit acceptance. No TestFlight or other-game changes.",
+  "originalReflectionAsset": {
+    "path": "Assets/Resources/Rendering/CapturedAtriumReflection.asset",
+    "sha256": "2489d662543000b736f5bff7ded23928061098a09c300ec39ab19a371d2eb7a1",
+    "faces": 6,
+    "resolution": 128,
+    "mipCount": 8,
+    "format": "R8G8B8A8_UNorm linear",
+    "gpuBytes": 524280,
+    "portable": true,
+    "immutableSharedResource": true,
+    "editorReadableCpuStorageAdditional": true,
+    "runtimeCapture": false
+  },
+  "geometryCapsRetained": {
+    "runnerVertices": 5760,
+    "runnerTriangles": 9962,
+    "runnerDefaultRenderers": 31,
+    "runnerMaterials": 8,
+    "runnerPersistentAtlas": 1,
+    "cabinVertices": 7719,
+    "cabinRawRenderers": 32,
+    "platformKitVertices": 9301,
+    "cityUniqueMeshVertices": 207510
+  },
+  "meaningfulRedAndDiagnostics": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/composition-red.txt",
+      "sha256": "957c1a28856ac6d046a013566fa1d3179f065ead130a698a3c55ec836ca19ee5"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/reflection-red.txt",
+      "sha256": "61c79b7b8acfa65b0421b99525d77fca8af443ac395c12e13b2edbdceaf7d6c2"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/default-skybox-review-red.txt",
+      "sha256": "bafca52673703d20fa0e66838ed7dc1a7a1283025d13402feb92cfc6139120dd"
+    }
+  ],
+  "reviewFixes": [
+    "Capture original cabin vertices before static batching; immutable component cache avoids repeated combined-root child transforms.",
+    "Actual consumed room mesh ray/triangle intersection instead of a surrogate plane/rectangle.",
+    "Per-face complete/finite/nonflat reflection validation, plus actual native-player shader A/B and orthographic invariance.",
+    "Controlled native capture ambient/SH/key, unrelated lights disabled/restored, reflected material clones zero strength to prevent recursive rebake.",
+    "Actual160FrameTower samples; restore chapter-modified scene sun/sky/fog/ambient with procedural skybox property guard."
+  ],
+  "captureMethod": "Actual six90-degree HDR128 URP SingleCameraRequests in native Mac Unity. RenderProbe returned-1; failed attempt retained in log. Tonemap once to shared linear RGBA32 mipmapped cube. PNG face previews gamma encode captured original colors; comparisons never paint or regenerate player images.",
+  "validationReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/editor-native.log",
+      "sha256": "d5408bf4bb9b6320f1c39ace4f3cbdb640c1aeabb729c5d29b24d903d0ce746a"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/reflect1-source-proof.json",
+      "sha256": "a968bf2102719890f6c3a3482566bf7b509e8f4fa133ed90a424aef6ad93c116"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Full1/PASS.txt",
+      "sha256": "e92f7154baae4fa4ec16d2f8fb0e7ed27e9aa58963ae199e386639351801e643"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Reload1/RELOAD-PASS.txt",
+      "sha256": "210690843527a123f8beb74d89528c1e4cf77cce20f8dafd638e3438cfee1f74"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/SHOWCASE-PASS.txt",
+      "sha256": "324e53c8a932591af5b18adf0b5b88044450ac81eb8d66ed91554c33d5fa1b26"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/CONCEPT-GPU-PASS.txt",
+      "sha256": "c8b5f957ba62cc8470facff955a8e2f111140b371f728600c784699d6be981e1"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/EditorStudio/REFLECTION-BAKE-PASS.txt",
+      "sha256": "8c26b12dffe30dd597190ebc18fe1ab0e4c64c46b1b11edb503e7576ea83eef1"
+    }
+  ],
+  "comparisonManifest": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Artifacts/FloorReflectComparison-20261013/Final1/sources.json",
+    "sha256": "a2acae02d60ec4607929ad47d1f24b2fa6b2171bd2724c1bff12abe9f76be2b6"
+  },
+  "renderedEvidence": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Full1/realm0-lift-ready.png",
+      "sha256": "8f2ac15b1f9271eea78559cf20a00d0d45b676deff83d9411ec2b4d02fcbf3f6",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Full1/floor16.png",
+      "sha256": "8f2fb753e7ef29530e4964e0c12f3c2e80a3f5e32e4be53d13c4406230f1bbbe",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/lobby-de.png",
+      "sha256": "78aede11968633a7e491bc5fd4ba74d72b657b84c24243efdb45dd4bae5f0a91",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/lobby-landscape.png",
+      "sha256": "25a20d02706dcc5a0b6815abe9859f3c57378a09ab63e94be7866580f6deec59",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/tower-ready-landscape.png",
+      "sha256": "e4eccf371381733ee657f09556f4ff3aa7e584f984f6aec23e629def66ebea69",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/settings-portrait-de.png",
+      "sha256": "7dc39ac2e5201b3f4f1ef9c4a7b509f6f8825f5666583b7635d348b944939526",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/risk-portrait-de.png",
+      "sha256": "e03eb0f6290c5f4c9217b6bd4f5c28367e426ab069c81f887a27ac07d0c34661",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/banked-portrait-de.png",
+      "sha256": "3dce3ee8079eeba583e5130fe4461b203e739ec016191f38e057bdb8c9dfff37",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/character-world0.png",
+      "sha256": "9c96d4cb1569b19db6149b0dc51a50e13e8d61410c07418d3665f9f7fdef2b80",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/character-world1.png",
+      "sha256": "3c7f5c46099bfe6346fe7935eea72d9bb7db3f264da60f89622d3f1540c8cde8",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/character-world2.png",
+      "sha256": "0249a0e4cdea8d4feec07d87b28687418a4277f57dbd5b48b4f5929b67cf3e9c",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/runner-design0.png",
+      "sha256": "f0261de1423e645a45b0670fab304db69543ed3da54da76678eb2161d5ce9d3b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/runner-design1.png",
+      "sha256": "2aa16ad2ec2a0d263f001f489d413726f16fe6e5298211102844806c7bf49678",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/runner-design3.png",
+      "sha256": "735294cb1e3aaad35e5c09a2a59da8ca6701b5d21cfa697ad639bf6d3b9d8566",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorReflect-20261013/Showcase1/runner-design7.png",
+      "sha256": "9601f2d35941b5749b8517eb9771574d25c0e4dd8df3377eeaa6d53c0bbb477e",
+      "origin": "Unity-render"
+    }
+  ]
+}
