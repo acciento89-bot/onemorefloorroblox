@@ -29,6 +29,13 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    var surface=new GameObject("LandingSurface",typeof(BoxCollider),typeof(StepMarker));surface.transform.SetParent(root,false);var collider=surface.GetComponent<BoxCollider>();collider.center=new Vector3(0,.25f,0);collider.size=new Vector3(4.6f,.70f,3.6f);var marker=surface.GetComponent<StepMarker>();marker.Index=index;
    LiftArchitecture.Cabin(root);
    if(checkpoint){var ring=MeshArt.Ring(root,"CheckpointRing",.34f,.045f,0,gold);ring.transform.localPosition=new Vector3(0,2.72f,1.52f);ring.transform.localRotation=Quaternion.Euler(90,0,0);var back=MeshArt.Ring(root,"CheckpointRingBack",.34f,.045f,0,gold);back.transform.localPosition=ring.transform.localPosition;back.transform.localRotation=Quaternion.Euler(-90,0,0);}
+   // Narrow the visible floor/fittings along with the actual cabin. The course
+   // collider remains untouched; an original-width longer tread supports boots
+   // until the existing .38 walk-out phase lifts the passenger off the deck.
+   foreach(Transform part in root){if(part.name=="LandingSurface"||part.name=="CopperLiftCabin")continue;
+    part.localPosition=Vector3.Scale(part.localPosition,LiftArchitecture.CabinRadialScale);part.localScale=Vector3.Scale(part.localScale,LiftArchitecture.CabinRadialScale);
+   }
+   var tread=root.Find("DoorwayThreshold");tread.localPosition=new Vector3(.16f,.575f,-.98f);tread.localScale=new Vector3(1,1,1.9f);
    return marker;
   }
  }

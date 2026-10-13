@@ -5,6 +5,9 @@ namespace Kamilunavo.OneMoreFloor.Visuals
  public static class LiftArchitecture
  {
   public const float FacadeWidthScale=1.65f,FacadeOffset=.72f;
+  // Approved passenger carriage: retain vertical space, narrow its real horizontal silhouette.
+  public const float CabinWidthScale=.64f;
+  public static readonly Vector3 CabinRadialScale=new(CabinWidthScale,1,CabinWidthScale);
   public static readonly Color Ivory=new(.80f,.78f,.70f),Copper=new(.57f,.32f,.18f),Teal=new(.035f,.18f,.20f);
   static Material Finish(Transform owner,FloorArchitectureSurface surface)=>FloorArchitecturePalette.Get(owner,surface);
   public static void Cabin(Transform parent)
@@ -45,6 +48,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    }
    FloorArchitectureDetails.CabinGlass(root,Finish(parent,FloorArchitectureSurface.Glass));
    LiftMetalOrnaments.Cabin(root,brass,copper);MeshArt.Box(root,"CabinBackPlaque",new Vector3(0,1.99f,.78f),new Vector3(.48f,.59f,.035f),teal);MeshArt.Box(root,"CabinPlaqueMark",new Vector3(0,1.99f,.758f),new Vector3(.037f,.31f,.017f),brass);
+   root.localScale=CabinRadialScale;
   }
   public static void LandingDeck(Transform parent,bool highContrast=false)
   {

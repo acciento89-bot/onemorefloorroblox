@@ -24,7 +24,7 @@ using Kamilunavo.OneMoreFloor.Visuals;
  {
   if(EditorApplication.isCompiling||EditorApplication.isUpdating||!File.Exists(Command))return;
   string command=File.ReadAllText(Command).Trim();File.Delete(Command);
-  try{switch(command){case "capture":Open();break;case "menu-coin-red":FloorMenuConceptValidation.ValidateCoin();break;case "menu-cards-red":FloorMenuConceptValidation.ValidateCards();break;case "menu-type-red":FloorMenuConceptValidation.ValidateType();break;case "menu-green":FloorMenuConceptValidation.Validate();break;case "menu-assets":FloorMenuAssetsAuthoring.Configure();break;case "bake-reflection":FloorReflectionAuthoring.Begin(Output);break;case "composition-green":FloorCompositionReflectionValidation.Validate();break;case "composition-red":FloorCompositionReflectionValidation.ValidateFloor();break;case "reflection-red":FloorCompositionReflectionValidation.ValidateReflection();break;case "rebuild-lobby":ExportLobby();Open();break;case "reopen-test":ValidateReopening();break;case "rebuild":_exportRevision="-v2";try{ExportModels();CreateCatalogue();Open();}finally{_exportRevision="";}break;case "asset-red":FloorAssetConsumptionValidation.Validate();break;case "validate":FloorValidation.ValidateAll();File.WriteAllText(Output+"/validation-pass.txt","Editor validation completed");break;case "build":BuildAutomation.BuildMacPreview();File.WriteAllText(Output+"/build-pass.txt","Mac development build completed");break;case "play":GetWindow<FloorArtStudio>().Close();EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");EditorApplication.isPlaying=true;break;case "stop":EditorApplication.isPlaying=false;break;case "quit":EditorApplication.Exit(0);break;default:throw new InvalidOperationException("Unknown studio command");}}
+  try{switch(command){case "capture":Open();break;case "slim-carriage":AuthorSlimCarriage();Open();break;case "proportion-red":FloorCabinProportionValidation.Validate();break;case "cards-proportion-red":FloorLobbyVisualRegression.Validate();break;case "menu-coin-red":FloorMenuConceptValidation.ValidateCoin();break;case "menu-cards-red":FloorMenuConceptValidation.ValidateCards();break;case "menu-type-red":FloorMenuConceptValidation.ValidateType();break;case "menu-green":FloorMenuConceptValidation.Validate();break;case "menu-assets":FloorMenuAssetsAuthoring.Configure();break;case "bake-reflection":FloorReflectionAuthoring.Begin(Output);break;case "composition-green":FloorCompositionReflectionValidation.Validate();break;case "composition-red":FloorCompositionReflectionValidation.ValidateFloor();break;case "reflection-red":FloorCompositionReflectionValidation.ValidateReflection();break;case "rebuild-lobby":ExportLobby();Open();break;case "reopen-test":ValidateReopening();break;case "rebuild":_exportRevision="-v2";try{ExportModels();CreateCatalogue();Open();}finally{_exportRevision="";}break;case "asset-red":FloorAssetConsumptionValidation.Validate();break;case "validate":FloorValidation.ValidateAll();File.WriteAllText(Output+"/validation-pass.txt","Editor validation completed");break;case "build":BuildAutomation.BuildMacPreview();File.WriteAllText(Output+"/build-pass.txt","Mac development build completed");break;case "play":GetWindow<FloorArtStudio>().Close();EditorSceneManager.OpenScene("Assets/Scenes/Main.unity");EditorApplication.isPlaying=true;break;case "stop":EditorApplication.isPlaying=false;break;case "quit":EditorApplication.Exit(0);break;default:throw new InvalidOperationException("Unknown studio command");}}
   catch(Exception error){Debug.LogException(error);Directory.CreateDirectory(Output);File.WriteAllText(Output+"/command-failure.txt",command+"\n"+error);}
  }
  [MenuItem("One More Floor/Art Studio/Open original concept models")]
@@ -135,6 +135,22 @@ using Kamilunavo.OneMoreFloor.Visuals;
   if(GUILayout.Button("Im Scene View bearbeiten")&&_stage!=null){Selection.activeGameObject=_stage.transform.Find(Names[_selected]).gameObject;var view=SceneView.lastActiveSceneView??GetWindow<SceneView>();view.Show();view.FrameSelected();}
   if(GUILayout.Button("Aktuelle echte Aufnahme speichern")&&_stage!=null){Render();Capture(Names[_selected]);}
  }
+ // Targeted native prefab edits preserve original meshes/materials, GUIDs and artist children.
+ static void AuthorSlimCarriage()
+ {
+  foreach(var name in new[]{"OrnateCarriage","GrandLobby"}){
+   string path=Folder+"/"+name+".prefab";var root=PrefabUtility.LoadPrefabContents(path);
+   try{
+    var cabin=name=="OrnateCarriage"?root.transform:root.transform.Find("CopperLiftCabin");cabin.localScale=LiftArchitecture.CabinRadialScale;
+    if(name=="GrandLobby"){
+     root.transform.Find("CopperLiftGuides").localScale=LiftArchitecture.CabinRadialScale;
+     root.GetComponentInChildren<RunnerAnimator>(true).transform.localScale=Vector3.one*Kamilunavo.OneMoreFloor.UI.LiftScenePreview.LobbyPassengerScale;
+    }
+    PrefabUtility.SaveAsPrefabAsset(root,path);
+   }finally{PrefabUtility.UnloadPrefabContents(root);}
+  }
+  AssetDatabase.SaveAssets();Debug.Log("FLOOR_SLIM_NATIVE_PREFAB_AUTHORED actual passenger cabin and saved lobby / same height / preserved source meshes");
+ }
  static void ExportModels()
  {
   var host=new GameObject("OriginalArtAssetAuthoring");
@@ -144,7 +160,7 @@ using Kamilunavo.OneMoreFloor.Visuals;
    LiftArchitecture.Bay(host.transform,0);Persist(host.transform.Find("ArchitecturalFloorBay").gameObject,Names[2]);
    var lobby=new GameObject(Names[3]);lobby.transform.SetParent(host.transform,false);LiftAtriumArt.Build(lobby.transform);LiftArchitecture.Cabin(lobby.transform);LiftArchitecture.Rails(lobby.transform);
    lobby.transform.Find("CopperLiftCabin").localPosition=new Vector3(-1.4f,0,0);lobby.transform.Find("CopperLiftGuides").localPosition=Vector3.left*1.4f;
-   var passenger=RunnerArt.Build(lobby.transform);passenger.transform.localPosition=new Vector3(-1.4f,.66f,-.1f);passenger.transform.localRotation=Quaternion.Euler(0,105,0);passenger.transform.localScale=Vector3.one*RunnerArt.DisplayScale;Persist(lobby,Names[3]);
+   var passenger=RunnerArt.Build(lobby.transform);passenger.transform.localPosition=new Vector3(-1.4f,.66f,-.1f);passenger.transform.localRotation=Quaternion.Euler(0,105,0);passenger.transform.localScale=Vector3.one*Kamilunavo.OneMoreFloor.UI.LiftScenePreview.LobbyPassengerScale;Persist(lobby,Names[3]);
   }finally{DestroyImmediate(host);}
   AssetDatabase.SaveAssets();
  }
@@ -156,7 +172,7 @@ using Kamilunavo.OneMoreFloor.Visuals;
    var lobby=new GameObject(Names[3]);lobby.transform.SetParent(host.transform,false);
    LiftAtriumArt.Build(lobby.transform);LiftArchitecture.Cabin(lobby.transform);LiftArchitecture.Rails(lobby.transform);
    lobby.transform.Find("CopperLiftCabin").localPosition=new Vector3(-1.4f,0,0);lobby.transform.Find("CopperLiftGuides").localPosition=Vector3.left*1.4f;
-   var boy=RunnerArt.Build(lobby.transform);boy.transform.localPosition=new Vector3(-1.4f,.66f,-.1f);boy.transform.localRotation=Quaternion.Euler(0,105,0);boy.transform.localScale=Vector3.one*RunnerArt.DisplayScale;
+   var boy=RunnerArt.Build(lobby.transform);boy.transform.localPosition=new Vector3(-1.4f,.66f,-.1f);boy.transform.localRotation=Quaternion.Euler(0,105,0);boy.transform.localScale=Vector3.one*Kamilunavo.OneMoreFloor.UI.LiftScenePreview.LobbyPassengerScale;
    Persist(lobby,Names[3]);AssetDatabase.SaveAssets();CreateCatalogue();
   }finally{_exportRevision="";DestroyImmediate(host);}
  }

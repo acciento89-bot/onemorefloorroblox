@@ -20,7 +20,7 @@ namespace Kamilunavo.OneMoreFloor.Visuals
     collars.Stitch(new Vector3(-.88f,y,.87f),new Vector3(.88f,y,.87f),.025f);
     for(int side=-1;side<=1;side+=2)collars.Profile(new Vector3(side*.80f,y,.80f),new[]{-.07f,-.04f,.04f,.07f},new[]{.10f,.12f,.12f,.10f},new[]{.11f,.13f,.13f,.11f},8);
    }
-   collars.Finish();
+   collars.Finish();root.localScale=LiftArchitecture.CabinRadialScale;
   }
  }
 }

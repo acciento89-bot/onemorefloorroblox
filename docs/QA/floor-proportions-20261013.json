@@ -1,0 +1,158 @@
+{
+  "sourceSha256": "62423aec21053354eb1b7d4d1bcd0fe5a34c6a2850b5abcdfcfe0c408565a934",
+  "bundleSha256": "0a51e39ef78ad9980546c231f3a3e1607cfbff306f4a219974598da173f23298",
+  "bundlePath": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/OneMoreFloor-ProportionsQa1.app",
+  "createdAt": "2026-10-13T05:41:57.267024+00:00",
+  "nativeEditorLog": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/editor-native1.log",
+  "editorValidation": "FLOOR_ALL_PASS checks=29424 loggedErrors=0",
+  "testFlightAttempted": false,
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2437",
+  "gpuRuntime": "CONCEPT_GPU_PASS maskDelta=0 warmPointRedGain=0.1254902 bloomHaloGain=0.4 nearSharpRatio=0.9991756 farSoftRatio=0.3024167 forcedOpaqueDepthPrepass=true originalBrassReflectionDelta=0.1176471 originalGlassReflectionDelta=0.007843137",
+  "reviewedAt": "2026-10-13T05:47:47.092918+00:00",
+  "visualStatus": "failed",
+  "nativeUnityEditorUsed": true,
+  "iosBuildAttempted": false,
+  "providerTransactionsAttempted": false,
+  "scope": "User requested two concrete corrections only: landscape world cards (~2.1:1 portrait, compact responsive wide rows), and a genuinely slender same-height lift. Actual native prefab and procedural body scale0.64inX/Z, matched guides/visible deck/fittings; extended original-width tread supports unchanged walk-out; menu-only passenger0.90. No physics/timing/trajectory/camera-quaternion/gameplay-actor/economy changes.",
+  "measuredBody": {
+    "previousWidth": 2.32,
+    "currentWidth": 1.4848,
+    "height": 4.46,
+    "depth": 1.26,
+    "widthReductionPercent": 36,
+    "visiblePassengerDeckWidth": 1.5872,
+    "lobbyPassengerScale": 0.9,
+    "gameplayPassengerScale": 1.24
+  },
+  "limitations": "The requested rectangular cards/slim cabin now resemble approved proportions in actual native phone/wide captures; full Concept acceptance remains FAILED for actor face/hair finish, carved architecture richness, reflective marble and complete atrium/background composition. Mac-native captures do not establish physical iPhone touch/FPS/audio/provider acceptance. No TestFlight, other-game edits or provider transactions.",
+  "meaningfulRed": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/slender-cabin-red.txt",
+      "sha256": "b29043b07a68ba6d91d79cecd6a4c8c5a93d76500011937d82af0092508bd64e"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/rectangle-cards-red.txt",
+      "sha256": "be3953ec1f19396486a29803592f5146e18a40f679b35b77f70226a61d189910"
+    }
+  ],
+  "verificationDetails": [
+    "Actual imported and procedural transformed mesh bounds match, height unchanged; visual deck fits slimmer shell.",
+    "Existing live-caption contrast4.5, minimum49point cards and original phone/DEEN/layout fixtures retained; new actual card aspect>=1.85 regression.",
+    "Same raw original meshes/materials/GUIDs/artist children; native PrefabUtility edits only root cabin/guides/passenger scales.",
+    "Collider center/size unchanged; original-width longer tread joins slim visible deck through the original .38 walk-out.",
+    "Fresh exact-source player exercises actual transfers across3worlds, tutorial/perfect/risk/bank, styles0/1/3/7, ratings0/1/3, DEEN, parent Back and actual430x932/932x430; strict runtime errors remain zero."
+  ],
+  "validationReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/editor-native1.log",
+      "sha256": "d8f6ef15d867eed51d466fc5322e4c83d536ff82af34024f242b566619cc5335"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/proportion1-source-proof.json",
+      "sha256": "ec518819dcdb04aca9fddc7c27f4ef62a94ff0ff255c62ae631f12f272998b1c"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/proportion-showcase1.log",
+      "sha256": "ced43129feca4b888ea4c240c747b5b044c2da8c9e5c71b3e0c6377dfb243e84"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/SHOWCASE-PASS.txt",
+      "sha256": "db9688fa898ac969f2d53bba102423d5ef8b139314315d7456562d6e67c6daa4"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/CONCEPT-GPU-PASS.txt",
+      "sha256": "c8b5f957ba62cc8470facff955a8e2f111140b371f728600c784699d6be981e1"
+    }
+  ],
+  "historicalBaseline": {
+    "path": "docs/QA/floor-menu-assets-20261013.json",
+    "sourceSha256": "456f72a0259e5af18c91b8c1ebff557859474be0b106bd9bf9225b05cd429366",
+    "note": "Menu4/reflect1 full87/reload receipts are separate frozen sources, not current proportion1 full-run/reload evidence. Fresh proportion1 runtime/GPU and160actual camera envelope samples cover this visual change."
+  },
+  "comparisonManifest": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Artifacts/FloorProportionComparison-20261013/Final1/sources.json",
+    "sha256": "57c9ccc74f70d94615c9afbc35977fb50e3b8e4cb29680a112af037a05322ec9"
+  },
+  "renderedEvidence": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/lobby-de.png",
+      "sha256": "2e37f3e569726c980aee3db5e5de3b69f9ca2d1f833ac8e73578c82767b03849",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/lobby-en.png",
+      "sha256": "d6fee0b4d9c620fb62c77784e1de9fdd0718c99b5433ce0ac4766228d1de5e08",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/lobby-landscape.png",
+      "sha256": "3a7ddd4e33f6d2133934ba0b10149effbb673c6f4460e49418988ac9ab2d329c",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/lobby-rating1.png",
+      "sha256": "ab8ef9efe6370a96e00904d4ef3f3e1d8f630b54f79dc2659216543da2192d71",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/lobby-rating3.png",
+      "sha256": "b8e4301a0e47e70bc5990a2308ec1b071b5ce87a4ee4e0ebf9e0ad0e99d21028",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/tower-ready-landscape.png",
+      "sha256": "26f3a830f1d590c0b9e6445e27fc31686006aca3be4683b07272f514b30f66db",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/settings-portrait-de.png",
+      "sha256": "b4f2050bc1bf331dea080fb4a8800d7632c84a387c23416a85d5ca8b5c4aca2f",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/risk-portrait-de.png",
+      "sha256": "b4e961130a8cb197acdffc7a5ef20505bfb01d50b5e3eb9371a17566b5242ccb",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/banked-portrait-de.png",
+      "sha256": "ebd9071b306e274ed1d9bb2d4f8d65047662fe728e092b34d7d62b00eeeaa457",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/character-world0.png",
+      "sha256": "4d9f1b97a0f4d7144f8fefd07c18ea8a0e5b7afc3f30a7546aa8fb345a896ff7",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/character-world1.png",
+      "sha256": "f55c29dcdc7b63d3204fa75b17a49e55bb6b203dfb3f0b5c8a1c814c4ab59780",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/character-world2.png",
+      "sha256": "b0300524ac66d3ff0aac77c799dab5bdb297cba84b65d9a00d2e8a5187cadc96",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/runner-design0.png",
+      "sha256": "2b580f3f37fe799dd50445e82efceae9f05cbc3f1d03aedac935103a4d774224",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/runner-design1.png",
+      "sha256": "eef8286e9f79ebc70d3c516c5c6fea3d00ac6a286b292cf87d899585440f97f6",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/runner-design3.png",
+      "sha256": "881b2a726aa2bc395187945d7fca01f59f477b9e8db724712e4e6bbbb00da8fc",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorProportions-20261013/Showcase1/runner-design7.png",
+      "sha256": "b4a5774b2ef11055e9717f2fee561993574c7d69eb8e99bb03f1a2b71b363066",
+      "origin": "Unity-render"
+    }
+  ]
+}

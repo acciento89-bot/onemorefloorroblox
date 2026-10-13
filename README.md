@@ -19,7 +19,9 @@ Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
 The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
-Latest native menu assets: [World cards, lettering and coin](docs/FLOOR-MENU-ASSETS-20261013.md). Original menu paintings, live stars, derived serif logo/titles and original currency sprite are connected to the actual UI; final4 strict native menu/GPU checks pass. Overall Concept gate remains failed.
+Latest user proportion correction: [Rectangular cards and slender cabin](docs/FLOOR-PROPORTIONS-20261013.md). Actual2.1:1portrait cards,36%slimmer same-height carriage with matched rails/deck and fresh native player/GPU evidence. Overall full Concept acceptance remains failed.
+
+Previous native menu assets: [World cards, lettering and coin](docs/FLOOR-MENU-ASSETS-20261013.md). Original menu paintings, live stars, derived serif logo/titles and original currency sprite are connected to the actual UI; final4 strict native menu/GPU checks pass. Overall Concept gate remains failed.
 
 Previous native graphics pass: [Original reflections and composition](docs/FLOOR-REFLECTION-COMPOSITION-20261013.md). Character prominence, original-room reflections and continuous lobby foreground are improved; overall Concept approval remains blocked.
 Current literal Concept correction: [One elevator to fixed tower balconies](docs/FLOOR-LIFT-TO-TOWER-20261012.md). Earlier economy and checkpoint design: [Elevator timing and risk](docs/superpowers/specs/2026-10-09-elevator-timing-risk-design.md).

@@ -57,3 +57,8 @@ Rules tests, device matrix, performance, store validation and staged release.
 ## 2026-10-13 — menu artwork, lettering and currency
 
 Original scenic world-card images and alpha gold coin are integrated into actual live One More Floor UI, together with native sliced gold/clip/frame sprites, properly cased derived serif titles/logo, readable heavy sans controls and retained live star/progression/Shop/parent Back flow. Actual player draw-callback and caret mesh regressions were fixed and preserved as meaningful REDs. Final4 clean strict native build/player/GPU evidence and unchanged-board comparisons: QA/floor-menu-assets-20261013.json and FLOOR-MENU-ASSETS-20261013.md. Overall graphical gate remains FAILED; actor/cabin/stone/full-atrium quality remains open. No TestFlight or other-game/provider work.
+
+
+## 2026-10-13 — rectangular world cards and slender same-height carriage
+
+User's concrete corrections applied together: width-derived2.1portrait world cards, matching slender imported/procedural cabin/guides/visible floor/fittings, supported original walk-out tread and smaller menu-only passenger. Actual original collision/timing/trajectory/gameplay actor/fixed view preserved. Native defect REDs, strict validation/build and fresh native player/GPU/proportion comparisons in QA/floor-proportions-20261013.json and FLOOR-PROPORTIONS-20261013.md. Requested proportions verified; full Concept quality gate still FAILED.
