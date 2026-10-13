@@ -1,0 +1,153 @@
+{
+  "sourceSha256": "60bdebddf7fa68dd10fa52a898ddb69f02e1f709d5607b5475165a59e71e91af",
+  "bundleSha256": "f14badbf44823eba632bea9104738c4d7160b35a09e741aa060eafa71fb59b9d",
+  "bundlePath": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/OneMoreFloor-PolishQa1.app",
+  "createdAt": "2026-10-13T07:48:53.536768+00:00",
+  "nativeEditorLog": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/editor-native1.log",
+  "editorValidation": "FLOOR_ALL_PASS checks=29423 loggedErrors=0",
+  "testFlightAttempted": false,
+  "showcaseRuntime": "ELEVATOR_SHOWCASE_PASS checks=2437",
+  "gpuRuntime": "CONCEPT_GPU_PASS maskDelta=0 warmPointRedGain=0.1254902 bloomHaloGain=0.4 nearSharpRatio=0.9991756 farSoftRatio=0.3024167 forcedOpaqueDepthPrepass=true originalBrassReflectionDelta=0.1176471 originalGlassReflectionDelta=0.007843137 originalMarbleReflectionDelta=0.02745098 facadeReflectionLeak=false",
+  "reviewedAt": "2026-10-13T07:53:32.423937+00:00",
+  "visualStatus": "passed",
+  "nativeUnityEditorUsed": true,
+  "iosBuildAttempted": false,
+  "providerTransactionsAttempted": false,
+  "scope": "User-authorized coordinated final visual refinement. Curved live serif wordmark using actual glyph span, portrait card/title spacing, larger ivory destination icons; marked marble softer grain/veins/specular and shared original room reflection; restrained hair-only highlights. Existing slender cabin/landscape cards retained; no physics, timing, fixed gameplay camera, transfer, reward or economy changes.",
+  "visualSimilarityTarget": {
+    "requested": "approximately 90% resemblance; user explicitly accepts that literal1:1 is impossible",
+    "assessment": "subjective approximate art-direction acceptance",
+    "numericSimilarityMeasured": false
+  },
+  "limitations": "Approximate Concept direction accepted from actual native renders under revised user target; no numerical90% score claimed. Character shading/face, uniform brass, angular foliage and carved detail remain simpler than the illustration. Mac-native captures do not establish physical iPhone touch/FPS/audio/provider acceptance. No TestFlight, other-game edits or provider transactions.",
+  "meaningfulRed": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/marble-red.txt",
+      "sha256": "fa5d45b7eb88d65fb32e68c30a59d40940a51adee1cad5100474db5e1335f4c3"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/pitch12-floor-ray-red.txt",
+      "sha256": "3790e9e11e564d0f462cf3a09303c26f8233eeaf5a052ccacd1c28c8980aed0e"
+    }
+  ],
+  "verificationDetails": [
+    "Actual shipping marked stone/trim consumes existing original cube; native pixel A/B proves reflected contribution and zero unmarked facade leakage.",
+    "Native real geometry floor-ray failure at portrait pitch12 corrected by restoring17; no test threshold or source mesh weakened.",
+    "Actual card-caption contrast4.5, minimum49point targets, compact phone/DEEN/portrait/wide fixtures and geometric camera checks retain strict errors.",
+    "Fresh exact-source player exercises actual transfers across3worlds, tutorial/perfect/risk/bank, styles0/1/3/7, ratings0/1/3, DEEN, parent Back and actual430x932/932x430; no captured runtime errors.",
+    "Read-only code review caught pitch regression, corrected and rechecked; final no critical/important findings. Independent visual review of lobby/gameplay finds no visual blocker under approximation and explicitly records simpler material/model finish."
+  ],
+  "validationReceipts": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/editor-native1.log",
+      "sha256": "8caf70855fb6f8c3ecf1c1e9af36a5ee74042789426af52f01150486a19c55b7"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/polish1-source-proof.json",
+      "sha256": "e25d91e81b7168670229fed3fcd640492795a6b0a753a731febd4cd6b28094f1"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/polish-showcase1.log",
+      "sha256": "8d95c987d6b99c8ef6f921f3747a69626bc97017cd42dd08002e3b7b80c681b2"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/SHOWCASE-PASS.txt",
+      "sha256": "db9688fa898ac969f2d53bba102423d5ef8b139314315d7456562d6e67c6daa4"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/CONCEPT-GPU-PASS.txt",
+      "sha256": "09a2279db791a6fec5199961e383e1526fed8f949ab32a628e4527c6956dff0b"
+    }
+  ],
+  "historicalBaseline": {
+    "path": "docs/QA/floor-proportions-20261013.json",
+    "sourceSha256": "62423aec21053354eb1b7d4d1bcd0fe5a34c6a2850b5abcdfcfe0c408565a934",
+    "note": "Proportion1/menu4/reflection1 receipts are separate frozen sources. Historical full87/reload is not current polish1 full-run/reload evidence. Fresh polish1 runtime/GPU and160actual camera envelope samples cover this render-only change."
+  },
+  "comparisonManifest": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Artifacts/FloorPolishComparison-20261013/Final1/sources.json",
+    "sha256": "cdf6fad0d83356920caa524c0529344521a9a9193016f2241743c481593272be"
+  },
+  "renderedEvidence": [
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-de.png",
+      "sha256": "26f1a10d15cbb91fec9e22e9dba5158e20b9a7e4413fd4db7b8e6cf8b9def937",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-en.png",
+      "sha256": "1f40c43e1b269d607631c32be0609d5b47083a863b8b1038194e0e5c1b0363e1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-landscape.png",
+      "sha256": "0efbb2a9dbd2783233663840aee489785e92decce0e9a5f32a9e4c3ff25c7b44",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-rating1.png",
+      "sha256": "492586358da20cc644c2e37df4252bf44279042a35b55f5ab39b52a76034ef03",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-rating3.png",
+      "sha256": "3ecf91c895bc86020454b9b44712543ebcc9d79b25ad943710375bfbfab7fc9e",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/tower-ready-landscape.png",
+      "sha256": "9d4f0c23a254a485412a546e70a974082d6fb3355f511fd6df2a0e6a933a24af",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/settings-portrait-de.png",
+      "sha256": "b4f2050bc1bf331dea080fb4a8800d7632c84a387c23416a85d5ca8b5c4aca2f",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/risk-portrait-de.png",
+      "sha256": "79920a56ecbc1bf4b10d0afee089acd30b91c25c9f9821c01261e56b4afec26b",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/banked-portrait-de.png",
+      "sha256": "f147ce25db9644144c232061f4624c6dcebc5b9765c4178f1a83d03306d05ced",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world0.png",
+      "sha256": "33b8a4a90483016c33584439a72677098199e8d193e787a3477f33c097b99205",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world1.png",
+      "sha256": "b0d017240975d95bc80ae909103af6c1b8aba8344fecf4f97837477d5747d7d0",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world2.png",
+      "sha256": "b4bccff1d3c529798dc2d1a5e86524713e3d01674340b578a9060d59b3216733",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design0.png",
+      "sha256": "ca2d45324ad13fcaa5c806cdf91b5304b6e047ebc3d54b9e519830cdbe6a81b1",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design1.png",
+      "sha256": "0f2d9f413353444f5ad7b6a50fd755a6f4ebe1f732a46a620c893aa273508346",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design3.png",
+      "sha256": "b4ee59595546fa1abcca6e6911666bd0205fdb2565788d2939fed075a8b79b5f",
+      "origin": "Unity-render"
+    },
+    {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design7.png",
+      "sha256": "4051c30945ff7bab1f70389436d45fccbca5a919cf5b91d08957802bca756a7d",
+      "origin": "Unity-render"
+    }
+  ]
+}

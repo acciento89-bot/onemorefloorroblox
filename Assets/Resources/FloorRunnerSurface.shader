@@ -23,7 +23,7 @@ Shader "Floor/RunnerSurface" {
   half3 colour=albedo*(ambient*.78+_LightColor0.rgb*(.10+diffuse*.80)*lerp(.48,1,atten));
   // Hair sheen remains chestnut even under the warm roof lamp. A white additive
   // lobe turned the crown yellow; tint the hair lobe, retain soft skin sheen.
-  colour+=albedo*FloorAdditionalDiffuse(i.world,n);colour+=_LightColor0.rgb*lerp(half3(1,1,1),albedo,hair*.78)*spec*atten*lerp(.045,.11,skin+hair);colour+=albedo*edge*lerp(.07,.13,hair);colour+=skin*half3(.035,.016,.008)*saturate(1-ndl)*atten;
+  colour+=albedo*FloorAdditionalDiffuse(i.world,n)*lerp(1,.66,hair);colour+=_LightColor0.rgb*lerp(half3(1,1,1),albedo,hair)*spec*atten*(lerp(.045,.11,skin)*(1-hair)+hair*.055);colour+=albedo*edge*lerp(.07,.09,hair);colour+=skin*half3(.035,.016,.008)*saturate(1-ndl)*atten;
   half4 c=half4(colour,1);UNITY_APPLY_FOG(i.fogCoord,c);return c;
  } ENDHLSL }
  Pass {Name "DEPTHONLY" Tags {"LightMode"="DepthOnly"} ZWrite On ColorMask R HLSLPROGRAM

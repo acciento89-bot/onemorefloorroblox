@@ -15,9 +15,11 @@ namespace Kamilunavo.OneMoreFloor.UI
   void Changed(Object changed)
   {
    if(changed!=_text||_text.textInfo.characterCount==0)return;var info=_text.textInfo;
-   if(Curve){float width=Mathf.Max(1,_text.rectTransform.rect.width);
-    for(int i=0;i<info.characterCount;i++){var letter=info.characterInfo[i];if(!letter.isVisible)continue;var vertices=info.meshInfo[letter.materialReferenceIndex].vertices;float center=(letter.bottomLeft.x+letter.topRight.x)*.5f;float x=Mathf.Clamp(center/(width*.5f),-1,1);var pivot=new Vector3(center,letter.baseLine,0);var rotation=Quaternion.Euler(0,0,-x*7);
-     for(int corner=0;corner<4;corner++){int index=letter.vertexIndex+corner;vertices[index]=pivot+rotation*(vertices[index]-pivot)+Vector3.up*(1-x*x)*_text.fontSize*.16f;}
+   if(Curve){float left=float.PositiveInfinity,right=float.NegativeInfinity;
+    for(int i=0;i<info.characterCount;i++)if(info.characterInfo[i].isVisible){left=Mathf.Min(left,info.characterInfo[i].bottomLeft.x);right=Mathf.Max(right,info.characterInfo[i].topRight.x);}
+    float width=Mathf.Max(1,right-left),wordCenter=(left+right)*.5f;
+    for(int i=0;i<info.characterCount;i++){var letter=info.characterInfo[i];if(!letter.isVisible)continue;var vertices=info.meshInfo[letter.materialReferenceIndex].vertices;float center=(letter.bottomLeft.x+letter.topRight.x)*.5f;float x=Mathf.Clamp((center-wordCenter)/(width*.5f),-1,1);var pivot=new Vector3(center,letter.baseLine,0);var rotation=Quaternion.Euler(0,0,-x*9);
+     for(int corner=0;corner<4;corner++){int index=letter.vertexIndex+corner;vertices[index]=pivot+rotation*(vertices[index]-pivot)+Vector3.up*(1-x*x)*_text.fontSize*.28f;}
     }_text.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices);return;
    }
    // TMP raises this during Canvas graphic rebuild. Creating/moving another

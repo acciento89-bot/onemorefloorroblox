@@ -1,7 +1,8 @@
 Shader "Floor/Masonry" {
- Properties {_Color("Stone tint",Color)=(.84,.79,.66,1) _MainTex("Original mineral grain",2D)="white"{} _Glossiness("Polish",Range(0,1))=.12 _Metallic("Metal",Range(0,1))=0 _CourseScale("Masonry joints per metre",Float)=1.7 _WoodGrain("Carved entrance timber",Range(0,1))=0 _RoomGlow("Warm entrance fill",Range(0,1))=0 _RoomOrigin("Entrance origin",Vector)=(0,0,0,0) _RoomPeriod("Repeated floor height",Float)=0}
+ Properties {_Color("Stone tint",Color)=(.84,.79,.66,1) _MainTex("Original mineral grain",2D)="white"{} _Glossiness("Polish",Range(0,1))=.12 _Metallic("Metal",Range(0,1))=0 _CourseScale("Masonry joints per metre",Float)=1.7 _WoodGrain("Carved entrance timber",Range(0,1))=0 _RoomGlow("Warm entrance fill",Range(0,1))=0 _RoomOrigin("Entrance origin",Vector)=(0,0,0,0) _RoomPeriod("Repeated floor height",Float)=0 _ReflectionCube("Original atrium reflection",Cube)="black"{} _ReflectionStrength("Marked marble reflection",Range(0,1))=0}
  SubShader {Tags {"RenderType"="Opaque" "RenderPipeline"="UniversalPipeline"} LOD 150
  Pass {Tags {"LightMode"="UniversalForward"} HLSLPROGRAM
+ #pragma target 3.0
  #pragma vertex vert
  #pragma fragment frag
  #pragma multi_compile_fog
@@ -9,7 +10,7 @@ Shader "Floor/Masonry" {
  #pragma multi_compile _ _ADDITIONAL_LIGHTS
  #pragma multi_compile_fragment _ _SHADOWS_SOFT
  #include "FloorUrpLighting.hlsl"
- sampler2D _MainTex;half4 _Color;float _CourseScale,_RoomGlow,_RoomPeriod,_WoodGrain,_Glossiness;float4 _RoomOrigin;
+ sampler2D _MainTex;half4 _Color;float _CourseScale,_RoomGlow,_RoomPeriod,_WoodGrain,_Glossiness;float4 _RoomOrigin;half _ReflectionStrength;TEXTURECUBE(_ReflectionCube);SAMPLER(sampler_ReflectionCube);
  struct v2f {float4 pos:SV_POSITION;float3 world:TEXCOORD0;half3 normal:TEXCOORD1;UNITY_FOG_COORDS(2) SHADOW_COORDS(3) half2 surface:TEXCOORD4;};
  v2f vert(appdata_full v){v2f o;o.pos=UnityObjectToClipPos(v.vertex);o.world=mul(unity_ObjectToWorld,v.vertex).xyz;o.normal=UnityObjectToWorldNormal(v.normal);o.surface=half2(step(.24,v.color.a)*(1-step(.26,v.color.a)),step(.49,v.color.a)*(1-step(.51,v.color.a)));UNITY_TRANSFER_FOG(o,o.pos);TRANSFER_SHADOW(o);return o;}
  half4 frag(v2f i):SV_Target{
@@ -31,12 +32,17 @@ Shader "Floor/Masonry" {
   float3 left=float3(-.90,2.02,.32)-room,right=float3(.90,2.02,.32)-room,ceiling=float3(0,3.38,1.95)-room;
   left.x*=1.65;right.x*=1.65;half warm=inside*_RoomGlow*((.25+saturate(dot(n,left*rsqrt(max(dot(left,left),.0001)))))/(1+dot(left,left)*.7)+(.25+saturate(dot(n,right*rsqrt(max(dot(right,right),.0001)))))/(1+dot(right,right)*.7));
   ceiling.x*=1.65;half ceilingDiffuse=saturate(dot(n,ceiling*rsqrt(max(dot(ceiling,ceiling),.001))));warm+=inside*_RoomGlow*(.20+ceilingDiffuse)/(1+dot(ceiling,ceiling)*.65);
-  half3 view=normalize(_WorldSpaceCameraPos.xyz-i.world),ray=reflect(-view,n);
+  half3 view=GetWorldSpaceNormalizeViewDir(i.world),ray=reflect(-view,n);
   half ribbon=pow(saturate(1-abs(ray.x*.72+ray.z*.34-.20)),48);
   half spec=pow(saturate(dot(n,normalize(light+view))),52)*atten;
   half vein=1-smoothstep(.02,.08,abs(sin(i.world.x*1.6+i.world.z*.73+sin(i.world.z*1.7)*.65)));
   half3 fill=FloorAdditionalDiffuse(i.world,n);half3 base=stone*(ambient*.60+_LightColor0.rgb*(.18+shade*.88)*atten+half3(1,.58,.22)*warm+fill);
-  half3 marble=_Color.rgb*grain*(1-vein*.12)*(ambient*.58+_LightColor0.rgb*(.20+shade*.68)*atten+fill)+spec*.45+ribbon*half3(.22,.20,.16);
+  // Polished floor has quiet mineral variation; facade grain remains unchanged.
+  half marbleGrain=.94+(grain-.5)*.08;
+  half3 marble=_Color.rgb*marbleGrain*(1-vein*.075)*(ambient*.60+_LightColor0.rgb*(.20+shade*.72)*atten+fill)+spec*_LightColor0.rgb*.30+ribbon*half3(.12,.11,.085);
+  [branch] if(i.surface.x>.5){half3 roomReflection=SAMPLE_TEXTURECUBE_LOD(_ReflectionCube,sampler_ReflectionCube,ray,(1-_Glossiness)*6).rgb;
+   half fresnel=pow(1-saturate(dot(n,view)),5);marble+=roomReflection*_ReflectionStrength*(.30+fresnel*.55);
+  }
   // Opaque architectural glazing uses bounded authored reflected sky and warm
   // interior light; it is not a second camera or a claimed realtime reflection.
   half sky=saturate(ray.y*.6+.5);half3 glazing=lerp(half3(.09,.18,.19),half3(.50,.63,.64),sky)*.40+half3(.43,.23,.075)+ribbon*half3(.60,.56,.40)+spec*.65;

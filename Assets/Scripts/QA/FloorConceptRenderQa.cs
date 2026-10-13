@@ -58,6 +58,13 @@ namespace Kamilunavo.OneMoreFloor.QA
      Require(Mathf.Max(Mathf.Abs(shifted.r-captured.r),Mathf.Abs(shifted.g-captured.g),Mathf.Abs(shifted.b-captured.b))<.01f,"orthographic reflection invariant for "+surface);
      camera.transform.position-=Vector3.right*.6f;
     }
+    // Actual marked marble pixels consume the shared cube; ordinary masonry
+    // must stay identical when that floor-only property is toggled.
+    var marble=FloorArchitecturePalette.Get(root.transform,FloorArchitectureSurface.Stone);plane.GetComponent<Renderer>().sharedMaterial=marble;
+    float marbleStrength=marble.GetFloat("_ReflectionStrength");marble.SetFloat("_ReflectionStrength",0);Render();var stoneOff=read.GetPixel(128,128);marble.SetFloat("_ReflectionStrength",marbleStrength);Render();var stoneOn=read.GetPixel(128,128);
+    Require(Mathf.Max(Mathf.Abs(stoneOn.r-stoneOff.r),Mathf.Abs(stoneOn.g-stoneOff.g),Mathf.Abs(stoneOn.b-stoneOff.b))<.002f,"marble reflection never leaks into unmarked facade");
+    FloorArchitectureDetails.SurfaceMode(plane,.25f);marble.SetFloat("_ReflectionStrength",0);Render("marble-reflection-off");var marbleOff=read.GetPixel(128,128);marble.SetFloat("_ReflectionStrength",marbleStrength);Render("marble-reflection-on");var marbleOn=read.GetPixel(128,128);
+    float marbleGain=Mathf.Max(Mathf.Abs(marbleOn.r-marbleOff.r),Mathf.Abs(marbleOn.g-marbleOff.g),Mathf.Abs(marbleOn.b-marbleOff.b));Require(marbleGain>.002f,"actual marked polished marble consumes original scene reflection");
     plane.GetComponent<Renderer>().sharedMaterial=material;
     plane.transform.localScale=new Vector3(.2f,.2f,1);material.color=Color.black;material.SetColor("_EmissionColor",new Color(5,3,.7f));Render();float withoutBloom=read.GetPixel(145,128).r;
     data.renderPostProcessing=true;Render("bloom-on");float withBloom=read.GetPixel(145,128).r;Require(withBloom>withoutBloom+.001f,"URP bloom must illuminate pixels outside the emissive geometry");
@@ -70,7 +77,7 @@ namespace Kamilunavo.OneMoreFloor.QA
     renderer.copyDepthMode=CopyDepthMode.ForcePrepass;renderer.SetDirty();focus.SetActive(true);Render("focus-on-forced-depth-prepass");float nearAfter=Energy(16,75),farAfter=Energy(181,240);
     Require(nearBefore>.03f&&farBefore>.03f,"both real near/far patterns must render a meaningful contrast control");
     Require(nearAfter/nearBefore>.90f,"forced depth prepass must preserve sharp opaque foreground");Require(farAfter/farBefore<.90f,"orthographic distant geometry must visibly soften");
-    File.WriteAllText(Path.Combine(output,"CONCEPT-GPU-PASS.txt"),"CONCEPT_GPU_PASS maskDelta="+maskDelta+" warmPointRedGain="+warmR+" bloomHaloGain="+(withBloom-withoutBloom)+" nearSharpRatio="+(nearAfter/nearBefore)+" farSoftRatio="+(farAfter/farBefore)+" forcedOpaqueDepthPrepass=true originalBrassReflectionDelta="+reflectionGain+" originalGlassReflectionDelta="+glassGain);
+    File.WriteAllText(Path.Combine(output,"CONCEPT-GPU-PASS.txt"),"CONCEPT_GPU_PASS maskDelta="+maskDelta+" warmPointRedGain="+warmR+" bloomHaloGain="+(withBloom-withoutBloom)+" nearSharpRatio="+(nearAfter/nearBefore)+" farSoftRatio="+(farAfter/farBefore)+" forcedOpaqueDepthPrepass=true originalBrassReflectionDelta="+reflectionGain+" originalGlassReflectionDelta="+glassGain+" originalMarbleReflectionDelta="+marbleGain+" facadeReflectionLeak=false");
     Debug.Log("FLOOR_CONCEPT_GPU_PASS");
    }
    finally

@@ -19,7 +19,9 @@ Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
 The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
-Latest user proportion correction: [Rectangular cards and slender cabin](docs/FLOOR-PROPORTIONS-20261013.md). Actual2.1:1portrait cards,36%slimmer same-height carriage with matched rails/deck and fresh native player/GPU evidence. Overall full Concept acceptance remains failed.
+Latest coordinated polish: [Menu, marble and softer character highlights](docs/FLOOR-POLISH-20261013.md). Fresh strict native Editor/build/player/GPU evidence passes, and actual Concept comparison accepts the revised subjective approximate-match target. No numeric90% similarity is claimed; material/model finish remains simpler. Physical iPhone and native release checks remain required before TestFlight.
+
+Latest user proportion correction: [Rectangular cards and slender cabin](docs/FLOOR-PROPORTIONS-20261013.md). Actual2.1:1portrait cards,36%slimmer same-height carriage with matched rails/deck and fresh native player/GPU evidence. This is historical proportion1 evidence; the subsequent polish uses the revised approximation target.
 
 Previous native menu assets: [World cards, lettering and coin](docs/FLOOR-MENU-ASSETS-20261013.md). Original menu paintings, live stars, derived serif logo/titles and original currency sprite are connected to the actual UI; final4 strict native menu/GPU checks pass. Overall Concept gate remains failed.
 

@@ -52,10 +52,14 @@ namespace Kamilunavo.OneMoreFloor.Visuals
    if(metal||kind==FloorArchitectureSurface.Glass){if(!_reflectionLoaded){_reflection=Resources.Load<Cubemap>("Rendering/CapturedAtriumReflection");_reflectionLoaded=true;}material.SetTexture("_ReflectionCube",_reflection);material.SetFloat("_ReflectionStrength",_reflection==null?0:metal?.68f:.38f);}
    if(metal){if(_metal==null)_metal=Finish(true);material.mainTexture=_metal;}
    else if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.Deck||kind==FloorArchitectureSurface.CityStone||kind==FloorArchitectureSurface.CityShade||kind==FloorArchitectureSurface.CityTrim||kind==FloorArchitectureSurface.DoorWood){material.shader=Resources.Load<Shader>("FloorMasonry");if(_stone==null)_stone=Resources.Load<Texture2D>("Art/ConceptStoneIvyAtlas-20261012");material.mainTexture=_stone;}
+   if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim){
+    if(!_reflectionLoaded){_reflection=Resources.Load<Cubemap>("Rendering/CapturedAtriumReflection");_reflectionLoaded=true;}
+    material.SetTexture("_ReflectionCube",_reflection);material.SetFloat("_ReflectionStrength",_reflection==null?0:.22f);
+   }
    if(kind==FloorArchitectureSurface.Leaf||kind==FloorArchitectureSurface.LeafLight){if(_stone==null)_stone=Resources.Load<Texture2D>("Art/ConceptStoneIvyAtlas-20261012");material.mainTexture=_stone;}
    if(kind==FloorArchitectureSurface.DoorWood)material.SetFloat("_WoodGrain",1);
    if(kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim||kind==FloorArchitectureSurface.DoorWood){var course=GetComponent<FloorCourse>();if(course!=null){material.SetFloat("_RoomGlow",.85f);material.SetVector("_RoomOrigin",transform.position+new Vector3(TowerLiftMotion.TowerX,0,TowerLiftMotion.TowerZ));material.SetFloat("_RoomPeriod",TowerLiftMotion.FloorSpacing);}}
-   material.SetFloat("_Glossiness",metal?.72f:.12f);if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",metal?.72f:0);
+   material.SetFloat("_Glossiness",metal?.72f:kind==FloorArchitectureSurface.Stone||kind==FloorArchitectureSurface.Trim?.65f:.12f);if(material.HasProperty("_Metallic"))material.SetFloat("_Metallic",metal?.72f:0);
    if(kind==FloorArchitectureSurface.Lamp){material.EnableKeyword("_EMISSION");material.SetColor("_EmissionColor",material.color*2.4f);}
    ArtLifetime.Own(gameObject,material);_materials.Add(kind,material);return material;
   }
