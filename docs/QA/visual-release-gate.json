@@ -1,10 +1,10 @@
 {
   "game": "One More Floor",
   "status": "passed",
-  "sourceSha256": "60bdebddf7fa68dd10fa52a898ddb69f02e1f709d5607b5475165a59e71e91af",
-  "reviewer": "Codex actual polish1 native Unity Mac-player images against unchanged approved Oct10 board; independent read-only lobby/gameplay review",
-  "reviewedAt": "2026-10-13T07:53:32.423937+00:00",
-  "reason": "Approximate Concept direction accepted from actual native renders under revised user target; no numerical90% score claimed. Character shading/face, uniform brass, angular foliage and carved detail remain simpler than the illustration. Mac-native captures do not establish physical iPhone touch/FPS/audio/provider acceptance. No TestFlight, other-game edits or provider transactions.",
+  "sourceSha256": "cc9256e1a180306ef24019c58cbd2fd89283896d897fe55ce8253b168fa3db5e",
+  "reviewer": "Codex inspected actual native iOS Simulator IL2CPP menu/gameplay/risk/style/world images against unchanged approved board; focused read-only checkpoint code review",
+  "reviewedAt": "2026-10-13T13:34:43.320249+00:00",
+  "reason": "Revised subjective approximate Concept target retained in real native iOS images. Density-sized checkpoint sheet corrected without reducing button targets or weakening tests. Native Showcase2427, full8763/87transfers and fresh-process reload6 pass. Physical device, genuine SDK commerce/provider acceptance remain unverified; no numeric90% score.",
   "criteria": {
     "concept_similarity": "passed",
     "character_or_tower": "passed",
@@ -19,7 +19,8 @@
     "world_card_art_typography_currency": "passed",
     "world_card_landscape_proportions": "passed",
     "slender_cabin_proportions": "passed",
-    "marked_marble_finish": "passed"
+    "marked_marble_finish": "passed",
+    "checkpoint_density_bound": "passed"
   },
   "evidence": {
     "concept": [
@@ -31,89 +32,94 @@
     ],
     "menu": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-de.png",
-        "sha256": "26f1a10d15cbb91fec9e22e9dba5158e20b9a7e4413fd4db7b8e6cf8b9def937",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/lobby-de.png",
+        "sha256": "cbdb1519e9c86fa6b5d4f38346fbf393a5e34993dabc20f5d05aacc9a2168323",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-landscape.png",
-        "sha256": "0efbb2a9dbd2783233663840aee489785e92decce0e9a5f32a9e4c3ff25c7b44",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/lobby-en.png",
+        "sha256": "aebe835ed0d9c9b0eea70e4827b92cdf06f02e6165124432dfed4889dffa9b54",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-rating1.png",
-        "sha256": "492586358da20cc644c2e37df4252bf44279042a35b55f5ab39b52a76034ef03",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/lobby-landscape.png",
+        "sha256": "9607f2a443d7c1dd6c56bac09603f0fc30eee06c1b6eb3e903e247451fa45f50",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/lobby-rating3.png",
-        "sha256": "3ecf91c895bc86020454b9b44712543ebcc9d79b25ad943710375bfbfab7fc9e",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/lobby-rating3.png",
+        "sha256": "a3a29ad5a4705fe97215b254a1f7abf6559dc5f6952fe8c625975c91fcddd8d4",
         "origin": "Unity-render"
       }
     ],
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world0.png",
-        "sha256": "33b8a4a90483016c33584439a72677098199e8d193e787a3477f33c097b99205",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/character-world0.png",
+        "sha256": "f799a1e2315751354376afe96dc18da504d4d0e5d75b74eea5d2e5621d806606",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/tower-ready-landscape.png",
-        "sha256": "9d4f0c23a254a485412a546e70a974082d6fb3355f511fd6df2a0e6a933a24af",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/tower-ready-landscape.png",
+        "sha256": "175b105becef2120ce4dbcab65e78d0143ee3f1669747a1683a95f6cae5a8cee",
         "origin": "Unity-render"
       }
     ],
     "submenus": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/risk-portrait-de.png",
-        "sha256": "79920a56ecbc1bf4b10d0afee089acd30b91c25c9f9821c01261e56b4afec26b",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/risk-portrait-de.png",
+        "sha256": "168275b879a1aa12f7a8e2003b38464b4d18502a602df9dcd5aed8d585385bc0",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/settings-portrait-de.png",
-        "sha256": "b4f2050bc1bf331dea080fb4a8800d7632c84a387c23416a85d5ca8b5c4aca2f",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/risk-landscape-de.png",
+        "sha256": "ef1c053fb301b91e200c9a57a3918073212d9d5913fc169b915fc096dc03b478",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/banked-portrait-de.png",
-        "sha256": "f147ce25db9644144c232061f4624c6dcebc5b9765c4178f1a83d03306d05ced",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/banked-portrait-de.png",
+        "sha256": "d01bb0b7d96bfa17af505b3fb1410eee21f9967e5796efcb686b62f71bc6b319",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/settings-portrait-de.png",
+        "sha256": "d642b0f7231d435a634cc444791ce9b3b2ac1afe70e2fb523a08577645ef6af3",
         "origin": "Unity-render"
       }
     ],
     "variants": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world0.png",
-        "sha256": "33b8a4a90483016c33584439a72677098199e8d193e787a3477f33c097b99205",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/character-world0.png",
+        "sha256": "f799a1e2315751354376afe96dc18da504d4d0e5d75b74eea5d2e5621d806606",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world1.png",
-        "sha256": "b0d017240975d95bc80ae909103af6c1b8aba8344fecf4f97837477d5747d7d0",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/character-world1.png",
+        "sha256": "7f22bb93f182cf89fc259e884e6ab6a6b58f64732aba12a3ed9289e3ce8ffd1e",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/character-world2.png",
-        "sha256": "b4bccff1d3c529798dc2d1a5e86524713e3d01674340b578a9060d59b3216733",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/character-world2.png",
+        "sha256": "140717fa2228b07946b640ef61d6a35d4ab5e14d5f780225a6cc476fc754ad76",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design0.png",
-        "sha256": "ca2d45324ad13fcaa5c806cdf91b5304b6e047ebc3d54b9e519830cdbe6a81b1",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/runner-design0.png",
+        "sha256": "79468be3d3fe95c43745e331b38de3511328d2b33233c098d29c74e93fc2ad33",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design1.png",
-        "sha256": "0f2d9f413353444f5ad7b6a50fd755a6f4ebe1f732a46a620c893aa273508346",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/runner-design1.png",
+        "sha256": "c6fd54b542e52b3da922e8230c7587291d8fee9eacb5e8b5e009ffe037cdbe6c",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design3.png",
-        "sha256": "b4ee59595546fa1abcca6e6911666bd0205fdb2565788d2939fed075a8b79b5f",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/runner-design3.png",
+        "sha256": "3d720713298b64380b2c05b0f9aef44583d8222fb268027e48e4bdbb7e1a4963",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPolish-20261013/Showcase1/runner-design7.png",
-        "sha256": "4051c30945ff7bab1f70389436d45fccbca5a919cf5b91d08957802bca756a7d",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/runner-design7.png",
+        "sha256": "07067412aeb94c8adf0389346b81331c60c9b8ba6794d4720a77ca19f469ae34",
         "origin": "Unity-render"
       }
     ]
@@ -123,5 +129,22 @@
     "assessment": "subjective approximate art-direction acceptance",
     "numericSimilarityMeasured": false
   },
-  "otherReleaseChecks": "Physical iPhone and iOS signing/provider/device acceptance remain unverified by this Mac-only visual polish."
+  "otherReleaseChecks": "No physical iPhone observed; actual touch feel/thermal/haptics/FPS and genuine ad/purchase/restore acceptance remain open. Internal archive/upload status is separate.",
+  "nativePlatformEvidence": {
+    "physicalDevice": false,
+    "platform": "iPhone SE3 iOS26.5 Simulator ARM64 IL2CPP/Metal",
+    "bundleSha256": "f4fc49e205c32b8ca7005fe642f46173b5b92fb658dac612e9be26d105ac2b3c",
+    "fullRun": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/FullNative2/PASS.txt",
+      "sha256": "c5e3b4292fb2e12d8f4798243e622e12da46b4aaa1a256a39033ac5d2f0c77e3"
+    },
+    "independentReload": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/FullNative2/RELOAD-PASS.txt",
+      "sha256": "210690843527a123f8beb74d89528c1e4cf77cce20f8dafd638e3438cfee1f74"
+    },
+    "showcase": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/SHOWCASE-PASS.txt",
+      "sha256": "3164af4c9ba05e8b9af057a8955290ea0644ab6e2cd7f8845d7f9f8e01eefcc0"
+    }
+  }
 }

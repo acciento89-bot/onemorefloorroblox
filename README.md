@@ -19,6 +19,8 @@ Unity6000.6.4f1 / C#. iOS and Android bundle ID: `com.kamilunavo.onemorefloor`.
 The historical repository name does not describe the runtime. No Roblox runtime.
 
 ## Current change and validation
+Latest iOS follow-through: [Native iOS candidate 5](docs/FLOOR-IOS-VALIDATION-20261013.md). Corrected native compact decision sheet; actual SE3 simulator Showcase, full87transfers and fresh-process save reload pass. Signed internal-only IPA/archive prepared; TestFlight not uploaded pending real iPhone check and App Store Connect sign-in.
+
 Latest coordinated polish: [Menu, marble and softer character highlights](docs/FLOOR-POLISH-20261013.md). Fresh strict native Editor/build/player/GPU evidence passes, and actual Concept comparison accepts the revised subjective approximate-match target. No numeric90% similarity is claimed; material/model finish remains simpler. Physical iPhone and native release checks remain required before TestFlight.
 
 Latest user proportion correction: [Rectangular cards and slender cabin](docs/FLOOR-PROPORTIONS-20261013.md). Actual2.1:1portrait cards,36%slimmer same-height carriage with matched rails/deck and fresh native player/GPU evidence. This is historical proportion1 evidence; the subsequent polish uses the revised approximation target.
