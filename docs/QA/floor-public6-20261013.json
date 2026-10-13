@@ -1,0 +1,83 @@
+{
+  "sourceSha256": "ad4749ef7376daf6606830e760a6a88895c559485cf9827889cd66fea77a6f80",
+  "version": "1.0",
+  "build": "6",
+  "humanAcceptedVisualSource": "cc9256e1a180306ef24019c58cbd2fd89283896d897fe55ce8253b168fa3db5e",
+  "nonVisualChanges": [
+    "Production iOS interstitial identifier",
+    "Non-personalised npa=1 and maximum G rating",
+    "InternalTestAds false",
+    "Build number 6"
+  ],
+  "validation": "FLOOR_ALL_PASS checks=14711 loggedErrors=0",
+  "deviceExport": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/iOS",
+  "archive": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/OneMoreFloor-1.0-6.xcarchive",
+  "publicIpa": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/Distribution/OneMoreFloor.ipa",
+  "productionIosInterstitial": "ca-app-pub-8944085355624754/5240211121",
+  "privacyUrl": "https://acciento89-bot.github.io/oneclick-translator-legal/one-more-floor/privacy/",
+  "nativeQa": {
+    "SHOWCASE-PASS.txt": {
+      "result": "ELEVATOR_SHOWCASE_PASS checks=2435",
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/Native-SE3-showcase/SHOWCASE-PASS.txt"
+    },
+    "PASS.txt": {
+      "result": "ELEVATOR_QA_PASS checks=8769 real87 guided transfers,3towers,miss,bank,pause,renderedcamera,framing",
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/Native-SE3-full/PASS.txt"
+    },
+    "RELOAD-PASS.txt": {
+      "result": "ELEVATOR_RELOAD_PASS checks=6",
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/Native-SE3-full/RELOAD-PASS.txt"
+    },
+    "ProMax": {
+      "result": "ELEVATOR_SHOWCASE_PASS checks=2398",
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/Native-ProMax-showcase/SHOWCASE-PASS.txt"
+    },
+    "iPad": {
+      "result": "ELEVATOR_SHOWCASE_PASS checks=2380",
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/Native-iPad-showcase/SHOWCASE-PASS.txt"
+    }
+  },
+  "appReview": {
+    "state": "WAITING_FOR_REVIEW",
+    "submissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
+    "submittedDate": "2026-10-13T22:22:05.297Z",
+    "buildId": "2770a705-2953-42b1-affb-d6267fdc1005",
+    "releaseType": "MANUAL",
+    "items": "app and all three IAP versions",
+    "storeScreenshots": {
+      "iPhone": 4,
+      "iPad": 4,
+      "state": "COMPLETE"
+    },
+    "iapReviewScreenshots": {
+      "count": 3,
+      "state": "COMPLETE"
+    }
+  },
+  "limitations": [
+    "No physical-device performance/haptics result",
+    "No real purchase, restore/refund fulfilment or live paid ad playback result",
+    "AdMob listing verification waits for public App Store listing; production units and published consent are configured",
+    "Two supplemental screenshot reservations failed Apple asset processing and were removed; four genuine complete images per device remain"
+  ],
+  "nativeStore": {
+    "result": "TEST SUCCEEDED",
+    "profile": "ordinary; QA disabled; real SDKs enabled",
+    "tap": "actual XCTest wallet touch",
+    "pricesUSD": [
+      "1.99",
+      "1.99",
+      "2.99"
+    ],
+    "resultPath": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/NativeStoreUITests/StoreCapture.xcresult",
+    "screenshot": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorPublic6-20261013/NativeStoreUITests/Attachments/3DB77646-891F-407B-BCFB-81AA222C8E52.png"
+  },
+  "testFlight": {
+    "group": "Kamilunavo Intern",
+    "groupId": "cf3964c5-35e5-4eac-b68c-9bc7845d0128",
+    "buildId": "2770a705-2953-42b1-affb-d6267fdc1005",
+    "independentlyVerifiedInGroup": true,
+    "germanWhatsNewSaved": true,
+    "duplicateAssignmentResponse": 422
+  }
+}

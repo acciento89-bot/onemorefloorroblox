@@ -1,10 +1,10 @@
 {
   "game": "One More Floor",
   "status": "passed",
-  "sourceSha256": "cc9256e1a180306ef24019c58cbd2fd89283896d897fe55ce8253b168fa3db5e",
+  "sourceSha256": "ad4749ef7376daf6606830e760a6a88895c559485cf9827889cd66fea77a6f80",
   "reviewer": "Codex inspected actual native iOS Simulator IL2CPP menu/gameplay/risk/style/world images against unchanged approved board; focused read-only checkpoint code review",
-  "reviewedAt": "2026-10-13T13:34:43.320249+00:00",
-  "reason": "Revised subjective approximate Concept target retained in real native iOS images. Density-sized checkpoint sheet corrected without reducing button targets or weakening tests. Native Showcase2427, full8763/87transfers and fresh-process reload6 pass. Physical device, genuine SDK commerce/provider acceptance remain unverified; no numeric90% score.",
+  "reviewedAt": "2026-10-13T22:08:02.737750+00:00",
+  "reason": "Human-approved approximate graphics retained with only production ad configuration and build6 changes. Fresh exact-source native SE3 menu/gameplay/style/world/risk/settings captures inspected; Showcase2435, full8769/87transfers and fresh-process reload6 pass. No numeric similarity score or physical-device performance claim.",
   "criteria": {
     "concept_similarity": "passed",
     "character_or_tower": "passed",
@@ -146,5 +146,13 @@
       "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/SHOWCASE-PASS.txt",
       "sha256": "3164af4c9ba05e8b9af057a8955290ea0644ab6e2cd7f8845d7f9f8e01eefcc0"
     }
-  }
+  },
+  "humanAcceptedVisualSource": "cc9256e1a180306ef24019c58cbd2fd89283896d897fe55ce8253b168fa3db5e",
+  "nativePublicReleaseEvidence": "docs/QA/floor-public6-20261013.json",
+  "nonVisualChangesSinceHumanAcceptance": [
+    "Production iOS interstitial identifier",
+    "Non-personalised npa=1 and maximum G rating",
+    "InternalTestAds false",
+    "Build number 6"
+  ]
 }

@@ -70,7 +70,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
     if(ad!=null&&ad.CanShowAd()&&clock()-loadedAt<3500)return;
     Discard();if(string.IsNullOrWhiteSpace(config.InterstitialId))return;
     loading=true;var generation=loads.Begin();
-    InterstitialAd.Load(config.InterstitialId,new AdRequest(),(loaded,error)=>{
+    InterstitialAd.Load(config.InterstitialId,new AdRequest { Extras = { { "npa", "1" } } },(loaded,error)=>{
      if(this==null){DestroyNative(loaded);return;}
      MobileAdsEventExecutor.ExecuteInUpdate(()=>{
       if(this==null){DestroyNative(loaded);return;}

@@ -68,6 +68,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
             if(!ConsentInformation.CanRequestAds()){SetStatus(T("Video nicht verfügbar – Datenschutzeinstellungen prüfen","Video unavailable – check privacy settings"));return;}
             if(_initialized){Load();return;}
             if(_initializing)return;_initializing=true;
+            MobileAds.SetRequestConfiguration(new RequestConfiguration { MaxAdContentRating = MaxAdContentRating.G });
             MobileAds.Initialize(status=>Main(()=>
             {
                 _initializing=false;if(status==null){SetStatus(T("Video gerade nicht verfügbar","Video currently unavailable"));return;}
@@ -82,7 +83,7 @@ namespace Kamilunavo.OneMoreFloor.Monetization
             var id=_config.RewardedId;
             if(string.IsNullOrWhiteSpace(id)){SetStatus(T("Video gerade nicht verfügbar","Video currently unavailable"));return;}
             _loading=true;var generation=_loads.Begin();
-            RewardedAd.Load(id,new AdRequest(),(ad,error)=>
+            RewardedAd.Load(id,new AdRequest { Extras = { { "npa", "1" } } },(ad,error)=>
             {
                 if(this==null){ad?.Destroy();return;}
                 MobileAdsEventExecutor.ExecuteInUpdate(()=>
