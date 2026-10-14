@@ -1,0 +1,28 @@
+{
+  "checkedUTC": "2026-10-14T21:17:59.187921+00:00",
+  "appId": "6819872214",
+  "version": "1.0",
+  "build": "6",
+  "submissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
+  "threadId": "54d208ae-7dea-378a-bddd-0a58da6be30e",
+  "messageId": "cffb5f97-f134-40e9-888c-b5fb633cbe91",
+  "createdDate": "2026-10-14T21:16:08.298Z",
+  "messageCharacters": 3653,
+  "messageSha256": "1d5f78c60d11b5b4812ec351ff94cc8f9953d522cde11bfa1b586f561076cfc7",
+  "bodyReadbackMatches": true,
+  "attachment": {
+    "id": "8ec50ae5-6a45-3c22-9397-b7d208996da1",
+    "fileName": "OneMoreFloor-AppReview-Response.pdf",
+    "bytes": 1583756,
+    "preparedAssetDeliveryState": "COMPLETE",
+    "publishedDownloadSha256Matches": true,
+    "sha256": "5282b13ea2266d86682acb772900790b85b368e3ef38501ab914cd522abc73d9",
+    "pages": 4,
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorRejection-20261014/output/pdf/OneMoreFloor-AppReview-Response.pdf"
+  },
+  "appStoreState": "REJECTED",
+  "submissionState": "UNRESOLVED_ISSUES",
+  "action": "Sent requested nine-question clarification with native evidence; did not resubmit the rejected binary",
+  "codeChanged": false,
+  "sourceFingerprint": "ad4749ef7376daf6606830e760a6a88895c559485cf9827889cd66fea77a6f80"
+}
