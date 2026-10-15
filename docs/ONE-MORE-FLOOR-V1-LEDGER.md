@@ -515,3 +515,10 @@ Source/assets/dependencies, actual internal beta membership and prior native QA 
 Actual Resolution Center POST201 sent message cffb5f97-f134-40e9-888c-b5fb633cbe91 at2026-10-14T21:16:08.298Z in thread54d208ae-7dea-378a-bddd-0a58da6be30e. Independent GET200 confirms exact3653-character body, published attachment8ec50ae5-6a45-3c22-9397-b7d208996da1 and byte-identical downloaded PDF SHA5282b13ea2266d86682acb772900790b85b368e3ef38501ab914cd522abc73d9. Review remains REJECTED/UNRESOLVED_ISSUES pending Apple; no acceptance/review restart is claimed.
 
 Canonical full response docs/APP-REVIEW-RESPONSE-20261014.md; delivery receipt docs/QA/floor-app-review-response-20261014.json; raw investigation/PDF Builds/FloorRejection-20261014. Production source remains ad4749ef7376daf6606830e760a6a88895c559485cf9827889cd66fea77a6f80. No game/native binary/version/commerce changes, no new device tests or build upload. Historical user-owned Concept deletion stays unstaged/unrestored.
+
+
+## 2026-10-15 — subsequent Apple2.3 icon notice
+
+User provided the additional review screenshots for1.0(6), submissiona5e537c0-a31a-47e3-8e0c-727590b3f99f, explicitly citing Icon under Accurate Metadata. The original nine-question response remains sent and preserved; this additional issue is not resolved by it. Assigned source icon shows a black-clothed free platform/ring jump, while actual submitted native gameplay shows a green-clothed character riding a brass elevator to fixed stone balconies. This concrete mismatch is our observation; Apple only named Icon.
+
+Current `docs/QA/store-icon-review.json` is FAILED. All four projects now require accurate source/native icon and gameplay/variant evidence before future uploads. Twenty-one synthetic guard-integrity/assignment tests pass per project; these do not approve artwork. No public metadata change, new build, unchanged resubmission or new reviewer message was made in this pass. User-owned historical Concept deletion remains unstaged.

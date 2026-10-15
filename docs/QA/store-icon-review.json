@@ -1,0 +1,41 @@
+{
+  "game": "OneMoreFloorRoblox",
+  "status": "failed",
+  "sourceSha256": "ad4749ef7376daf6606830e760a6a88895c559485cf9827889cd66fea77a6f80",
+  "reviewer": "Codex direct source-icon and actual native-frame comparison",
+  "reviewedAt": "2026-10-15",
+  "reason": "FAILED content accuracy: user supplied a subsequent Apple2.3 Icon notice for build1.0(6). The current icon depicts a free-running black-clothed character jumping among futuristic platforms through a large ring, while the actual submitted game uses a green-clothed character in a brass elevator beside fixed stone balconies. Correct this specific mismatch before any resubmission; Apple only explicitly names Icon, the visual mismatch is our observation.",
+  "decision": "No new upload approval. Complete accurate native icon and variant review before setting passed.",
+  "variantConsistencyChecked": false,
+  "evidence": {
+    "sourceIcon": {
+      "path": "Assets/Resources/Art/OneMoreFloorIcon.png",
+      "sha256": "d4cac076649a780685a9ff203cbffc64e31d240e33447a9f5e54feedc9c38548",
+      "origin": "project-icon"
+    },
+    "nativeIcon": null,
+    "gameplay": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/character-world0.png",
+        "sha256": "f799a1e2315751354376afe96dc18da504d4d0e5d75b74eea5d2e5621d806606",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/tower-ready-landscape.png",
+        "sha256": "175b105becef2120ce4dbcab65e78d0143ee3f1669747a1683a95f6cae5a8cee",
+        "origin": "Unity-render"
+      }
+    ]
+  },
+  "policy": "https://developer.apple.com/app-store/review/guidelines/#accurate-metadata",
+  "limits": "Source-art motif review is not Apple approval, and does not establish the appearance of every exported native icon. Existing submitted builds are not withdrawn or altered.",
+  "appleNotice": {
+    "source": "User-supplied two review screenshots received15October2026; not an independently fetched new Resolution Center message",
+    "guideline": "2.3 Accurate Metadata",
+    "item": "Icon",
+    "reviewedBuild": "1.0(6)",
+    "reviewDate": "2026-10-14",
+    "submissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
+    "relationToPreviousResponse": "Additional issue after the previously sent nine-question response; not assumed resolved."
+  }
+}

@@ -1,6 +1,12 @@
 # One More Floor: App Review response, 14 October 2026
 
-Status: sent in the existing Resolution Center thread at 2026-10-14T21:16:08.298Z. App remains REJECTED and the submission UNRESOLVED_ISSUES while awaiting a substantive reply. The rejected binary was not resubmitted.
+Status at the original response: sent in the existing Resolution Center thread at 2026-10-14T21:16:08.298Z. App remains REJECTED and the submission UNRESOLVED_ISSUES while awaiting a substantive reply. The rejected binary was not resubmitted.
+
+## Subsequent icon issue received 15 October 2026
+
+The user supplied two screenshots of a subsequent review notice for the same submission/build1.0(6), dated14October, citing guideline2.3 Accurate Metadata and explicitly naming Icon. This issue is additional to the nine-question response below. It is not cleared by the previous reply. Direct comparison shows the assigned icon advertises a black-clothed free jump through a large futuristic ring, whereas the submitted game presents a green-clothed character in a brass elevator transferring to fixed stone balconies. That visual explanation is our observation; Apple only explicitly identified Icon.
+
+No new reply or unchanged resubmission was sent for this notice. Future uploads now require source/native icon and gameplay comparison evidence through `docs/QA/store-icon-review.json` and the release guard. The current icon review is FAILED until the specific content mismatch is corrected and native variants are verified. Existing original response body/PDF/receipts remain unchanged.
 
 ## Review issue and scope
 
