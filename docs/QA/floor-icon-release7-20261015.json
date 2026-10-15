@@ -1,0 +1,158 @@
+{
+  "game": "One More Floor",
+  "version": "1.0(7)",
+  "sourceSha256": "db1f074d730f19d7b86a739e01b3042231f2ae3a620fdd7c84006f3d1ee39790",
+  "createdAt": "2026-10-15T06:34:33.009023+00:00",
+  "status": "Native icon correction uploaded and Apple VALID; requested App Review resubmission blocked by owner-browser authentication",
+  "baseCommit": "f1a9cb4",
+  "changes": [
+    "Replace inaccurate ring/platform-runner icon with original actual-elevator imagery made from a current native reference.",
+    "Lossless icon import and consistent19native icon sizes, RGB1024store pixels identical to project source.",
+    "iOS6to7/Android5to7, marketing1.0 retained; gameplay/art/provider code unchanged."
+  ],
+  "sourceIcon": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Projects/OneMoreFloorRoblox/Assets/Resources/Art/OneMoreFloorIcon.png",
+    "sha256": "20dc3826407573dd659d4dabae275b514bd40ad959e127b48dd407dba1b9b5f9",
+    "origin": "project-icon"
+  },
+  "nativeIcon": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-Store-1024.png",
+    "sha256": "fbd458de59de1a9f0d852184463896f9f65477f4e83dcc8f66c48fc333755c4f",
+    "origin": "native-build-icon",
+    "sourceSha256": "db1f074d730f19d7b86a739e01b3042231f2ae3a620fdd7c84006f3d1ee39790"
+  },
+  "nativeExportProof": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/native-icon-export-proof.json",
+    "sha256": "c8eb8a43e30c949489a436baacd327bb5857bd732d9f8767deafc6e69d0ca89b",
+    "origin": "actual-iOS-export-icon-integrity"
+  },
+  "nativeRuns": [
+    {
+      "case": "Showcase",
+      "checks": 2436,
+      "proof": {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Showcase/PROVENANCE.json",
+        "sha256": "98c56e219a4a5fb036c4c39700422d81a3ce616c6a83edce564dfecac8ef1814",
+        "origin": "native-process-receipt"
+      },
+      "pass": {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Showcase/SHOWCASE-PASS.txt",
+        "sha256": "4eb7cac629a85eddc682e3375ba3827456683bc0aa7998df77fb0c69b9ea0f8d",
+        "origin": "native-process-proof"
+      }
+    },
+    {
+      "case": "Full",
+      "checks": 8759,
+      "proof": {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Full/PROVENANCE.json",
+        "sha256": "3620f4037d8acf8d8771317dd21478f9bfb9dbb89b3e9a66798f35fe78e88706",
+        "origin": "native-process-receipt"
+      },
+      "pass": {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Full/PASS.txt",
+        "sha256": "72d8479cf8cddf126edc895be8d7ce8f292899ddd5141cf957bbedfbe7d944dc",
+        "origin": "native-process-proof"
+      }
+    },
+    {
+      "case": "Reload",
+      "checks": 6,
+      "proof": {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Reload/PROVENANCE.json",
+        "sha256": "7a3579a2573cc2ac6a84a5ceaef407f6c80f0627429a078a8522530779df47f5",
+        "origin": "native-process-receipt"
+      },
+      "pass": {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Reload/RELOAD-PASS.txt",
+        "sha256": "210690843527a123f8beb74d89528c1e4cf77cce20f8dafd638e3438cfee1f74",
+        "origin": "native-process-proof"
+      }
+    }
+  ],
+  "gpu": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Showcase/CONCEPT-GPU-PASS.txt",
+    "sha256": "09a2279db791a6fec5199961e383e1526fed8f949ab32a628e4527c6956dff0b",
+    "origin": "actual-native-framebuffer-effect-controls"
+  },
+  "imagegen": {
+    "mode": "built-in image_gen, actual screenshot-to-icon edit",
+    "prompt": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/final-imagegen-prompt.txt",
+      "sha256": "5ba554405123258ef77378390fbca09004ef540961a616c1eab2b3dd3adebb98",
+      "origin": "exact-imagegen-prompt"
+    },
+    "generatedOriginal": {
+      "path": "/Users/piotrkaminski/.codex/generated_images/01a11788-3eb6-7e32-963e-51b37d78e2ed/exec-963811e2-fc49-405b-91fc-909b6b9f86c5.png",
+      "sha256": "3db451e469d3ebbe3747620ed7961435bedf2327b01d706b56fddc67bc381171",
+      "origin": "original-imagegen-output"
+    },
+    "normalization": "sips high-quality downscale1254to1024, opaqueRGB; no further visual editing",
+    "combinedPromptSet": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/imagegen-prompts.txt",
+      "sha256": "e33788cd4464bf226b4e3afd2e05ee1aa2ca2ca22909aedec7331fd1e42c8ae1",
+      "origin": "both-exact-built-in-imagegen-prompts"
+    }
+  },
+  "storeAssets": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/metadata-preservation-check.json",
+    "sha256": "de01959eb6e8e256e2ccbb9511cedfa6eac522504cd2b10747938f87a8c0f108",
+    "origin": "official-API-complete-existing-store-images-and-IAP-items"
+  },
+  "reviewContext": "Additional user-supplied Apple2.3 Icon notice follows the prior sent nine-answer4.3/4.2.6 response. Existing response/PDF/delivery evidence preserved. Local content fix does not claim Apple accepted either issue.",
+  "limits": [
+    "Actual Mac Metal runtime tests, not new physical-device/FPS/thermal/paid-transaction/ad-delivery proof.",
+    "Previous actual native iOS store images still depict the unchanged game; new Mac QA frames are not uploaded as store screenshots.",
+    "App Review resubmission requires owner browser sign-in because existing read/upload API key cannot manage review submissions."
+  ],
+  "preservedUserChange": "Historical docs/concepts/PRIMARY-CONCEPT.png deletion remains unstaged.",
+  "validationStatus": "Ready with limitations for icon/build; App Review delivery Blocked",
+  "delivery": {
+    "buildId": "2140cf75-5f83-47b0-b647-a02f118c656a",
+    "buildVersion": "7",
+    "processingState": "VALID",
+    "buildAudienceType": "APP_STORE_ELIGIBLE",
+    "usesNonExemptEncryption": null,
+    "appReviewSubmittedThisBuild": false,
+    "previousSubmissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
+    "previousSubmissionState": "UNRESOLVED_ISSUES",
+    "previousSubmissionWithdrawn": false,
+    "blocker": "Existing API key can read/upload but returns403 for cancel/compliance mutations; Safari session401. User requested to sign in directly in Safari. This is missing account authentication/capability, not missing human approval.",
+    "signedPackage": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/signed-ipa-proof.json",
+      "sha256": "8fc7be7a9ec8b24db4e3df8ad2e18382dc235e7a73a072ad7dd7563d170fc03f",
+      "origin": "actual-native-signature-and-compiled-icons"
+    },
+    "upload": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/upload-response.json",
+      "sha256": "cb92c2f399f29b212c1d49bc1d85db8c97c84603b4ad798b9b481ccd5778224e",
+      "origin": "actual-successful-native-upload-receipt"
+    },
+    "appleBuild": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/apple-build7-delivery-snapshot1.json",
+      "sha256": "8b3d34ed98408c094040eb7cdec63f94023dd83641860d8c098149f276014196",
+      "origin": "independent-Apple-VALID-build-read"
+    },
+    "appleProcessedIcon": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/apple-processed-icon-proof.json",
+      "sha256": "2cc8cb3267ebd38ef58f4d4c00f11e2488b99494344d2639ba969e366b656934",
+      "origin": "actual-Apple-processed-icon-pixel-comparison"
+    },
+    "previousReview": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/previous-submission-delivery-snapshot1.json",
+      "sha256": "483878f7223b49670d8ed34a85cbac3e43bc74f21c7c41eae1867ae7987d4145",
+      "origin": "independent-current-previous-review-read"
+    }
+  },
+  "nativePreviewMetadata": {
+    "platform": "Mac Metal development preview, not shipping iOS app",
+    "CFBundleVersion": "0",
+    "CFBundleShortVersionString": "1.0",
+    "receiptBuildLabel": "1.0(7) identifies the target iOS candidate; actual iOS shipping metadata is verified separately."
+  },
+  "iapReviewImages": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iap-review-images-current.json",
+    "sha256": "54a5d94344893345c3e311e721c9a17b5f2bd4708c045ccc378e4277589baaf7",
+    "origin": "official-current-three-IAP-review-images-complete"
+  }
+}

@@ -113,3 +113,8 @@ Please reconsider build 1.0 (6) in light of these answers and the native evidenc
 - [Apple App Review Guidelines - 4.3 and 4.2.6](https://developer.apple.com/app-store/review/guidelines/)
 - [Unrelated One More Floor - Joshua Myers](https://apps.apple.com/ca/app/one-more-floor/id6772283575)
 - [+1 Floor - Carlo Pelliccioni](https://apps.apple.com/fr/app/1-floor/id6796015248)
+
+
+## Local icon correction prepared — 15 October 2026
+
+Build1.0(7) now contains an original accurate icon showing the actual green-jacketed boy in the single brass elevator beside fixed stone balconies. Native export, compiled shipping icons and Apple-processed store image are verified against current game frames. Build7uploaded and is VALID; this does not mean Apple accepted the additional2.3 issue or the previous nine-question response. The original response/PDF/delivery record above remain unchanged. Reviewer-note additions are prepared but not posted; resolving the rejected item and resubmitting still require the owner to sign into Safari. See QA/floor-icon-release7-20261015.json.

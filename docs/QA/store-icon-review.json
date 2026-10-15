@@ -1,34 +1,192 @@
 {
-  "game": "OneMoreFloorRoblox",
-  "status": "failed",
-  "sourceSha256": "ad4749ef7376daf6606830e760a6a88895c559485cf9827889cd66fea77a6f80",
-  "reviewer": "Codex direct source-icon and actual native-frame comparison",
-  "reviewedAt": "2026-10-15",
-  "reason": "FAILED content accuracy: user supplied a subsequent Apple2.3 Icon notice for build1.0(6). The current icon depicts a free-running black-clothed character jumping among futuristic platforms through a large ring, while the actual submitted game uses a green-clothed character in a brass elevator beside fixed stone balconies. Correct this specific mismatch before any resubmission; Apple only explicitly names Icon, the visual mismatch is our observation.",
-  "decision": "No new upload approval. Complete accurate native icon and variant review before setting passed.",
-  "variantConsistencyChecked": false,
+  "game": "One More Floor",
+  "status": "passed",
+  "sourceSha256": "db1f074d730f19d7b86a739e01b3042231f2ae3a620fdd7c84006f3d1ee39790",
+  "reviewer": "Codex direct new artwork / current actual native-game frames / all19exported native-size review",
+  "reviewedAt": "2026-10-15T06:34:33.001046+00:00",
+  "reason": "Replaced the obsolete black-runner/ring/platform illustration with the actual brown-haired green-jacketed character standing in one narrow brass/teal exterior elevator beside fixed warm-stone balconies, visible air gap, wood door, lanterns, ivy and canal-town sunset. Current-source native frames confirm that activity, character clothing and world. All19actual small/large/store iOS renditions retain the intended same image; no icon lettering, invented portal or alpha border. This is icon illustration, never gameplay proof.",
+  "decision": "Passed local content accuracy and source/native rendition consistency for build7; the additional Apple2.3 issue still requires resubmission and Apple review.",
+  "variantConsistencyChecked": true,
   "evidence": {
     "sourceIcon": {
-      "path": "Assets/Resources/Art/OneMoreFloorIcon.png",
-      "sha256": "d4cac076649a780685a9ff203cbffc64e31d240e33447a9f5e54feedc9c38548",
+      "path": "/Volumes/SSK SSD/Kamilunavo/Projects/OneMoreFloorRoblox/Assets/Resources/Art/OneMoreFloorIcon.png",
+      "sha256": "20dc3826407573dd659d4dabae275b514bd40ad959e127b48dd407dba1b9b5f9",
       "origin": "project-icon"
     },
-    "nativeIcon": null,
+    "nativeIcon": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-Store-1024.png",
+      "sha256": "fbd458de59de1a9f0d852184463896f9f65477f4e83dcc8f66c48fc333755c4f",
+      "origin": "native-build-icon",
+      "sourceSha256": "db1f074d730f19d7b86a739e01b3042231f2ae3a620fdd7c84006f3d1ee39790"
+    },
     "gameplay": [
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/character-world0.png",
-        "sha256": "f799a1e2315751354376afe96dc18da504d4d0e5d75b74eea5d2e5621d806606",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Showcase/character-world0.png",
+        "sha256": "372185e42770ad370aab854d6b2e9639fc1cb8bf5843dd6f7c564190fe0085fc",
         "origin": "Unity-render"
       },
       {
-        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIOS-20261013/ShowcaseNative2/tower-ready-landscape.png",
-        "sha256": "175b105becef2120ce4dbcab65e78d0143ee3f1669747a1683a95f6cae5a8cee",
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Showcase/character-world1.png",
+        "sha256": "0fdeba6fa67002bfa6c76ef37d9ddd235a4dabea888aeb51c4242167906acd96",
+        "origin": "Unity-render"
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/Native-Showcase/character-world2.png",
+        "sha256": "4baf392df8cd3aa96b7d60fd2c00abc9d450abbc647cc455337c9121f109cb88",
         "origin": "Unity-render"
       }
-    ]
+    ],
+    "nativeVariants": [
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-120.png",
+        "sha256": "3f3a1e50c3fa5eba5fd5d817a35aa7ce8b9614bb404ed9efa2225dc68b51ecfc",
+        "pixels": 120,
+        "idiom": "iphone",
+        "sourceRmse": 0.018562244928636545
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-180.png",
+        "sha256": "274808dd9fb64108e45e18599572f8f2df57d72b58f59847baf5ecfd15206650",
+        "pixels": 180,
+        "idiom": "iphone",
+        "sourceRmse": 0.016966293008975234
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Settings-29.png",
+        "sha256": "041a9758fd4b56f59af1ccd35dc447e6a0d0acbd56e2bae08c7c62d9991d4203",
+        "pixels": 29,
+        "idiom": "iphone",
+        "sourceRmse": 0.023993592470273096
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Settings-58.png",
+        "sha256": "a6f4cac3e27212976ddaffed5d9a8d22381fc09988cf659bacfd6ac9aed5b304",
+        "pixels": 58,
+        "idiom": "iphone",
+        "sourceRmse": 0.021804199333034433
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Settings-87.png",
+        "sha256": "e3b5e61dd1f629cc31a6cea9e7e8b355bf341bab91e7c36753a11544ae229ac1",
+        "pixels": 87,
+        "idiom": "iphone",
+        "sourceRmse": 0.019398968816862476
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Spotlight-80.png",
+        "sha256": "033d8efae3ad3216b3ad7efc96890110b46b0459ca81bc832f241d12445268e5",
+        "pixels": 80,
+        "idiom": "iphone",
+        "sourceRmse": 0.01997870277707289
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Spotlight-120.png",
+        "sha256": "3f3a1e50c3fa5eba5fd5d817a35aa7ce8b9614bb404ed9efa2225dc68b51ecfc",
+        "pixels": 120,
+        "idiom": "iphone",
+        "sourceRmse": 0.018562244928636545
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Notification-40.png",
+        "sha256": "8587424003676f6a961f7e404197edef3d8d244f23df845d8b1a762a5262dfaa",
+        "pixels": 40,
+        "idiom": "iphone",
+        "sourceRmse": 0.022838157610339985
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPhone-Notification-60.png",
+        "sha256": "b4b48ab68933b4972b0db654e6db0b47dc7e04bf5b186f0dadf6a2598dd90149",
+        "pixels": 60,
+        "idiom": "iphone",
+        "sourceRmse": 0.021319816620149864
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Settings-29.png",
+        "sha256": "041a9758fd4b56f59af1ccd35dc447e6a0d0acbd56e2bae08c7c62d9991d4203",
+        "pixels": 29,
+        "idiom": "ipad",
+        "sourceRmse": 0.023993592470273096
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Settings-58.png",
+        "sha256": "a6f4cac3e27212976ddaffed5d9a8d22381fc09988cf659bacfd6ac9aed5b304",
+        "pixels": 58,
+        "idiom": "ipad",
+        "sourceRmse": 0.021804199333034433
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Spotlight-40.png",
+        "sha256": "8587424003676f6a961f7e404197edef3d8d244f23df845d8b1a762a5262dfaa",
+        "pixels": 40,
+        "idiom": "ipad",
+        "sourceRmse": 0.022838157610339985
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Spotlight-80.png",
+        "sha256": "033d8efae3ad3216b3ad7efc96890110b46b0459ca81bc832f241d12445268e5",
+        "pixels": 80,
+        "idiom": "ipad",
+        "sourceRmse": 0.01997870277707289
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-76.png",
+        "sha256": "e2c03bb4ce69ab713ba49620d15c6e97db46cf04fccf9d0325272619656a4fc9",
+        "pixels": 76,
+        "idiom": "ipad",
+        "sourceRmse": 0.02002682285127112
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-152.png",
+        "sha256": "bd1e397382b89672a874ada4e53e5f6281074146f14f0e2a4625d4f92a51e2e9",
+        "pixels": 152,
+        "idiom": "ipad",
+        "sourceRmse": 0.017613507313704067
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Notification-20.png",
+        "sha256": "285460821a0520cf3e5ea3ef1effbd3ffe14a9e2be0c54aa219e20781f14c90f",
+        "pixels": 20,
+        "idiom": "ipad",
+        "sourceRmse": 0.026231552045130665
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-Notification-40.png",
+        "sha256": "8587424003676f6a961f7e404197edef3d8d244f23df845d8b1a762a5262dfaa",
+        "pixels": 40,
+        "idiom": "ipad",
+        "sourceRmse": 0.022838157610339985
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-iPad-167.png",
+        "sha256": "b9a1220250497df339ef475a552ff151616bb12138cf8402ea1c74d30dfc4857",
+        "pixels": 167,
+        "idiom": "ipad",
+        "sourceRmse": 0.017218591236311632
+      },
+      {
+        "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iOS/Unity-iPhone/Images.xcassets/AppIcon.appiconset/Icon-Store-1024.png",
+        "sha256": "fbd458de59de1a9f0d852184463896f9f65477f4e83dcc8f66c48fc333755c4f",
+        "pixels": 1024,
+        "idiom": "ios-marketing",
+        "sourceRmse": 0.0
+      }
+    ],
+    "nativeExportProof": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/native-icon-export-proof.json",
+      "sha256": "c8eb8a43e30c949489a436baacd327bb5857bd732d9f8767deafc6e69d0ca89b",
+      "origin": "actual-iOS-export-icon-integrity"
+    },
+    "compiledNativeIconProof": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/signed-ipa-proof.json",
+      "sha256": "8fc7be7a9ec8b24db4e3df8ad2e18382dc235e7a73a072ad7dd7563d170fc03f",
+      "origin": "actual-compiled-native-app-icon-check"
+    },
+    "appleProcessedStoreIcon": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/apple-processed-icon-proof.json",
+      "sha256": "2cc8cb3267ebd38ef58f4d4c00f11e2488b99494344d2639ba969e366b656934",
+      "origin": "actual-Apple-processed-app-icon-check"
+    }
   },
-  "policy": "https://developer.apple.com/app-store/review/guidelines/#accurate-metadata",
-  "limits": "Source-art motif review is not Apple approval, and does not establish the appearance of every exported native icon. Existing submitted builds are not withdrawn or altered.",
   "appleNotice": {
     "source": "User-supplied two review screenshots received15October2026; not an independently fetched new Resolution Center message",
     "guideline": "2.3 Accurate Metadata",
@@ -37,5 +195,8 @@
     "reviewDate": "2026-10-14",
     "submissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
     "relationToPreviousResponse": "Additional issue after the previously sent nine-question response; not assumed resolved."
-  }
+  },
+  "correctiveAction": "Replace only the inaccurate assigned icon and its lossy import, retain the already answered nine-question response and actual elevator game. New app-review decision is pending.",
+  "policy": "https://developer.apple.com/app-store/review/guidelines/#accurate-metadata",
+  "limits": "Icon content/export/compiled/Apple-processed-image verification passed locally. Apple App Review acceptance, new physical-device performance and paid/live-ad tests are separate. New review submission awaits the owner browser login."
 }
