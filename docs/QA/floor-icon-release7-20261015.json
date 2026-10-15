@@ -3,7 +3,7 @@
   "version": "1.0(7)",
   "sourceSha256": "db1f074d730f19d7b86a739e01b3042231f2ae3a620fdd7c84006f3d1ee39790",
   "createdAt": "2026-10-15T06:34:33.009023+00:00",
-  "status": "Native icon correction uploaded and Apple VALID; requested App Review resubmission blocked by owner-browser authentication",
+  "status": "Accurate-icon build1.0(7) resubmitted with three IAPs; Apple WAITING_FOR_REVIEW",
   "baseCommit": "f1a9cb4",
   "changes": [
     "Replace inaccurate ring/platform-runner icon with original actual-elevator imagery made from a current native reference.",
@@ -102,8 +102,7 @@
   "reviewContext": "Additional user-supplied Apple2.3 Icon notice follows the prior sent nine-answer4.3/4.2.6 response. Existing response/PDF/delivery evidence preserved. Local content fix does not claim Apple accepted either issue.",
   "limits": [
     "Actual Mac Metal runtime tests, not new physical-device/FPS/thermal/paid-transaction/ad-delivery proof.",
-    "Previous actual native iOS store images still depict the unchanged game; new Mac QA frames are not uploaded as store screenshots.",
-    "App Review resubmission requires owner browser sign-in because existing read/upload API key cannot manage review submissions."
+    "Previous actual native iOS store images still depict the unchanged game; new Mac QA frames are not uploaded as store screenshots."
   ],
   "preservedUserChange": "Historical docs/concepts/PRIMARY-CONCEPT.png deletion remains unstaged.",
   "validationStatus": "Ready with limitations for icon/build; App Review delivery Blocked",
@@ -113,11 +112,11 @@
     "processingState": "VALID",
     "buildAudienceType": "APP_STORE_ELIGIBLE",
     "usesNonExemptEncryption": null,
-    "appReviewSubmittedThisBuild": false,
+    "appReviewSubmittedThisBuild": true,
     "previousSubmissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
     "previousSubmissionState": "UNRESOLVED_ISSUES",
     "previousSubmissionWithdrawn": false,
-    "blocker": "Existing API key can read/upload but returns403 for cancel/compliance mutations; Safari session401. User requested to sign in directly in Safari. This is missing account authentication/capability, not missing human approval.",
+    "blocker": null,
     "signedPackage": {
       "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/signed-ipa-proof.json",
       "sha256": "8fc7be7a9ec8b24db4e3df8ad2e18382dc235e7a73a072ad7dd7563d170fc03f",
@@ -142,7 +141,9 @@
       "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/previous-submission-delivery-snapshot1.json",
       "sha256": "483878f7223b49670d8ed34a85cbac3e43bc74f21c7c41eae1867ae7987d4145",
       "origin": "independent-current-previous-review-read"
-    }
+    },
+    "currentSubmissionState": "WAITING_FOR_REVIEW",
+    "resubmittedAt": "2026-10-15T20:01:11.886Z"
   },
   "nativePreviewMetadata": {
     "platform": "Mac Metal development preview, not shipping iOS app",
@@ -154,5 +155,9 @@
     "path": "/Volumes/SSK SSD/Kamilunavo/Builds/IconRelease-20261015/Floor/iap-review-images-current.json",
     "sha256": "54a5d94344893345c3e311e721c9a17b5f2bd4708c045ccc378e4277589baaf7",
     "origin": "official-current-three-IAP-review-images-complete"
+  },
+  "resubmission": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Projects/OneMoreFloorRoblox/docs/QA/floor-icon-resubmitted7-20261015.json",
+    "sha256": "d454d6fef16bc8d30e804b7a30de7a630e4c5c36be7e77877fad034af7c4d01a"
   }
 }

@@ -118,3 +118,8 @@ Please reconsider build 1.0 (6) in light of these answers and the native evidenc
 ## Local icon correction prepared — 15 October 2026
 
 Build1.0(7) now contains an original accurate icon showing the actual green-jacketed boy in the single brass elevator beside fixed stone balconies. Native export, compiled shipping icons and Apple-processed store image are verified against current game frames. Build7uploaded and is VALID; this does not mean Apple accepted the additional2.3 issue or the previous nine-question response. The original response/PDF/delivery record above remain unchanged. Reviewer-note additions are prepared but not posted; resolving the rejected item and resubmitting still require the owner to sign into Safari. See QA/floor-icon-release7-20261015.json.
+
+
+## Resubmitted with accurate icon — 15 October 2026,22:01Berlin
+
+The later owner-login blocker is resolved. Build1.0(7) and the existing three IAPs were resubmitted through the authenticated owner Safari session. The version reviewer notes now include the prepared Icon2.3correction, appended to the unchanged prior notes; this original response/PDF/conversation was preserved. Independent official API readback reports WAITING_FOR_REVIEW on both submission and app version, with build7selected. This is resubmission, not acceptance. See QA/floor-icon-resubmitted7-20261015.json.

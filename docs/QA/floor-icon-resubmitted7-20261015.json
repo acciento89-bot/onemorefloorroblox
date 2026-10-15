@@ -1,0 +1,71 @@
+{
+  "game": "One More Floor",
+  "version": "1.0(7)",
+  "sourceSha256": "db1f074d730f19d7b86a739e01b3042231f2ae3a620fdd7c84006f3d1ee39790",
+  "submittedDate": "2026-10-15T20:01:11.886Z",
+  "appId": "6819872214",
+  "buildId": "2140cf75-5f83-47b0-b647-a02f118c656a",
+  "submissionId": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
+  "state": "WAITING_FOR_REVIEW",
+  "submittedItems": 4,
+  "actions": [
+    "Verified current source/visual/icon guards and20icon-build evidence references; reused already uploaded Apple-VALID build7 rather than duplicate upload.",
+    "Owner-authenticated Safari selected build7 and saved it on the existing1.0version.",
+    "Carried forward prior build6false non-exempt encryption declaration; game encryption code unchanged.",
+    "Preserved existing946review-note characters and appended596characters explaining the additional2.3Icon correction; prior nine-answer conversation/PDF untouched.",
+    "Updated rejected app item to ready and resubmitted existing group with app version and three IAPs.",
+    "Independent official API readback confirms submission and app version WAITING_FOR_REVIEW, selected build7, unchanged MANUALrelease, and all4groupitems."
+  ],
+  "evidence": {
+    "app-current": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/app-current.json",
+      "sha256": "b8fbfa1c3aaf5edf2cb427babf8df990e6d18a3e73a245eea1cd55da3b1928f5"
+    },
+    "versions-current": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/versions-current.json",
+      "sha256": "8343dc9b7dfb78fdc376b250475abcde7aebfb89ba7f6106657aeffa54fbd0eb"
+    },
+    "submissions-current": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/submissions-current.json",
+      "sha256": "27bf290c6bea925f143699eabe16460d146b4518a2d4368b31117ff95bf8d116"
+    },
+    "build7-current": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/build7-current.json",
+      "sha256": "08c1ded64e468f951568d2d694740a78308d146f1e9ca07eec160b8c8a6cf3c6"
+    },
+    "old6-compliance": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/old6-compliance.json",
+      "sha256": "63be143e3e92b118b4c6ae1ae734b0aae502f898b947df1c00fae2d925ae8e46"
+    },
+    "notes-preserved-and-appended": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/notes-preserved-and-appended.json",
+      "sha256": "cbb144aaf2d72fce4fe2203f46e63fd78189a08475bd2a7e7b1877a1253db484"
+    },
+    "version-selected": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/version-selected.json",
+      "sha256": "10f4adf2da4463bc7f44f3299b0353b15d9bbcf497b8ff52d475105e55ff8af5"
+    },
+    "review-notes-saved": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/review-notes-saved.json",
+      "sha256": "ddad4df76fea1065ea1d711e6160bc4303bf5016e5e7a5b421bf8d92b6abf670"
+    },
+    "review-submitted": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/review-submitted.json",
+      "sha256": "c7196e4567a60d8d4134a59bf5fa37aeddb502da0623b8b4ce6df2601e0aa50d"
+    },
+    "version-submitted": {
+      "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/version-submitted.json",
+      "sha256": "6f06d357dda38908080e074249b6bf4238bb9a1bb3d179044e12ababc31d1342"
+    }
+  },
+  "priorBuildEvidence": {
+    "path": "/Volumes/SSK SSD/Kamilunavo/Builds/FloorIconResubmit-20261015/release7-before-resubmission.json",
+    "sha256": "3f4ab3ddbe2902ded26c8925d24496acf85f43f22deb20da27b86f8aa80af1db"
+  },
+  "limits": [
+    "Submitted does not mean approved. Apple2.3review pending.",
+    "No new gameplay/monetization/source/icon change this follow-through; previously validated build7used.",
+    "Approved Rising Steps and Perfect Drop not altered.",
+    "Historical user-deleted Concept remains unstaged."
+  ]
+}

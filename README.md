@@ -2,7 +2,7 @@
 
 ## Icon correction — 2026-10-15
 
-Original accurate icon is integrated, all native icon sizes checked and signed iOS1.0(7) uploaded. Apple processing is VALID; the Apple-processed store icon matches the new artwork exactly. **App Review resubmission still awaits the owner Safari login** because the existing upload key cannot withdraw/submit reviews. Previous review has not been replaced. [Current proof and limits](docs/QA/floor-icon-release7-20261015.json). Gameplay and monetization are unchanged.
+Original accurate icon is integrated, all native icon sizes checked and signed iOS1.0(7) uploaded. Apple processing is VALID; the Apple-processed store icon matches the new artwork exactly. **Build1.0(7) and all three IAPs were resubmitted at22:01Berlin; Apple confirms WAITING_FOR_REVIEW.** Owner Safari authentication now works; previous notes/nine-answer conversation were preserved and the additional Icon2.3 correction was appended. [Resubmission readback](docs/QA/floor-icon-resubmitted7-20261015.json). [Current proof and limits](docs/QA/floor-icon-release7-20261015.json). Gameplay and monetization are unchanged.
 
 
 Native iOS + Android elevator timing arcade game by Kamilunavo.
