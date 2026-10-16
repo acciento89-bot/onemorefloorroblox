@@ -123,3 +123,34 @@ Build1.0(7) now contains an original accurate icon showing the actual green-jack
 ## Resubmitted with accurate icon — 15 October 2026,22:01Berlin
 
 The later owner-login blocker is resolved. Build1.0(7) and the existing three IAPs were resubmitted through the authenticated owner Safari session. The version reviewer notes now include the prepared Icon2.3correction, appended to the unchanged prior notes; this original response/PDF/conversation was preserved. Independent official API readback reports WAITING_FOR_REVIEW on both submission and app version, with build7selected. This is resubmission, not acceptance. See QA/floor-icon-resubmitted7-20261015.json.
+
+
+## Renewed 4.3(a) rejection and approved clarification — 16 October 2026
+
+Read the complete authenticated five-message thread. Apple acknowledged the original answers at21:44UTC14October, then identified the additional Icon2.3issue at21:46UTC. This was not an explicit approval or clearance of4.3. The icon-only build7was resubmitted15October20:01UTC. The renewed rejection at16October18:04UTC identifies4.3(a), with no specific comparator or overlapping component, and includes a conditional warning about future repeated violations. No account termination decision appears in this thread. There is no evidence here that no human review occurred.
+
+The owner explicitly approved sending the prepared clarification. It was published at18:30:11.776UTC(20:30Berlin), message `d6f5c9d5-1ad7-46fa-85f1-dd619c37c84f`. Full body and character/hash equality were verified from the published thread, now six messages. Official API confirms build7still selected and app state REJECTED. No new build, resubmission or gameplay/commerce/metadata changes. See QA/floor-renewed-spam-reply-20261016.json.
+
+### Sent clarification
+
+Hello App Review,
+
+Please re-examine the 4.3(a) rejection of One More Floor 1.0 (7) together with the existing correspondence and OneMoreFloor-AppReview-Response.pdf in this thread. This message requests clarification and reconsideration; we are not submitting another binary.
+
+For clarity, the sequence was (UTC):
+- October 14, 21:16: we answered all nine requested questions and attached the four-page PDF with native gameplay images, testing details, authorship and an explicit disclosure of shared components.
+- October 14, 21:44: App Review acknowledged the information and said review would continue.
+- October 14, 21:46: App Review identified an additional issue under 2.3, specifically the icon in build 6.
+- October 15, 20:01: build 7 was submitted to correct that icon. The game was not presented as a substantially redesigned product. The prior answers/PDF were retained and the icon correction was explained in the review notes.
+- October 16, 18:04: the new 4.3(a) message did not identify which part of our earlier explanation remains insufficient.
+
+We understand that continuing review was not approval or confirmation that 4.3 had been resolved. We want to address the actual remaining concern before any further submission.
+
+The core interaction is timing a transfer from one moving elevator to fixed tower balconies using a motion-derived landing forecast, followed by checkpoint decisions to bank or risk the round's coins. All three tower themes are contained in this one app. Our earlier response openly identifies shared first-party support/UI/audio/commerce components and standard Unity/advertising/purchase frameworks; it does not claim that every byte or asset is exclusive. The app is submitted directly by its content owner, not on behalf of a commercial template client.
+
+Please have an experienced reviewer re-examine this correspondence and clarify:
+1. Which specific content, functionality, metadata or non-standard shared component creates the material duplication under 4.3(a)? If possible, identify a comparison app; otherwise describe the overlapping feature or screen sufficiently for us to act on it.
+2. Which of our nine answers or supplied evidence is inadequate, and what substantive product change would address the remaining concern?
+3. Does the Extended Review paragraph describe the conditional consequence of future repeated violations, or is there a separate account-specific action or specific safety/security issue that requires a response now?
+
+We take compliance seriously and are holding further resubmission of this app while seeking actionable clarification. Thank you for reviewing the existing evidence and helping us resolve the remaining issue precisely.

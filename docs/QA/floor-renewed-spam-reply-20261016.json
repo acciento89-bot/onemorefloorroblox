@@ -1,0 +1,31 @@
+{
+  "checkedUTC": "2026-10-16T18:30:33.382258+00:00",
+  "appID": "6819872214",
+  "version": "1.0",
+  "build": "7",
+  "buildID": "2140cf75-5f83-47b0-b647-a02f118c656a",
+  "submissionID": "a5e537c0-a31a-47e3-8e0c-727590b3f99f",
+  "threadID": "54d208ae-7dea-378a-bddd-0a58da6be30e",
+  "messageID": "d6f5c9d5-1ad7-46fa-85f1-dd619c37c84f",
+  "createdDate": "2026-10-16T18:30:11.776Z",
+  "messageCharacters": 2712,
+  "bodySHA256": "9a8d4783fca37ccc43e94d66d347678e881efe432cd77cccb7184b899340a015",
+  "bodyReadbackMatches": true,
+  "sent": true,
+  "userAuthorized": true,
+  "messageCount": 6,
+  "resubmitted": false,
+  "appVersionState": "REJECTED",
+  "sourceChanged": false,
+  "purpose": "Request experienced reassessment of renewed 4.3(a), specific overlap and account-warning clarification; existing nine-answer PDF remains in thread.",
+  "appleRejectionMessageID": "70b97770-779d-45bf-9c31-5afbd440e920",
+  "appleRejectionCreatedDate": "2026-10-16T18:04:54.421Z",
+  "reason": "4.3(a) Design - Spam",
+  "warningInterpretation": "Conditional future developer-program removal warning in the retrieved app-review thread; no separate termination decision was present in this thread.",
+  "limits": [
+    "Apple has not resolved the rejection or answered the new clarification.",
+    "The earlier statement that review would continue was not approval or explicit clearance of 4.3.",
+    "No inference that the review was automated or that correspondence was ignored.",
+    "No new app binary, metadata, screenshot, IAP or approved sibling app was changed."
+  ]
+}

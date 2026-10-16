@@ -1,8 +1,12 @@
 # One More Floor
 
+## Current review status — 2026-10-16
+
+Apple renewed the **4.3(a) Design – Spam** rejection of 1.0(7) at 20:04 Berlin. After reading all five prior messages and receiving explicit owner approval, a clarification requesting experienced reassessment, specific duplication details and clarification of the account warning was sent at **20:30 Berlin**. The complete 2,712-character body was read back exactly as one published message. **The app remains REJECTED; no new binary or resubmission was made.** The earlier continuation-of-review acknowledgment was not approval. [Delivery evidence](docs/QA/floor-renewed-spam-reply-20261016.json).
+
 ## Icon correction — 2026-10-15
 
-Original accurate icon is integrated, all native icon sizes checked and signed iOS1.0(7) uploaded. Apple processing is VALID; the Apple-processed store icon matches the new artwork exactly. **Build1.0(7) and all three IAPs were resubmitted at22:01Berlin; Apple confirms WAITING_FOR_REVIEW.** Owner Safari authentication now works; previous notes/nine-answer conversation were preserved and the additional Icon2.3 correction was appended. [Resubmission readback](docs/QA/floor-icon-resubmitted7-20261015.json). [Current proof and limits](docs/QA/floor-icon-release7-20261015.json). Gameplay and monetization are unchanged.
+Original accurate icon is integrated, all native icon sizes checked and signed iOS1.0(7) uploaded. Apple processing is VALID; the Apple-processed store icon matches the new artwork exactly. **Build1.0(7) and all three IAPs were resubmitted on15October at22:01Berlin; Apple initially confirmed WAITING_FOR_REVIEW. The renewed rejection of16October is recorded above.** Owner Safari authentication now works; previous notes/nine-answer conversation were preserved and the additional Icon2.3 correction was appended. [Resubmission readback](docs/QA/floor-icon-resubmitted7-20261015.json). [Current proof and limits](docs/QA/floor-icon-release7-20261015.json). Gameplay and monetization are unchanged.
 
 
 Native iOS + Android elevator timing arcade game by Kamilunavo.
